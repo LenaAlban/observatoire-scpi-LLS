@@ -716,6 +716,14 @@ def official_entry_points(item, url, host):
     Les URL de rapport annuel connues sont exclues des pages de bulletins.
     """
     urls=[url]
+    # En cas d'échec du certificat sur www, tenter tôt le domaine apex
+    # avec validation TLS toujours active. Ne jamais désactiver verify.
+    if urlparse(url).hostname == 'www.'+host:
+        from urllib.parse import urlunparse
+        parts=urlparse(url)
+        apex=urlunparse(parts._replace(netloc=host))
+        if apex not in urls:
+            urls.append(apex)
     for candidate in [item.get('sourceUrl'),item.get('bulletinUrl')]+[
         (item.get('fieldSources') or {}).get(key,{}).get('url')
         for key in ('tof','recon','geo','types','td')
@@ -728,13 +736,6 @@ def official_entry_points(item, url, host):
             continue
         if candidate not in urls:
             urls.append(candidate)
-    # Un autre nom d'hôte officiel, sans contournement TLS ni de restriction d'accès.
-    if urlparse(url).hostname == 'www.'+host:
-        from urllib.parse import urlunparse
-        parts=urlparse(url)
-        apex=urlunparse(parts._replace(netloc=host))
-        if apex not in urls:
-            urls.append(apex)
     return urls[:7]
 
 
@@ -779,6 +780,7 @@ def collect_official_candidates(sess,item,url,host):
         known=item.get('bulletinUrl') or ''
         known_period=period_from(item.get('bulletin') or '')
         if not (known and known_period and host_is(known,host)):
+            item['sourceAttempts']=attempts[-7:]
             raise RuntimeError('Aucune page officielle accessible : '+ ' / '.join(a.get('detail','source non accessible')[:85] for a in attempts[:3]))
     return primary_html,primary_url,candidates,attempts
 
@@ -871,6 +873,9 @@ def refresh_one(s,item):
         item['pdfReadStatus']='PDF officiel lu (texte et positions)'
         item['pdfSourceUrl']=resolved
         item.pop('pdfWarning',None)
+        if html is None:
+            item['sourceFallbackUsed']=True
+            item['sourceAttempts'].append({'url':resolved,'status':'pdf_verifie'})
         verified=True
         break
     if not verified:
@@ -903,6 +908,8 @@ def refresh_one(s,item):
         else:
             item['pdfReadStatus']='Bulletin PDF non vérifié automatiquement'
         item['pdfWarning']=' · '.join(document_errors[:2])[:220] if document_errors else 'Aucun bulletin exploitable détecté'
+    if not html and not verified:
+        raise RuntimeError('Aucune page ou PDF officiel exploitable après les points d’entrée de secours')
     # Ne pas confondre découverte de lien et lecture d'un bulletin.
     item['automatedCheck']=(
         'PDF officiel vérifié et indicateurs contrôlés' if verified
