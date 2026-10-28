@@ -43,9 +43,28 @@
         "url": "https://www.iroko.eu/bulletins-trimestriels/t2-2026"
       }
     ],
-    "keys": {},
-    "keySource": null,
-    "keyDate": null,
+    "keys": {
+      "3": 87,
+      "4": 83,
+      "5": 79,
+      "6": 75.5,
+      "7": 72.5,
+      "8": 70,
+      "9": 68,
+      "10": 65.5,
+      "11": 64,
+      "12": 63,
+      "13": 62,
+      "14": 61,
+      "15": 60,
+      "16": 59,
+      "17": 58,
+      "18": 57,
+      "19": 56,
+      "20": 55
+    },
+    "keySource": "https://iroko-documentation.s3.eu-west-3.amazonaws.com/Legal/Cles_repartititon_iroko_zen.pdf",
+    "keyDate": "2021-07-01",
     "dataSource": "https://www.iroko.eu/performance",
     "verification": "Publication identifiée",
     "lastChecked": "2026-10-28",
@@ -64,7 +83,10 @@
       "method": null
     },
     "priceType": "Souscription",
-    "priceSource": "https://www.iroko.eu/performance"
+    "priceSource": "https://www.iroko.eu/performance",
+    "keySourceType": "Société de gestion",
+    "keyVerifiedAt": "2026-10-28",
+    "keyNote": "Barème officiel Iroko en vigueur depuis le 01/07/2021, toujours référencé sur son site. Ancienneté importante : confirmation nécessaire avant toute souscription."
   },
   {
     "id": "pierval-sante",
@@ -174,14 +196,23 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": "https://www.corum.fr/nos-scpi/demembrement",
+    "keys": {
+      "3": 85,
+      "5": 78,
+      "6": 75,
+      "7": 72,
+      "8": 69,
+      "9": 67,
+      "10": 65,
+      "15": 60
+    },
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-origin.html",
     "keyDate": null,
     "dataSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
     "verification": "Fiche MTX + publication",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-origin.html",
-    "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -198,7 +229,9 @@
     },
     "priceType": "Souscription",
     "priceSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "remake-live",
@@ -212,7 +245,7 @@
     "realisation": 175.64,
     "retreat": 204,
     "td": 7.05,
-    "tof": 100.0,
+    "tof": 100,
     "waiting": 0,
     "waitingPct": null,
     "bulletin": "T3 2026",
@@ -605,7 +638,8 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "keySourceType": "Société de gestion"
   },
   {
     "id": "epargne-fonciere",
@@ -817,7 +851,8 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "keySourceType": "Société de gestion"
   },
   {
     "id": "laffitte-pierre",
@@ -834,7 +869,7 @@
     "realisation": null,
     "retreat": null,
     "td": null,
-    "tof": 67.0,
+    "tof": 67,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "S1 2026",
@@ -1718,14 +1753,20 @@
       }
     ],
     "keys": {
+      "5": 73.75,
+      "6": 70,
+      "7": 66.5,
+      "8": 63.25,
+      "9": 60.5,
+      "10": 59,
       "15": 50
     },
-    "keySource": "https://www.sofidy.com/scpi/investir/scpi-demembrement/nue-propriete-scpi/",
-    "keyDate": null,
+    "keySource": "https://placement.meilleurtaux.com/scpi/actualites/2026-octobre/scpi-sofidynamic-en-nue-propriete-une-decote-qui-fait-la-difference.html",
+    "keyDate": "2026-10-16",
     "verification": "Fiche MTX vérifiée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/sofidynamic.html",
-    "keyNote": "La société de gestion mentionne une décote de 50 % en nue-propriété à 15 ans (clé indicative et non contractuelle). Les autres durées ne sont pas confirmées ici.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.sofidy.com/solutions/sofidynamic/",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -1741,7 +1782,9 @@
       "method": "Stock initial du référentiel — à confirmer dans le bulletin"
     },
     "priceType": "Souscription",
-    "priceSource": "https://www.sofidy.com/solutions/sofidynamic/"
+    "priceSource": "https://www.sofidy.com/solutions/sofidynamic/",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "transitions-europe",
@@ -1806,31 +1849,31 @@
     "types": [
       [
         "Bureaux",
-        38.0
+        38
       ],
       [
         "Commerce",
-        25.0
+        25
       ],
       [
         "Logistique",
-        14.0
+        14
       ],
       [
         "Life Science",
-        10.0
+        10
       ],
       [
         "Hospitalité",
-        5.0
+        5
       ],
       [
         "Activité",
-        5.0
+        5
       ],
       [
         "Education",
-        3.0
+        3
       ]
     ],
     "acquisitions": [
@@ -1853,13 +1896,21 @@
         "url": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe"
       }
     ],
-    "keys": {},
-    "keySource": null,
+    "keys": {
+      "5": 80,
+      "6": 77,
+      "7": 74,
+      "8": 71,
+      "9": 69,
+      "10": 67,
+      "15": 58
+    },
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/transitions-europe.html",
     "keyDate": null,
     "verification": "Allocations officielles ; expertise non datée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/transitions-europe.html",
-    "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -1889,7 +1940,9 @@
         "method": "répartition textuelle contrôlée, somme ~100 %"
       }
     },
-    "pdfWarning": "Ce lien ne fournit pas un PDF"
+    "pdfWarning": "Ce lien ne fournit pas un PDF",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "epargne-pierre-europe",
@@ -1924,13 +1977,22 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
+    "keys": {
+      "3": 87.5,
+      "5": 80,
+      "6": 76.5,
+      "7": 74,
+      "8": 71.5,
+      "9": 70,
+      "10": 67,
+      "15": 58.5
+    },
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-europe.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-europe.html",
-    "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -1961,7 +2023,9 @@
         "proof": "                                                              T2•  Un taux d’occupation financier de 99,79 % et un                                                                  "
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "epargne-pierre-sophia",
@@ -1971,7 +2035,7 @@
     "tags": [
       "Meilleurtaux Placement"
     ],
-    "price": 220.0,
+    "price": 220,
     "priceDate": "2025-01-01",
     "recon": 22.68,
     "reconDate": "2026-07-01",
@@ -1996,13 +2060,22 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+    "keys": {
+      "3": 88.5,
+      "5": 81.5,
+      "6": 79.5,
+      "7": 76.5,
+      "8": 74.5,
+      "9": 72,
+      "10": 69.5,
+      "15": 63.5
+    },
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-sophia.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-sophia.html",
-    "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -2027,7 +2100,9 @@
         "proof": "                                            Objectifs de gestion      Prix de souscription par part à partir                                          220,00€       220,00 €\n    du "
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "sofidy-europe-invest",
@@ -2063,14 +2138,20 @@
     "types": [],
     "acquisitions": [],
     "keys": {
-      "20": 59
+      "5": 81,
+      "6": 78,
+      "7": 75.25,
+      "8": 72.5,
+      "9": 69.75,
+      "10": 67.5,
+      "15": 58.5
     },
-    "keySource": "https://www.sofidy.com/scpi/investir/scpi-demembrement/",
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/sofidy-europe-invest.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/sofidy-europe-invest.html",
-    "keyNote": "Exemple indicatif de clé à 20 ans issu de la page Sofidy ; barème en vigueur à revalider auprès de la société de gestion.",
+    "keyNote": "Barème de la fiche Meilleurtaux Placement consultée le 28/10/2026. L'ancienne clé isolée à 20 ans a été écartée : sa cohérence avec la grille récente ne pouvait pas être confirmée. À reconfirmer avant souscription.",
     "officialSource": "https://www.sofidy.com/solutions/sofidy-europe-invest/",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -2094,7 +2175,9 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "principal-inside",
@@ -2124,13 +2207,23 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": null,
+    "keys": {
+      "3": 87,
+      "5": 80,
+      "6": 77,
+      "7": 74,
+      "8": 71.5,
+      "9": 69,
+      "10": 67,
+      "15": 61.5,
+      "20": 56.5
+    },
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/principal-inside.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/principal-inside.html",
-    "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://fr.principalam.com/notre-scpi",
     "automatedCheck": "Site accessible · bulletin non détecté automatiquement",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -2146,7 +2239,9 @@
       "method": null
     },
     "priceType": "Souscription",
-    "priceSource": "https://fr.principalam.com/notre-scpi"
+    "priceSource": "https://fr.principalam.com/notre-scpi",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   },
   {
     "id": "corum-usa",
@@ -2181,13 +2276,22 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": "https://www.corum.fr/nos-scpi/demembrement",
+    "keys": {
+      "3": 85,
+      "5": 80,
+      "6": 79,
+      "7": 77,
+      "8": 76,
+      "9": 74,
+      "10": 72,
+      "15": 67
+    },
+    "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-usa.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
     "lastChecked": "2026-10-28",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-usa.html",
-    "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
+    "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.corum.fr/nos-scpi/corum-usa/documents",
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -2212,6 +2316,8 @@
         "proof": "Valeur de reconstitution par part publiée"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "keySourceType": "Meilleurtaux Placement",
+    "keyVerifiedAt": "2026-10-28"
   }
 ]
