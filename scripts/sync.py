@@ -928,19 +928,60 @@ def main():
             item['liquidity']={'label':label,'effective':effective,'source':src}
     if args.offline_test:
         print(json.dumps({'scpi':len(items),'source_configs':len(OFFICIAL),'keys':sum(bool(i.get('keys')) for i in items)},ensure_ascii=False));return
-    statuses=[];changed=0;ok=0;found=0
+    statuses=[];changed=0;ok=0;found=0;rejected=0
     ss=session()
     for item in items:
         if args.only and item['id']!=args.only:continue
+        # Traiter dans une copie : aucun chiffre n'est publié si la collecte
+        # échoue à mi-parcours ou si les nouveaux indicateurs sont incohérents.
+        draft=json.loads(json.dumps(item,ensure_ascii=False))
         try:
-            updates,detected=refresh_one(ss,item)
-            ok+=1;found+=int(detected);changed+=int(bool(updates))
-            statuses.append({'id':item['id'],'name':item['name'],'status':'ok' if detected else 'partial','changes':updates,'message':item.get('automatedCheck',''),'source':item['officialSource'],'pdfRead':item.get('pdfReadStatus'),'pdfAllocation':item.get('pdfAllocationStatus'),'pdfWarning':item.get('pdfWarning')})
+            updates,detected=refresh_one(ss,draft)
+            problems=validate_updates(item,draft,TODAY)
+            if problems:
+                rejected+=1
+                statuses.append({
+                    'id':item['id'],'name':item['name'],'status':'partial',
+                    'changes':[],'rejectedUpdates':updates,
+                    'message':'Actualisation rejetée avant publication : '+' ; '.join(problems[:4]),
+                    'validationIssues':problems,
+                    'source':draft.get('officialSource',item['officialSource']),
+                    'attempts':draft.get('sourceAttempts',[]),
+                    'fallbackUsed':draft.get('sourceFallbackUsed',False),
+                    'pdfRead':item.get('pdfReadStatus'),
+                    'pdfAllocation':item.get('pdfAllocationStatus')
+                })
+                LOG.warning('%s: nouvelles valeurs rejetées: %s',item['name'],'; '.join(problems[:4]))
+                # Un PDF refusé ne devient pas un bulletin vérifié publié.
+                continue
+            item.clear()
+            item.update(draft)
+            ok+=1
+            found+=int(detected)
+            changed+=int(bool(updates))
+            statuses.append({
+                'id':item['id'],'name':item['name'],
+                'status':'ok' if detected else 'partial',
+                'changes':updates,
+                'message':item.get('automatedCheck',''),
+                'source':item['officialSource'],
+                'pdfRead':item.get('pdfReadStatus'),
+                'pdfAllocation':item.get('pdfAllocationStatus'),
+                'pdfWarning':item.get('pdfWarning'),
+                'attempts':item.get('sourceAttempts',[]),
+                'fallbackUsed':item.get('sourceFallbackUsed',False)
+            })
             LOG.info('%s: %s',item['name'],', '.join(updates) or ('bulletin PDF vérifié' if detected else 'source accessible, bulletin non validé'))
-        except Exception as e:
-            statuses.append({'id':item['id'],'name':item['name'],'status':'error','changes':[],'message':str(e)[:220],'source':item['officialSource']})
-            item['automatedCheck']='Échec de récupération · données précédentes conservées'
-            LOG.warning('%s: %s',item['name'],e)
+        except Exception as exc:
+            statuses.append({
+                'id':item['id'],'name':item['name'],'status':'error',
+                'changes':[],'message':str(exc)[:220],
+                'source':item['officialSource'],'attempts':draft.get('sourceAttempts',[])
+            })
+            LOG.warning('%s: données précédentes conservées (%s)',item['name'],exc)
+    # Les alertes historiques signalent les limites sans supprimer les valeurs
+    # publiées avant l'activation du système de validation.
+    quality=quality_report(items,TODAY)
     recent_events=sorted(
         (dict(ev,scpiId=item['id'],scpiName=item['name'])
          for item in items
@@ -956,7 +997,9 @@ def main():
             'updated':changed,'results':statuses,
             'recentEvents':recent_events,
             'eventsRecordedToday':len(todays_events),
-            'bulletinEventsRecordedToday':sum(ev.get('field')=='bulletin' for ev in todays_events)}
+            'bulletinEventsRecordedToday':sum(ev.get('field')=='bulletin' for ev in todays_events),
+            'rejectedUpdates':rejected,'quality':quality,
+            'fallbackRecovered':sum(bool(row.get('fallbackUsed')) for row in statuses)}
     print(json.dumps({'date':TODAY,'sources_accessibles':ok,'bulletins_detectes':found,'fiches_modifiees':changed,'erreurs':len(statuses)-ok},ensure_ascii=False))
     if not args.dry_run:
         DATA.write_text(json.dumps(items,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
