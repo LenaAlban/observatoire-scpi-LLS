@@ -475,40 +475,66 @@ function adviceView(s){
  
  <div class="drawer-actions"><button class="btn" data-print-scpi="${esc(s.id)}">Fiche PDF</button>${link(s.bulletinUrl||s.officialSource,'Bulletin officiel')}</div>`;
 }
+
+function compareCellHtml(d,printed=false){
+ const value=esc(d.value),meta=d.meta?`<small class="compare-meta">${esc(d.meta)}</small>`:'';
+ const note=d.note?`<small class="compare-label-note">${esc(d.note)}</small>`:'';
+ const source=/^https:\/\//.test(d.source||'')?link(d.source,'Source','compare-source'):'';
+ const source2=/^https:\/\//.test(d.source2||'')&&d.source2!==d.source?link(d.source2,'Reconstitution','compare-source'):'';
+ return `<div class="compare-cell"><span class="compare-value">${value}</span>${meta}${note}${source}${source2}</div>`;
+}
+function compareTableHtml(scpis,printed=false){
+ const groups=compareGroups();
+ const cls=printed?'print-table':'scpi-table';
+ const cells=groups.map(group=>
+  `<tr class="${printed?'print-group-row':'compare-section-row'}"><td colspan="${scpis.length+1}">${esc(group.title)}</td></tr>`+
+  group.rows.map(r=>`<tr><td><strong>${esc(r.label)}</strong></td>${scpis.map(s=>`<td>${compareCellHtml(r.data(s),printed)}</td>`).join('')}</tr>`).join('')
+ ).join('');
+ return `<table class="${cls}"><thead><tr><th scope="col">Indicateur</th>${scpis.map(s=>`<th scope="col">${esc(s.name)}<small class="compare-meta">${esc(s.manager)}</small></th>`).join('')}</tr></thead><tbody>${cells}</tbody></table>`;
+}
+function compareKeyTableHtml(scpis,printed=false){
+ const years=compareKeyYears(scpis);
+ if(!years.length)return printed?'<p>Aucune grille de nue-propriété disponible dans la sélection.</p>':'<div class="panel comparison-table compare-keytable"><h3>Clés de démembrement</h3><p class="source-note">Aucune clé de nue-propriété renseignée pour les SCPI sélectionnées.</p></div>';
+ const rows=years.map(y=>`<tr><td><strong>${y} an${y>1?'s':''}</strong></td>${scpis.map(s=>{
+  const value=s.keys?.[String(y)];
+  return `<td>${compareCellHtml(compareDatum(value!=null?pct(value):'—',value!=null?(s.keyDate?'Barème du '+date(s.keyDate):'Date d’effet non vérifiée'):'Durée non publiée',value!=null?s.keySource:null),printed)}</td>`;
+ }).join('')}</tr>`).join('');
+ const header=`<tr><th scope="col">Durée NP</th>${scpis.map(s=>`<th scope="col">${esc(s.name)}</th>`).join('')}</tr>`;
+ const table=`<table class="${printed?'print-table':'scpi-table'}"><thead>${header}</thead><tbody>${rows}</tbody></table>`;
+ return printed?`<h2>Clés indicatives de nue-propriété</h2>${table}`:
+  `<div class="panel comparison-table compare-keytable"><h3>Clés de nue-propriété : toutes les durées disponibles</h3><div class="table-scroll">${table}</div><p class="compare-note">Aucune interpolation entre deux durées. Les grilles n'ont pas nécessairement la même date d’effet ni les mêmes modalités commerciales. Une date de vérification n'est pas une date de validité.</p></div>`;
+}
+function comparePortfolioCard(s){
+ const summary=(key,label)=>{
+  const arr=s[key]||[];
+  const dt=s[key+'Date']||s.allocationDate;
+  const src=compareFieldUrl(s,key);
+  const top=[...arr].filter(r=>Array.isArray(r)&&Number.isFinite(Number(r[1]))).sort((a,b)=>Number(b[1])-Number(a[1])).slice(0,3);
+  const topTotal=top.reduce((sum,r)=>sum+Number(r[1]),0);
+  return `<section><h4>${label}</h4><p class="source-note">${arr.length?'Répartition au '+date(dt)+' · trois premières zones/catégories : '+fr(topTotal,1)+' %':'Répartition non renseignée'}</p>${arr.length?bars(arr,key==='types'):empty('Répartition non renseignée')}<p class="source-note">${src?link(src,'Document source','compare-source'):'Source détaillée non disponible'}</p></section>`;
+ };
+ const acquisitions=(s.acquisitions||[]).length;
+ return `<article class="compare-exposure-card"><h3>${esc(s.name)}</h3><p class="smalltxt">${esc(s.manager)} · Bulletin ${esc(s.bulletin||'non identifié')} au ${date(s.bulletinDate)}</p>${summary('geo','Répartition géographique complète')}${summary('types','Répartition sectorielle complète')}<p class="source-note">Acquisitions documentées : ${acquisitions} annonce${acquisitions>1?'s':''}. Inventaire potentiellement non exhaustif.</p><div class="compare-card-footer"><button class="btn small" data-open="${esc(s.id)}" data-tab="portfolio">Patrimoine détaillé</button>${link(s.bulletinUrl||s.officialSource,'Bulletin / gérant')}</div></article>`;
+}
 function renderCompareExtras(){
- const scpis=selected.map(id=>items.find(s=>s.id===id)).filter(Boolean);
+ const scpis=compareSelectedItems();
  $('compare-report').disabled=scpis.length===0;
- $('compare-matrix').innerHTML=scpis.length?`<div class="panel comparison-table"><h3>Tableau comparatif · ${scpis.length} SCPI</h3><div class="table-scroll"><table class="scpi-table"><thead><tr><th>Indicateur</th>${scpis.map(s=>`<th>${esc(s.name)}</th>`).join('')}</tr></thead><tbody>
- ${[
- ['Prix / nature',s=>priceMissing(s)+' ('+priceLabel(s)+')'],
- ['Prix daté',s=>date(s.priceDate)],
- ['Valeur de reconstitution',s=>euro(s.recon)+' · '+date(s.reconDate)],
- ['Écart prix / reconstitution',s=>gap(s)==null?'Non comparable':pct(gap(s))],
- ['TD historique 2025',s=>pct(s.td)],
- ['TOF',s=>pct(s.tof)+' · '+date(s.tofDate)],
- ['Liquidité',s=>liquidityMonthsSummary(s)],
- ['Données documentées',s=>auditRecord(s).count+'/8 catégories']
- ].map(([label,fn])=>`<tr><td><strong>${esc(label)}</strong></td>${scpis.map(s=>`<td>${esc(fn(s))}</td>`).join('')}</tr>`).join('')}
- </tbody></table></div><p class="source-note" style="padding:10px 15px">Les périodes, supports et méthodes peuvent être différents. Ce tableau ne classe pas les SCPI et ne présume pas de l'éligibilité à un contrat.</p></div>`:'';
+ $('compare-matrix').innerHTML=scpis.length?`<div class="panel comparison-table"><h3>Tableau comparatif · ${scpis.length} SCPI</h3><div class="table-scroll">${compareTableHtml(scpis)}</div><p class="compare-note">La nature des prix, les dates de publication et les méthodes des gérants diffèrent. Un écart prix/reconstitution n'est calculé que pour une souscription comparable. « Non renseigné » ne signifie pas zéro. Aucun résultat n'est une recommandation ni un classement.</p></div>${compareKeyTableHtml(scpis)}`:'<div class="panel comparison-table"><p class="smalltxt">Sélectionne au moins une SCPI pour afficher le tableau comparatif.</p></div>';
+ $('compare-cards').innerHTML=scpis.map(comparePortfolioCard).join('');
+}
+function comparePrintBreakdowns(s){
+ return ['geo','types'].map(key=>{
+  const label=key==='geo'?'Géographie':'Secteurs',d=s[key+'Date']||s.allocationDate,source=compareFieldUrl(s,key);
+  const lines=(s[key]||[]).map(([name,value])=>`<p>${esc(name)} : ${esc(pct(value))}</p>`).join('')||'<p>Non renseigné</p>';
+  return `<div class="print-breakdown"><strong>${label} (${date(d)})</strong>${lines}${source?`<div class="print-sources">Source : ${esc(source)}</div>`:''}</div>`;
+ }).join('');
 }
 function printReport(ids){
  const scpis=ids.map(id=>items.find(s=>s.id===id)).filter(Boolean).slice(0,4);
  if(!scpis.length)return toast('Sélectionne au moins une SCPI.');
- const escValue=x=>esc(String(x??'Non renseigné'));
  const now=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
- const facts=[
- ['Prix / type de marché',s=>priceMissing(s)+' ('+priceLabel(s)+')'],
- ['Date du prix',s=>date(s.priceDate)],
- ['Reconstitution',s=>euro(s.recon)+' ('+date(s.reconDate)+')'],
- ['Décote / surcote',s=>gap(s)==null?'Non comparable':pct(gap(s))],
- ['Taux de distribution 2025',s=>pct(s.td)],
- ['TOF',s=>pct(s.tof)+' ('+date(s.tofDate)+')'],
- ['Liquidité',s=>liquidityMonthsSummary(s)],
- ['Couverture',s=>auditRecord(s).count+'/8 catégories suivies']
- ];
- const table=`<table class="print-table"><thead><tr><th>Indicateur</th>${scpis.map(s=>`<th>${escValue(s.name)}</th>`).join('')}</tr></thead><tbody>${facts.map(([label,fn])=>`<tr><td>${escValue(label)}</td>${scpis.map(s=>`<td>${escValue(fn(s))}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
- const texts=scpis.map(s=>`<section class="print-scpi"><h2>${escValue(s.name)} <small>${escValue(s.manager)}</small></h2>${adviceFacts(s).map(([label,description])=>`<p><b>${escValue(label)}.</b> ${escValue(description)}</p>`).join('')}<div class="print-sources"><strong>Sources documentaires :</strong><div>Bulletin : ${escValue(s.bulletinUrl||s.officialSource||s.sourceUrl||'Non renseignée')}</div><div>Reconstitution : ${escValue(s.fieldSources?.recon?.url||'Non renseignée')}</div><div>Répartitions : ${escValue(s.fieldSources?.geo?.url||'Non renseignée')}</div></div></section>`).join('');
- $('print-report').innerHTML=`<header class="print-header"><div><span>OBSERVATOIRE SCPI</span><h1>${scpis.length===1?'Fiche de lecture':'Comparaison patrimoniale'}</h1></div><div>Édité le ${escValue(now)}<br>Informations à dates différentes</div></header>${table}${texts}<footer class="print-footer">Document de lecture factuelle. Aucune recommandation personnalisée, aucun classement financier, aucune garantie de revenus, de capital ou de liquidité. Vérifier les données, la fiscalité, les frais et l’éligibilité avant toute opération. Les performances passées ne préjugent pas des performances futures.</footer>`;
+ const breakdowns=scpis.map(s=>`<section class="print-scpi"><h2>${esc(s.name)} <small>${esc(s.manager)}</small></h2>${comparePrintBreakdowns(s)}<div class="print-sources"><strong>Références documentaires :</strong><div>Bulletin : ${esc(s.bulletinUrl||s.officialSource||s.sourceUrl||'Non renseigné')}</div><div>Prix : ${esc(compareFieldUrl(s,'price',s.priceSource)||'Non renseigné')}</div><div>Reconstitution : ${esc(compareFieldUrl(s,'recon')||'Non renseigné')}</div><div>Clés NP : ${esc(s.keySource||'Non renseigné')}</div><div>Liquidité : ${esc(s.liquidityData?.sourceUrl||s.liquidity?.source||'Non renseigné')}</div></div></section>`).join('');
+ $('print-report').innerHTML=`<header class="print-header"><div><span>OBSERVATOIRE SCPI</span><h1>${scpis.length===1?'Fiche SCPI':'Comparaison SCPI'}</h1></div><div>Édité le ${esc(now)}<br>Usage professionnel interne</div></header><p class="print-compare-note">Comparaison factuelle : chiffres à différentes dates, prix de souscription et marchés secondaires distincts. « — » signifie donnée non publiée pour la durée correspondante.</p>${compareTableHtml(scpis,true)}${compareKeyTableHtml(scpis,true)}${breakdowns}<footer class="print-footer">Données publiques et dates hétérogènes. À vérifier auprès des sociétés de gestion avant opération. Barèmes de démembrement indicatifs ; pas de garantie de capital, de liquidité ni de rendement. Pas de conseil personnalisé.</footer>`;
  window.print();
 }
 function watchAgeDays(d) {
