@@ -2,6 +2,14 @@
 
 Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurtaux et compléments), comprenant : prix de part, valeur de reconstitution, historique, décote/surcote, taux d'occupation, documents, répartitions (si publiées), acquisitions documentées et clés indicatives de démembrement et estimation théorique du délai de retrait des SCPI à capital variable.
 
+## Veille automatique et alertes de fraîcheur
+
+- La rubrique **Veille**, ouverte par défaut, affiche les nouveautés sourcées de `automatedHistory` et de `data/status.json`, les échecs de récupération et les publications à recontrôler.
+- **Aucune fausse nouveauté** : le journal des changements ne remonte pas artificiellement les anciennes données préexistantes. Il commence lorsqu'une valeur ou un bulletin est effectivement changé et validé par le robot, puis conserve l'ancienne valeur, la nouvelle, la période, l'heure de contrôle et l'URL justificative.
+- `data/status.json` publie les **200 événements récents** (lors de chaque exécution automatique, et non lors d'une simple visite). Les événements sont également conservés, de manière limitée, dans chaque fiche SCPI.
+- **Seuils indicatifs de recontrôle**, sans valeur réglementaire : bulletin trimestriel >150 jours, semestriel >250 jours, TOF >210 jours, répartitions >420 jours, reconstitution >540 jours, données de retrait >180 jours ; clé de démembrement sans date signalée. Les dates correspondent à la période publiée et non à la date à laquelle le robot a consulté le site.
+- Les filtres distinguent **nouveautés**, **données à recontrôler** et **erreurs / collecte partielle**. Une absence de nouvel événement ne signifie pas qu'aucune publication n'existe chez un gérant qui ne permet pas l'extraction automatique.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
@@ -60,9 +68,9 @@ Lancer `python scripts/sync.py` chaque jour dans un cron ou un autre ordonnanceu
 
 ## Fichiers
 
-- `index.html` : interface responsive avec tableau de bord, comparateur, fiabilité des données, documentation, fiches SCPI (valorisation, lecture conseil, patrimoine, démembrement, liquidité) et impression d'un rapport PDF depuis le navigateur.
+- `index.html` : interface responsive avec veille et alertes de fraîcheur, tableau de bord, comparateur, fiabilité des données, documentation, fiches SCPI (valorisation, lecture conseil, patrimoine, démembrement, liquidité) et impression d'un rapport PDF depuis le navigateur.
 - `data/scpi.json` : référentiel SCPI, historique et preuves conservées.
-- `data/status.json` : audit des synchronisations et échecs.
+- `data/status.json` : audit des synchronisations, erreurs de collecte et événements récents sourcés.
 - `scripts/sync.py` : collecte et extraction prudente, dont les stocks de retraits et les flux de parts effectivement retirées.
 - `scripts/official_sources.py` : 31 sites officiels et alertes de fonctionnement du marché secondaire.
 - `tests/` : tests de sécurité URL, détection de périodes, extractions et catalogue.
