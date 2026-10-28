@@ -235,7 +235,36 @@
     ],
     "allocationDate": null,
     "geo": [],
-    "types": [],
+    "types": [
+      [
+        "Bureaux",
+        60
+      ],
+      [
+        "Commerces",
+        24
+      ],
+      [
+        "Hôtellerie",
+        8
+      ],
+      [
+        "Industrie et logistique",
+        4
+      ],
+      [
+        "Activités",
+        2
+      ],
+      [
+        "Santé",
+        1
+      ],
+      [
+        "Éducation et loisirs",
+        1
+      ]
+    ],
     "acquisitions": [],
     "keys": {
       "3": 85,
@@ -279,9 +308,16 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "types": {
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "typesDate": "2026-06-30"
   },
   {
     "id": "remake-live",
@@ -313,8 +349,74 @@
       "Autre"
     ],
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Royaume-Uni",
+        31.1
+      ],
+      [
+        "France",
+        21.7
+      ],
+      [
+        "Pays-Bas",
+        10.6
+      ],
+      [
+        "Espagne",
+        9.7
+      ],
+      [
+        "Pologne",
+        9
+      ],
+      [
+        "Irlande",
+        8.8
+      ],
+      [
+        "Allemagne",
+        4.9
+      ],
+      [
+        "Italie",
+        3.4
+      ],
+      [
+        "Portugal",
+        0.8
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        39
+      ],
+      [
+        "Santé et éducation",
+        18.2
+      ],
+      [
+        "Logistique et activités",
+        17.9
+      ],
+      [
+        "Commerces",
+        12.1
+      ],
+      [
+        "Hôtellerie et loisirs",
+        8.4
+      ],
+      [
+        "Résidentiel",
+        3.1
+      ],
+      [
+        "Alternatifs",
+        1.3
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -361,11 +463,25 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.remake.fr/remake-live",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.remake.fr/remake-live",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30"
   },
   {
     "id": "actipierre-europe",
@@ -481,8 +597,46 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Régions françaises",
+        56
+      ],
+      [
+        "Île-de-France",
+        22
+      ],
+      [
+        "Paris",
+        3
+      ],
+      [
+        "Espagne",
+        13
+      ],
+      [
+        "Irlande",
+        6
+      ]
+    ],
+    "types": [
+      [
+        "Commerces",
+        37
+      ],
+      [
+        "Activités",
+        30
+      ],
+      [
+        "Bureaux",
+        29
+      ],
+      [
+        "Logistique",
+        4
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -528,10 +682,24 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Nombre de parts en attente publié"
+      },
+      "geo": {
+        "url": "https://www.altixia.fr/medias/documentations/doc1-20260430-122013.pdf",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.altixia.fr/medias/documentations/doc1-20260430-122013.pdf",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2025-12-31"
+    "tofDate": "2025-12-31",
+    "geoDate": "2026-03-31",
+    "typesDate": "2026-03-31"
   },
   {
     "id": "atream-hotels",
@@ -649,8 +817,54 @@
     "history": [],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Île-de-France",
+        30.3
+      ],
+      [
+        "Paris",
+        24.8
+      ],
+      [
+        "Régions",
+        20.8
+      ],
+      [
+        "Europe hors France",
+        24.1
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        70
+      ],
+      [
+        "Commerces",
+        14.2
+      ],
+      [
+        "Logistique",
+        8.9
+      ],
+      [
+        "Hôtels",
+        4.4
+      ],
+      [
+        "Cliniques",
+        1.2
+      ],
+      [
+        "Résidences services",
+        0.8
+      ],
+      [
+        "Locaux d'activité",
+        0.5
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -698,10 +912,24 @@
         "date": "2026-06-30",
         "verifiedAt": null,
         "method": "Recoupement externe à confirmer sur bulletin d'origine"
+      },
+      "geo": {
+        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa",
+        "date": "2025-09-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa",
+        "date": "2025-09-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-09-30",
+    "typesDate": "2025-09-30"
   },
   {
     "id": "efimmo-1",
@@ -733,8 +961,34 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "France",
+        74.9
+      ],
+      [
+        "Étranger",
+        25.1
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        73.3
+      ],
+      [
+        "Commerces",
+        14.5
+      ],
+      [
+        "Éducation",
+        4.6
+      ],
+      [
+        "Divers",
+        7.7
+      ]
+    ],
     "acquisitions": [],
     "keys": {
       "5": 79.25,
@@ -782,11 +1036,25 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.sofidy.com/app/uploads/2026/04/efimmo-rapport-annuel-2025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.sofidy.com/app/uploads/2026/04/efimmo-rapport-annuel-2025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "keySourceType": "Société de gestion",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "epargne-fonciere",
@@ -1030,8 +1298,70 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Métropoles françaises",
+        32.4
+      ],
+      [
+        "Grand Paris",
+        24
+      ],
+      [
+        "Paris Centre",
+        22.8
+      ],
+      [
+        "Pays-Bas",
+        8.3
+      ],
+      [
+        "Allemagne",
+        4.2
+      ],
+      [
+        "Royaume-Uni",
+        3.2
+      ],
+      [
+        "Belgique",
+        2.9
+      ],
+      [
+        "Italie",
+        1
+      ],
+      [
+        "Irlande",
+        0.6
+      ],
+      [
+        "Autres pays européens",
+        0.6
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        35.4
+      ],
+      [
+        "Commerces centre-ville",
+        22.1
+      ],
+      [
+        "Commerces périphériques",
+        16.6
+      ],
+      [
+        "Autres (hôtels, activités, logistique…)",
+        13
+      ],
+      [
+        "Galeries commerciales",
+        12.9
+      ]
+    ],
     "acquisitions": [],
     "keys": {
       "5": 79.75,
@@ -1104,11 +1434,25 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "Stock en attente et retraits T2 2026 publiés dans le bulletin officiel Sofidy"
+      },
+      "geo": {
+        "url": "https://www.sofidy.com/solutions/immorente/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.sofidy.com/solutions/immorente/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "keySourceType": "Société de gestion",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "laffitte-pierre",
@@ -1140,8 +1484,54 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Île-de-France hors Paris",
+        46
+      ],
+      [
+        "Province",
+        29
+      ],
+      [
+        "Paris",
+        11
+      ],
+      [
+        "Espagne",
+        8
+      ],
+      [
+        "Allemagne",
+        6
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        69
+      ],
+      [
+        "Commerces",
+        12
+      ],
+      [
+        "Centres commerciaux",
+        11
+      ],
+      [
+        "Hôtels et tourisme",
+        5
+      ],
+      [
+        "Résidentiel services",
+        2
+      ],
+      [
+        "Industriel",
+        1
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -1189,11 +1579,25 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-06/LAFFITTE_PIERRE_Rapport%20annuel%202025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-06/LAFFITTE_PIERRE_Rapport%20annuel%202025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "lf-europimmo",
@@ -1638,8 +2042,30 @@
     ],
     "notes": "Dernier prix acquéreur publié sur marché secondaire (frais inclus) : ne pas confondre avec un prix de souscription ou le produit net vendeur. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Région parisienne",
+        58
+      ],
+      [
+        "Paris",
+        32
+      ],
+      [
+        "Régions",
+        10
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        98.1
+      ],
+      [
+        "Mixte bureaux et commerces",
+        1.9
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -1692,12 +2118,26 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547",
+        "date": "2025-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547",
+        "date": "2025-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "sellerNetPrice": 31.88,
     "sellerNetPriceDate": "2026-09-24",
     "pdfVerifiedAt": "2026-10-28",
-    "tdYear": 2025
+    "tdYear": 2025,
+    "geoDate": "2025-03-31",
+    "typesDate": "2025-03-31"
   },
   {
     "id": "primovie",
@@ -1814,8 +2254,58 @@
     ],
     "notes": "Marché secondaire : dernier prix d’exécution indisponible dans les sources vérifiées. Ancien prix de souscription historique : 164 € au 2025-12-31 ; non utilisable comme prix de revente. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "France",
+        75.9
+      ],
+      [
+        "Pays-Bas",
+        9.9
+      ],
+      [
+        "Allemagne",
+        4.4
+      ],
+      [
+        "Italie",
+        4.2
+      ],
+      [
+        "Belgique",
+        2.3
+      ],
+      [
+        "Espagne",
+        1.7
+      ],
+      [
+        "Portugal",
+        1.6
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        84.7
+      ],
+      [
+        "Hôtels et loisirs",
+        6.3
+      ],
+      [
+        "Santé et éducation",
+        5.3
+      ],
+      [
+        "Commerces",
+        2.8
+      ],
+      [
+        "Logistique et activités",
+        0.9
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -1858,10 +2348,24 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.perial.com/scpi/perial-o2?scpi=1201",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.perial.com/scpi/perial-o2?scpi=1201",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30"
   },
   {
     "id": "rivoli-avenir-patrimoine",
@@ -2223,7 +2727,7 @@
       }
     ],
     "notes": "Répartitions publiées par Arkéa REIM au 30/06/2026. Valeur de reconstitution de 208,46 € vue sur un agrégateur, date d’expertise à confirmer : non intégrée au comparateur.",
-    "allocationDate": "2026-06-30",
+    "allocationDate": null,
     "geo": [
       [
         "Espagne",
@@ -2268,7 +2772,7 @@
         14
       ],
       [
-        "Life Science",
+        "Sciences de la vie",
         10
       ],
       [
@@ -2276,11 +2780,11 @@
         5
       ],
       [
-        "Activité",
+        "Activités",
         5
       ],
       [
-        "Education",
+        "Éducation",
         3
       ]
     ],
@@ -2346,11 +2850,25 @@
         "url": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
         "date": "2026-06-30",
         "method": "répartition textuelle contrôlée, somme ~100 %"
+      },
+      "geo": {
+        "url": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "pdfWarning": "Ce lien ne fournit pas un PDF",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30"
   },
   {
     "id": "epargne-pierre-europe",
@@ -2567,8 +3085,58 @@
     ],
     "notes": "Prix et TD issus de la fiche produit Meilleurtaux Placement consultée en octobre 2026. Vérifier les conditions effectives avant souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Pays-Bas",
+        35.1
+      ],
+      [
+        "Espagne",
+        29.2
+      ],
+      [
+        "Allemagne",
+        13.6
+      ],
+      [
+        "Royaume-Uni",
+        10.3
+      ],
+      [
+        "Irlande",
+        9.9
+      ],
+      [
+        "Belgique",
+        1.8
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        36
+      ],
+      [
+        "Hôtellerie",
+        20
+      ],
+      [
+        "Commerces périphériques",
+        20.6
+      ],
+      [
+        "Commerces de centre-ville",
+        17.6
+      ],
+      [
+        "Logistique",
+        4.8
+      ],
+      [
+        "Galeries commerciales",
+        1
+      ]
+    ],
     "acquisitions": [],
     "keys": {
       "5": 81,
@@ -2619,12 +3187,26 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.sofidy.com/app/uploads/2026/04/sei-rapport-annuel-2025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "types": {
+        "url": "https://www.sofidy.com/app/uploads/2026/04/sei-rapport-annuel-2025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
       }
     },
     "keySourceType": "Meilleurtaux Placement",
     "keyVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "principal-inside",
