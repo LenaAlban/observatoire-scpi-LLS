@@ -17,7 +17,7 @@ try:
     import fitz
 except ImportError:
     fitz = None
-from official_sources import ALIASES, LIQUIDITY, OFFICIAL
+from official_sources import ALIASES, LIQUIDITY, OFFICIAL, OFFICIAL_FALLBACKS
 from data_quality import validate_updates, quality_report, audit_scpi
 from pdf_layout import extract_pdf_allocations
 from td_history import normalize_history, update_annual_td
@@ -679,83 +679,116 @@ def update_pdf_allocations(item, blob, period, url):
     return updates
 
 
+
+def sanitized_collection_error(exc):
+    """Diagnostic compréhensible, sans trace réseau dans le site public."""
+    detail=str(exc).lower()
+    if 'certificate_verify_failed' in detail or 'sslcertverificationerror' in detail or isinstance(exc,requests.exceptions.SSLError):
+        return 'Connexion sécurisée au site de gestion non vérifiable. Données précédentes conservées.', 'tls'
+    if '503' in detail or 'service temporarily unavailable' in detail:
+        return 'Site de la société de gestion temporairement indisponible (503). Données précédentes conservées.', 'http_503'
+    if '403' in detail or 'forbidden' in detail:
+        return 'Accès automatisé refusé par le site de gestion (403). Données précédentes conservées.', 'http_403'
+    if '429' in detail or 'too many requests' in detail:
+        return 'Limite de consultations du site atteinte (429). Données précédentes conservées.', 'http_429'
+    if 'timeout' in detail or isinstance(exc,requests.exceptions.Timeout):
+        return 'Délai de réponse du site dépassé. Données précédentes conservées.', 'timeout'
+    return 'Vérification automatique du site officiel impossible. Données précédentes conservées.', 'unavailable'
+
+
+def pdf_candidate_from_bytes(blob, resolved, item):
+    """PDF bulletin uniquement après contrôle identité + période + nature."""
+    if not blob.startswith(b'%PDF'):return None
+    try:text=pdf_text(blob)
+    except (ValueError,RuntimeError):return None
+    head=fold(text[:11000])
+    if not match_identity(text,item):return None
+    if not re.search(r'\bbulletin\b.{0,45}\b(?:trimestriel|information|1er trimestre|2e trimestre|3e trimestre|4e trimestre)\b',head):
+        return None
+    period=period_from(text[:11000])
+    if not period:return None
+    return {'url':resolved,'period':period,'score':period['rank']*10+9,
+            'description':'PDF gérant vérifié par identité et trimestre'}
+
+
 def source_for(item):
     return OFFICIAL.get(item['id'])
 
 
 def official_entry_points(item, url, host):
-    """Pages du même gérant déjà présentes au référentiel + URL non-www.
-
-    Aucune recherche sur des domaines tiers ou déduction d'un nom de PDF.
-    Les URL de rapport annuel connues sont exclues des pages de bulletins.
-    """
+    """Ne consulter que les pages et documents du gérant, en HTTPS vérifié."""
     urls=[url]
-    # En cas d'échec du certificat sur www, tenter tôt le domaine apex
-    # avec validation TLS toujours active. Ne jamais désactiver verify.
     if urlparse(url).hostname == 'www.'+host:
         from urllib.parse import urlunparse
-        parts=urlparse(url)
-        apex=urlunparse(parts._replace(netloc=host))
-        if apex not in urls:
-            urls.append(apex)
-    for candidate in [item.get('sourceUrl'),item.get('bulletinUrl')]+[
+        apex=urlunparse(urlparse(url)._replace(netloc=host))
+        if apex not in urls:urls.append(apex)
+    known=[item.get('sourceUrl')]+OFFICIAL_FALLBACKS.get(item['id'],[])+[
         (item.get('fieldSources') or {}).get(key,{}).get('url')
         for key in ('tof','recon','geo','types','td')
-    ]:
-        if not candidate or not host_is(candidate,host):
-            continue
-        p=urlparse(candidate)
-        name=p.path.lower()
-        if name.endswith('.pdf') or '.pdf' in name or 'rapport-annuel' in name:
-            continue
-        if candidate not in urls:
-            urls.append(candidate)
-    return urls[:7]
+    ]+[item.get('bulletinUrl')]
+    for target in known:
+        if target and host_is(target,host) and target not in urls:
+            urls.append(target)
+    return urls[:14]
 
 
 def collect_official_candidates(sess,item,url,host):
-    """Explorer des points d'entrée authentifiés du même gérant.
-
-    Le succès d'une requête ne vaut jamais validation d'un PDF ou d'un chiffre.
-    """
+    """Repli sur les chemins officiels, PDF datés vérifiés et URLs connues."""
     candidates=[]
     attempts=[]
     primary_html=None
     primary_url=None
     loaded=False
+    checked_opaque=set()
     for landing in official_entry_points(item,url,host):
         try:
-            blob,_,resolved=fetch(sess,landing,host,limit=MAX_HTML)
+            blob,_,resolved=fetch(sess,landing,host,limit=MAX_PDF)
             if blob.startswith(b'%PDF'):
-                attempts.append({'url':landing,'status':'pdf_non_interprete_comme_page'})
+                candidate=pdf_candidate_from_bytes(blob,resolved,item)
+                if candidate:
+                    candidates.append(candidate)
+                    attempts.append({'url':landing,'status':'pdf_verifie','candidateCount':1})
+                    loaded=True
+                else:attempts.append({'url':landing,'status':'pdf_non_confirme'})
                 continue
             html=blob.decode('utf-8',errors='replace')
-            soup=BeautifulSoup(html,'html.parser')
             discovered=discover(html,resolved,item,host)
-            loaded=True
             attempts.append({'url':landing,'status':'accessible','candidateCount':len(discovered)})
+            loaded=True
             if primary_html is None:
                 primary_html=html
                 primary_url=resolved
             candidates.extend(discovered)
-            # Si cette page fournit un bulletin nouveau daté, inutile de
-            # multiplier les requêtes supplémentaires vers le même gérant.
-            if any(c['period']['rank']>existing_rank(item) for c in discovered):
+            if not any(c['period']['rank']>existing_rank(item) for c in candidates):
+                soup=BeautifulSoup(html,'html.parser')
+                opaque=[]
+                for link in soup.find_all('a',href=True):
+                    target=urljoin(resolved,link['href'])
+                    path=urlparse(target).path.lower()
+                    if not host_is(target,host) or '.pdf' not in path or target in checked_opaque:continue
+                    context=fold(local_context(link))
+                    if any(bad in context for bad in ('rapport annuel','statuts','dic')):continue
+                    if not ('bulletin' in context or 'documentation' in context or item['id']=='altixia-cadence-xii'):continue
+                    if period_from(context):continue
+                    checked_opaque.add(target)
+                    opaque.append(target)
+                for target in opaque[:3]:
+                    try:
+                        pdf,_,pdf_url=fetch(sess,target,host,limit=MAX_PDF)
+                        candidate=pdf_candidate_from_bytes(pdf,pdf_url,item)
+                        if candidate:candidates.append(candidate)
+                    except (requests.RequestException,ValueError,RuntimeError):
+                        continue
+            if any(c['period']['rank']>existing_rank(item) for c in candidates):
                 break
-            # Au maximum trois pages HTML accessibles si l'hébergement propose
-            # des sections documentaires répétées et anciennes.
             if sum(a['status']=='accessible' for a in attempts)>=3:
                 break
         except (requests.RequestException,ValueError,RuntimeError) as exc:
-            attempts.append({'url':landing,'status':'error','detail':str(exc)[:150]})
+            message,kind=sanitized_collection_error(exc)
+            attempts.append({'url':landing,'status':'error','kind':kind,'detail':message})
     if not loaded:
-        # Un document officiel connu peut rester accessible même quand la
-        # page de distribution est en erreur (503 ou problème de TLS).
-        known=item.get('bulletinUrl') or ''
-        known_period=period_from(item.get('bulletin') or '')
-        if not (known and known_period and host_is(known,host)):
-            item['sourceAttempts']=attempts[-7:]
-            raise RuntimeError('Aucune page officielle accessible : '+ ' / '.join(a.get('detail','source non accessible')[:85] for a in attempts[:3]))
+        item['sourceAttempts']=attempts[-14:]
+        raise RuntimeError('Aucune page ni bulletin officiel exploitable malgré les sources de secours')
     return primary_html,primary_url,candidates,attempts
 
 
@@ -764,7 +797,7 @@ def refresh_one(s,item):
     if not entry:raise RuntimeError('Source officielle absente du référentiel')
     url,host=entry
     html,final_url,candidates,attempts=collect_official_candidates(s,item,url,host)
-    item['sourceAttempts']=attempts[-7:]
+    item['sourceAttempts']=attempts[-14:]
     item['sourceFallbackUsed']=bool(attempts and attempts[0]['status']!='accessible' and any(a['status']=='accessible' for a in attempts[1:]))
     # Le lien officiel de référence reste celui configuré ; un document de
     # secours ne le remplace pas par un URL sans rapport avec la fiche du fonds.
@@ -826,7 +859,7 @@ def refresh_one(s,item):
         try:
             document=verified_pdf_from_candidate(s,candidate,item,host)
         except (requests.RequestException, ValueError, RuntimeError) as exc:
-            document_errors.append(str(exc)[:130])
+            document_errors.append(sanitized_collection_error(exc)[0])
             continue
         if not document:
             document_errors.append('Aucun PDF correspondant à la SCPI et à la période sur '+candidate['url'][:100])
@@ -957,9 +990,10 @@ def main():
             })
             LOG.info('%s: %s',item['name'],', '.join(updates) or ('bulletin PDF vérifié' if detected else 'source accessible, bulletin non validé'))
         except Exception as exc:
+            friendly,error_type=sanitized_collection_error(exc)
             statuses.append({
                 'id':item['id'],'name':item['name'],'status':'error',
-                'changes':[],'message':str(exc)[:220],
+                'changes':[],'message':friendly,'errorType':error_type,
                 'source':item['officialSource'],'attempts':draft.get('sourceAttempts',[])
             })
             LOG.warning('%s: données précédentes conservées (%s)',item['name'],exc)
