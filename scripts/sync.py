@@ -10,6 +10,8 @@ from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from bs4 import BeautifulSoup
 try:
     import fitz
@@ -45,6 +47,13 @@ def host_is(url, expected):
 def session():
     s = requests.Session()
     s.headers.update(HEADERS)
+    # Une seule relance sur les erreurs transitoires des éditeurs, jamais de
+    # contournement des contrôles d'accès ni de récupération sur un domaine tiers.
+    retry=Retry(total=1,connect=1,read=1,status=1,backoff_factor=0.7,
+                status_forcelist=(429,502,503,504),
+                allowed_methods=frozenset(('GET',)),
+                respect_retry_after_header=True)
+    s.mount('https://',HTTPAdapter(max_retries=retry))
     return s
 
 
