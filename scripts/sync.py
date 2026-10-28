@@ -18,6 +18,7 @@ try:
 except ImportError:
     fitz = None
 from official_sources import ALIASES, LIQUIDITY, OFFICIAL
+from data_quality import validate_updates, quality_report, audit_scpi
 from pdf_layout import extract_pdf_allocations
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -451,7 +452,7 @@ def extract_clean_breakdowns(soup, item):
                 if re.search(r'\b(?:par zones|par type|repartition|nos actualites|documentation|les investissements)\b',fold(row)):break
                 m=re.match(r'^(.{2,45}?)\s*\((\d{1,2}(?:[.,]\d+)?)%\)$',row)
                 if m:vals.append([m.group(1),float(m.group(2).replace(',','.'))])
-            if len(vals)>=3 and 97 <= sum(x[1] for x in vals)<=103:
+            if len(vals)>=3 and 99 <= sum(x[1] for x in vals)<=101:
                 found[key]=vals;break
     if not found:return []
     # The date must expressly describe the ALLOCATION, not the report publication or page footer.
@@ -464,14 +465,23 @@ def extract_clean_breakdowns(soup, item):
             if d: dates.append(d)
     if not dates:return []
     latest=max(dates)
-    if latest < (item.get('allocationDate') or '1900-01-01'):return []
     changed=[]
-    for key,vals in found.items():
-        if item.get(key)!=vals or latest!=(item.get('allocationDate') or ''):
-            item[key]=vals;changed.append(key)
+    for key, vals in found.items():
+        prev_day=item.get(key+'Date') or item.get('allocationDate') or ''
+        if latest < prev_day or (latest == prev_day and item.get(key)):
+            continue
+        if not 99 <= sum(x[1] for x in vals) <= 101:
+            continue
+        record_auto_change(item,key,item.get(key),vals,latest,item['officialSource'])
+        item[key]=vals
+        item[key+'Date']=latest
+        item.setdefault('fieldSources',{})[key]={
+            'url': item['officialSource'], 'date': latest, 'verifiedAt': TODAY,
+            'method':'Répartition textuelle contrôlée, noms de lignes et total ~100 %'
+        }
+        changed.append(key)
     if changed:
-        item['allocationDate']=latest
-        item.setdefault('fieldSources',{})['allocation']={'url':item['officialSource'],'date':latest,'method':'répartition textuelle contrôlée, somme ~100 %'}
+        item['allocationDate']=max(item.get('geoDate') or '',item.get('typesDate') or '')
     return changed
 
 
@@ -662,7 +672,7 @@ def refresh_keys(s,item):
 
 def update_pdf_allocations(item, blob, period, url):
     """Mise à jour uniquement si un PDF officiel plus récent porte une
-    répartition complète (>97 %, <103 %) et identifiée à la SCPI.
+    répartition complète (99 à 101 %) et identifiée à la SCPI.
     Aucun effacement d'une ancienne donnée en cas de lecture impossible.
     """
     detected=extract_pdf_allocations(blob)
@@ -676,7 +686,7 @@ def update_pdf_allocations(item, blob, period, url):
         if dated < old_date or (dated == old_date and item.get(field)):
             continue
         values=obj['values']
-        if not 97 <= sum(v for _,v in values) <= 103:
+        if not 99 <= sum(v for _,v in values) <= 101:
             continue
         if item.get(field)!=values or dated != old_date:
             record_auto_change(item,field,item.get(field),values,dated,url)
