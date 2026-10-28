@@ -1090,8 +1090,58 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Paris",
+        22.3
+      ],
+      [
+        "Île-de-France",
+        36.79
+      ],
+      [
+        "Régions",
+        32.41
+      ],
+      [
+        "Allemagne",
+        5.53
+      ],
+      [
+        "Irlande",
+        0.41
+      ],
+      [
+        "Pays-Bas",
+        1.59
+      ],
+      [
+        "Royaume-Uni",
+        0.98
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        69.79
+      ],
+      [
+        "Commerces",
+        19.79
+      ],
+      [
+        "Hôtellerie et loisirs",
+        6.21
+      ],
+      [
+        "Logistique et activités",
+        0.43
+      ],
+      [
+        "Santé et éducation",
+        3.78
+      ]
+    ],
     "acquisitions": [],
     "keys": {
       "5": 82.5,
@@ -1160,6 +1210,18 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "Stock et flux explicitement publiés dans le bulletin officiel T2 2026; retrait par compensation"
+      },
+      "geo": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/rapport-annuel-epargne-fonciere-2025",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "types": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/rapport-annuel-epargne-fonciere-2025",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
       }
     },
     "keySourceType": "Société de gestion",
@@ -1167,7 +1229,9 @@
     "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie.",
     "tdYear": 2025,
     "tofDate": "2026-06-30",
-    "reconNote": "Valeur de reconstitution au 30/06/2026 : 637,91 €. La baisse a transformé la décote précédente en surcote d'environ 5 %."
+    "reconNote": "Valeur de reconstitution au 30/06/2026 : 637,91 €. La baisse a transformé la décote précédente en surcote d'environ 5 %.",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "ficommerce",
@@ -1199,8 +1263,38 @@
     ],
     "notes": "Division de la valeur nominale par 3 au 01/01/2026 (ancienne part 210 € = trois parts 70 €). Reconstitution 69,29 € recalculée sur la nouvelle unité à partir des 207,88 € au 31/12/2025. Ne pas confondre ancienne et nouvelle unité de part.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Régions",
+        51.9
+      ],
+      [
+        "Paris",
+        25.3
+      ],
+      [
+        "Île-de-France",
+        20.3
+      ],
+      [
+        "Europe",
+        2.5
+      ]
+    ],
+    "types": [
+      [
+        "Locaux commerciaux",
+        84.9
+      ],
+      [
+        "Bureaux",
+        14.9
+      ],
+      [
+        "Entrepôts et activités",
+        0.2
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -1261,12 +1355,26 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "247 retraits compensés par souscriptions ; 10 503 autres retraits via fonds de remboursement à un prix distinct, exclus de l'estimation de file."
+      },
+      "geo": {
+        "url": "https://www.fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "types": {
+        "url": "https://www.fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
       }
     },
     "reconDerived": true,
     "reconNote": "Valeur ajustée : 207,88 € par ancienne part au 31/12/2025, ramenée à 69,29 € par nouvelle part (division par 3 le 01/01/2026). Il s’agit d’un calcul, pas d’un nouveau chiffre publié tel quel.",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "immorente",
@@ -1629,8 +1737,70 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Allemagne",
+        56.52
+      ],
+      [
+        "Royaume-Uni",
+        18.04
+      ],
+      [
+        "Pays-Bas",
+        7.99
+      ],
+      [
+        "Île-de-France",
+        4.93
+      ],
+      [
+        "Belgique",
+        3.71
+      ],
+      [
+        "Luxembourg",
+        2.27
+      ],
+      [
+        "Irlande",
+        2.1
+      ],
+      [
+        "Paris",
+        2.06
+      ],
+      [
+        "Régions",
+        1.7
+      ],
+      [
+        "Espagne",
+        0.68
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        76.83
+      ],
+      [
+        "Commerces",
+        13.5
+      ],
+      [
+        "Hôtellerie et loisirs",
+        6.82
+      ],
+      [
+        "Logistique et activités",
+        2.73
+      ],
+      [
+        "Santé et éducation",
+        0.12
+      ]
+    ],
     "acquisitions": [],
     "keys": {
       "5": 84.5,
@@ -1675,13 +1845,27 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/rapport-annuel-lf-europimmo-2025",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "types": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/rapport-annuel-lf-europimmo-2025",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
       }
     },
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
     "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie.",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "lf-grand-paris-patrimoine",
@@ -1956,8 +2140,38 @@
     "history": [],
     "notes": "Marché secondaire : dernier prix d’exécution indisponible dans les sources vérifiées. Ancien prix de souscription historique : 458 € au 2025-12-31 ; non utilisable comme prix de revente. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Région parisienne",
+        76.7
+      ],
+      [
+        "Paris",
+        19.2
+      ],
+      [
+        "Régions",
+        4.1
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        95.1
+      ],
+      [
+        "Logistique et activités",
+        2
+      ],
+      [
+        "Hôtellerie et loisirs",
+        1.8
+      ],
+      [
+        "Commerces",
+        1.1
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2006,11 +2220,25 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.perial.com/scpi/perial-grand-paris",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "types": {
+        "url": "https://www.perial.com/scpi/perial-grand-paris",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
       }
     },
     "reconNote": "Valeur affichée sur le site PERIAL ; date des chiffres absente de la page consultée, à confirmer auprès du gérant.",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30"
   },
   {
     "id": "primopierre",
@@ -2476,8 +2704,46 @@
     ],
     "notes": "Dernier prix acquéreur publié sur marché secondaire (frais inclus) : ne pas confondre avec un prix de souscription ou le produit net vendeur. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Île-de-France",
+        55
+      ],
+      [
+        "Régions",
+        26
+      ],
+      [
+        "Paris",
+        15
+      ],
+      [
+        "Allemagne",
+        4
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        71
+      ],
+      [
+        "Commerces",
+        22
+      ],
+      [
+        "Logistique et activités",
+        4
+      ],
+      [
+        "Hôtellerie et loisirs",
+        2.5
+      ],
+      [
+        "Santé et éducation",
+        0.5
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2524,11 +2790,25 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/fiche-commerciale-selectinvest-2",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "types": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/fiche-commerciale-selectinvest-2",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
       }
     },
     "sellerNetPrice": 280,
     "sellerNetPriceDate": "2026-07-31",
-    "tdYear": 2025
+    "tdYear": 2025,
+    "geoDate": "2026-03-31",
+    "typesDate": "2026-03-31"
   },
   {
     "id": "epargne-pierre",
@@ -2638,8 +2918,46 @@
     ],
     "notes": "Prix passé à 320 € au 1er juin 2026. Les chiffres de valorisation de fin 2025 ne sont pas une expertise d’octobre 2026.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Pays-Bas",
+        46.6
+      ],
+      [
+        "Régions françaises",
+        26.6
+      ],
+      [
+        "Région parisienne",
+        25.6
+      ],
+      [
+        "Paris",
+        1.2
+      ]
+    ],
+    "types": [
+      [
+        "Commerces périphériques",
+        31.5
+      ],
+      [
+        "Commerces de centre-ville",
+        29.7
+      ],
+      [
+        "Galeries commerciales",
+        29.2
+      ],
+      [
+        "Bureaux",
+        7.3
+      ],
+      [
+        "Activités",
+        2.2
+      ]
+    ],
     "acquisitions": [
       {
         "when": "T2 2026",
@@ -2693,10 +3011,24 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.sofidy.com/app/uploads/2026/04/sofidynamic-rapport-annuel-2025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "types": {
+        "url": "https://www.sofidy.com/app/uploads/2026/04/sofidynamic-rapport-annuel-2025.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "transitions-europe",
