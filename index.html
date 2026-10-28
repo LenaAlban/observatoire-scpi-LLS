@@ -981,6 +981,13 @@ function exportCSV(){let cols=['name','manager','tags','price','priceDate','reco
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{view=b.dataset.view;render()});$('watch-search').oninput=renderWatch;$('watch-filter').onchange=renderWatch;$('compare-report').onclick=()=>printReport(selected);$('quality-search').oninput=renderQuality;$('quality-filter').onchange=renderQuality;$('search').oninput=e=>{search=e.target.value;renderDashboard()};$('sort').onchange=e=>{sort=e.target.value;renderDashboard()};$('origin-filter').onchange=e=>{origin=e.target.value;renderDashboard()};document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderDashboard()});
 document.addEventListener('click',e=>{let button=e.target.closest('[data-open]');if(button){detail(button.dataset.open,button.dataset.tab||'overview');return;}let print=e.target.closest('[data-print-scpi]');if(print){printReport([print.dataset.printScpi]);return;}let y=e.target.closest('[data-choose-key]');if(y&&$('key-duration')){$('key-duration').value=y.dataset.chooseKey;calculateKeys();}});document.addEventListener('input',e=>{if(e.target?.id==='key-parts')calculateKeys();if(e.target?.id==='liq-qty')calculateLiquidity();});document.addEventListener('change',e=>{if(e.target?.id==='key-duration')calculateKeys();if(e.target?.id==='liq-rate')calculateLiquidity();});
 $('detail-backdrop').onclick=e=>{if(e.target===$('detail-backdrop'))closeDetail()};$('refresh-btn').onclick=()=>syncLive(true);$('export-csv').onclick=exportCSV;
+$('allocation-add').onchange=e=>{const id=e.target.value;if(id)allocationAdd(id);e.target.value='';};
+$('allocation-total').oninput=e=>{allocationState.amount=e.target.value;renderAllocationResults();};
+$('allocation-equal').onclick=()=>{allocationState.weights=allocationEqualWeights(Object.keys(allocationState.weights));renderAllocation();};
+$('allocation-clear').onclick=()=>{allocationState.weights={};allocationState.amount='100000';renderAllocation();};
+$('allocation-print').onclick=printAllocationReport;
+document.addEventListener('input',e=>{const id=e.target?.dataset?.allocWeight;if(id&&Object.hasOwn(allocationState.weights,id)){allocationState.weights[id]=e.target.value;renderAllocationResults();}});
+document.addEventListener('click',e=>{const btn=e.target.closest('[data-alloc-remove]');if(!btn)return;delete allocationState.weights[btn.dataset.allocRemove];renderAllocation();});
 $('compare-search').oninput=e=>{compareQuery=e.target.value;renderCompare()};
 $('compare-clear').onclick=()=>{selected=[];renderCompare();renderCompareExtras()};
 document.addEventListener('click',e=>{
