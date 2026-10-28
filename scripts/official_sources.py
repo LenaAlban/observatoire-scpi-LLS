@@ -19,7 +19,12 @@ OFFICIAL_FALLBACKS = {
     ],
     'efimmo-1': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
     'immorente': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
-    'sofidynamic': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'sofidynamic': [
+        # Bulletin T2 2026 officiel fourni par un conseiller ; toujours
+        # confirmer dans le texte PDF le fonds et le trimestre avant usage.
+        'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofidynamic_OPTI.pdf',
+        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
+    ],
     'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
 }
 
