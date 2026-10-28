@@ -6,6 +6,9 @@ SOFIDY_DOCUMENTATION='https://www.sofidy.com/documentation/'
 OFFICIAL_FALLBACKS = {
     'altixia-cadence-xii': [
         'https://www.altixia.fr/documentation.php?listeProduit=1',
+        # Bulletin T2 2026 signalé depuis le domaine officiel Altixia.
+        # Le robot doit encore vérifier sa SCPI et sa période dans le PDF.
+        'https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf',
         'https://www.altixia.fr/medias/documentations/doc1-20260430-122013.pdf',
     ],
     'edissimmo': [
