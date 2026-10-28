@@ -416,22 +416,68 @@ def update_manager_page_recon(item, html, url):
 
 
 def refresh_keys(s,item):
-    url=item.get('keySource')
-    if not url:return []
-    hostname=(urlparse(url).hostname or '').lower().removeprefix('www.')
-    # STRICT: only the manager's own official host may supply key percentages.
-    manager_entry=OFFICIAL.get(item['id'])
-    if not manager_entry or not host_is(url,manager_entry[1]):return []
+    """Actualiser uniquement un tableau explicite du gérant ou de Meilleurtaux Placement.
+
+    La source Meilleurtaux doit correspondre à la fiche SCPI renseignée.
+    Toute grille ambiguë conserve la valeur précédente ; pas d'interpolation.
+    """
+    url = item.get('keySource')
+    if not url:
+        return []
+    hostname = (urlparse(url).hostname or '').lower().removeprefix('www.')
+    manager_entry = OFFICIAL.get(item['id'])
+    is_manager = bool(manager_entry and host_is(url,manager_entry[1]))
+    mtp_profile = item.get('mtxUrl') or ''
+    is_mtp = (
+        host_is(url,'placement.meilleurtaux.com')
+        and bool(mtp_profile)
+        and host_is(mtp_profile,'placement.meilleurtaux.com')
+        and (url == mtp_profile or (
+            item['id'] == 'sofidynamic'
+            and '/scpi/actualites/2026-octobre/scpi-sofidynamic-en-nue-propriete-' in url
+        ))
+    )
+    if not (is_manager or is_mtp):
+        return []
     try:
-        blob,_,_ = fetch(s,url,hostname,limit=MAX_HTML)
-        keys=verified_key_table(blob.decode('utf-8','replace'),item['name'])
-        if keys:
-            item['keys']=keys;item['keyDate']=TODAY
+        blob,ctype,final_url = fetch(s,url,hostname,limit=MAX_HTML)
+        if blob.startswith(b'%PDF'):
+            return []  # Une grille PDF doit être validée séparément.
+        html=blob.decode('utf-8','replace')
+        soup=BeautifulSoup(html,'html.parser')
+        # La page doit faire explicitement référence à la SCPI suivie.
+        heading=fold(' '.join(x.get_text(' ',strip=True) for x in soup.find_all(['h1','h2'])[:6]))
+        expected=fold(item['name'])
+        if is_mtp and expected not in heading:
+            return []
+        keys=verified_key_table(html,item['name'])
+        if not keys or len(keys)<4:
+            return []
+        # Toutes les durées doivent être distinctes et plus longues = clé NP
+        # décroissante ou constante ; sinon conserver l'ancien barème.
+        ordered=sorted(((int(year),float(value)) for year,value in keys.items()))
+        if any(year<1 or year>30 or not (1<value<99) for year,value in ordered):
+            return []
+        if any(ordered[i][1] < ordered[i+1][1] for i in range(len(ordered)-1)):
+            return []
+        normalised={str(year):value for year,value in ordered}
+        if item.get('keys')==normalised:
             item['keyVerifiedAt']=TODAY
-            item['keyNote']='Barème d\'information vérifié sur la page source, à confirmer auprès de la société de gestion.'
-            return ['démembrement']
-    except Exception:
-        pass
+            return []
+        item['keys']=normalised
+        item['keyVerifiedAt']=TODAY
+        item['keySourceType']='Meilleurtaux Placement' if is_mtp else 'Société de gestion'
+        # Ne pas utiliser la date de consultation comme date d'entrée en vigueur.
+        if is_mtp:
+            item['keyDate']=None
+        item['keyNote']=(
+            'Barème indicatif relevé sur Meilleurtaux Placement ; vérifier les conditions avant souscription.'
+            if is_mtp else
+            'Grille indicative publiée par la société de gestion ; confirmer avant souscription.'
+        )
+        return ['démembrement ('+('Meilleurtaux Placement' if is_mtp else 'gérant')+')']
+    except Exception as exc:
+        LOG.debug('Clés non actualisées pour %s : %s',item['name'],exc)
     return []
 
 
