@@ -987,6 +987,148 @@ function printAllocationReport(){
  window.print();
 }
 
+
+const HISTORY_METRICS={
+ price:{label:'Prix de part',unit:'€',gap:400},
+ recon:{label:'Valeur de reconstitution',unit:'€',gap:400},
+ tof:{label:'TOF',unit:'%',gap:125},
+ td:{label:'TD annuel',unit:'%',gap:400},
+ waitingParts:{label:'Parts en attente',unit:'parts',gap:125},
+ withdrawalsExecuted:{label:'Retraits exécutés',unit:'parts',gap:125}
+};
+const HISTORY_COLORS=['#945137','#376b79','#70619a','#51865c'];
+let historyCurrentId='iroko-zen',historyMetric='recon',historyCompareMetric='recon',historyCompareIds=['iroko-zen','pierval-sante','corum-origin'];
+function historicalSeries(s,metric){
+ if(!s||!HISTORY_METRICS[metric])return [];
+ const points=new Map(),add=(d,v,url,kind)=>{
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(d||'')||!Number.isFinite(Date.parse(d+'T00:00:00Z')))return;
+  if(!Number.isFinite(Number(v))||v===null||v===''||Number(v)<0||Number(v)>=1e8)return;
+  const prev=points.get(d),val=Number(v);
+  if(prev){if(prev.value===val&&(!prev.source&&/^https:\/\//.test(url||'')))prev.source=url;return;}
+  points.set(d,{date:d,value:val,source:/^https:\/\//.test(url||'')?url:null,kind:kind||'published'});
+ };
+ for(const p of s.indicatorHistory?.[metric]||[])if(p&&typeof p==='object')add(p.date,p.value,p.source,p.kind);
+ if(metric==='td'){
+  for(const td of tdHistory(s))add(String(td.year)+'-12-31',td.value,td.source,'annual');
+ }else if(metric==='recon'){
+  for(const p of s.history||[])if(p&&typeof p==='object')add(p.date,p.value,p.source,'archive');
+ }else if(metric==='price'){
+  add(s.previousPriceDate,s.previousPrice,s.previousPriceSource,'previous');
+ }
+ const key=metric==='waitingParts'||metric==='withdrawalsExecuted'?'liquidityData':metric;
+ let dated,amount,src;
+ if(metric==='waitingParts'||metric==='withdrawalsExecuted'){
+  dated=s.liquidityData?.periodEnd;amount=s.liquidityData?.[metric];src=s.liquidityData?.sourceUrl;
+  if(metric==='withdrawalsExecuted')for(const p of s.liquidityData?.withdrawals4Q||[])
+   add(p.periodEnd,p.parts,p.periodEnd===dated?src:p.sourceUrl,'quarter');
+ }else if(metric==='td'){
+  const td=tdLatest(s);dated=td?String(td.year)+'-12-31':null;amount=td?.value;src=td?.source;
+ }else{
+  dated=s[metric+'Date'];amount=s[metric];src=s.fieldSources?.[metric]?.url||(metric==='price'?s.priceSource:null);
+ }
+ add(dated,amount,src,'current');
+ return [...points.values()].sort((a,b)=>a.date.localeCompare(b.date));
+}
+function historicalDelta(points,metric){
+ if(points.length<2)return 'Variation non calculable (moins de deux observations).';
+ const first=points[points.length-2],last=points[points.length-1],difference=last.value-first.value;
+ const value=(difference>0?'+':'')+fr(difference,metric==='waitingParts'||metric==='withdrawalsExecuted'?0:2)+
+  (metric==='price'||metric==='recon'?' €':metric==='tof'||metric==='td'?' point(s)':' parts');
+ const rate=first.value===0?'':', soit '+(difference>0?'+':'')+fr(100*difference/first.value,2)+' %';
+ return 'Dernière variation observée : '+value+rate+' (du '+date(first.date)+' au '+date(last.date)+'). Aucun point intermédiaire n’est inventé.';
+}
+function historicalPlot(series,metric,normalized=false){
+ const groups=series.filter(g=>g.points.length),all=groups.flatMap(g=>g.points);
+ if(!all.length)return '<p class="history-gap-note">Aucune observation datée pour cet indicateur. Aucun graphique n’est extrapolé.</p>';
+ const W=820,H=275,L=77,R=24,T=24,B=49,lo=Date.parse(all[0].date+'T00:00:00Z');
+ const xs=all.map(p=>Date.parse(p.date+'T00:00:00Z'));
+ const xmin=Math.min(...xs),xmax=Math.max(...xs);
+ const values=all.map(p=>p.value),vmin=Math.min(...values),vmax=Math.max(...values);
+ const pad=vmin===vmax?Math.max(1,vmin*.05):Math.max((vmax-vmin)*.12,0.01);
+ const ymin=vmin-pad,ymax=vmax+pad;
+ const X=d=>xmin===xmax?(L+W-R)/2:L+(Date.parse(d+'T00:00:00Z')-xmin)/(xmax-xmin)*(W-L-R);
+ const Y=v=>H-B-(v-ymin)/(ymax-ymin)*(H-T-B);
+ const grid=[0,.25,.5,.75,1].map(f=>{
+  const y=H-B-f*(H-T-B),val=ymin+f*(ymax-ymin);
+  return '<line x1="'+L+'" y1="'+y.toFixed(2)+'" x2="'+(W-R)+'" y2="'+y.toFixed(2)+'" stroke="#e2ded9" stroke-dasharray="3 4"/>'+
+   '<text x="'+(L-9)+'" y="'+(y+4).toFixed(2)+'" text-anchor="end" fill="#61574f" font-size="10">'+
+    esc(fr(val,metric==='waitingParts'||metric==='withdrawalsExecuted'?0:2))+'</text>';
+ }).join('');
+ const ticks=[xmin,(xmin+xmax)/2,xmax].filter((t,i,a)=>i===0||Math.abs(t-a[i-1])>86400000)
+ .map(t=>{const day=new Date(t).toISOString().slice(0,10),x=xmin===xmax?(L+W-R)/2:L+(t-xmin)/(xmax-xmin)*(W-L-R);
+ return '<text x="'+x.toFixed(2)+'" y="'+(H-18)+'" text-anchor="middle" font-size="11" fill="#61574f">'+esc(date(day))+'</text>'}).join('');
+ const paths=groups.map((g,i)=>{
+  const color=HISTORY_COLORS[i%HISTORY_COLORS.length],gap=HISTORY_METRICS[metric].gap;
+  let d='',last=null;
+  for(const p of g.points){
+   const x=X(p.date),y=Y(p.value),elapsed=last?(Date.parse(p.date)-Date.parse(last.date))/86400000:null;
+   d+=(last&&elapsed<=gap?' L':' M')+x.toFixed(1)+' '+y.toFixed(1);
+   last=p;
+  }
+  const circles=g.points.map(p=>'<circle cx="'+X(p.date).toFixed(1)+'" cy="'+Y(p.value).toFixed(1)+
+   '" r="4" fill="'+color+'" stroke="white" stroke-width="1.5"><title>'+esc(g.name+' — '+date(p.date)+' : '+fr(p.raw??p.value,2)+(normalized?' (indice '+fr(p.value,2)+')':''))+'</title></circle>').join('');
+  return '<path d="'+d+'" fill="none" stroke="'+color+'" stroke-width="2.4" stroke-linejoin="round"/>'+circles;
+ }).join('');
+ const legend='<div class="history-legend">'+groups.map((g,i)=>'<span><i style="background:'+HISTORY_COLORS[i%HISTORY_COLORS.length]+'"></i>'+esc(g.name)+'</span>').join('')+'</div>';
+ return legend+'<svg class="history-svg" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="'+esc((normalized?'Trajectoires en indice 100':'Valeurs historiques')+' : '+groups.map(g=>g.name).join(', '))+'">'+
+ grid+'<line x1="'+L+'" y1="'+(H-B)+'" x2="'+(W-R)+'" y2="'+(H-B)+'" stroke="#9b8e84"/>'+ticks+paths+'</svg>';
+}
+function historicalTable(groups,metric,normalized=false){
+ const rows=groups.flatMap(g=>g.points.map(p=>({name:g.name,...p}))).sort((a,b)=>b.date.localeCompare(a.date)||a.name.localeCompare(b.name,'fr'));
+ return '<div class="history-points table-scroll"><table class="scpi-table"><thead><tr><th>SCPI</th><th>Période</th><th>'+esc(HISTORY_METRICS[metric].label)+'</th>'+
+  (normalized?'<th>Indice (base 100)</th>':'')+'<th>Document justificatif</th></tr></thead><tbody>'+
+  rows.map(p=>'<tr><td>'+esc(p.name)+'</td><td>'+date(p.date)+'</td><td>'+esc(fr(p.raw??p.value,metric==='waitingParts'||metric==='withdrawalsExecuted'?0:2))+
+  (metric==='price'||metric==='recon'?' €':metric==='tof'||metric==='td'?' %':' parts')+'</td>'+
+  (normalized?'<td>'+esc(fr(p.value,2))+'</td>':'')+
+  '<td>'+(p.source?link(p.source,'Publication officielle','compare-source'):'<span class="smalltxt">Source historique non identifiée</span>')+'</td></tr>').join('')+'</tbody></table></div>';
+}
+function renderHistory(){
+ const all=compareSortedItems(),selectedItem=items.find(x=>x.id===historyCurrentId)||all[0];
+ if(!selectedItem)return;
+ historyCurrentId=selectedItem.id;
+ $('history-scpi').innerHTML=all.map(x=>'<option value="'+esc(x.id)+'"'+(x.id===historyCurrentId?' selected':'')+'>'+esc(x.name)+'</option>').join('');
+ $('history-metric').value=historyMetric;
+ const points=historicalSeries(selectedItem,historyMetric);
+ $('history-title').textContent=selectedItem.name+' — '+HISTORY_METRICS[historyMetric].label;
+ $('history-chart').innerHTML=historicalPlot([{name:selectedItem.name,points}],historyMetric);
+ const note=points.length?historicalDelta(points,historyMetric):'Aucune donnée historique sourcée ou datée pour cet indicateur.';
+ $('history-points').innerHTML='<p class="history-info history-delta">'+esc(note)+'</p>'+
+  (points.length===1?'<p class="history-gap-note">Un seul point disponible : aucune tendance calculable.</p>':'')+
+  (points.length?historicalTable([{name:selectedItem.name,points}],historyMetric):'');
+ $('history-status').textContent=points.length+' point'+(points.length>1?'s':'')+' observé'+(points.length>1?'s':'');
+ historyCompareIds=[...new Set(historyCompareIds)].filter(id=>items.some(x=>x.id===id)).slice(0,4);
+ $('history-compare-metric').value=historyCompareMetric;
+ $('history-compare-count').textContent=historyCompareIds.length+' / 4 sélectionnées';
+ $('history-compare-selected').innerHTML=historyCompareIds.map(id=>{
+  const scpi=items.find(s=>s.id===id);
+  return '<button type="button" data-history-remove="'+esc(id)+'" title="Retirer '+esc(scpi.name)+'">'+esc(scpi.name)+' ×</button>';
+ }).join('')||'<span class="smalltxt">Ajoute des SCPI pour comparer leurs trajectoires.</span>';
+ $('history-compare-add').disabled=historyCompareIds.length>=4;
+ $('history-compare-add').innerHTML='<option value="">Choisir une SCPI…</option>'+
+  all.filter(s=>!historyCompareIds.includes(s.id)).map(s=>'<option value="'+esc(s.id)+'">'+esc(s.name)+'</option>').join('');
+ const data=historyCompareIds.map(id=>{
+  const scpi=items.find(x=>x.id===id);return {name:scpi.name,points:historicalSeries(scpi,historyCompareMetric)};
+ });
+ const nonempty=data.filter(g=>g.points.length);
+ if(nonempty.length!==historyCompareIds.length||historyCompareIds.length<2){
+  $('history-compare-chart').innerHTML='<p class="history-gap-note">Sélectionne au moins deux SCPI disposant d’observations datées pour cet indicateur.</p>';
+  $('history-compare-points').innerHTML='';return;
+ }
+ const common=nonempty[0].points.map(p=>p.date).filter(d=>nonempty.every(g=>g.points.some(p=>p.date===d&&p.value>0)));
+ if(!common.length){
+  $('history-compare-chart').innerHTML='<p class="history-gap-note">Aucune date commune vérifiée entre ces SCPI : comparaison en base 100 impossible sans interpolation.</p>';
+  $('history-compare-points').innerHTML=historicalTable(nonempty,historyCompareMetric);return;
+ }
+ const baseline=common.sort()[0],normal=nonempty.map(g=>{
+  const base=g.points.find(p=>p.date===baseline).value;
+  return {name:g.name,points:g.points.filter(p=>p.date>=baseline).map(p=>({...p,raw:p.value,value:100*p.value/base}))};
+ });
+ $('history-compare-chart').innerHTML='<p class="history-info">Indice base 100 au '+date(baseline)+
+  '. Chaque série conserve uniquement ses dates effectivement observées. Les segments sont interrompus si une période attendue manque.</p>'+
+  historicalPlot(normal,historyCompareMetric,true);
+ $('history-compare-points').innerHTML=historicalTable(normal,historyCompareMetric,true);
+}
+
 function renderSources(){$('sources-list').innerHTML=[...items].sort((a,b)=>Number((b.tags||[]).includes('Meilleurtaux Placement'))-Number((a.tags||[]).includes('Meilleurtaux Placement'))||a.name.localeCompare(b.name,'fr')).map(s=>`<div class="compare-card"><div class="eyebrow">${esc(s.manager)}</div><h3>${esc(s.name)}</h3><div class="collection">${tags(s)}</div><div class="c-line"><span>Bulletin repéré</span><b>${esc(s.bulletin||'Non renseigné')}</b></div><div class="c-line"><span>Date</span><b>${date(s.bulletinDate)}</b></div><div class="c-line"><span>Reconstitution</span><b>${date(s.reconDate)}</b></div><div class="c-line"><span>Lecture automatique du PDF</span><b>${esc(s.pdfReadStatus||'En attente de contrôle')}</b></div><div class="c-line"><span>Répartition géographique</span><b>${s.geo?.length?'Documentée au '+date(s.geoDate||s.allocationDate):'Non vérifiée'}</b></div><div class="c-line"><span>Répartition sectorielle</span><b>${s.types?.length?'Documentée au '+date(s.typesDate||s.allocationDate):'Non vérifiée'}</b></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:16px">${link(s.bulletinUrl,'Publication')}${link(s.officialSource||s.sourceUrl,'Société de gestion')}${link(s.mtxUrl,'MTX')}</div><button class="btn small" style="margin-top:9px" data-open="${esc(s.id)}" data-tab="documents">Voir fiche</button></div>`).join('');}
 function bars(data,indigo=false){return (data&&data.length)?`<div class="breakdown">${data.map(([label,val])=>`<div class="mixrow"><span>${esc(label)}</span><div class="mixbar ${indigo?'indigo':''}"><i style="width:${Math.max(0,Math.min(100,Number(val)||0))}%"></i></div><b>${pct(val)}</b></div>`).join('')}</div>`:empty('Répartition non vérifiée : à compléter à partir du dernier bulletin ou du site officiel.');}
 function datesNote(s){return s.allocationDate?`Répartition publiée au ${date(s.allocationDate)} · À contrôler lors de la prochaine publication.`:'Répartition non disponible ou non datée. Aucune pondération reconstituée par estimation.';}
@@ -1089,6 +1231,13 @@ $('allocation-clear').onclick=()=>{allocationState.weights={};allocationState.am
 $('allocation-print').onclick=printAllocationReport;
 document.addEventListener('input',e=>{const id=e.target?.dataset?.allocWeight;if(id&&Object.hasOwn(allocationState.weights,id)){allocationState.weights[id]=e.target.value;renderAllocationResults();}});
 document.addEventListener('click',e=>{const btn=e.target.closest('[data-alloc-remove]');if(!btn)return;delete allocationState.weights[btn.dataset.allocRemove];renderAllocation();});
+
+$('history-scpi').onchange=e=>{historyCurrentId=e.target.value;renderHistory()};
+$('history-metric').onchange=e=>{historyMetric=e.target.value;renderHistory()};
+$('history-compare-metric').onchange=e=>{historyCompareMetric=e.target.value;renderHistory()};
+$('history-compare-add').onchange=e=>{const id=e.target.value;if(id&&!historyCompareIds.includes(id)&&historyCompareIds.length<4){historyCompareIds.push(id);renderHistory();}};
+document.addEventListener('click',e=>{const remove=e.target.closest('[data-history-remove]');if(remove){historyCompareIds=historyCompareIds.filter(id=>id!==remove.dataset.historyRemove);renderHistory();}});
+document.addEventListener('click',e=>{const go=e.target.closest('[data-history-open]');if(go){historyCurrentId=go.dataset.historyOpen;view='evolution';closeDetail();render();}});
 $('compare-search').oninput=e=>{compareQuery=e.target.value;renderCompare()};
 $('compare-clear').onclick=()=>{selected=[];renderCompare();renderCompareExtras()};
 document.addEventListener('click',e=>{
