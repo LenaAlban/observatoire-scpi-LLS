@@ -157,7 +157,8 @@ def discover(html, base_url, scpi, host):
     soup=BeautifulSoup(html,'html.parser')
     name=fold(scpi['name'])
     aliases=[name]+[fold(v) for v in ALIASES.get(scpi['id'],[])]
-    shared=any(x in base_url for x in ['/bt','/documentation/']) and any(x in base_url for x in ('la-francaise','atland-voisin'))
+    shared=(any(x in base_url for x in ['/bt','/documentation/']) and any(x in base_url for x in ('la-francaise','atland-voisin'))) or (
+        host=='sofidy.com' and ('/actualites/scpi-sofidy-les-bulletins' in base_url or base_url.rstrip('/').endswith('/documentation')))
     candidates=[]
     for a in soup.find_all('a',href=True):
         href=urljoin(base_url,a.get('href',''))
@@ -170,9 +171,12 @@ def discover(html, base_url, scpi, host):
         if any(x in norm for x in ('rapport annuel','dic','statuts','note d information')) and not has_bulletin: continue
         p=period_from(context)
         if not p: continue
-        if shared and not any(alias in norm for alias in aliases): continue
-        # dedicated pages can have other SCPI in related links; prefer explicit name or pdf matching
-        score=p['rank']*10 + (6 if is_pdf else 0) + (5 if any(alias in norm for alias in aliases) else 0) + (4 if has_bulletin else 0)
+        # Une page d'actualités Sofidy regroupe jusqu'à sept bulletins.
+        # Ne jamais attribuer le PDF d'une autre SCPI sur la seule période T2.
+        fund_in_link=any(alias in fold(urlparse(href).path.replace('_',' ').replace('-',' ')) for alias in aliases)
+        fund_in_context=any(alias in norm for alias in aliases)
+        if shared and not (fund_in_link or fund_in_context):continue
+        score=p['rank']*10 + (6 if is_pdf else 0) + (8 if fund_in_link else 0) + (5 if fund_in_context else 0) + (4 if has_bulletin else 0)
         candidates.append({'url':href,'period':p,'score':score,'description':context[:250]})
     return sorted(candidates,key=lambda c:c['score'],reverse=True)
 
@@ -739,20 +743,30 @@ def source_for(item):
 
 
 def official_entry_points(item, url, host):
-    """Ne consulter que les pages et documents du gérant, en HTTPS vérifié."""
-    urls=[url]
-    if urlparse(url).hostname == 'www.'+host:
-        from urllib.parse import urlunparse
-        apex=urlunparse(urlparse(url)._replace(netloc=host))
-        if apex not in urls:urls.append(apex)
+    """Explorer les documents officiels en HTTPS, avec variante apex vérifiée.
+
+    Sofidy peut échouer sur le certificat de www.sofidy.com tout en offrant
+    un autre hôte officiel sofidy.com. Aucune désactivation de TLS.
+    """
+    from urllib.parse import urlunparse
+
+    urls=[]
+    def add_official(candidate):
+        if not candidate or not host_is(candidate,host):return
+        if candidate not in urls:urls.append(candidate)
+        parsed=urlparse(candidate)
+        if parsed.hostname == 'www.'+host:
+            apex=urlunparse(parsed._replace(netloc=host))
+            if apex not in urls:urls.append(apex)
+
+    add_official(url)
     known=[item.get('sourceUrl')]+OFFICIAL_FALLBACKS.get(item['id'],[])+[
         (item.get('fieldSources') or {}).get(key,{}).get('url')
         for key in ('tof','recon','geo','types','td')
     ]+[item.get('bulletinUrl')]
     for target in known:
-        if target and host_is(target,host) and target not in urls:
-            urls.append(target)
-    return urls[:14]
+        add_official(target)
+    return urls[:24]
 
 
 def opaque_pdf_links_on_page(html, base_url, scpi, host):
