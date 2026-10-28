@@ -42,6 +42,17 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 - Le **simulateur d'allocation** recherche d'abord le dernier millésime commun à toutes les SCPI sélectionnées. Si aucun millésime commun n'est disponible pour toute l'allocation, il affiche **TD global non calculable**, la couverture du millésime choisi et une alerte, plutôt que mélanger les années ou extrapoler des chiffres absents.
 - Les synthèses imprimées et le CSV indiquent désormais les millésimes. Le TD reste historique, sans garantie de rendement futur.
 
+## Graphiques historiques et comparaison des trajectoires (correctif n°8)
+
+- L'onglet **Évolution** donne accès aux séries **prix de part, reconstitution, TOF, TD annuel, parts en attente et retraits exécutés par trimestre**. La fiche SCPI ouvre directement ses graphiques.
+- Le robot reconstruit progressivement `indicatorHistory` depuis les données datées et vérifiées du référentiel ; les nouvelles mesures y sont ajoutées automatiquement **après validation** de leur publication. Les archives de reconstitution déjà recensées (`history`), l'ancien prix daté, l'historique des TD (`tdHistory`) et les retraits trimestriels recensés (`withdrawals4Q`) sont repris **sans inventer les sources manquantes**.
+- Chaque point contient une **date de référence, une valeur et éventuellement l'URL justificative**. Les archives sans provenance précise restent identifiées comme telles. Les données de périodes contradictoires ne s'écrasent pas : l'anomalie est conservée dans `historyConflicts`.
+- Les séries sont limitées à **48 observations par indicateur** et triées par date. Les variations comparent uniquement les **deux derniers points réellement datés**, avec leurs dates.
+- Les courbes ne sont **pas prolongées** au-delà des observations. Les segments sont interrompus si l'intervalle entre deux points excède celui normalement attendu (125 jours pour TOF, liquidité ; 400 jours pour TD annuels, reconstitution et prix publiés). Un seul point donne un marqueur, **aucune tendance**.
+- Les comparaisons réunissent **jusqu'à 4 SCPI**, avec un **indice base 100 calculé seulement à partir d'une date exactement commune et de valeurs positives**. Sans date commune, le site explique pourquoi la comparaison est indisponible plutôt que fabriquer un point de départ. Les périodes manquantes ne sont pas interpolées.
+- Sur une SCPI à marché secondaire, les **anciens prix de souscription** sont exclus de la série des prix de confrontation afin de ne pas afficher une évolution trompeuse.
+- Aucune correction manuelle des données officielles : les données sont mises à jour par la collecte quotidienne. Une source inaccessible ou un bulletin non interprétable ne crée pas de point historique.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
