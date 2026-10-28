@@ -759,6 +759,12 @@ def official_entry_points(item, url, host):
             apex=urlunparse(parsed._replace(netloc=host))
             if apex not in urls:urls.append(apex)
 
+    # Priorité au PDF authentifié du fonds Sofidynamic : ne pas laisser
+    # un échec SSL préalable sur la page d'accueil masquer ce document.
+    if item['id']=='sofidynamic':
+        for direct in OFFICIAL_FALLBACKS.get(item['id'],[]):
+            if urlparse(direct).path.lower().endswith('.pdf'):
+                add_official(direct)
     add_official(url)
     known=[item.get('sourceUrl')]+OFFICIAL_FALLBACKS.get(item['id'],[])+[
         (item.get('fieldSources') or {}).get(key,{}).get('url')
@@ -848,9 +854,12 @@ def collect_official_candidates(sess,item,url,host):
                         continue
             # Altixia présente des documents via un catalogue séparé :
             # ne pas arrêter la collecte dès qu'un ancien PDF est trouvé.
-            if item['id']!='altixia-cadence-xii' and any(c['period']['rank']>existing_rank(item) for c in candidates):
+            # Le T2 historique de Sofidy ne doit pas masquer un nouveau T3.
+            multi_publication=item['id'] in (
+                'altixia-cadence-xii','sofidynamic','immorente','efimmo-1','sofidy-europe-invest')
+            if not multi_publication and any(c['period']['rank']>existing_rank(item) for c in candidates):
                 break
-            if item['id']!='altixia-cadence-xii' and sum(a['status']=='accessible' for a in attempts)>=3:
+            if not multi_publication and sum(a['status']=='accessible' for a in attempts)>=3:
                 break
         except (requests.RequestException,ValueError,RuntimeError) as exc:
             message,kind=sanitized_collection_error(exc)
