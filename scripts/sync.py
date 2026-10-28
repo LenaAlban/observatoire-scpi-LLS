@@ -100,6 +100,27 @@ def period_from(text):
         half,y = int(sm.group(1)),int(sm.group(2))
         if 2023 <= y <= 2035:
             return {'label':f'S{half} {y}','date':f'{y}-{"06-30" if half==1 else "12-31"}','rank':y*4+(2 if half==1 else 4),'periodType':'S'}
+    # Certains bulletins Altixia affichent le trimestre sous forme YY-QQ
+    # près du titre (ex. « 26-02 BULLETIN TRIMESTRIEL »). Le nom de PDF
+    # doc1-20260730-... n'est PAS un justificatif de la période.
+    title_head=txt[:1500]
+    code_rx=re.compile(r'\b(?P<year>20\d{2}|2\d)[-_/.](?P<quarter>0?[1-4])\b')
+    bulletin_rx=list(re.finditer(r'\bbulletin\s+trimestriel\b',title_head))
+    eligible=[]
+    for title in bulletin_rx[:3]:
+        for hit in code_rx.finditer(title_head[:title.end()+100]):
+            distance=min(abs(hit.end()-title.start()),abs(hit.start()-title.end()))
+            if distance > 90:continue
+            yy=int(hit.group('year'))
+            year=yy if yy>=2000 else yy+2000
+            quarter=int(hit.group('quarter'))
+            if 2023<=year<=2035:
+                eligible.append((distance,year,quarter))
+    if eligible:
+        _,year,quarter=min(eligible)
+        return {'label':f'T{quarter} {year}',
+                'date':f'{year}-{quarter*3:02d}-{(31 if quarter in (1,4) else 30):02d}',
+                'rank':year*4+quarter,'periodType':'T'}
     # Reporting explicitly date-tagged, only if bulletin/reporting appears before a date
     m = re.search(r'\b(?:bulletin|reporting|fil d.actualites)\b.{0,75}?\b(31/03|30/06|30/09|31/12)/(20\d\d)\b', txt)
     if m:
@@ -785,9 +806,11 @@ def collect_official_candidates(sess,item,url,host):
                         if candidate:candidates.append(candidate)
                     except (requests.RequestException,ValueError,RuntimeError):
                         continue
-            if any(c['period']['rank']>existing_rank(item) for c in candidates):
+            # Altixia présente des documents via un catalogue séparé :
+            # ne pas arrêter la collecte dès qu'un ancien PDF est trouvé.
+            if item['id']!='altixia-cadence-xii' and any(c['period']['rank']>existing_rank(item) for c in candidates):
                 break
-            if sum(a['status']=='accessible' for a in attempts)>=3:
+            if item['id']!='altixia-cadence-xii' and sum(a['status']=='accessible' for a in attempts)>=3:
                 break
         except (requests.RequestException,ValueError,RuntimeError) as exc:
             message,kind=sanitized_collection_error(exc)
