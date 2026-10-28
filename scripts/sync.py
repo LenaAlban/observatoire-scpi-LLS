@@ -16,6 +16,7 @@ try:
 except ImportError:
     fitz = None
 from official_sources import ALIASES, LIQUIDITY, OFFICIAL
+from pdf_layout import extract_pdf_allocations
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data' / 'scpi.json'
@@ -523,6 +524,40 @@ def refresh_keys(s,item):
     return []
 
 
+def update_pdf_allocations(item, blob, period, url):
+    """Mise à jour uniquement si un PDF officiel plus récent porte une
+    répartition complète (>97 %, <103 %) et identifiée à la SCPI.
+    Aucun effacement d'une ancienne donnée en cas de lecture impossible.
+    """
+    detected=extract_pdf_allocations(blob)
+    if not detected:
+        item['pdfAllocationStatus']='Répartitions non extraites : texte graphique absent ou ambigu'
+        return []
+    updates=[]
+    for field, obj in detected.items():
+        dated=period['date']
+        old_date=item.get(field+'Date') or item.get('allocationDate') or ''
+        if dated < old_date or (dated == old_date and item.get(field)):
+            continue
+        values=obj['values']
+        if not 97 <= sum(v for _,v in values) <= 103:
+            continue
+        if item.get(field)!=values or dated != old_date:
+            item[field]=values
+            item[field+'Date']=dated
+            item.setdefault('fieldSources',{})[field]={
+                'url':url, 'date':dated, 'verifiedAt':TODAY,
+                'method':obj['method'], 'page':obj['page'],
+                'proof':f'Répartition {field}, PDF page {obj["page"]}, total {sum(v for _,v in values):.1f} %'
+            }
+            updates.append(field)
+    if updates:
+        item['allocationDate']=max(item.get('geoDate') or '', item.get('typesDate') or '')
+    item['pdfAllocationStatus']=('Répartitions extraites : '+', '.join(detected.keys())
+                                 if detected else 'Aucune répartition interprétable')
+    return updates
+
+
 def source_for(item):
     return OFFICIAL.get(item['id'])
 
@@ -558,6 +593,14 @@ def refresh_one(s,item):
                 if not re.search(rf'\b(?:{k}(?:er|e|eme)?\s*trimestre|t{k})\s*{y}\b',fold(content.decode('utf-8','replace'))):continue
                 candidates.append({'url':candidate_final,'period':period_from(f'T{k} {y}'),'score':y*40+k*10+7,'description':'Bulletin Iroko Zen - page officielle'})
             except Exception:pass
+    # Si le gérant ne publie pas de nouveau lien, relire le dernier PDF officiel
+    # déjà connu : les graphiques d'un bulletin existant peuvent être incomplets.
+    known=item.get('bulletinUrl') or ''
+    known_period=period_from(item.get('bulletin') or '')
+    if known and known_period and host_is(known,host) and known not in [c['url'] for c in candidates]:
+        candidates.append({'url':known,'period':known_period,
+                           'score':known_period['rank']*10+5,
+                           'description':'Bulletin officiel déjà répertorié'})
     if candidates:
         best=max(candidates,key=lambda c:(c['period']['rank'],c['score']))
         p=best['period']
@@ -567,20 +610,29 @@ def refresh_one(s,item):
             if p['rank']>existing_rank(item) or not item.get('bulletinUrl'):
                 item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':cand_url})
                 changes.append('bulletin')
-            if '.pdf' in urlparse(cand_url).path.lower():
-                try:
-                    blob,_,resolved=fetch(s,cand_url,host,limit=MAX_PDF)
+            try:
+                blob,ctype,resolved=fetch(s,cand_url,host,limit=MAX_PDF)
+                if blob[:4] != b'%PDF':
+                    item['pdfWarning']='Page HTML repérée ; lien PDF direct à identifier'
+                    item['pdfReadStatus']='non-lu : page HTML, pas un PDF'
+                else:
                     txt=pdf_text(blob)
                     if not match_identity(txt,item):
                         raise ValueError('Identité SCPI absente dans le PDF : vérification requise')
+                    declared=period_from(txt[:4500])
+                    if declared and declared['rank']!=p['rank']:
+                        raise ValueError('Période annoncée différente de celle du PDF')
                     changes+=update_indicators(item,txt,p,resolved)
                     changes+=update_liquidity(item,txt,p,resolved)
+                    changes+=update_pdf_allocations(item,blob,p,resolved)
                     item['pdfVerifiedAt']=TODAY
-                except Exception as exc:
-                    item['pdfWarning']=str(exc)[:180]
-            else:
-                # A HTML document is still linked for consultation.
-                item.pop('pdfWarning',None)
+                    item['pdfReadStatus']='PDF officiel lu (texte et positions)'
+                    item['pdfSourceUrl']=resolved
+                    item['bulletinUrl']=resolved
+                    item.pop('pdfWarning',None)
+            except Exception as exc:
+                item['pdfWarning']=str(exc)[:180]
+                item['pdfReadStatus']='échec lecture du PDF'
     changes+=refresh_keys(s,item)
     item['lastChecked']=TODAY
     item['automatedCheck']='Source officielle consultée' if candidates else 'Site accessible · bulletin non détecté automatiquement'
@@ -609,13 +661,13 @@ def main():
         try:
             updates,detected=refresh_one(ss,item)
             ok+=1;found+=int(detected);changed+=int(bool(updates))
-            statuses.append({'id':item['id'],'name':item['name'],'status':'ok' if detected else 'partial','changes':updates,'message':item.get('automatedCheck',''),'source':item['officialSource']})
+            statuses.append({'id':item['id'],'name':item['name'],'status':'ok' if item.get('pdfReadStatus','').startswith('PDF officiel lu') else 'partial','changes':updates,'message':item.get('automatedCheck',''),'source':item['officialSource'],'pdfRead':item.get('pdfReadStatus'),'pdfAllocation':item.get('pdfAllocationStatus'),'pdfWarning':item.get('pdfWarning')})
             LOG.info('%s: %s',item['name'],', '.join(updates) or ('bulletin déjà à jour' if detected else 'source accessible, bulletin non détecté'))
         except Exception as e:
             statuses.append({'id':item['id'],'name':item['name'],'status':'error','changes':[],'message':str(e)[:220],'source':item['officialSource']})
             item['automatedCheck']='Échec de récupération · données précédentes conservées'
             LOG.warning('%s: %s',item['name'],e)
-    report={'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'total':len(statuses),'sourceAccessible':ok,'bulletinFound':found,'updated':changed,'results':statuses}
+    report={'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'total':len(statuses),'sourceAccessible':ok,'bulletinFound':found,'pdfRead':sum(s.get('pdfRead')=='PDF officiel lu (texte et positions)' for s in statuses),'updated':changed,'results':statuses}
     print(json.dumps({'date':TODAY,'sources_accessibles':ok,'bulletins_detectes':found,'fiches_modifiees':changed,'erreurs':len(statuses)-ok},ensure_ascii=False))
     if not args.dry_run:
         DATA.write_text(json.dumps(items,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
