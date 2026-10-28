@@ -623,7 +623,7 @@ function adviceView(s){
  <h3>Points à documenter</h3><p class="source-note">${a.missing.length?esc(a.missing.join(' · ')):'Toutes les catégories de suivi sont renseignées. Vérifier néanmoins les publications et leur actualité.'}</p>
  <div class="analysis-summary"><strong>Avant tout conseil :</strong> vérifier la liquidité effective, l’endettement, les frais, la collecte, la fiscalité et l’adéquation à l’horizon de placement. Le TD ne tient pas compte de la fiscalité propre au client ; les performances passées ne préjugent pas des performances futures.</div>
  
- <div class="drawer-actions"><button class="btn" data-print-scpi="${esc(s.id)}">Fiche PDF</button>${link(s.bulletinUrl||s.officialSource,'Bulletin officiel')}</div>`;
+ <div class="drawer-actions"><button class="btn primary" data-history-open="${esc(s.id)}">Voir les évolutions</button><button class="btn" data-print-scpi="${esc(s.id)}">Fiche PDF</button>${link(s.bulletinUrl||s.officialSource,'Bulletin officiel')}</div>`;
 }
 
 function compareCellHtml(d,printed=false){
