@@ -39,6 +39,52 @@ class OfficialRecoveryTests(unittest.TestCase):
         self.assertEqual(candidate['period']['label'],'T1 2026')
         self.assertEqual(candidate['url'],url)
 
+    def test_altixia_t2_2026_exact_url_is_checked_as_pdf(self):
+        item={'id':'altixia-cadence-xii','name':'Altixia Cadence XII',
+              'sourceUrl':'https://www.altixia.fr/scpi-cadence.php'}
+        link='https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf'
+        self.assertIn(link,sync.official_entry_points(item,item['sourceUrl'],'altixia.fr'))
+        # Typical Altixia bulletin title format, with YY-QQ not in filename.
+        text='26-02 BULLETIN TRIMESTRIEL D INFORMATION | SCPI ALTIXIA CADENCE XII'
+        self.assertEqual(sync.period_from(text)['label'],'T2 2026')
+        with patch.object(sync,'pdf_text',return_value=text):
+            candidate=sync.pdf_candidate_from_bytes(b'%PDF-synthetic',link,item)
+        self.assertIsNotNone(candidate)
+        self.assertEqual(candidate['period']['date'],'2026-06-30')
+        self.assertEqual(candidate['url'],link)
+        with patch.object(sync,'pdf_text',return_value='ALTIXIA COMMERCES - BULLETIN TRIMESTRIEL 26-02'):
+            self.assertIsNone(sync.pdf_candidate_from_bytes(b'%PDF-synthetic',link,item))
+
+    def test_altixia_collect_does_not_stop_before_t2_pdf(self):
+        item={'id':'altixia-cadence-xii','name':'Altixia Cadence XII',
+              'sourceUrl':'https://www.altixia.fr/scpi-cadence.php'}
+        t2='https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf'
+        pages={'https://www.altixia.fr/scpi-cadence.php',
+               'https://altixia.fr/scpi-cadence.php',
+               'https://www.altixia.fr/documentation.php?listeProduit=1'}
+        def fake_fetch(sess,link,host,limit=sync.MAX_HTML):
+            if link==t2:return b'%PDF-SYNTHETIC','application/pdf',link
+            if link in pages:return b'<html><title>Altixia Cadence XII</title></html>','text/html',link
+            raise requests.exceptions.HTTPError('404')
+        with patch.object(sync,'fetch',side_effect=fake_fetch),patch.object(
+                sync,'pdf_text',return_value='26-02 BULLETIN TRIMESTRIEL D INFORMATION SCPI ALTIXIA CADENCE XII'):
+            _,_,candidates,attempts=sync.collect_official_candidates(None,item,item['sourceUrl'],'altixia.fr')
+        self.assertTrue(any(c['url']==t2 and c['period']['label']=='T2 2026' for c in candidates))
+        self.assertTrue(any(a['status']=='pdf_verifie' and a['url']==t2 for a in attempts))
+
+    def test_altixia_opaque_link_auto_discovery_in_script(self):
+        item={'id':'altixia-cadence-xii','name':'Altixia Cadence XII'}
+        site='https://www.altixia.fr/documentation.php?listeProduit=1'
+        html=(
+            '<script>const docs=[{"link":"/medias/documentations/doc1-20260730-213536.pdf"},'
+            '{"link":"/medias/documentations/doc1-20260430-122013.pdf"}];</script>'
+            '<a data-file="/medias/documentations/doc1-20260202-161339.pdf">Télécharger</a>'
+        )
+        links=sync.opaque_pdf_links_on_page(html,site,item,'altixia.fr')
+        self.assertEqual(links[0],'https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf')
+        self.assertEqual(len(links),3)
+        self.assertTrue(all(sync.host_is(link,'altixia.fr') for link in links))
+
     def test_pdf_without_matching_scpi_or_report_is_rejected(self):
         item={'id':'altixia-cadence-xii','name':'Altixia Cadence XII'}
         url=OFFICIAL_FALLBACKS['altixia-cadence-xii'][-1]
