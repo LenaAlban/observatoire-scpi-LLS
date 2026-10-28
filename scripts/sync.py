@@ -20,6 +20,7 @@ except ImportError:
 from official_sources import ALIASES, LIQUIDITY, OFFICIAL
 from data_quality import validate_updates, quality_report, audit_scpi
 from pdf_layout import extract_pdf_allocations
+from td_history import normalize_history, update_annual_td
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data' / 'scpi.json'
@@ -379,37 +380,9 @@ def update_liquidity(item, txt, period, url):
     return ['liquidité / retraits']
 
 
-def update_td_2025(item, text, url):
-    """TD brut 2025 seulement si l'année et le pourcentage sont explicites.
-
-    N'assimile pas le dividende net de fiscalité ou le TOF à un TD annuel.
-    Les formulations ambiguës ne remplacent jamais les données enregistrées.
-    """
-    flat=re.sub(r'\s+', ' ', text.replace('\u00a0',' ').replace('\u202f',' '))
-    pats=[
-        r'taux\s+de\s+distribution\s+(?:brut\s+)?2025\s*[:\-]?\s*(\d{1,2}(?:[,.]\d{1,2})?)\s*%',
-        r'en\s+2025.{0,65}?taux\s+de\s+distribution\s+de\s*(\d{1,2}(?:[,.]\d{1,2})?)\s*%',
-    ]
-    nums=[]
-    for pat in pats:
-        for m in re.finditer(pat,flat,re.I):
-            val=float(m.group(1).replace(',','.'))
-            if 0 < val < 20:
-                nums.append((round(val,2),m.group(0)[:145]))
-    if not nums or len({v for v,_ in nums})!=1:
-        return []
-    val,proof=nums[0]
-    if item.get('td')==val and item.get('tdYear')==2025:
-        return []
-    record_auto_change(item,'td',item.get('td'),val,'2025-12-31',url)
-    item['td']=val
-    item['tdYear']=2025
-    item.setdefault('fieldSources',{})['td']={
-        'url':url,'date':'2025-12-31','verifiedAt':TODAY,
-        'method':'TD brut de fiscalité 2025 reconnu sans ambiguïté dans le PDF',
-        'proof':proof
-    }
-    return ['TD 2025']
+def update_td(item, text, url):
+    """TD annuels clos : conserver les millésimes et vérifier la source PDF."""
+    return update_annual_td(item,text,url,TODAY,record_auto_change)
 
 
 def update_indicators(item,txt,period,url):
@@ -866,7 +839,7 @@ def refresh_one(s,item):
             item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':resolved})
             changes.append('bulletin')
         changes+=update_indicators(item,txt,p,resolved)
-        changes+=update_td_2025(item,txt,resolved)
+        changes+=update_td(item,txt,resolved)
         changes+=update_liquidity(item,txt,p,resolved)
         changes+=update_pdf_allocations(item,blob,p,resolved)
         item['pdfVerifiedAt']=TODAY
@@ -929,6 +902,7 @@ def main():
     logging.basicConfig(level=logging.INFO,format='%(levelname)s %(message)s')
     items=json.loads(DATA.read_text(encoding='utf-8'))
     for item in items:
+        normalize_history(item)
         item['officialSource']=OFFICIAL.get(item['id'],(item.get('sourceUrl'),'none'))[0]
         if item['id'] in LIQUIDITY:
             label,effective,src=LIQUIDITY[item['id']]
