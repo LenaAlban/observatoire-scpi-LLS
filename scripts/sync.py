@@ -21,6 +21,7 @@ from official_sources import ALIASES, LIQUIDITY, OFFICIAL
 from data_quality import validate_updates, quality_report, audit_scpi
 from pdf_layout import extract_pdf_allocations
 from td_history import normalize_history, update_annual_td
+from series_history import sync_history
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'data' / 'scpi.json'
@@ -903,6 +904,7 @@ def main():
     items=json.loads(DATA.read_text(encoding='utf-8'))
     for item in items:
         normalize_history(item)
+        sync_history(item)
         item['officialSource']=OFFICIAL.get(item['id'],(item.get('sourceUrl'),'none'))[0]
         if item['id'] in LIQUIDITY:
             label,effective,src=LIQUIDITY[item['id']]
@@ -935,6 +937,7 @@ def main():
                 LOG.warning('%s: nouvelles valeurs rejetées: %s',item['name'],'; '.join(problems[:4]))
                 # Un PDF refusé ne devient pas un bulletin vérifié publié.
                 continue
+            sync_history(draft)
             item.clear()
             item.update(draft)
             ok+=1
