@@ -22,6 +22,16 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 - **Confidentialité :** la sélection, le montant et les pondérations sont seulement conservés en mémoire pendant la session du navigateur. Ils ne sont pas envoyés au serveur et ne sont pas enregistrés sur le site public. Ne pas saisir de données nominatives de clients.
 - Les informations financières, barèmes et modalités de revente sont à confirmer auprès des sociétés de gestion avant toute recommandation ou souscription.
 
+## Fiabilité renforcée du référentiel (correctif n°6)
+
+- **Plusieurs points d'entrée du même gérant** : l'actualisation essaie l'URL officielle configurée, le domaine HTTPS sans « www » si pertinent, puis les pages de documentation déjà connues et hébergées sur le domaine de l'éditeur. Aucune désactivation de la vérification TLS et aucune URL de domaine tiers n'est admise comme voie de secours.
+- **PDF officiel et identité vérifiés** : la récupération d'une page HTML ne vaut pas lecture d'un PDF. Les mises à jour automatiques provenant d'un bulletin exigent un contrôle du fonds, de la période lorsque celle-ci figure dans le document, et du domaine autorisé. Un PDF déjà documenté peut être utilisé lorsque la page du gérant est momentanément inaccessible.
+- **Écriture atomique par SCPI** : l'extraction est faite dans une copie de la fiche. Une date future, un recul de période, une valeur hors plage, une répartition qui ne totalise pas 100 %, une clé NP non monotone, un volume de parts invalide ou une source non approuvée entraîne le **rejet intégral des nouvelles modifications de cette fiche**. Les anciennes données restent intactes.
+- **Répartitions** : les ventilations extraites automatiquement exigent un total compris entre 99 et 101 % et conservent leurs propres dates et liens documentaires, y compris lorsque leur source est une page HTML officielle.
+- **Audit non destructif** : les anciennes fiches sont contrôlées sans effacer des chiffres historiques. Le rapport `data/status.json` contient `quality` (dates, sources, ancienneté indicative, incohérences par SCPI), `rejectedUpdates`, `fallbackRecovered` ainsi que les voies de collecte effectivement tentées pour chaque SCPI.
+- **Interface Fiabilité** : filtres « anomalies », « données anciennes » et « modifications rejetées » ; détail des avertissements et des sources consultées. Le panneau d'audit apparaît **après l'exécution du nouveau robot** (il n'est pas rempli artificiellement à partir des anciennes données).
+- **Limites** : des sites peuvent continuer à refuser les robots, et des tableaux PDF fondés sur des images ne sont pas convertis par reconnaissance visuelle approximative. Aucun taux ni aucune clé de démembrement n'est extrapolé pour combler une lacune.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
