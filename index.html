@@ -382,7 +382,7 @@ function toast(msg){let e=$('toast');e.textContent=msg;e.classList.add('show');c
 const tags=s=>(s.tags||['Autre']).map(t=>`<span class="tag ${t==='Meilleurtaux Placement'?'mtx':t==='Spirica'?'spi':''}">${esc(t)}</span>`).join('');
 function alerts(s){let a=[];if(s.liquidity?.label)a.push(s.liquidity.label);if(s.waitingPct>=2&&s.waitingPct!=null)a.push('Parts en attente : '+pct(s.waitingPct));let liq=liquidityAssessment(s);if(['severe','high','blocked'].includes(liq.code))a.push(liq.label);if(gap(s)>5)a.push('Surcote supérieure à 5 %');if(s.tof!=null&&s.tof<90)a.push('TOF inférieur à 90 %');if(s.reconDate&&((new Date(today)-new Date(s.reconDate))/864e5)>365)a.push('Reconstitution de plus d’un an');return a;}
 function list(){return items.filter(s=>{let q=(s.name+' '+s.manager).toLocaleLowerCase('fr').includes(search.toLocaleLowerCase('fr'));let o=origin==='all'||(s.tags||[]).includes(origin);let f=filter==='all'||(filter==='priced'&&gap(s)!=null)||(filter==='keys'&&Object.keys(s.keys||{}).length)||(filter==='alerts'&&alerts(s).length);return q&&o&&f}).sort((a,b)=>{const pa=(a.tags||[]).includes('Meilleurtaux Placement')?0:1,pb=(b.tags||[]).includes('Meilleurtaux Placement')?0:1;if(pa!==pb)return pa-pb;return sort==='td'?(b.td??-999)-(a.td??-999):sort==='gap'?(gap(a)??999)-(gap(b)??999):a.name.localeCompare(b.name,'fr');});}
-function render(){let title={watch:'Veille SCPI',dashboard:'Observatoire SCPI',compare:'Comparaison de SCPI',allocation:'Allocation SCPI',sources:'Publications SCPI',quality:'Fiabilité des données'};$('page-title').textContent=title[view];for(let v of ['watch','dashboard','compare','allocation','sources','quality'])$(v+'-view').classList.toggle('hidden',v!==view);document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===v));renderDashboard();if(view==='watch')renderWatch();if(view==='compare'){renderCompare();renderCompareExtras();}if(view==='allocation')renderAllocation();if(view==='sources')renderSources();if(view==='quality')renderQuality();}
+function render(){let title={watch:'Veille SCPI',dashboard:'Observatoire SCPI',compare:'Comparaison de SCPI',allocation:'Allocation SCPI',sources:'Publications SCPI',quality:'Fiabilité des données'};$('page-title').textContent=title[view];for(let v of ['watch','dashboard','compare','allocation','sources','quality'])$(v+'-view').classList.toggle('hidden',v!==view);document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));renderDashboard();if(view==='watch')renderWatch();if(view==='compare'){renderCompare();renderCompareExtras();}if(view==='allocation')renderAllocation();if(view==='sources')renderSources();if(view==='quality')renderQuality();}
 function renderDashboard(){let data=list();$('count').textContent=data.length+' / '+items.length+' SCPI';let ok=items.filter(s=>gap(s)!=null);let keys=items.filter(s=>Object.keys(s.keys||{}).length);let mt=items.filter(s=>(s.tags||[]).includes('Meilleurtaux Placement'));$('metrics').innerHTML=`<div class="metric"><div class="name">SCPI suivies</div><div class="big">${items.length}</div><div class="foot">Référentiel automatiquement actualisé</div></div><div class="metric"><div class="name">Sélection Meilleurtaux</div><div class="big">${mt.length}</div><div class="foot">Liste officielle publiée en 2026</div></div><div class="metric"><div class="name">Décotes / surcotes calculables</div><div class="big">${ok.length}</div><div class="foot">Prix + reconstitution datée</div></div><div class="metric"><div class="name">Grilles NP renseignées</div><div class="big">${keys.length}</div><div class="foot">Barèmes indicatifs</div></div>`;
 $('table-body').innerHTML=data.map(s=>{let g=gap(s);return `<tr><td><div class="name-cell"><div class="monogram">${esc(s.name.slice(0,2).toUpperCase())}</div><div><button class="linklike" data-open="${esc(s.id)}">${esc(s.name)}</button><small>${esc(s.manager)}</small><div class="collection">${tags(s)}</div></div></div></td><td><b class="mainnum">${priceMissing(s)}</b><div class="cellsub">${esc(priceLabel(s))} · ${date(s.priceDate)}</div></td><td><b class="mainnum">${euro(s.recon)}</b><div class="cellsub">${date(s.reconDate)}</div></td><td>${g==null?'<span class="pill neutral">N/D</span>':`<span class="pill ${g>0?'positive':'negative'}">${g>0?'+':''}${pct(g)}</span>`}</td><td><b>${pct(s.td)}</b></td><td><b>${pct(s.tof)}</b><div class="cellsub">${date(s.tofDate)}${s.fieldSources?.tof?.method?.includes('secondaire')?' · À confirmer':''}</div></td><td><button class="linklike" data-open="${esc(s.id)}" data-tab="liquidity">${s.liquidityData?.waitingParts==null?'<span class="cellsub">Stock non vérifié</span>':`<b>${fr(s.liquidityData.waitingParts,0)}</b> parts`}</button><div class="cellsub">${date(s.liquidityData?.periodEnd)}</div><div class="liq-cell-status">${liquidityBadge(s)}</div></td><td>${Object.keys(s.keys||{}).length?`<button class="linklike" data-open="${esc(s.id)}" data-tab="keys">${Object.keys(s.keys).length} durées ↗</button>`:'<span style="color:#8697a1">À compléter</span>'}</td><td><button class="linklike" data-open="${esc(s.id)}" data-tab="documents">${esc(s.bulletin||'Documents')} ↗</button></td></tr>`;}).join('')||'<tr><td colspan="9" class="empty">Aucun résultat.</td></tr>';
 let sorted=ok.sort((a,b)=>gap(a)-gap(b));let max=Math.max(8,...sorted.map(s=>Math.abs(gap(s))));$('chart').innerHTML=sorted.length?sorted.map(s=>`<div class="bar-row"><span>${esc(s.name)}</span><div class="bar-track"><div class="bar-fill ${gap(s)>0?'risk':''}" style="width:${Math.max(3,Math.abs(gap(s))/max*100)}%"></div></div><b>${fr(gap(s),1)} %</b></div>`).join(''):empty('Aucune reconstitution datée disponible.');let flags=items.flatMap(s=>alerts(s).map(x=>({name:s.name,id:s.id,w:x})));$('risks').innerHTML=flags.length?flags.slice(0,6).map(x=>`<div class="risk-item"><span class="risk-dot"></span><div><button class="linklike" data-open="${esc(x.id)}">${esc(x.name)}</button><small style="display:block;margin-top:4px">${esc(x.w)}</small></div></div>`).join(''):empty('Aucune alerte signalée ; données manquantes ≠ absence de risque.');}
@@ -680,6 +680,106 @@ function renderWatch(){
   return `<article class="watch-entry"><div class="watch-entry-top"><span class="watch-marker ${e.status==='error'?'error':'partial'}">${e.status==='error'?'Collecte en erreur':'Collecte partielle'}</span><span class="smalltxt">${data.latest?date(data.latest.slice(0,10)):'Date non connue'}</span></div><button class="linklike watch-title" data-open="${esc(e.id)}" data-tab="documents">${esc(e.name)}</button><p class="watch-text">${esc(e.message||'Publication non confirmée.')}</p>${e.pdfWarning?`<p class="smalltxt">${esc(e.pdfWarning)}</p>`:''}${link(e.source,'Site officiel','btn small')}</article>`;
  }).join('')||empty(filter==='changes'?'Aucun changement automatique sourcé enregistré pour le moment. Les prochains seront visibles après exécution de la collecte.':'Aucun résultat pour ce filtre.');
 }
+
+// Les pondérations ne sont enregistrées ni sur GitHub ni dans localStorage.
+// Un investissement saisi ici est uniquement un scénario d'analyse transitoire.
+const allocationState={amount:'100000',weights:{}};
+function allocationCanonicalGeo(name){
+ const norm=String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+ if(/^(paris|paris centre|grand paris|ile-de-france|ile-de-france hors paris|regions|regions francaises|region parisienne|metropoles francaises|province|france hors region parisienne|france hors ile-de-france|nord-ouest|sud-ouest|nord-est|sud-est|nord|paris et ile-de-france)$/.test(norm))return 'France';
+ // Les catégories transnationales restent distinctes des pays identifiés.
+ if(norm==='europe')return 'Europe (zone non détaillée)';
+ if(norm==='etranger')return 'Étranger (zone non détaillée)';
+ return String(name||'Non déterminé').trim();
+}
+function allocationCanonicalSector(name){
+ const norm=String(name||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+ if(/^(bureau|bureaux)$/.test(norm))return 'Bureaux';
+ if(/^(commerce|commerces|commerces peripheriques|galeries commerciales|centres commerciaux|commerces de centre-ville|commerces centre-ville|locaux commerciaux)$/.test(norm))return 'Commerces';
+ if(/^(logistique|entrepots)$/.test(norm))return 'Logistique / entrepôts';
+ if(/^(activites|locaux d'activite|locaux d'activites)$/.test(norm))return 'Locaux d’activités';
+ if(/^(hotels|hotellerie|hotels et tourisme|tourisme et hotellerie|hospitalite)$/.test(norm))return 'Hôtellerie / tourisme';
+ if(/^(residentiel|residentiel classique)$/.test(norm))return 'Résidentiel';
+ if(/^(residentiel services|residentiel avec services|residences services)$/.test(norm))return 'Résidentiel avec services';
+ if(/^(sante|cliniques|medico-social|sanitaire et soins de ville|autres secteurs de sante|sante \/ seniors)$/.test(norm))return 'Santé';
+ // Expositions mixtes non ventilées : pas d'affectation arbitraire à un secteur.
+ return String(name||'Non déterminé').trim();
+}
+function allocationValidBreakdown(s,field){
+ const rows=s[field],period=s[field+'Date']||s.allocationDate;
+ if(!Array.isArray(rows)||!rows.length||!/^\d{4}-\d{2}-\d{2}$/.test(period||''))return null;
+ const source=s.fieldSources?.[field]?.url;
+ if(!/^https:\/\//.test(source||''))return null;
+ let sum=0;
+ for(const row of rows){
+  if(!Array.isArray(row)||typeof row[0]!=='string'||!row[0].trim()||!Number.isFinite(Number(row[1]))||Number(row[1])<0)return null;
+  sum+=Number(row[1]);
+ }
+ return sum>=99&&sum<=101?{rows,sum,period,source}:null;
+}
+function allocationBuildBreakdown(positions,field){
+ const byLabel=new Map(),missing=[],dates=[],sources=[];
+ let covered=0;
+ for(const {s,weight} of positions){
+  const d=allocationValidBreakdown(s,field);
+  if(!d){missing.push(s.name);continue;}
+  covered+=weight;
+  dates.push({name:s.name,period:d.period});
+  sources.push({name:s.name,url:d.source,date:d.period});
+  for(const [label,val] of d.rows){
+   const name=field==='geo'?allocationCanonicalGeo(label):allocationCanonicalSector(label);
+   byLabel.set(name,(byLabel.get(name)||0)+weight*Number(val)/d.sum);
+  }
+ }
+ const rows=[...byLabel.entries()].filter(([,n])=>n>0).map(([name,percentage])=>({name,percentage})).sort((a,b)=>b.percentage-a.percentage||a.name.localeCompare(b.name,'fr'));
+ const uncovered=Math.max(0,100-covered);
+ if(uncovered>0.005)rows.push({name:'Exposition non documentée',percentage:uncovered,unclassified:true});
+ return {covered,uncovered,rows,missing,dates,sources};
+}
+function allocationCompute(amountValue,weights,records=items){
+ const amount=Number(amountValue),source=weights&&typeof weights==='object'&&!Array.isArray(weights)?weights:{};
+ const pairs=Object.entries(source),index=new Map(records.map(s=>[s.id,s]));
+ const positions=pairs.map(([id,v])=>({id,s:index.get(id),weight:Number(v)}));
+ const weightSum=positions.reduce((n,p)=>n+(Number.isFinite(p.weight)?p.weight:0),0);
+ const valid=Number.isFinite(amount)&&amount>0&&amount<=1e9&&pairs.length>=1&&pairs.length<=10&&
+   positions.every(p=>p.s&&Number.isFinite(p.weight)&&p.weight>0&&p.weight<=100)&&Math.abs(weightSum-100)<=0.005;
+ if(!valid)return {valid:false,positions,amount:Number.isFinite(amount)?amount:null,weightSum,
+  reason:!Number.isFinite(amount)||amount<=0||amount>1e9?'Indique un montant d’investissement positif (1 milliard d’euros maximum).':
+  pairs.length===0?'Ajoute au moins une SCPI pour simuler une allocation.':
+  pairs.length>10?'La simulation accepte 10 SCPI au maximum.':
+  positions.some(p=>!p.s)?'Une SCPI du référentiel n’est plus disponible.':
+  positions.some(p=>!Number.isFinite(p.weight)||p.weight<=0||p.weight>100)?'Toutes les SCPI doivent avoir un poids strictement positif, inférieur ou égal à 100 %.':
+  'Les pondérations doivent totaliser exactement 100 %.'};
+ for(const p of positions)p.amount=amount*p.weight/100;
+ const tdKnown=positions.filter(p=>Number.isFinite(Number(p.s.td))&&p.s.td!=null&&p.s.td>=0&&p.s.td<=30);
+ const tdCoverage=tdKnown.reduce((n,p)=>n+p.weight,0);
+ const tdContribution=tdKnown.reduce((n,p)=>n+p.weight*Number(p.s.td)/100,0);
+ const tdComplete=Math.abs(tdCoverage-100)<=0.005;
+ const geo=allocationBuildBreakdown(positions,'geo'),types=allocationBuildBreakdown(positions,'types');
+ const liquid=new Map(),liquidItems=[],warnings=[];
+ for(const p of positions){
+  const assessment=liquidityAssessment(p.s);
+  liquid.set(assessment.code,(liquid.get(assessment.code)||0)+p.weight);
+  liquidItems.push({name:p.s.name,weight:p.weight,label:assessment.label,code:assessment.code,period:p.s.liquidityData?.periodEnd||p.s.liquidity?.effective||null,source:p.s.liquidityData?.sourceUrl||p.s.liquidity?.source||null});
+  if(['blocked','severe','high','elevated','market','unknown'].includes(assessment.code))
+   warnings.push(p.s.name+' ('+fr(p.weight,2)+' %) : '+assessment.label+'.');
+  if(p.s.liquidityData?.periodEnd&&watchAgeDays(p.s.liquidityData.periodEnd)>180&&!assessment.code.startsWith('market'))
+   warnings.push(p.s.name+' : chiffres de liquidité datés du '+date(p.s.liquidityData.periodEnd)+'.');
+ }
+ if(!tdComplete)warnings.push('TD 2025 manquant pour '+fr(100-tdCoverage,2)+' % de l’allocation : aucune moyenne globale extrapolée.');
+ for(const [label,mix] of [['géographique',geo],['sectorielle',types]]){
+  if(mix.uncovered>0.005)warnings.push('Répartition '+label+' indisponible pour '+fr(mix.uncovered,2)+' % de l’allocation : affichage explicite de la part non documentée.');
+  for(const d of mix.dates)if(watchAgeDays(d.period)>420)warnings.push('Répartition '+label+' de '+d.name+' datée du '+date(d.period)+'.');
+ }
+ return {valid:true,positions,amount,weightSum,tdCoverage,tdContribution,td:tdComplete?tdContribution:null,geo,types,liquidity:[...liquid].map(([code,weight])=>({code,weight})),liquidItems,warnings};
+}
+function allocationEqualWeights(ids){
+ const unique=[...new Set(ids)].slice(0,10),base=Math.floor(10000/unique.length||0),out={};
+ let rest=10000;
+ for(const [i,id] of unique.entries()){const cents=i===unique.length-1?rest:base;out[id]=cents/100;rest-=cents;}
+ return out;
+}
+
 function renderSources(){$('sources-list').innerHTML=[...items].sort((a,b)=>Number((b.tags||[]).includes('Meilleurtaux Placement'))-Number((a.tags||[]).includes('Meilleurtaux Placement'))||a.name.localeCompare(b.name,'fr')).map(s=>`<div class="compare-card"><div class="eyebrow">${esc(s.manager)}</div><h3>${esc(s.name)}</h3><div class="collection">${tags(s)}</div><div class="c-line"><span>Bulletin repéré</span><b>${esc(s.bulletin||'Non renseigné')}</b></div><div class="c-line"><span>Date</span><b>${date(s.bulletinDate)}</b></div><div class="c-line"><span>Reconstitution</span><b>${date(s.reconDate)}</b></div><div class="c-line"><span>Lecture automatique du PDF</span><b>${esc(s.pdfReadStatus||'En attente de contrôle')}</b></div><div class="c-line"><span>Répartition géographique</span><b>${s.geo?.length?'Documentée au '+date(s.geoDate||s.allocationDate):'Non vérifiée'}</b></div><div class="c-line"><span>Répartition sectorielle</span><b>${s.types?.length?'Documentée au '+date(s.typesDate||s.allocationDate):'Non vérifiée'}</b></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:16px">${link(s.bulletinUrl,'Publication')}${link(s.officialSource||s.sourceUrl,'Société de gestion')}${link(s.mtxUrl,'MTX')}</div><button class="btn small" style="margin-top:9px" data-open="${esc(s.id)}" data-tab="documents">Voir fiche</button></div>`).join('');}
 function bars(data,indigo=false){return (data&&data.length)?`<div class="breakdown">${data.map(([label,val])=>`<div class="mixrow"><span>${esc(label)}</span><div class="mixbar ${indigo?'indigo':''}"><i style="width:${Math.max(0,Math.min(100,Number(val)||0))}%"></i></div><b>${pct(val)}</b></div>`).join('')}</div>`:empty('Répartition non vérifiée : à compléter à partir du dernier bulletin ou du site officiel.');}
 function datesNote(s){return s.allocationDate?`Répartition publiée au ${date(s.allocationDate)} · À contrôler lors de la prochaine publication.`:'Répartition non disponible ou non datée. Aucune pondération reconstituée par estimation.';}
