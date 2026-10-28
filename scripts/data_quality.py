@@ -130,6 +130,40 @@ def approved_update_source(item, field, url):
     return False
 
 
+def validate_td_history_updates(before, after, today):
+    """Contrôle les millésimes qui changent, sans pénaliser les archives anciennes."""
+    old=before.get('tdHistory') or {}
+    new=after.get('tdHistory') or {}
+    if not isinstance(old,dict) or not isinstance(new,dict):
+        return ['Historique TD : format inattendu']
+    issues=[]
+    for year,previous in old.items():
+        if year not in new:
+            issues.append('Historique TD : suppression du millésime '+str(year))
+    for key,value in new.items():
+        if old.get(key)==value:continue
+        try:year=int(key)
+        except (TypeError,ValueError):
+            issues.append('Historique TD : année invalide');continue
+        if not (2022<=year<today.year):
+            issues.append('Historique TD : année non clôturée ('+str(year)+')')
+        if not isinstance(value,dict):
+            issues.append('Historique TD : entrée sans justificatif');continue
+        rate=value.get('value')
+        if isinstance(rate,bool) or not isinstance(rate,(int,float)) or not (0<rate<20):
+            issues.append('Historique TD : taux annuel invalide ('+str(year)+')')
+        if value.get('date')!=f'{year}-12-31':
+            issues.append('Historique TD : période annuelle incohérente ('+str(year)+')')
+        if not approved_update_source(after,'td',value.get('source')):
+            issues.append('Historique TD : source annuelle non approuvée ('+str(year)+')')
+    latest=[int(y) for y,e in new.items() if y.isdigit() and isinstance(e,dict) and isinstance(e.get('value'),(int,float))]
+    if latest:
+        maximum=max(latest);entry=new[str(maximum)]
+        if int(after.get('tdYear') or 0)!=maximum or after.get('td')!=entry.get('value'):
+            issues.append('Historique TD : le TD affiché ne correspond pas au dernier millésime')
+    return issues
+
+
 def validate_updates(before, after, today):
     """Rejette seulement les nouvelles valeurs qui ne sont pas justifiées.
 
@@ -171,6 +205,7 @@ def validate_updates(before, after, today):
             issues.append(key + ' : barème non monotone ou invalide')
         elif key == 'liquidityData' and not valid_liquidity(after.get(key)):
             issues.append(key + ' : nombre de parts invalide')
+    issues.extend(validate_td_history_updates(before,after,today))
     return issues
 
 
