@@ -280,6 +280,38 @@ def update_liquidity(item, txt, period, url):
     return ['liquidité / retraits']
 
 
+def update_td_2025(item, text, url):
+    """TD brut 2025 seulement si l'année et le pourcentage sont explicites.
+
+    N'assimile pas le dividende net de fiscalité ou le TOF à un TD annuel.
+    Les formulations ambiguës ne remplacent jamais les données enregistrées.
+    """
+    flat=re.sub(r'\s+', ' ', text.replace('\u00a0',' ').replace('\u202f',' '))
+    pats=[
+        r'taux\s+de\s+distribution\s+(?:brut\s+)?2025\s*[:\-]?\s*(\d{1,2}(?:[,.]\d{1,2})?)\s*%',
+        r'en\s+2025.{0,65}?taux\s+de\s+distribution\s+de\s*(\d{1,2}(?:[,.]\d{1,2})?)\s*%',
+    ]
+    nums=[]
+    for pat in pats:
+        for m in re.finditer(pat,flat,re.I):
+            val=float(m.group(1).replace(',','.'))
+            if 0 < val < 20:
+                nums.append((round(val,2),m.group(0)[:145]))
+    if not nums or len({v for v,_ in nums})!=1:
+        return []
+    val,proof=nums[0]
+    if item.get('td')==val and item.get('tdYear')==2025:
+        return []
+    item['td']=val
+    item['tdYear']=2025
+    item.setdefault('fieldSources',{})['td']={
+        'url':url,'date':'2025-12-31','verifiedAt':TODAY,
+        'method':'TD brut de fiscalité 2025 reconnu sans ambiguïté dans le PDF',
+        'proof':proof
+    }
+    return ['TD 2025']
+
+
 def update_indicators(item,txt,period,url):
     changes=[]
     specs=[('recon',20,5000,True,'reconDate'),('price',20,5000,True,'priceDate'),('tof',0,100,False,None)]
@@ -290,10 +322,11 @@ def update_indicators(item,txt,period,url):
         if not got: continue
         dated=got['date'] if datefield else period['date']
         if datefield and item.get(datefield) and dated < item[datefield]:continue
-        if key=='tof' and item.get('bulletinDate') and dated < item['bulletinDate']:continue
-        if item.get(key)!=got['value']:
+        if key=='tof' and item.get('tofDate') and dated < item['tofDate']:continue
+        if item.get(key)!=got['value'] or (key=='tof' and item.get('tofDate')!=dated):
             item[key]=got['value']
             if datefield:item[datefield]=dated
+            if key=='tof':item['tofDate']=dated
             item.setdefault('fieldSources',{})[key]={'url':url,'date':dated,'method':'extraction PDF stricte','proof':got['proof']}
             changes.append(key)
             if key=='recon':
@@ -623,6 +656,7 @@ def refresh_one(s,item):
                     if declared and declared['rank']!=p['rank']:
                         raise ValueError('Période annoncée différente de celle du PDF')
                     changes+=update_indicators(item,txt,p,resolved)
+                    changes+=update_td_2025(item,txt,resolved)
                     changes+=update_liquidity(item,txt,p,resolved)
                     changes+=update_pdf_allocations(item,blob,p,resolved)
                     item['pdfVerifiedAt']=TODAY
