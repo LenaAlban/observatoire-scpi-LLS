@@ -13,7 +13,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 const html=fs.readFileSync('index.html','utf8'),all=JSON.parse(fs.readFileSync('data/scpi.json','utf8'));
 function slice(a,b){let i=html.indexOf(a),j=html.indexOf(b,i+a.length);assert.ok(i>=0&&j>i,a);return html.slice(i,j);}
 const helpers=slice('const $=id=>','let syncStatus=');
-const selection=slice('function compareSortedItems(){','function auditChecks(');
+const selection=slice('function tdHistory(s){','function auditChecks(');
 const details=slice('function compareCellHtml(','function watchAgeDays(');
 const els={};
 const document={getElementById(id){return els[id]??(els[id]={innerHTML:'',textContent:'',disabled:false});}};
@@ -43,7 +43,7 @@ assert.ok(els['compare-choices'].innerHTML.includes('disabled'),'Ne pas pouvoir 
 assert.ok(els['compare-counter'].textContent.includes('4 / 4'));
 h.renderCompareExtras();
 const matrix=els['compare-matrix'].innerHTML;
-for(const label of ['Prix de référence','Valeur de retrait','Taux de distribution 2025','TOF','Liquidité','Principales zones géographiques','Principaux secteurs','Nue-propriété']){
+for(const label of ['Prix de référence','Valeur de retrait','Dernier TD annuel publié','TOF','Liquidité','Principales zones géographiques','Principaux secteurs','Nue-propriété']){
  assert.ok(matrix.includes(label),label);
 }
 assert.ok(matrix.includes('Reconstitution'),'Sources individuelles');
