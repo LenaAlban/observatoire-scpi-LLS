@@ -631,8 +631,8 @@
     "reconDate": null,
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 3.63,
+    "tof": 86.47,
     "waiting": null,
     "waitingPct": null,
     "bulletin": null,
@@ -672,8 +672,22 @@
         "date": "2026-08-28",
         "method": "Vérification de publication officielle ou communiqué Meilleurtaux, le 28/10/2026",
         "proof": "Souscription"
+      },
+      "td": {
+        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Rapport ou bulletin annuel de la société de gestion (pour Rivoli : copie du rapport Amundi hébergée chez un tiers)"
+      },
+      "tof": {
+        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin semestriel officiel"
       }
-    }
+    },
+    "tdYear": 2025,
+    "tofDate": "2025-12-31"
   },
   {
     "id": "efimmo-1",
@@ -1788,7 +1802,7 @@
     "reconDate": null,
     "realisation": null,
     "retreat": null,
-    "td": null,
+    "td": 3.46,
     "tof": null,
     "waiting": null,
     "waitingPct": null,
@@ -1829,8 +1843,15 @@
         "date": "2026-08-28",
         "method": "Vérification de publication officielle ou communiqué Meilleurtaux, le 28/10/2026",
         "proof": "Souscription"
+      },
+      "td": {
+        "url": "https://adm759yhg8h.scpi-lab.com/upload/produit/97/10694-RIVOLI%20AVENIR%20PATRIMOINE-RA-2025-AN.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Rapport ou bulletin annuel de la société de gestion (pour Rivoli : copie du rapport Amundi hébergée chez un tiers)"
       }
-    }
+    },
+    "tdYear": 2025
   },
   {
     "id": "selectinvest-1",
