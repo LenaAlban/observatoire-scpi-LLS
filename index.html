@@ -594,10 +594,10 @@ function renderQuality(){
   return `<article class="quality-record"><div class="quality-record-head"><div><button class="linklike" data-open="${esc(s.id)}" data-tab="advice">${esc(s.name)}</button><div class="smalltxt">${esc(s.manager)} · ${esc(s.bulletin||'Bulletin non renseigné')} · ${date(s.bulletinDate)}</div></div><span class="quality-status ${status}">${name}</span></div>
   <p class="smalltxt">${a.count} / 8 catégories documentées</p>
   <div class="quality-checks">${a.tests.map(([label,yes])=>`<span class="quality-check ${yes?'yes':'no'}">${yes?'✓':'–'} ${esc(label)}</span>`).join('')}</div>
-  <p class="source-note">Collecte : ${esc(a.source?.message||'Non contrôlée')}. ${s.pdfReadStatus?'Lecture PDF : '+esc(s.pdfReadStatus):''}</p>
+  <p class="source-note">Collecte : ${esc(collectionIssueText(a.source||{}))}. ${s.pdfReadStatus?'Lecture PDF : '+esc(s.pdfReadStatus):''}</p>
   ${(auditById.get(s.id)||[]).length?'<div class="quality-record-audit"><strong>Audit ('+(auditById.get(s.id)||[]).length+' signalements)</strong>'+ (auditById.get(s.id)||[]).slice(0,9).map(x=>`<p>• ${esc(x.field)} : ${esc(x.detail)} ${link(x.source,'Publication','compare-source')}</p>`).join('')+'</div>':''}
   ${(a.source?.validationIssues||[]).length?'<div class="quality-record-audit invalid"><strong>Nouvelles données rejetées : anciennes valeurs conservées.</strong>'+a.source.validationIssues.map(x=>`<p>• ${esc(x)}</p>`).join('')+'</div>':''}
-  ${(a.source?.attempts||[]).length?'<details class="quality-source-attempts"><summary>Voir les voies de collecte testées ('+a.source.attempts.length+')</summary>'+a.source.attempts.map(x=>`<p>${esc(x.status==='accessible'?'Accessible':x.status==='error'?'Échec':'PDF non exploité comme page')} : ${link(x.url,'Source','compare-source')} ${x.detail?'· '+esc(x.detail):''}</p>`).join('')+'</details>':''}
+  ${(a.source?.attempts||[]).length?'<details class="quality-source-attempts"><summary>Voir les voies de collecte testées ('+a.source.attempts.length+')</summary>'+a.source.attempts.map(x=>`<p>${esc(x.status==='accessible'?'Accessible':x.status==='error'?'Échec':'PDF non exploité comme page')} : ${link(x.url,'Source','compare-source')} ${x.detail?'· '+esc(collectionIssueText({message:x.detail, errorType:x.kind})):''}</p>`).join('')+'</details>':''}
   <div class="quality-actions">${link(a.source?.source||s.officialSource,'Source officielle')}<button class="btn small" data-open="${esc(s.id)}" data-tab="documents">Vérifier la fiche</button></div></article>`;
  }).join('')||empty('Aucun résultat pour ce filtre.');
 }
@@ -746,6 +746,32 @@ function watchData(){
  return {changes,old,errors,latest:syncStatus?.checkedAt||null};
 }
 
+function collectionIssueText(value){
+ const raw=String(value?.message||'');
+ const code=String(value?.errorType||'');
+ if(code==='tls'||/SSL(?:Cert|Error)|CERTIFICATE_VERIFY_FAILED|certificat/i.test(raw))
+  return 'Connexion HTTPS du gérant non vérifiable automatiquement. Les données précédentes sont conservées.';
+ if(code==='http_503'||/\b503\b|Service Temporarily Unavailable/i.test(raw))
+  return 'Site du gérant temporairement indisponible (erreur 503). Les données précédentes sont conservées.';
+ if(code==='http_403'||/\b403\b|forbidden/i.test(raw))
+  return 'Le site du gérant refuse la consultation automatisée. Les données précédentes sont conservées.';
+ if(code==='http_429'||/\b429\b|too many requests/i.test(raw))
+  return 'Limite temporaire d’accès aux publications du gérant. Les données précédentes sont conservées.';
+ if(code==='timeout'||/connecttimeout|readtimeout|timed out/i.test(raw))
+  return 'Le site du gérant n’a pas répondu dans le délai prévu. Les données précédentes sont conservées.';
+ if(value?.status==='partial'&&/bulletin non détecté|bulletin non validé|PDF non confirmé/i.test(raw))
+  return 'Source officielle consultée, mais aucun nouveau bulletin PDF vérifié automatiquement. Les données précédentes sont conservées.';
+ if(/HTTPSConnectionPool|Traceback|Max retries exceeded|SSLError|requests\.exceptions/i.test(raw))
+  return 'Le contrôle automatique du gérant a échoué. Les dernières données connues sont conservées.';
+ return raw.length>180?raw.slice(0,177)+'…':raw||'Aucune publication nouvelle vérifiée lors de cette collecte.';
+}
+function collectionLastKnown(id){
+ const s=items.find(x=>x.id===id);if(!s)return '';
+ if(s.bulletin&&s.bulletinDate)return 'Dernier bulletin enregistré : '+s.bulletin+' (clôture '+date(s.bulletinDate)+').';
+ const fields=['tofDate','reconDate','geoDate','typesDate','priceDate'].map(k=>s[k]).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x||'')).sort();
+ if(fields.length)return 'Dernière période d’indicateur renseignée : '+date(fields[fields.length-1])+'.';
+ return 'Aucune période de bulletin validée dans le référentiel.';
+}
 function renderWatch(){
  const data=watchData(),q=$('watch-search').value.toLocaleLowerCase('fr'),filter=$('watch-filter').value;
  const ageLimit=30;
@@ -773,7 +799,7 @@ function renderWatch(){
  $('watch-list').innerHTML=all.map(e=>{
   if(e.kind==='change')return `<article class="watch-entry"><div class="watch-entry-top"><span class="watch-marker updated">Mise à jour sourcée</span><span class="smalltxt">${date(e.recordedAt.slice(0,10))}</span></div><button class="linklike watch-title" data-open="${esc(e.id)}" data-tab="documents">${esc(e.name)}</button><p class="watch-text"><strong>${esc(watchFieldLabel(e.field))}</strong> · Période : ${date(e.period)}</p><p class="watch-diff"><span>${esc(watchFormatValue(e.field,e.previous))}</span><span aria-label="devient">→</span><strong>${esc(watchFormatValue(e.field,e.value))}</strong></p>${link(e.source,'Publication justificative','btn small')}</article>`;
   if(e.kind==='stale')return `<article class="watch-entry"><div class="watch-entry-top"><span class="watch-marker stale">À recontrôler</span><span class="smalltxt">${e.period?'Donnée du '+date(e.period):'Date absente'}</span></div><button class="linklike watch-title" data-open="${esc(e.id)}" data-tab="documents">${esc(e.name)}</button><p class="watch-text">${esc(e.label)}${e.days!=null?' · '+e.days+' jours depuis sa date de référence':''}. Le dépassement du seuil ne prouve pas qu’un bulletin manque.</p>${link(e.source,'Vérifier la source','btn small')}</article>`;
-  return `<article class="watch-entry"><div class="watch-entry-top"><span class="watch-marker ${e.status==='error'?'error':'partial'}">${e.status==='error'?'Collecte en erreur':'Collecte partielle'}</span><span class="smalltxt">${data.latest?date(data.latest.slice(0,10)):'Date non connue'}</span></div><button class="linklike watch-title" data-open="${esc(e.id)}" data-tab="documents">${esc(e.name)}</button><p class="watch-text">${esc(e.message||'Publication non confirmée.')}</p>${e.pdfWarning?`<p class="smalltxt">${esc(e.pdfWarning)}</p>`:''}${link(e.source,'Site officiel','btn small')}</article>`;
+  return `<article class="watch-entry"><div class="watch-entry-top"><span class="watch-marker ${e.status==='error'?'error':'partial'}">${e.status==='error'?'Collecte en erreur':'Collecte partielle'}</span><span class="smalltxt">${data.latest?date(data.latest.slice(0,10)):'Date non connue'}</span></div><button class="linklike watch-title" data-open="${esc(e.id)}" data-tab="documents">${esc(e.name)}</button><p class="watch-text">${esc(collectionIssueText(e))}</p><p class="smalltxt">${esc(collectionLastKnown(e.id))}</p>${e.pdfWarning?`<p class="smalltxt">${esc(collectionIssueText({message:e.pdfWarning}))}</p>`:''}${link(e.source,'Site officiel','btn small')}</article>`;
  }).join('')||empty(filter==='changes'?'Aucun changement automatique sourcé enregistré pour le moment. Les prochains seront visibles après exécution de la collecte.':'Aucun résultat pour ce filtre.');
 }
 
