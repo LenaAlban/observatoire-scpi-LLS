@@ -813,10 +813,12 @@ function allocationCompute(amountValue,weights,records=items){
   positions.some(p=>!Number.isFinite(p.weight)||p.weight<=0||p.weight>100)?'Toutes les SCPI doivent avoir un poids strictement positif, inférieur ou égal à 100 %.':
   'Les pondérations doivent totaliser exactement 100 %.'};
  for(const p of positions)p.amount=amount*p.weight/100;
- const tdKnown=positions.filter(p=>Number.isFinite(Number(p.s.td))&&p.s.td!=null&&p.s.td>=0&&p.s.td<=30);
+ const tdChoice=tdYearForSelection(positions.map(p=>p.s));
+ const tdYear=tdChoice.year;
+ const tdKnown=positions.filter(p=>tdForYear(p.s,tdYear)!=null);
  const tdCoverage=tdKnown.reduce((n,p)=>n+p.weight,0);
- const tdContribution=tdKnown.reduce((n,p)=>n+p.weight*Number(p.s.td)/100,0);
- const tdComplete=Math.abs(tdCoverage-100)<=0.005;
+ const tdContribution=tdKnown.reduce((n,p)=>n+p.weight*tdForYear(p.s,tdYear).value/100,0);
+ const tdComplete=tdYear!=null&&Math.abs(tdCoverage-100)<=0.005;
  const geo=allocationBuildBreakdown(positions,'geo'),types=allocationBuildBreakdown(positions,'types');
  const liquid=new Map(),liquidItems=[],warnings=[];
  for(const p of positions){
@@ -828,12 +830,15 @@ function allocationCompute(amountValue,weights,records=items){
   if(p.s.liquidityData?.periodEnd&&watchAgeDays(p.s.liquidityData.periodEnd)>180&&!assessment.code.startsWith('market'))
    warnings.push(p.s.name+' : chiffres de liquidité datés du '+date(p.s.liquidityData.periodEnd)+'.');
  }
- if(!tdComplete)warnings.push('TD 2025 manquant pour '+fr(100-tdCoverage,2)+' % de l’allocation : aucune moyenne globale extrapolée.');
+ if(!tdComplete)warnings.push('TD '+(tdYear??'annuel')+' absent pour '+fr(100-tdCoverage,2)+' % de l’allocation : moyenne globale non calculable, aucun mélange de millésimes.');
+ if(tdYear!=null&&positions.some(p=>tdLatest(p.s)?.year>tdYear))
+  warnings.push('Comparaison du TD sur '+tdYear+' : certaines SCPI ont déjà un millésime plus récent. Aucun mélange de millésimes n’est effectué.');
+ if(tdYear==null)warnings.push('Aucun millésime TD annuel documenté pour les SCPI sélectionnées.');
  for(const [label,mix] of [['géographique',geo],['sectorielle',types]]){
   if(mix.uncovered>0.005)warnings.push('Répartition '+label+' indisponible pour '+fr(mix.uncovered,2)+' % de l’allocation : affichage explicite de la part non documentée.');
   for(const d of mix.dates)if(watchAgeDays(d.period)>420)warnings.push('Répartition '+label+' de '+d.name+' datée du '+date(d.period)+'.');
  }
- return {valid:true,positions,amount,weightSum,tdCoverage,tdContribution,td:tdComplete?tdContribution:null,geo,types,liquidity:[...liquid].map(([code,weight])=>({code,weight})),liquidItems,warnings};
+ return {valid:true,positions,amount,weightSum,tdYear,tdCoverage,tdContribution,td:tdComplete?tdContribution:null,geo,types,liquidity:[...liquid].map(([code,weight])=>({code,weight})),liquidItems,warnings};
 }
 function allocationEqualWeights(ids){
  const unique=[...new Set(ids)].slice(0,10),base=Math.floor(10000/unique.length||0),out={};
@@ -863,7 +868,7 @@ function allocationSourcesHtml(a){
  const rows=a.positions.map(p=>{
   const s=p.s;
   const parts=[
-   ['TD 2025',s.fieldSources?.td?.url||s.bulletinUrl],
+   ['TD '+(a.tdYear??'annuel'),tdForYear(s,a.tdYear)?.source],
    ['Géographie',s.fieldSources?.geo?.url],
    ['Secteurs',s.fieldSources?.types?.url],
    ['Liquidité',s.liquidityData?.sourceUrl||s.liquidity?.source]
@@ -890,7 +895,7 @@ function renderAllocationResults(){
  validation.textContent='Allocation complète : '+fr(a.weightSum,2)+' % · '+allocationMoney(a.amount)+' répartis entre '+a.positions.length+' SCPI. Montants cibles hors frais et arrondis de parts.';
  const cards=[
   ['Montant cible',allocationMoney(a.amount),a.positions.length+' SCPI sélectionnées'],
-  ['TD historique 2025',a.td===null?'Non calculable':pct(a.td),'Couverture TD : '+fr(a.tdCoverage,2)+' % · indicateur historique, non prévisionnel'],
+  ['TD historique '+(a.tdYear??'—'),a.td===null?'Non calculable':pct(a.td),'Couverture TD : '+fr(a.tdCoverage,2)+' % · même année pour toutes les SCPI, non prévisionnel'],
   ['Géographie documentée',fr(a.geo.covered,2)+' %','Part de l’allocation dont la ventilation est documentée'],
   ['Secteurs documentés',fr(a.types.covered,2)+' %','Part de l’allocation dont la ventilation est documentée']
  ];
@@ -928,16 +933,16 @@ function printAllocationReport(){
  const a=allocationCompute(allocationState.amount,allocationState.weights);
  if(!a.valid){toast('Complète le montant et les pondérations à 100 % avant l’impression.');return;}
  const today=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
- const positions=a.positions.map(p=>[p.s.name,fr(p.weight,2)+' %',allocationMoney(p.amount),'TD 2025 : '+pct(p.s.td)]);
+ const positions=a.positions.map(p=>[p.s.name,fr(p.weight,2)+' %',allocationMoney(p.amount),'TD '+(a.tdYear??'—')+' : '+pct(tdForYear(p.s,a.tdYear)?.value)]);
  const mixRows=(mix)=>mix.rows.map(row=>[row.name,fr(row.percentage,2)+' %']);
  const liquidRows=a.liquidItems.map(x=>[x.name,fr(x.weight,2)+' %',x.label,x.period||'Non daté']);
  const sources=a.positions.map(p=>{
-  const s=p.s,fields=[['TD 2025',s.fieldSources?.td?.url||s.bulletinUrl],['Géographie',s.fieldSources?.geo?.url],['Secteurs',s.fieldSources?.types?.url],['Liquidité',s.liquidityData?.sourceUrl||s.liquidity?.source]];
+  const s=p.s,fields=[['TD '+(a.tdYear??'annuel'),tdForYear(s,a.tdYear)?.source],['Géographie',s.fieldSources?.geo?.url],['Secteurs',s.fieldSources?.types?.url],['Liquidité',s.liquidityData?.sourceUrl||s.liquidity?.source]];
   return `<section class="print-scpi"><h2>${esc(s.name)} <small>${fr(p.weight,2)} % · ${allocationMoney(p.amount)}</small></h2><div class="print-sources"><strong>Bulletin : </strong>${esc(s.bulletin||'Non renseigné')} · ${date(s.bulletinDate)}</div>${fields.map(([field,url])=>`<div class="print-sources">${esc(field)} : ${esc(url||'Source détaillée non disponible')}</div>`).join('')}</section>`;
  }).join('');
  const notes=a.warnings.map(x=>`<p class="print-allocation-warning">• ${esc(x)}</p>`).join('');
  $('print-report').innerHTML=`<div class="print-allocation-page"><header class="print-header"><div><span>OBSERVATOIRE SCPI</span><h1>Simulation d'allocation</h1></div><div>Édité le ${esc(today)}<br>Analyse indicative, usage conseiller</div></header>
- <p class="print-allocation-note"><strong>Montant indicatif :</strong> ${allocationMoney(a.amount)} · <strong>Pondérations :</strong> 100 % · <strong>TD historique 2025 :</strong> ${a.td===null?'Non calculable (couverture '+fr(a.tdCoverage,2)+' %)':pct(a.td)}.</p>
+ <p class="print-allocation-note"><strong>Montant indicatif :</strong> ${allocationMoney(a.amount)} · <strong>Pondérations :</strong> 100 % · <strong>TD historique ${a.tdYear??'—'} :</strong> ${a.td===null?'Non calculable (couverture '+fr(a.tdCoverage,2)+' %)':pct(a.td)}.</p>
  ${allocationPrintTable(['SCPI','Poids','Montant cible','Indicateur historique'],positions)}
  <h2 class="print-allocation-heading">Répartition géographique</h2><p class="print-allocation-note">Couverture documentaire : ${fr(a.geo.covered,2)} %. Expositions non documentées isolées. Certaines zones sont agrégées au niveau France.</p>${allocationPrintTable(['Zone','Poids du portefeuille'],mixRows(a.geo))}
  <h2 class="print-allocation-heading">Répartition sectorielle</h2><p class="print-allocation-note">Couverture documentaire : ${fr(a.types.covered,2)} %. Les secteurs mixtes ne sont pas répartis arbitrairement.</p>${allocationPrintTable(['Secteur','Poids du portefeuille'],mixRows(a.types))}
