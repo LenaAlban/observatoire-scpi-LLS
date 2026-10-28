@@ -709,32 +709,111 @@ def source_for(item):
     return OFFICIAL.get(item['id'])
 
 
+def official_entry_points(item, url, host):
+    """Pages du même gérant déjà présentes au référentiel + URL non-www.
+
+    Aucune recherche sur des domaines tiers ou déduction d'un nom de PDF.
+    Les URL de rapport annuel connues sont exclues des pages de bulletins.
+    """
+    urls=[url]
+    for candidate in [item.get('sourceUrl'),item.get('bulletinUrl')]+[
+        (item.get('fieldSources') or {}).get(key,{}).get('url')
+        for key in ('tof','recon','geo','types','td')
+    ]:
+        if not candidate or not host_is(candidate,host):
+            continue
+        p=urlparse(candidate)
+        name=p.path.lower()
+        if name.endswith('.pdf') or '.pdf' in name or 'rapport-annuel' in name:
+            continue
+        if candidate not in urls:
+            urls.append(candidate)
+    # Un autre nom d'hôte officiel, sans contournement TLS ni de restriction d'accès.
+    if urlparse(url).hostname == 'www.'+host:
+        from urllib.parse import urlunparse
+        parts=urlparse(url)
+        apex=urlunparse(parts._replace(netloc=host))
+        if apex not in urls:
+            urls.append(apex)
+    return urls[:7]
+
+
+def collect_official_candidates(sess,item,url,host):
+    """Explorer des points d'entrée authentifiés du même gérant.
+
+    Le succès d'une requête ne vaut jamais validation d'un PDF ou d'un chiffre.
+    """
+    candidates=[]
+    attempts=[]
+    primary_html=None
+    primary_url=None
+    loaded=False
+    for landing in official_entry_points(item,url,host):
+        try:
+            blob,_,resolved=fetch(sess,landing,host,limit=MAX_HTML)
+            if blob.startswith(b'%PDF'):
+                attempts.append({'url':landing,'status':'pdf_non_interprete_comme_page'})
+                continue
+            html=blob.decode('utf-8',errors='replace')
+            soup=BeautifulSoup(html,'html.parser')
+            discovered=discover(html,resolved,item,host)
+            loaded=True
+            attempts.append({'url':landing,'status':'accessible','candidateCount':len(discovered)})
+            if primary_html is None:
+                primary_html=html
+                primary_url=resolved
+            candidates.extend(discovered)
+            # Si cette page fournit un bulletin nouveau daté, inutile de
+            # multiplier les requêtes supplémentaires vers le même gérant.
+            if any(c['period']['rank']>existing_rank(item) for c in discovered):
+                break
+            # Au maximum trois pages HTML accessibles si l'hébergement propose
+            # des sections documentaires répétées et anciennes.
+            if sum(a['status']=='accessible' for a in attempts)>=3:
+                break
+        except (requests.RequestException,ValueError,RuntimeError) as exc:
+            attempts.append({'url':landing,'status':'error','detail':str(exc)[:150]})
+    if not loaded:
+        # Un document officiel connu peut rester accessible même quand la
+        # page de distribution est en erreur (503 ou problème de TLS).
+        known=item.get('bulletinUrl') or ''
+        known_period=period_from(item.get('bulletin') or '')
+        if not (known and known_period and host_is(known,host)):
+            raise RuntimeError('Aucune page officielle accessible : '+ ' / '.join(a.get('detail','source non accessible')[:85] for a in attempts[:3]))
+    return primary_html,primary_url,candidates,attempts
+
+
 def refresh_one(s,item):
     entry=source_for(item)
     if not entry:raise RuntimeError('Source officielle absente du référentiel')
     url,host=entry
-    page_bytes,ctype,final_url=fetch(s,url,host)
-    if b'%PDF' == page_bytes[:4]:raise ValueError('La page de recherche renvoie un PDF brut')
-    html=page_bytes.decode('utf-8',errors='replace')
-    candidates=discover(html,final_url,item,host)
-    item['officialSource']=final_url
-    # Several managers publish dated reconstitution values on the SCPI page itself.
-    # This path does not require a PDF bulletin and refuses undated numbers.
-    changes=update_manager_page_recon(item,html,final_url)
-    changes+=extract_clean_breakdowns(BeautifulSoup(html,'html.parser'),item)
-    news=discover_acquisition_news(BeautifulSoup(html,'html.parser'),item,final_url,host)
-    known_urls={a.get('url') for a in (item.get('acquisitions') or [])}
-    # Ne compléter que les annonces explicitement datées et identifiées à la SCPI.
-    # Une rubrique "actualités" d'un gérant peut concerner plusieurs fonds.
-    aliases=[fold(item['name'])]+[fold(x) for x in ALIASES.get(item['id'],[])]
-    new_acqs=[a for a in news if a.get('url') not in known_urls
-              and 'date non identifiée' not in a.get('when','')
-              and any(alias in fold(a.get('title','')+' '+a.get('url','')) for alias in aliases)]
-    if new_acqs:
-        item['acquisitions']=(item.get('acquisitions') or [])+new_acqs
-        record_auto_change(item,'acquisitions',None,
-                           [a.get('url') for a in new_acqs],TODAY,final_url)
-        changes.append('acquisitions ('+str(len(new_acqs))+' nouvelles)')
+    html,final_url,candidates,attempts=collect_official_candidates(s,item,url,host)
+    item['sourceAttempts']=attempts[-7:]
+    item['sourceFallbackUsed']=bool(attempts and attempts[0]['status']!='accessible' and any(a['status']=='accessible' for a in attempts[1:]))
+    # Le lien officiel de référence reste celui configuré ; un document de
+    # secours ne le remplace pas par un URL sans rapport avec la fiche du fonds.
+    item['officialSource']=url
+    changes=[]
+    if html:
+        soup=BeautifulSoup(html,'html.parser')
+        headings=fold(' '.join(x.get_text(' ',strip=True) for x in soup.find_all(['h1','h2','title'])[:8]))
+        # Pas d'extraction d'une répartition/reconstitution d'une page
+        # multi-SCPI dont l'en-tête ne mentionne pas ce fonds.
+        own_page=(final_url==url or match_identity(headings,item))
+        if own_page:
+            changes+=update_manager_page_recon(item,html,final_url)
+            changes+=extract_clean_breakdowns(soup,item)
+            news=discover_acquisition_news(soup,item,final_url,host)
+            known_urls={a.get('url') for a in (item.get('acquisitions') or [])}
+            aliases=[fold(item['name'])]+[fold(x) for x in ALIASES.get(item['id'],[])]
+            new_acqs=[a for a in news if a.get('url') not in known_urls
+                      and 'date non identifiée' not in a.get('when','')
+                      and any(alias in fold(a.get('title','')+' '+a.get('url','')) for alias in aliases)]
+            if new_acqs:
+                item['acquisitions']=(item.get('acquisitions') or [])+new_acqs
+                record_auto_change(item,'acquisitions',None,
+                                   [a.get('url') for a in new_acqs],TODAY,final_url)
+                changes.append('acquisitions ('+str(len(new_acqs))+' nouvelles)')
     # Iroko has predictable HTML release pages; validate candidate via actual content.
     if item['id']=='iroko-zen':
         q = dt.date.today().month
