@@ -36,16 +36,16 @@ SECTORS = [
     "Galeries commerciales",
 ]
 SECTION_TITLES = {
-    "geo": ["répartition géographique", "répartition par pays",
+    "geo": ["répartition géographique", "repartition geographique", "répartition par pays",
             "répartition par zones géographiques", "répartition géographique du patrimoine"],
-    "types": ["répartition typologique", "répartition sectorielle",
+    "types": ["répartition typologique", "repartition typologique", "répartition sectorielle",
               "répartition par typologie", "répartition par type de locaux"],
 }
 END_TITLES = [
-    "taux d'occupation", "taux d’occupation",
+    "taux d'occupation", "taux d’occupation", "taux d occupation",
     "locaux vacants", "évolution du patrimoine",
     "activité locative", "les acquisitions", "acquisitions du trimestre",
-    "répartition géographique", "répartition typologique",
+    "répartition géographique", "repartition geographique", "répartition typologique", "repartition typologique",
     "répartition sectorielle", "répartition par pays",
 ]
 PERCENT = re.compile(r"^(?:100|\d{1,2})(?:[,.]\d{1,2})?%?$")
