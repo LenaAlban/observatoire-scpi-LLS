@@ -31,11 +31,11 @@ let printed=0;
 const window={print(){printed++;}};
 const liq=slice('function liqNumbers(s){','function liquidityView(s){');
 const engine=slice('const allocationState=','function renderSources(){');
-const env=new Function('items','document','window',','date','fr','esc','link','pct','euro','empty','compareSortedItems','toast',
- liq+'\n'+engine+
+const env=new Function('items','document','window','watchAgeDays','date','fr','esc','link','pct','euro','empty','compareSortedItems','toast',
+ 'const $=id=>document.getElementById(id);\n'+liq+'\n'+engine+
  '\nreturn {allocationState,allocationCompute,allocationBuildBreakdown,allocationCanonicalGeo,allocationCanonicalSector,allocationEqualWeights,renderAllocation,renderAllocationResults,allocationAdd,printAllocationReport};');
 const compareSortedItems=()=>records.slice().sort((a,b)=>a.name.localeCompare(b.name,'fr'));
-const h=env(records,document,window,(id)=>document.getElementById(id),watchAgeDays,date,fr,esc,link,pct,euro,empty,compareSortedItems,()=>{});
+const h=env(records,document,window,watchAgeDays,date,fr,esc,link,pct,euro,empty,compareSortedItems,()=>{});
 const z=h.allocationCompute('100000',{'iroko-zen':50,'pierval-sante':50});
 assert.ok(z.valid);
 assert.equal(z.amount,100000);
