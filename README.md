@@ -5,7 +5,7 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
-- Un workflow GitHub Actions (`.github/workflows/actualisation-scpi.yml`) s'exécute **tous les jours à 06:17 UTC** (07:17 ou 08:17 à Paris selon l'heure d'été). Il essaie de consulter les 31 sources des sociétés de gestion déclarées dans `scripts/official_sources.py`.
+- Un workflow GitHub Actions (`.github/workflows/pages.yml`) s'exécute **tous les jours à 06:17 UTC** (07:17 ou 08:17 à Paris selon l'heure d'été). Il essaie de consulter les 31 sources des sociétés de gestion déclarées dans `scripts/official_sources.py`.
 - Le programme reconnaît les **nouveaux bulletins** dans les pages publiques. Lorsqu'un lien PDF est clairement identifié, il essaie d'en extraire des indicateurs avec des contrôles stricts. Un prix / une valeur de reconstitution n'est modifié que si la valeur est non ambiguë et sa **date est explicitement retrouvée**. En cas de doute, l'ancienne valeur est conservée, avec une alerte dans `data/status.json`.
 - Pour le volet **Liquidité & revente**, le robot recherche dans les PDF officiels le nombre de **parts en attente de retrait**, de **parts effectivement retirées pendant le trimestre** et de **demandes enregistrées**. Il refuse les tableaux multi-périodes ambigus et conserve les chiffres avec leur date et leur source. Aucune estimation n’apparaît si le stock et le flux ne sont pas vérifiables sur la même période. La moyenne sur quatre trimestres n’est accessible que si quatre trimestres consécutifs sont présents.
 - **Toutes les données ne sont pas automatiquement interprétables**, notamment les graphiques de répartition, les acquisitions sans texte exploitable, certaines clés de démembrement et les documents protégés contre l'accès automatisé. Le système affiche alors la source et le statut, sans inventer de valeur. Les valeurs initiales peuvent rester anciennes.
@@ -46,15 +46,25 @@ Lancer `python scripts/sync.py` chaque jour dans un cron ou un autre ordonnanceu
 - Le taux de distribution (TD) initial affiché correspond à **2025** ; ne pas l'interpréter comme un rendement 2026 garanti.
 - Un site hébergé et un ordonnanceur sont nécessaires : **le fichier HTML téléchargé seul ne peut pas mettre à jour les bulletins automatiquement**.
 
+
+## Fonctions d'analyse et limites (version du 28 octobre 2026)
+
+- **Fiabilité** : un tableau affiche la couverture de huit catégories de données et les statuts de la dernière synchronisation, SCPI par SCPI. La couverture n'est pas une notation de risque et « site accessible » ne garantit pas que les dernières valeurs ont été extraites d'un PDF.
+- **Lecture conseil** : chaque fiche SCPI comporte des constats factuels sur la valorisation, le taux de distribution historique, le TOF, la liquidité et les concentrations géographique/sectorielle. Aucune note automatique ne constitue un conseil, une prédiction ou une recommandation personnalisée.
+- **Comparateur et fiche PDF** : jusqu'à quatre SCPI et leurs dates de référence sont reprises dans un tableau ; le bouton « Imprimer / enregistrer en PDF » ouvre la fonction d'impression du navigateur. Sélectionner « Enregistrer en PDF » dans le dialogue d'impression pour obtenir le fichier.
+- **Corrections locales persistantes** : les champs modifiés manuellement dans le navigateur sont conservés dans son **localStorage** et restent visibles après la synchronisation officielle ; un avertissement apparaît dans la fiche et les valeurs peuvent être réinitialisées. La sauvegarde et la restauration JSON permettent une copie manuelle. Le fichier exporté peut contenir des notes personnelles : le conserver dans un espace privé.
+- **Attention** : ces corrections ne sont **ni enregistrées sur GitHub**, ni partagées entre navigateurs/appareils, ni synchronisées sur le serveur. Elles ne sont pas protégées par un accès authentifié côté navigateur. Ne pas y inscrire de données nominatives ou confidentielles de clients. Une synchronisation multi-appareils exigerait un backend privé, une authentification et une gestion explicite des accès.
+- Les acquisitions documentées ne sont pas exhaustives et les durées de démembrement ne sont pas des barèmes contractuellement garantis. Les sources, périodes, méthodes et limitations de la liquidité doivent être vérifiées avant utilisation professionnelle.
+
 ## Fichiers
 
-- `index.html` : interface responsive, dont les onglets Valorisation / Patrimoine / Démembrement / Liquidité & revente / Sources.
+- `index.html` : interface responsive avec tableau de bord, comparateur, fiabilité des données, documentation, fiches SCPI (valorisation, lecture conseil, patrimoine, démembrement, liquidité) et impression d'un rapport PDF depuis le navigateur.
 - `data/scpi.json` : référentiel SCPI, historique et preuves conservées.
 - `data/status.json` : audit des synchronisations et échecs.
 - `scripts/sync.py` : collecte et extraction prudente, dont les stocks de retraits et les flux de parts effectivement retirées.
 - `scripts/official_sources.py` : 31 sites officiels et alertes de fonctionnement du marché secondaire.
 - `tests/` : tests de sécurité URL, détection de périodes, extractions et catalogue.
-- `.github/workflows/actualisation-scpi.yml` : ordonnanceur quotidien.
+- `.github/workflows/pages.yml` : ordonnanceur quotidien.
 
 
 ## Prix de part et marché secondaire (mise à jour du 28/10/2026)
@@ -63,7 +73,7 @@ Les fiches distinguent le prix de souscription (capital variable), le dernier pr
 
 ## Vérification du référentiel du 28 octobre 2026
 
-- Valeur de reconstitution : **28 SCPI sur 31** renseignées (dates variables), dont une valeur Ficommerce *recalculée* après division des parts par trois. **Trois** ne sont pas suffisamment vérifiées dans une publication du gérant pour être affichées (Edissimmo, Rivoli Avenir Patrimoine, Principal Inside).
-- Clés de démembrement : seules les durées explicitement sourcées auprès de **Sofidy** sont conservées. L'absence de clés numériques signifie **non vérifié sur source gérant**, pas nécessairement indisponibilité du démembrement.
+- Valeur de reconstitution : **29 SCPI sur 31** renseignées (dates variables), dont une valeur Ficommerce *recalculée* après division des parts par trois. **Deux** restent non renseignées dans le référentiel courant : Edissimmo et Rivoli Avenir Patrimoine.
+- Clés de démembrement : **13 SCPI sur 31** possèdent au moins une durée chiffrée dans le référentiel du 28 octobre 2026, avec des sources hétérogènes et des dates qui peuvent être anciennes. L'absence de clé numérique signifie **non documenté dans le référentiel**, pas nécessairement indisponibilité du démembrement.
 - Les sources et leurs dates sont détaillées dans `SOURCES_RECONSTITUTION_GESTIONNAIRES.csv` ; le site fournit un lien direct vers la source de chaque valeur reconstitution complétée.
 - La collecte des valeurs de reconstitution publiées directement sur des fiches SCPI officielles est désormais prévue, en plus des PDF.
