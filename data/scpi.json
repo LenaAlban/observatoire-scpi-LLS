@@ -4495,12 +4495,12 @@
     ],
     "price": 250,
     "priceDate": null,
-    "recon": null,
-    "reconDate": null,
+    "recon": 253.25,
+    "reconDate": "2026-06-30",
     "realisation": null,
     "retreat": null,
     "td": null,
-    "tof": null,
+    "tof": 100,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -4509,10 +4509,45 @@
     "sourceUrl": "https://fr.principalam.com/notre-scpi",
     "history": [],
     "notes": "Prix et TD issus de la fiche produit Meilleurtaux Placement consultée en octobre 2026. Vérifier les conditions effectives avant souscription.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
-    "acquisitions": [],
+    "allocationDate": "2026-06-30",
+    "geo": [
+      [
+        "États-Unis",
+        71.4
+      ],
+      [
+        "Pays-Bas",
+        28.6
+      ]
+    ],
+    "types": [
+      [
+        "Santé",
+        58.3
+      ],
+      [
+        "Bureaux",
+        28.6
+      ],
+      [
+        "Éducation",
+        13.1
+      ]
+    ],
+    "acquisitions": [
+      {
+        "when": "T2 2026",
+        "title": "Bureaux et data center à Utrecht, Pays-Bas",
+        "details": "Première implantation européenne, acquisition annoncée pour environ 9,03 M€.",
+        "url": "https://fr.principalam.com/notre-scpi"
+      },
+      {
+        "when": "T1 2026",
+        "title": "Centre médical à Plano, Texas",
+        "details": "Centre médical acquis pour environ 13,5 M€.",
+        "url": "https://fr.principalam.com/notre-scpi"
+      }
+    ],
     "keys": {
       "3": 87,
       "5": 80,
@@ -4548,10 +4583,43 @@
     "priceSource": "https://fr.principalam.com/notre-scpi",
     "keySourceType": "Meilleurtaux Placement",
     "keyVerifiedAt": "2026-10-28",
-    "fieldSources": {},
-    "allocationNote": "La cible 50 % Europe / 50 % États-Unis est stratégique, non une répartition effective ; aucun pourcentage patrimonial n'est affiché sans bulletin vérifié.",
-    "allocationNoteSource": "https://fr.principalam.com/notre-scpi",
-    "allocationNoteDate": null
+    "fieldSources": {
+      "geo": {
+        "url": "https://fr.principalam.com/notre-scpi",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition du bulletin T2 2026 recoupée sur source secondaire; bulletin original de la société de gestion à vérifier au besoin",
+        "secondaryCrossCheck": "https://www.meilleurescpi.com/actualites/la-scpi-principal-inside-fait-ses-premiers-pas-en-europe-au-2t/"
+      },
+      "types": {
+        "url": "https://fr.principalam.com/notre-scpi",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition du bulletin T2 2026 recoupée sur source secondaire; bulletin original de la société de gestion à vérifier au besoin",
+        "secondaryCrossCheck": "https://www.meilleurescpi.com/actualites/la-scpi-principal-inside-fait-ses-premiers-pas-en-europe-au-2t/"
+      },
+      "tof": {
+        "url": "https://fr.principalam.com/notre-scpi",
+        "date": "2026-06-30",
+        "method": "Valeur publiée par le gérant, recoupement secondaire"
+      },
+      "recon": {
+        "url": "https://fr.principalam.com/notre-scpi",
+        "date": "2026-06-30",
+        "method": "Valeur du T2 2026 recoupée, vérifier le rapport officiel"
+      }
+    },
+    "allocationNote": "Répartition au 30/06/2026, non assimilable à la répartition au 30/09/2026. Recoupée avec la synthèse du bulletin sur une source secondaire.",
+    "allocationNoteSource": "https://www.meilleurescpi.com/actualites/la-scpi-principal-inside-fait-ses-premiers-pas-en-europe-au-2t/",
+    "allocationNoteDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30",
+    "assetCount": 4,
+    "tenantCount": 4,
+    "areaSqm": 8361,
+    "tofDate": "2026-06-30",
+    "patrimonyStatsDate": "2026-06-30",
+    "tdNote": "SCPI créée en 2025, taux annuel de distribution 2025 non publié ou non applicable à une année pleine ; ne pas inventer de TD."
   },
   {
     "id": "corum-usa",
@@ -4582,10 +4650,43 @@
       }
     ],
     "notes": "Prix et TD issus de la fiche produit Meilleurtaux Placement consultée en octobre 2026. Vérifier les conditions effectives avant souscription.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
-    "acquisitions": [],
+    "allocationDate": "2026-06-30",
+    "geo": [
+      [
+        "États-Unis",
+        100
+      ]
+    ],
+    "types": [
+      [
+        "Commerces",
+        53
+      ],
+      [
+        "Santé",
+        47
+      ]
+    ],
+    "acquisitions": [
+      {
+        "when": "T3 2026",
+        "title": "Établissement pour seniors à Sacramento, Californie",
+        "details": "Acquisition annoncée pour environ 16,24 M€.",
+        "url": "https://www.corum.fr/nos-scpi/corum-usa/documents"
+      },
+      {
+        "when": "T2 2026",
+        "title": "Roosevelt Plaza, Lombard près de Chicago",
+        "details": "Centre commercial multilocataires acheté pour 15,9 M$ en juin 2026.",
+        "url": "https://www.corum.fr/nos-scpi/corum-usa/documents"
+      },
+      {
+        "when": "T1 2026",
+        "title": "Local commercial à New York",
+        "details": "Actif multilocataires acquis pour environ 6,5 M$ en mars 2026.",
+        "url": "https://www.corum.fr/actus/90-millions-deuros-en-un-trimestre-les-scpi-corum-xl-et-corum-usa-investissent-0"
+      }
+    ],
     "keys": {
       "3": 85,
       "5": 80,
@@ -4624,13 +4725,38 @@
         "date": "2026-06-30",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "geo": {
+        "url": "https://www.corum.fr/nos-scpi/corum-usa/documents",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition du bulletin T2 2026 recoupée sur source secondaire; bulletin original de la société de gestion à vérifier au besoin",
+        "secondaryCrossCheck": "https://www.morgen-capital.fr/produits/scpi/corum-usa"
+      },
+      "types": {
+        "url": "https://www.corum.fr/nos-scpi/corum-usa/documents",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition du bulletin T2 2026 recoupée sur source secondaire; bulletin original de la société de gestion à vérifier au besoin",
+        "secondaryCrossCheck": "https://www.morgen-capital.fr/produits/scpi/corum-usa"
+      },
+      "tof": {
+        "url": "https://www.corum.fr/nos-scpi/corum-usa/documents",
+        "date": "2026-09-30",
+        "method": "TOF T3 2026 communiqué par le gérant"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
     "keyVerifiedAt": "2026-10-28",
-    "allocationNote": "Patrimoine américain localisé au Texas, en Californie, dans l'Illinois et l'État de New York au 30/06/2026. Répartition chiffrée par État non confirmée. Le patrimoine de la SCPI est entièrement situé aux États-Unis ; les poids par État ne sont pas vérifiés.",
-    "allocationNoteSource": "https://www.corum.fr/nos-scpi/corum-usa/documents",
-    "allocationNoteDate": "2026-06-30"
+    "allocationNote": "Répartition au 30/06/2026, non assimilable à la répartition au 30/09/2026. Recoupée avec la synthèse du bulletin sur une source secondaire.",
+    "allocationNoteSource": "https://www.morgen-capital.fr/produits/scpi/corum-usa",
+    "allocationNoteDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30",
+    "assetCount": 5,
+    "areaSqm": 19588,
+    "tofDate": "2026-09-30",
+    "patrimonyStatsDate": "2026-06-30"
   }
 ]
