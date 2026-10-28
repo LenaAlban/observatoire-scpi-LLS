@@ -400,6 +400,34 @@ function renderDashboard(){let data=list();$('count').textContent=data.length+' 
 $('table-body').innerHTML=data.map(s=>{let g=gap(s);return `<tr><td><div class="name-cell"><div class="monogram">${esc(s.name.slice(0,2).toUpperCase())}</div><div><button class="linklike" data-open="${esc(s.id)}">${esc(s.name)}</button><small>${esc(s.manager)}</small><div class="collection">${tags(s)}</div></div></div></td><td><b class="mainnum">${priceMissing(s)}</b><div class="cellsub">${esc(priceLabel(s))} · ${date(s.priceDate)}</div></td><td><b class="mainnum">${euro(s.recon)}</b><div class="cellsub">${date(s.reconDate)}</div></td><td>${g==null?'<span class="pill neutral">N/D</span>':`<span class="pill ${g>0?'positive':'negative'}">${g>0?'+':''}${pct(g)}</span>`}</td><td><b>${pct(s.td)}</b></td><td><b>${pct(s.tof)}</b><div class="cellsub">${date(s.tofDate)}${s.fieldSources?.tof?.method?.includes('secondaire')?' · À confirmer':''}</div></td><td><button class="linklike" data-open="${esc(s.id)}" data-tab="liquidity">${s.liquidityData?.waitingParts==null?'<span class="cellsub">Stock non vérifié</span>':`<b>${fr(s.liquidityData.waitingParts,0)}</b> parts`}</button><div class="cellsub">${date(s.liquidityData?.periodEnd)}</div><div class="liq-cell-status">${liquidityBadge(s)}</div></td><td>${Object.keys(s.keys||{}).length?`<button class="linklike" data-open="${esc(s.id)}" data-tab="keys">${Object.keys(s.keys).length} durées ↗</button>`:'<span style="color:#8697a1">À compléter</span>'}</td><td><button class="linklike" data-open="${esc(s.id)}" data-tab="documents">${esc(s.bulletin||'Documents')} ↗</button></td></tr>`;}).join('')||'<tr><td colspan="9" class="empty">Aucun résultat.</td></tr>';
 let sorted=ok.sort((a,b)=>gap(a)-gap(b));let max=Math.max(8,...sorted.map(s=>Math.abs(gap(s))));$('chart').innerHTML=sorted.length?sorted.map(s=>`<div class="bar-row"><span>${esc(s.name)}</span><div class="bar-track"><div class="bar-fill ${gap(s)>0?'risk':''}" style="width:${Math.max(3,Math.abs(gap(s))/max*100)}%"></div></div><b>${fr(gap(s),1)} %</b></div>`).join(''):empty('Aucune reconstitution datée disponible.');let flags=items.flatMap(s=>alerts(s).map(x=>({name:s.name,id:s.id,w:x})));$('risks').innerHTML=flags.length?flags.slice(0,6).map(x=>`<div class="risk-item"><span class="risk-dot"></span><div><button class="linklike" data-open="${esc(x.id)}">${esc(x.name)}</button><small style="display:block;margin-top:4px">${esc(x.w)}</small></div></div>`).join(''):empty('Aucune alerte signalée ; données manquantes ≠ absence de risque.');}
 
+
+// Historique annuel strict : chaque chiffre est rattaché à une année civile.
+function tdHistory(s){
+ const history={};
+ for(const [year,entry] of Object.entries(s.tdHistory||{})){
+  const y=Number(year),v=Number(entry?.value);
+  if(Number.isInteger(y)&&y>=2022&&y<=2035&&Number.isFinite(v)&&v>0&&v<20)
+   history[String(y)]={year:y,value:v,source:entry.source||null,method:entry.method||'',date:entry.date||String(y)+'-12-31'};
+ }
+ if(s.td!=null&&Number.isFinite(Number(s.td))&&Number(s.td)>0&&Number(s.td)<20){
+  const yr=Number(s.tdYear??2025);
+  if(Number.isInteger(yr)&&yr>=2022&&yr<=2035&&!(String(yr) in history))
+   history[String(yr)]={year:yr,value:Number(s.td),source:s.fieldSources?.td?.url||null,date:String(yr)+'-12-31',method:'Valeur initiale du référentiel'};
+ }
+ return Object.values(history).sort((a,b)=>b.year-a.year);
+}
+function tdLatest(s){return tdHistory(s)[0]||null;}
+function tdForYear(s,year){return tdHistory(s).find(x=>x.year===Number(year))||null;}
+function tdYearForSelection(scpis){
+ const all=[...new Set(scpis.flatMap(s=>tdHistory(s).map(x=>x.year)))].sort((a,b)=>b-a);
+ const common=all.find(y=>scpis.every(s=>tdForYear(s,y)));
+ return {year:common??all[0]??null,common:common!=null,availableYears:all};
+}
+function tdHistoryHtml(s){
+ const hist=tdHistory(s);
+ return '<h3>Historique des taux de distribution</h3><p class="source-note">TD annuels clos publiés, non prévisions. Les taux passés ne garantissent aucun revenu futur.</p>'+
+  (hist.length?'<div class="history">'+hist.map(x=>'<div class="historyrow"><span><b>'+x.year+' : '+pct(x.value)+'</b><small>'+esc(x.method||'Taux historique')+'</small></span>'+link(x.source,'Document du millésime','compare-source')+'</div>').join('')+'</div>':empty('Aucun TD annuel documenté.'));
+}
 function compareSortedItems(){
  return [...items].sort((a,b)=>
   Number((b.tags||[]).includes('Meilleurtaux Placement'))-Number((a.tags||[]).includes('Meilleurtaux Placement'))||
