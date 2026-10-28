@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 from td_history import extract_annual_td, normalize_history, update_annual_td
+from data_quality import validate_updates
 
 SOURCE='https://www.corum.fr/docs/bulletin.pdf'
 
@@ -61,6 +62,28 @@ class AnnualTdTests(unittest.TestCase):
         self.assertEqual(scpi['td'],7.25)
         self.assertEqual(scpi['tdYear'],2026)
         self.assertEqual(len(scpi['tdConflicts']),1)
+
+    def test_changes_must_be_closed_year_and_on_official_domain(self):
+        item={'td':6.5,'tdYear':2025,'officialSource':'https://www.corum.fr/nos-scpi/corum-origin/documents',
+              'fieldSources':{'td':{'url':SOURCE}}}
+        normalize_history(item)
+        newer=copy.deepcopy(item)
+        update_annual_td(newer,'Taux de distribution 2026 : 7,25 %',SOURCE,'2027-01-10',
+                         lambda *args: None)
+        self.assertEqual(validate_updates(item,newer,'2027-01-10'),[])
+        invalid=copy.deepcopy(newer)
+        invalid['tdHistory']['2026']['source']='https://unknown.example/2026.pdf'
+        self.assertIn('source annuelle non approuvée',str(validate_updates(item,invalid,'2027-01-10')))
+        future=copy.deepcopy(newer)
+        self.assertIn('année non clôturée',str(validate_updates(item,future,'2026-10-29')))
+
+    def test_archive_cannot_silently_replace_old_year(self):
+        item={'td':6.5,'tdYear':2025,'officialSource':'https://www.corum.fr/docs',
+              'fieldSources':{'td':{'url':SOURCE}}}
+        normalize_history(item)
+        invalid=copy.deepcopy(item)
+        invalid['tdHistory'].pop('2025')
+        self.assertIn('suppression',str(validate_updates(item,invalid,'2026-10-29')))
 
     def test_no_mix_in_allocation_and_report_pdf(self):
         js=r"""
