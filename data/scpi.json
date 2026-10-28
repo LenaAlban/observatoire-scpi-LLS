@@ -674,8 +674,11 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": null,
+    "keys": {
+      "5": 82.5,
+      "7": 77
+    },
+    "keySource": "https://www.lafrancaise-am-partenaires.com/produit/scpi/demembrement",
     "keyDate": null,
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
@@ -709,7 +712,10 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "keySourceType": "Société de gestion",
+    "keyVerifiedAt": "2026-10-28",
+    "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie."
   },
   {
     "id": "ficommerce",
@@ -964,8 +970,12 @@
     "geo": [],
     "types": [],
     "acquisitions": [],
-    "keys": {},
-    "keySource": null,
+    "keys": {
+      "5": 84.5,
+      "7": 79.5,
+      "10": 74
+    },
+    "keySource": "https://www.lafrancaise-am-partenaires.com/produit/scpi/demembrement",
     "keyDate": null,
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
@@ -992,7 +1002,10 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "keySourceType": "Société de gestion",
+    "keyVerifiedAt": "2026-10-28",
+    "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie."
   },
   {
     "id": "lf-grand-paris-patrimoine",
