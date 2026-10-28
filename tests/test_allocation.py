@@ -31,8 +31,9 @@ let printed=0;
 const window={print(){printed++;}};
 const liq=slice('function liqNumbers(s){','function liquidityView(s){');
 const engine=slice('const allocationState=','function renderSources(){');
+const tdHelpers=slice('function tdHistory(s){','function compareSortedItems(){');
 const env=new Function('items','document','window','watchAgeDays','date','fr','esc','link','pct','euro','empty','compareSortedItems','toast',
- 'const $=id=>document.getElementById(id);\n'+liq+'\n'+engine+
+ 'const $=id=>document.getElementById(id);\n'+tdHelpers+'\n'+liq+'\n'+engine+
  '\nreturn {allocationState,allocationCompute,allocationBuildBreakdown,allocationCanonicalGeo,allocationCanonicalSector,allocationEqualWeights,renderAllocation,renderAllocationResults,allocationAdd,printAllocationReport};');
 const compareSortedItems=()=>records.slice().sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const h=env(records,document,window,watchAgeDays,date,fr,esc,link,pct,euro,empty,compareSortedItems,()=>{});
@@ -57,7 +58,7 @@ assert.equal(h.allocationCanonicalSector('Logistique et activités'),'Logistique
 const noTd=get('patrimmo-croissance'),withoutTd=h.allocationCompute(100000,{'iroko-zen':40,'patrimmo-croissance':60});
 assert.equal(noTd.td,null);
 assert.ok(Math.abs(withoutTd.tdCoverage-40)<1e-8);
-assert.ok(withoutTd.warnings.some(x=>x.includes('TD 2025 manquant')));
+assert.ok(withoutTd.warnings.some(x=>x.includes('TD 2025 absent')));
 assert.ok(!h.allocationCompute('100000',{'iroko-zen':80,'pierval-sante':30}).valid);
 assert.ok(!h.allocationCompute('-10000',{'iroko-zen':100}).valid);
 assert.ok(!h.allocationCompute('0',{'iroko-zen':100}).valid);
