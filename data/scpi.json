@@ -33,8 +33,66 @@
       "Autre"
     ],
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "France",
+        27.3
+      ],
+      [
+        "Royaume-Uni",
+        26.7
+      ],
+      [
+        "Espagne",
+        15.6
+      ],
+      [
+        "Pays-Bas",
+        10.5
+      ],
+      [
+        "Irlande",
+        9.7
+      ],
+      [
+        "Allemagne",
+        7.2
+      ],
+      [
+        "Belgique",
+        2.2
+      ],
+      [
+        "Italie",
+        0.8
+      ]
+    ],
+    "types": [
+      [
+        "Commerces",
+        36.3
+      ],
+      [
+        "Bureaux",
+        31.6
+      ],
+      [
+        "Locaux d'activités",
+        11.6
+      ],
+      [
+        "Santé, hôtellerie et autres",
+        10.6
+      ],
+      [
+        "Entrepôts",
+        7.7
+      ],
+      [
+        "Logistique",
+        2.2
+      ]
+    ],
     "acquisitions": [
       {
         "when": "Publication T2 2026",
@@ -93,10 +151,27 @@
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
     "keyNote": "Barème officiel Iroko en vigueur depuis le 01/07/2021, toujours référencé sur son site. Ancienneté importante : confirmation nécessaire avant toute souscription.",
-    "fieldSources": {},
-    "allocationNote": "La société de gestion annonce environ 70 % du parc hors de France au 30/06/2026. Ventilation précise par pays et secteur intégrée dans des graphiques non exploitables ici.",
-    "allocationNoteSource": "https://www.iroko.eu/scpi/zen",
-    "allocationNoteDate": "2026-06-30"
+    "fieldSources": {
+      "geo": {
+        "url": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur d'expertise hors droits au T2 2026; graphiques du gérant recoupés avec Morgen Capital (source secondaire).",
+        "secondaryCrossCheck": "https://www.morgen-capital.fr/produits/scpi/iroko-zen"
+      },
+      "types": {
+        "url": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur d'expertise hors droits au T2 2026; graphiques du gérant recoupés avec Morgen Capital (source secondaire).",
+        "secondaryCrossCheck": "https://www.morgen-capital.fr/produits/scpi/iroko-zen"
+      }
+    },
+    "allocationNote": "Répartitions chiffrées documentées au 2026-06-30 dans les publications du gérant. Ventilations recoupées sur une source secondaire.",
+    "allocationNoteSource": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
+    "allocationNoteDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30"
   },
   {
     "id": "pierval-sante",
@@ -679,8 +754,62 @@
     ],
     "notes": "Ancienne dénomination : Actipierre Europe. Nouvelle dénomination publiée : AEW Commerces Europe. Référencement Spirica à reconfirmer selon le contrat.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Régions",
+        42
+      ],
+      [
+        "Île-de-France hors Paris",
+        21
+      ],
+      [
+        "Allemagne",
+        16
+      ],
+      [
+        "Paris",
+        9
+      ],
+      [
+        "Espagne",
+        9
+      ],
+      [
+        "Pays-Bas",
+        2
+      ],
+      [
+        "Belgique",
+        1
+      ]
+    ],
+    "types": [
+      [
+        "Commerces",
+        77
+      ],
+      [
+        "Centres commerciaux",
+        15
+      ],
+      [
+        "Bureaux",
+        5
+      ],
+      [
+        "Industriel",
+        1
+      ],
+      [
+        "Résidentiel avec services",
+        1
+      ],
+      [
+        "Résidentiel classique",
+        1
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -723,18 +852,43 @@
         "method": "Donnée 2025 publiée par la société de gestion"
       },
       "tof": {
-        "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-08/AEW%20COMMERCES%20EUROPE%20Bulletin%201er%20semestre%202026.pdf",
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
-        "method": "TOF publié par la société de gestion"
+        "method": "Bulletin officiel"
+      },
+      "geo": {
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-08/AEW%20COMMERCES%20EUROPE%20Bulletin%201er%20semestre%202026.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartitions 2026 recoupées avec la fiche et le bulletin du gérant; chiffres 2026 en partie confirmés sur source secondaire."
+      },
+      "types": {
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-08/AEW%20COMMERCES%20EUROPE%20Bulletin%201er%20semestre%202026.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartitions 2026 recoupées avec la fiche et le bulletin du gérant; chiffres 2026 en partie confirmés sur source secondaire."
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
     "tofDate": "2026-06-30",
-    "allocationNote": "Les ventilations géographique et typologique sont publiées par AEW au 30/06/2026, mais les pourcentages ne sont pas lisibles dans la version textuelle consultée.",
-    "allocationNoteSource": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
-    "allocationNoteDate": "2026-06-30"
+    "allocationNote": "Répartitions chiffrées documentées au 2026-06-30 dans les publications du gérant.",
+    "allocationNoteSource": "https://www.aewpatrimoine.com/sites/default/files/2026-08/AEW%20COMMERCES%20EUROPE%20Bulletin%201er%20semestre%202026.pdf",
+    "allocationNoteDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30",
+    "portfolioEvents": [
+      {
+        "when": "S1 2026",
+        "title": "Aucune acquisition et deux cessions",
+        "details": "Deux immeubles de bureaux cédés à Saint-Priest et Brême, pour 3,9 M€ au total.",
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-08/AEW%20COMMERCES%20EUROPE%20Bulletin%201er%20semestre%202026.pdf"
+      }
+    ],
+    "assetCount": 273,
+    "areaSqm": 484974,
+    "patrimonyStatsDate": "2026-06-30"
   },
   {
     "id": "altixia-cadence-xii",
@@ -2392,7 +2546,7 @@
     "retreat": null,
     "td": null,
     "tof": null,
-    "waiting": null,
+    "waiting": 38277,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
@@ -2406,8 +2560,34 @@
     ],
     "notes": "Marché secondaire : dernier prix d’exécution indisponible dans les sources vérifiées. Ancien prix de souscription historique : 677 € au 2026-03-31 ; non utilisable comme prix de revente. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Île-de-France hors Paris",
+        36.8
+      ],
+      [
+        "Paris",
+        32.4
+      ],
+      [
+        "France hors région parisienne",
+        28.4
+      ],
+      [
+        "Parts de SCPI",
+        2.4
+      ]
+    ],
+    "types": [
+      [
+        "Résidentiel",
+        97.6
+      ],
+      [
+        "Parts de SCPI",
+        2.4
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2423,15 +2603,20 @@
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "waitingParts": 38277,
+      "withdrawalsExecuted": 0,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "periodEnd": "2026-03-31",
+      "periodLabel": "T1 2026",
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-03-31",
+          "parts": 0
+        }
+      ],
+      "sourceUrl": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+      "verifiedAt": "2026-10-28",
+      "method": "Bulletin officiel : stock des retraits en attente et parts retirées au trimestre"
     },
     "priceType": "Marché secondaire — prix d’exécution non vérifié",
     "previousPrice": 677,
@@ -2444,9 +2629,43 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "geo": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel de la société de gestion, tableau de répartition en % de la valeur vénale"
+      },
+      "types": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel de la société de gestion, tableau de répartition en % de la valeur vénale"
+      },
+      "waiting": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "geoDate": "2026-03-31",
+    "typesDate": "2026-03-31",
+    "allocationNote": "Répartitions chiffrées documentées au 2026-03-31 dans les publications du gérant.",
+    "allocationNoteSource": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+    "allocationNoteDate": "2026-03-31",
+    "portfolioEvents": [
+      {
+        "when": "T1 2026",
+        "title": "Portefeuille résidentiel en nue-propriété",
+        "details": "64 immeubles et 511 lots ; aucun retrait compensé sur le trimestre, avec 38 277 parts en attente à fin mars.",
+        "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764"
+      }
+    ],
+    "assetCount": 64,
+    "areaSqm": 34674,
+    "patrimonyStatsDate": "2026-03-31",
+    "tdNote": "SCPI résidentielle de capitalisation sans dividende ; taux de distribution non applicable."
   },
   {
     "id": "pf-grand-paris",
@@ -3299,8 +3518,8 @@
     "realisation": null,
     "retreat": null,
     "td": 5.28,
-    "tof": 94.45,
-    "waiting": null,
+    "tof": 94.14,
+    "waiting": 63817,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
@@ -3314,9 +3533,65 @@
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "Paris et Île-de-France",
+        27.11
+      ],
+      [
+        "Nord-Ouest",
+        17.42
+      ],
+      [
+        "Sud-Ouest",
+        16.15
+      ],
+      [
+        "Nord-Est",
+        13.64
+      ],
+      [
+        "Sud-Est",
+        12.97
+      ],
+      [
+        "Nord",
+        12.71
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        47.05
+      ],
+      [
+        "Commerces",
+        28.71
+      ],
+      [
+        "Tourisme et hôtellerie",
+        10.16
+      ],
+      [
+        "Activités et entrepôts",
+        8.3
+      ],
+      [
+        "Santé et éducation",
+        5.54
+      ],
+      [
+        "Résidentiel et alternatif",
+        0.24
+      ]
+    ],
     "acquisitions": [
+      {
+        "when": "T2 2026",
+        "title": "Retail park à Cormontreuil (Marne)",
+        "details": "Local de 1 247 m² loué à Action, acheté pour 1,61 M€ acte en main.",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf"
+      },
       {
         "when": "2026",
         "title": "Retail park à Cormontreuil (51)",
@@ -3333,15 +3608,20 @@
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "waitingParts": 63817,
+      "withdrawalsExecuted": 109223,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "periodEnd": "2026-06-30",
+      "periodLabel": "T2 2026",
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-06-30",
+          "parts": 109223
+        }
+      ],
+      "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+      "verifiedAt": "2026-10-28",
+      "method": "Bulletin officiel : stock des retraits en attente et parts retirées au trimestre"
     },
     "priceType": "Souscription",
     "priceSource": "https://atland-voisin.com/scpi/epargne-pierre/",
@@ -3359,18 +3639,47 @@
         "method": "Donnée 2025 publiée par la société de gestion"
       },
       "tof": {
-        "url": "https://atland-voisin.com/scpi/epargne-pierre/",
-        "date": "2025-12-31",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+        "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
-        "method": "TOF publié par la société de gestion"
+        "method": "Bulletin officiel"
+      },
+      "geo": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel de la société de gestion, tableau de répartition en % de la valeur vénale"
+      },
+      "types": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel de la société de gestion, tableau de répartition en % de la valeur vénale"
+      },
+      "waiting": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2025-12-31",
-    "allocationNote": "Le gérant présente des répartitions au 30/06/2026 sous forme de graphiques et des acquisitions 2026. Pondérations détaillées non encore vérifiées.",
-    "allocationNoteSource": "https://atland-voisin.com/scpi/epargne-pierre/",
-    "allocationNoteDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "allocationNote": "Répartitions chiffrées documentées au 2026-06-30 dans les publications du gérant.",
+    "allocationNoteSource": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+    "allocationNoteDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30",
+    "portfolioEvents": [
+      {
+        "when": "T2 2026",
+        "title": "Deux cessions pour 4,33 M€",
+        "details": "Actifs commerciaux à Saint-Jean-de-Védas et Épinal.",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf"
+      }
+    ],
+    "tenantCount": 760,
+    "patrimonyStatsDate": "2026-06-30"
   },
   {
     "id": "sofidynamic",
@@ -3702,7 +4011,7 @@
     "retreat": null,
     "td": 6.75,
     "tof": 99.79,
-    "waiting": null,
+    "waiting": 0,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
@@ -3716,9 +4025,74 @@
     ],
     "notes": "Prix et TD issus de la fiche produit Meilleurtaux Placement consultée en octobre 2026. Vérifier les conditions effectives avant souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
-    "acquisitions": [],
+    "geo": [
+      [
+        "Espagne",
+        27.5
+      ],
+      [
+        "Irlande",
+        23.88
+      ],
+      [
+        "Allemagne",
+        22.24
+      ],
+      [
+        "Royaume-Uni",
+        14.26
+      ],
+      [
+        "Pays-Bas",
+        8.35
+      ],
+      [
+        "Portugal",
+        3.77
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        26.01
+      ],
+      [
+        "Hôtellerie",
+        25.96
+      ],
+      [
+        "Commerces",
+        24
+      ],
+      [
+        "Activités et entrepôts",
+        15.82
+      ],
+      [
+        "Santé",
+        8.21
+      ]
+    ],
+    "acquisitions": [
+      {
+        "when": "T2 2026",
+        "title": "Trois actifs de santé au Portugal",
+        "details": "Coimbra, Braga et Leiria : acquisitions pour 18,24 M€ acte en main, avec baux fermes de 30 ans à l'acquisition.",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf"
+      },
+      {
+        "when": "T2 2026",
+        "title": "Bureaux à Londres",
+        "details": "Immeuble multilotataires, 1 575 m² ; acquisition pour 14,68 M€ acte en main.",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf"
+      },
+      {
+        "when": "T2 2026",
+        "title": "Logistique à Saragosse",
+        "details": "12 307 m² loués à Dagar Technologies ; acquisition pour 10,32 M€ acte en main.",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf"
+      }
+    ],
     "keys": {
       "3": 87.5,
       "5": 80,
@@ -3739,15 +4113,20 @@
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "waitingParts": 0,
+      "withdrawalsExecuted": 3853,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "periodEnd": "2026-06-30",
+      "periodLabel": "T2 2026",
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-06-30",
+          "parts": 3853
+        }
+      ],
+      "sourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+      "verifiedAt": "2026-10-28",
+      "method": "Bulletin officiel : stock des retraits en attente et parts retirées au trimestre"
     },
     "priceType": "Souscription",
     "priceSource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
@@ -3759,18 +4138,41 @@
         "proof": "Valeur de reconstitution par part publiée"
       },
       "tof": {
-        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-2.pdf",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
         "date": "2026-06-30",
-        "method": "extraction PDF stricte",
-        "proof": "                                                              T2•  Un taux d’occupation financier de 99,79 % et un                                                                  "
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel"
+      },
+      "geo": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel de la société de gestion, tableau de répartition en % de la valeur vénale"
+      },
+      "types": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel de la société de gestion, tableau de répartition en % de la valeur vénale"
+      },
+      "waiting": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
     "keyVerifiedAt": "2026-10-28",
-    "allocationNote": "Le gérant publie les répartitions géographiques et sectorielles au 30/06/2026 sous forme de graphiques. Pourcentages non vérifiés dans le référentiel.",
-    "allocationNoteSource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
-    "allocationNoteDate": "2026-06-30"
+    "allocationNote": "Répartitions chiffrées documentées au 2026-06-30 dans les publications du gérant.",
+    "allocationNoteSource": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+    "allocationNoteDate": "2026-06-30",
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-06-30",
+    "assetCount": 34,
+    "tenantCount": 70,
+    "tofDate": "2026-06-30",
+    "patrimonyStatsDate": "2026-06-30"
   },
   {
     "id": "epargne-pierre-sophia",
