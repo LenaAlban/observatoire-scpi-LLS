@@ -10,6 +10,18 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 - **Seuils indicatifs de recontrôle**, sans valeur réglementaire : bulletin trimestriel >150 jours, semestriel >250 jours, TOF >210 jours, répartitions >420 jours, reconstitution >540 jours, données de retrait >180 jours ; clé de démembrement sans date signalée. Les dates correspondent à la période publiée et non à la date à laquelle le robot a consulté le site.
 - Les filtres distinguent **nouveautés**, **données à recontrôler** et **erreurs / collecte partielle**. Une absence de nouvel événement ne signifie pas qu'aucune publication n'existe chez un gérant qui ne permet pas l'extraction automatique.
 
+## Simulateur d'allocation SCPI (correctif n°5)
+
+- L'onglet **Allocation** permet de saisir un montant d'investissement et jusqu'à **10 SCPI** avec des pondérations indépendantes, strictement positives et totalisant **100 %**. Un bouton répartit les poids à parts égales (ajustement à 0,01 point près).
+- Les **montants sont des objectifs de répartition**, calculés comme montant total × pondération, sans conversion en parts entières, frais, fiscalité ou exécution d'ordres.
+- Le **TD 2025 pondéré** est calculé sur la somme des contributions de chaque SCPI uniquement si 100 % de l'allocation dispose d'un TD historique exploitable. En cas de données manquantes, le taux global est déclaré **non calculable** et le pourcentage couvert est indiqué. Il ne s'agit jamais d'une prévision de distribution.
+- Les répartitions **géographiques et sectorielles consolidées** utilisent les dernières ventilations sourcées et datées. Les légers écarts de somme liés aux arrondis du gérant sont neutralisés par normalisation. La quote-part non documentée reste affichée à part et n'est jamais redistribuée sur les valeurs connues.
+- Les localisations infranationales françaises (Paris, Île-de-France, régions, etc.) sont ramenées au groupe **France**. Les grandes zones sans détail (Europe, Étranger) restent distinctes. Les regroupements sectoriels sont conservateurs : par exemple « Santé, hôtellerie et autres » n'est pas attribué arbitrairement à la seule santé.
+- La **liquidité** est présentée en poids d'allocation selon la catégorie de sortie ou le statut observé, jamais en un « délai moyen de liquidité ». Les marchés secondaires restent distingués des SCPI à capital variable. Les données anciennes et insuffisantes sont signalées.
+- La **synthèse PDF** passe par l'impression du navigateur (choisir « Enregistrer en PDF ») et reproduit les montants, poids, informations agrégées, réserves, dates et liens documentaires.
+- **Confidentialité :** la sélection, le montant et les pondérations sont seulement conservés en mémoire pendant la session du navigateur. Ils ne sont pas envoyés au serveur et ne sont pas enregistrés sur le site public. Ne pas saisir de données nominatives de clients.
+- Les informations financières, barèmes et modalités de revente sont à confirmer auprès des sociétés de gestion avant toute recommandation ou souscription.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
