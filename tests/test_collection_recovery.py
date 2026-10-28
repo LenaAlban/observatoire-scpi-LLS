@@ -63,7 +63,8 @@ class OfficialRecoveryTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError,'sources de secours'):
                 sync.collect_official_candidates(None,item,item['sourceUrl'],'sofidy.com')
             self.assertTrue(item.get('sourceAttempts'))
-            self.assertTrue(all(row['detail'].startswith('Connexion sécurisée') for row in item['sourceAttempts']))
+            self.assertTrue(all(row.get('kind')=='tls' for row in item['sourceAttempts']))
+            self.assertTrue(all('CERTIFICATE_VERIFY_FAILED' not in row.get('detail','') for row in item['sourceAttempts']))
 
     def test_recovery_from_primary_503_uses_proven_pdf(self):
         item={'id':'altixia-cadence-xii','name':'Altixia Cadence XII',
