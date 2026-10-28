@@ -86,7 +86,8 @@
     "priceSource": "https://www.iroko.eu/performance",
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
-    "keyNote": "Barème officiel Iroko en vigueur depuis le 01/07/2021, toujours référencé sur son site. Ancienneté importante : confirmation nécessaire avant toute souscription."
+    "keyNote": "Barème officiel Iroko en vigueur depuis le 01/07/2021, toujours référencé sur son site. Ancienneté importante : confirmation nécessaire avant toute souscription.",
+    "fieldSources": {}
   },
   {
     "id": "pierval-sante",
@@ -147,17 +148,50 @@
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": 550067,
-      "withdrawalsExecuted": null,
+      "withdrawalsExecuted": 16217,
       "withdrawalRequests": null,
       "periodEnd": "2026-06-30",
       "periodLabel": "T2 2026",
-      "withdrawals4Q": [],
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-06-30",
+          "parts": 16217
+        }
+      ],
       "sourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
-      "verifiedAt": null,
-      "method": "Stock initial du référentiel — à confirmer dans le bulletin"
+      "verifiedAt": "2026-10-28",
+      "method": "Bulletin officiel ou rapport annuel du gérant"
     },
     "priceType": "Souscription",
-    "priceSource": "https://www.euryale-am.fr/nos-solutions/pierval-sante/"
+    "priceSource": "https://www.euryale-am.fr/nos-solutions/pierval-sante/",
+    "fieldSources": {
+      "td": {
+        "url": "https://www.euryale-am.fr/nos-solutions/pierval-sante/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      },
+      "waiting": {
+        "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Nombre de parts en attente publié"
+      },
+      "withdrawalsExecuted": {
+        "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Retraits effectivement compensés sur la période"
+      }
+    },
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "corum-origin",
@@ -171,7 +205,7 @@
     "realisation": null,
     "retreat": null,
     "td": 6.5,
-    "tof": null,
+    "tof": 95.77,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T3 2026",
@@ -231,7 +265,16 @@
     "priceSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "fieldSources": {
+      "tof": {
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      }
+    },
+    "tofDate": "2026-06-30"
   },
   {
     "id": "remake-live",
@@ -245,7 +288,7 @@
     "realisation": 175.64,
     "retreat": 204,
     "td": 7.05,
-    "tof": 100,
+    "tof": 98.93,
     "waiting": 0,
     "waitingPct": null,
     "bulletin": "T3 2026",
@@ -295,19 +338,27 @@
     "priceSource": "https://www.remake.fr/remake-live/",
     "fieldSources": {
       "tof": {
-        "url": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
-        "date": "2026-09-30",
-        "method": "extraction PDF stricte",
-        "proof": "le\n    parc de la SCPI était entièrement loué. La différence entre le TOF mesuré et 100 %\n     traduit donc la vacance que subit la SCPI et la perte de loyers correspondante.\n   "
+        "url": "https://www.remake.fr/remake-live",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       },
       "liquidityData": {
         "url": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
         "date": "2026-09-30",
         "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement",
         "proof": "libellés + valeurs univoques"
+      },
+      "td": {
+        "url": "https://www.remake.fr/remake-live",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "actipierre-europe",
@@ -323,8 +374,8 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.48,
+    "tof": 91.66,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "S1 2026",
@@ -375,9 +426,23 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "altixia-cadence-xii",
@@ -393,9 +458,9 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
-    "waiting": null,
+    "td": 5.15,
+    "tof": 92.6,
+    "waiting": 0,
     "waitingPct": null,
     "bulletin": null,
     "bulletinDate": null,
@@ -420,15 +485,15 @@
     "officialSource": "https://www.altixia.fr/scpi-cadence.php",
     "automatedCheck": "Site accessible · bulletin non détecté automatiquement",
     "liquidityData": {
-      "waitingParts": null,
+      "waitingParts": 0,
       "withdrawalsExecuted": null,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
+      "periodEnd": "2025-12-31",
+      "periodLabel": "T4 2025",
       "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "sourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf",
+      "verifiedAt": "2026-10-28",
+      "method": "Bulletin officiel ou rapport annuel du gérant"
     },
     "priceType": "Souscription",
     "priceSource": "https://www.altixia.fr/scpi-cadence.php",
@@ -438,8 +503,28 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      },
+      "waiting": {
+        "url": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Nombre de parts en attente publié"
       }
-    }
+    },
+    "tdYear": 2025,
+    "tofDate": "2025-12-31"
   },
   {
     "id": "atream-hotels",
@@ -455,9 +540,9 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
-    "waiting": null,
+    "td": 5.05,
+    "tof": 100,
+    "waiting": 0,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
@@ -483,15 +568,15 @@
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
+      "waitingParts": 0,
       "withdrawalsExecuted": null,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
+      "periodEnd": "2025-12-31",
+      "periodLabel": "T4 2025",
       "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "sourceUrl": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf",
+      "verifiedAt": "2026-10-28",
+      "method": "Bulletin officiel ou rapport annuel du gérant"
     },
     "priceSource": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
     "priceType": "Souscription",
@@ -508,9 +593,29 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      },
+      "waiting": {
+        "url": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Nombre de parts en attente publié"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "edissimmo",
@@ -584,8 +689,8 @@
     "reconDate": "2026-06-30",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.44,
+    "tof": 86.88,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -637,9 +742,23 @@
         "date": "2026-06-30",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.sofidy.com/scpi/le-taux-de-distribution/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.sofidy.com/scpi/taux-occupation-financier/",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
-    "keySourceType": "Société de gestion"
+    "keySourceType": "Société de gestion",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "epargne-fonciere",
@@ -655,8 +774,8 @@
     "reconDate": "2026-03-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.86,
+    "tof": 88.3,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -711,11 +830,25 @@
         "date": "2026-03-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/epargne-fonciere",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/epargne-fonciere",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
-    "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie."
+    "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie.",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "ficommerce",
@@ -731,8 +864,8 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": 63,
-    "td": null,
-    "tof": null,
+    "td": 5.1,
+    "tof": 95.35,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -777,10 +910,24 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "207,88 € au 31/12/2025 ÷ 3 (division des parts le 01/01/2026) : 69,2933 € théoriques par nouvelle part"
+      },
+      "td": {
+        "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
+        "date": "2026-07-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
     "reconDerived": true,
-    "reconNote": "Valeur ajustée : 207,88 € par ancienne part au 31/12/2025, ramenée à 69,29 € par nouvelle part (division par 3 le 01/01/2026). Il s’agit d’un calcul, pas d’un nouveau chiffre publié tel quel."
+    "reconNote": "Valeur ajustée : 207,88 € par ancienne part au 31/12/2025, ramenée à 69,29 € par nouvelle part (division par 3 le 01/01/2026). Il s’agit d’un calcul, pas d’un nouveau chiffre publié tel quel.",
+    "tdYear": 2025,
+    "tofDate": "2026-07-30"
   },
   {
     "id": "immorente",
@@ -796,8 +943,8 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 5,
+    "tof": 91.17,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -856,9 +1003,23 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.sofidy.com/solutions/immorente/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.sofidy.com/scpi/taux-occupation-financier/",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
-    "keySourceType": "Société de gestion"
+    "keySourceType": "Société de gestion",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "laffitte-pierre",
@@ -874,8 +1035,8 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": 67,
+    "td": 5.3,
+    "tof": 85.27,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "S1 2026",
@@ -929,13 +1090,21 @@
         "proof": "Valeur de reconstitution par part publiée"
       },
       "tof": {
-        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-08/LAFFITTE%20PIERRE%20Bulletin%201er%20semestre%202026.pdf",
+        "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
         "date": "2026-06-30",
-        "method": "extraction PDF stricte",
-        "proof": "            5,30%*\n      VALEUR DE RECONSTITUTION au 30/06/2026       TAUX D’OCCUPATION FINANCIER                   Bureaux 67%                Paris 11%\n      834 966 656 € (297,46"
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      },
+      "td": {
+        "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "lf-europimmo",
@@ -951,8 +1120,8 @@
     "reconDate": "2026-03-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.63,
+    "tof": 95.5,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1001,11 +1170,25 @@
         "date": "2026-03-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-europimmo",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-europimmo",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
-    "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie."
+    "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie.",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "lf-grand-paris-patrimoine",
@@ -1021,8 +1204,8 @@
     "reconDate": "2026-03-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.66,
+    "tof": 86.4,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1074,6 +1257,18 @@
         "date": "2026-03-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-grand-paris-patrimoine",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/lf-grand-paris-patrimoine",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
     "liquidity": {
@@ -1082,7 +1277,9 @@
       "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2"
     },
     "sellerNetPrice": 80,
-    "sellerNetPriceDate": "2026-07-31"
+    "sellerNetPriceDate": "2026-07-31",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "patrimmo-commerce",
@@ -1098,7 +1295,7 @@
     "reconDate": "2025-12-31",
     "realisation": 126.9,
     "retreat": null,
-    "td": null,
+    "td": 3.38,
     "tof": 1.9,
     "waiting": null,
     "waitingPct": null,
@@ -1158,9 +1355,16 @@
         "date": "2026-06-30",
         "method": "extraction PDF stricte",
         "proof": "                          locataire               2,87 ans            TOF*         1,9% Locaux vacants  de baux\n                                                                  "
+      },
+      "td": {
+        "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025
   },
   {
     "id": "patrimmo-croissance",
@@ -1248,8 +1452,8 @@
     "reconDate": null,
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.8,
+    "tof": 84.7,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1297,9 +1501,23 @@
         "date": null,
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.perial.com/scpi/perial-grand-paris",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.perial.com/scpi/perial-grand-paris",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
-    "reconNote": "Valeur affichée sur le site PERIAL ; date des chiffres absente de la page consultée, à confirmer auprès du gérant."
+    "reconNote": "Valeur affichée sur le site PERIAL ; date des chiffres absente de la page consultée, à confirmer auprès du gérant.",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "primopierre",
@@ -1315,7 +1533,7 @@
     "reconDate": "2025-12-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
+    "td": 3.62,
     "tof": 1.7,
     "waiting": null,
     "waitingPct": null,
@@ -1379,11 +1597,18 @@
         "date": "2026-06-30",
         "method": "extraction PDF stricte",
         "proof": "aire                         des baux (WALB)*  Nombre\n  de baux       TOF*                            1,7% Locaux vacants           3,38 ans\n           81,7 %               sous "
+      },
+      "td": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836290/Primopierre%2BRapport%2BAnnuel%2B2025.pdf/32234cef-d9b6-60b3-9ad5-08bfa8420b37?t=1780564491137",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
       }
     },
     "sellerNetPrice": 31.88,
     "sellerNetPriceDate": "2026-09-24",
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025
   },
   {
     "id": "primovie",
@@ -1399,7 +1624,7 @@
     "reconDate": "2025-06-30",
     "realisation": null,
     "retreat": null,
-    "td": null,
+    "td": 4.04,
     "tof": 0.2,
     "waiting": null,
     "waitingPct": null,
@@ -1459,9 +1684,16 @@
         "date": "2026-06-30",
         "method": "extraction PDF stricte",
         "proof": "    locataire                         des baux (WALB)*\n  Nombre       TOF*        0,2% Locaux vacants sous promesse\n  de baux     94,6 %              de vente                9,64"
+      },
+      "td": {
+        "url": "https://www.praemiareim.fr/fr/scpi-primovie",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025
   },
   {
     "id": "pfo2",
@@ -1477,8 +1709,8 @@
     "reconDate": "2026-06-30",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 4.65,
+    "tof": 84.6,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1524,7 +1756,23 @@
     "previousPrice": 164,
     "previousPriceDate": "2025-12-31",
     "previousPriceSource": "https://assistance.perial.com/hc/fr/articles/44235272648721-Valeur-des-Parts-des-SCPI-PERIAL-au-25-02-2026",
-    "priceSource": "https://www.perial.com/scpi/perial-o2"
+    "priceSource": "https://www.perial.com/scpi/perial-o2",
+    "fieldSources": {
+      "td": {
+        "url": "https://www.perial.com/scpi/perial-o2",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.perial.com/scpi/perial-o2",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      }
+    },
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "rivoli-avenir-patrimoine",
@@ -1598,7 +1846,7 @@
     "reconDate": "2026-03-31",
     "realisation": null,
     "retreat": null,
-    "td": null,
+    "td": 4.44,
     "tof": null,
     "waiting": null,
     "waitingPct": null,
@@ -1656,10 +1904,17 @@
         "date": "2026-03-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/selectinvest-1",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
       }
     },
     "sellerNetPrice": 280,
-    "sellerNetPriceDate": "2026-07-31"
+    "sellerNetPriceDate": "2026-07-31",
+    "tdYear": 2025
   },
   {
     "id": "epargne-pierre",
@@ -1675,8 +1930,8 @@
     "reconDate": "2026-07-01",
     "realisation": null,
     "retreat": null,
-    "td": null,
-    "tof": null,
+    "td": 5.28,
+    "tof": 94.45,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1721,9 +1976,23 @@
         "date": "2026-07-01",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://atland-voisin.com/scpi/epargne-pierre/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://atland-voisin.com/scpi/epargne-pierre/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
-    "pdfVerifiedAt": "2026-10-28"
+    "pdfVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2025-12-31"
   },
   {
     "id": "sofidynamic",
@@ -1740,7 +2009,7 @@
     "realisation": 305.55,
     "retreat": null,
     "td": 9.04,
-    "tof": 97.73,
+    "tof": 97.7,
     "waiting": 0,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1797,7 +2066,23 @@
     "priceType": "Souscription",
     "priceSource": "https://www.sofidy.com/solutions/sofidynamic/",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "fieldSources": {
+      "td": {
+        "url": "https://www.sofidy.com/scpi/le-taux-de-distribution/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.sofidy.com/scpi/taux-occupation-financier/",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      }
+    },
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "transitions-europe",
@@ -2048,8 +2333,8 @@
     "tags": [
       "Meilleurtaux Placement"
     ],
-    "price": 220,
-    "priceDate": "2025-01-01",
+    "price": 22,
+    "priceDate": "2026-07-01",
     "recon": 22.68,
     "reconDate": "2026-07-01",
     "realisation": null,
@@ -2107,15 +2392,40 @@
     "priceSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
     "fieldSources": {
       "price": {
-        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPS-VDEF-web-2.pdf",
-        "date": "2025-01-01",
-        "method": "extraction PDF stricte",
-        "proof": "                                            Objectifs de gestion      Prix de souscription par part à partir                                          220,00€       220,00 €\n    du "
+        "url": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+        "date": "2026-07-01",
+        "verifiedAt": "2026-10-28",
+        "method": "Fiche officielle ATLAND, prix à l'unité après division de parts"
+      },
+      "td": {
+        "url": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
+      },
+      "recon": {
+        "url": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+        "date": "2026-07-01",
+        "verifiedAt": "2026-10-28",
+        "method": "Fiche officielle ATLAND, valeur de reconstitution à l'unité après division de parts"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2025-12-31",
+    "previousPrice": 220,
+    "previousPriceDate": "2025-12-31",
+    "previousPriceSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+    "reconNote": "Division par 10 du prix de part en 2026. Prix 22 € et valeur de reconstitution 22,68 € publiés sur la fiche officielle ATLAND.",
+    "reconDerived": false
   },
   {
     "id": "sofidy-europe-invest",
@@ -2132,7 +2442,7 @@
     "realisation": null,
     "retreat": null,
     "td": 5.41,
-    "tof": 95.76,
+    "tof": 96,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -2187,10 +2497,24 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "td": {
+        "url": "https://www.sofidy.com/scpi/le-taux-de-distribution/",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "tof": {
+        "url": "https://www.sofidy.com/scpi/taux-occupation-financier/",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF publié par la société de gestion"
       }
     },
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "principal-inside",
@@ -2254,7 +2578,8 @@
     "priceType": "Souscription",
     "priceSource": "https://fr.principalam.com/notre-scpi",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "fieldSources": {}
   },
   {
     "id": "corum-usa",
