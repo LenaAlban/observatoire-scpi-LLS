@@ -160,7 +160,8 @@
       ],
       "sourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
       "verifiedAt": "2026-10-28",
-      "method": "Bulletin officiel ou rapport annuel du gérant"
+      "method": "Bulletin T2 2026, page 5, 550 067 parts en attente, 16 217 souscrites et 16 217 retirées",
+      "stockProvenance": "Bulletin officiel société de gestion"
     },
     "priceType": "Souscription",
     "priceSource": "https://www.euryale-am.fr/nos-solutions/pierval-sante/",
@@ -181,13 +182,19 @@
         "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
-        "method": "Nombre de parts en attente publié"
+        "method": "Bulletin officiel page 5"
       },
       "withdrawalsExecuted": {
         "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
-        "method": "Retraits effectivement compensés sur la période"
+        "method": "Bulletin officiel page 5"
+      },
+      "retreat": {
+        "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur de retrait publiée par Euryale"
       }
     },
     "tdYear": 2025,
