@@ -1007,12 +1007,12 @@ function historicalSeries(s,metric){
   if(prev){if(prev.value===val&&(!prev.source&&/^https:\/\//.test(url||'')))prev.source=url;return;}
   points.set(d,{date:d,value:val,source:/^https:\/\//.test(url||'')?url:null,kind:kind||'published'});
  };
- for(const p of s.indicatorHistory?.[metric]||[])if(p&&typeof p==='object')add(p.date,p.value,p.source,p.kind);
+ for(const p of s.indicatorHistory?.[metric]||[])if(p&&typeof p==='object'&&!(metric==='price'&&s.priceType?.includes('Marché secondaire')&&p.kind==='previous'))add(p.date,p.value,p.source,p.kind);
  if(metric==='td'){
   for(const td of tdHistory(s))add(String(td.year)+'-12-31',td.value,td.source,'annual');
  }else if(metric==='recon'){
   for(const p of s.history||[])if(p&&typeof p==='object')add(p.date,p.value,p.source,'archive');
- }else if(metric==='price'){
+ }else if(metric==='price'&&!s.priceType?.includes('Marché secondaire')){
   add(s.previousPriceDate,s.previousPrice,s.previousPriceSource,'previous');
  }
  const key=metric==='waitingParts'||metric==='withdrawalsExecuted'?'liquidityData':metric;
@@ -1092,7 +1092,8 @@ function renderHistory(){
  $('history-title').textContent=selectedItem.name+' — '+HISTORY_METRICS[historyMetric].label;
  $('history-chart').innerHTML=historicalPlot([{name:selectedItem.name,points}],historyMetric);
  const note=points.length?historicalDelta(points,historyMetric):'Aucune donnée historique sourcée ou datée pour cet indicateur.';
- $('history-points').innerHTML='<p class="history-info history-delta">'+esc(note)+'</p>'+
+ const secondaryNote=historyMetric==='price'&&selectedItem.priceType?.includes('Marché secondaire')?'<p class="history-gap-note">Marché secondaire : les anciens prix de souscription sont exclus pour éviter une comparaison trompeuse avec les prix de confrontation.</p>':'';
+ $('history-points').innerHTML='<p class="history-info history-delta">'+esc(note)+'</p>'+secondaryNote+
   (points.length===1?'<p class="history-gap-note">Un seul point disponible : aucune tendance calculable.</p>':'')+
   (points.length?historicalTable([{name:selectedItem.name,points}],historyMetric):'');
  $('history-status').textContent=points.length+' point'+(points.length>1?'s':'')+' observé'+(points.length>1?'s':'');
