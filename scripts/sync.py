@@ -325,6 +325,20 @@ def extract_liquidity_counts(text):
     return {k:(v[0] if v and len(set(v))==1 else None) for k,v in values.items()}
 
 
+
+def record_auto_change(item, field, before, after, period, source):
+    """Trace les valeurs confirmées modifiées, sans modifier les valeurs antérieures."""
+    if before == after:
+        return
+    history=item.setdefault('automatedHistory',[])
+    history.append({
+        'field':field, 'previous':before, 'value':after,
+        'period':period, 'source':source,
+        'recordedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
+    })
+    item['automatedHistory']=history[-120:]
+
+
 def update_liquidity(item, txt, period, url):
     """Stocke des valeurs *de même période*, un historique de flux trimestriels,
     et n'infère jamais un délai à partir d'un stock isolé."""
@@ -348,6 +362,7 @@ def update_liquidity(item, txt, period, url):
         hist.append({'periodEnd':period['date'],'parts':got['withdrawalsExecuted']})
         nextd['withdrawals4Q']=sorted(hist,key=lambda h:h['periodEnd'])[-4:]
     if nextd == old:return []
+    record_auto_change(item,'liquidityData', {k:old.get(k) for k in LIQ_LABELS}, {k:nextd.get(k) for k in LIQ_LABELS},period['date'],url)
     item['liquidityData']=nextd
     item['waiting']=nextd.get('waitingParts')
     item.setdefault('fieldSources',{})['liquidityData']={'url':url,'date':period['date'],'method':nextd['method'],'proof':'libellés + valeurs univoques'}
@@ -376,6 +391,7 @@ def update_td_2025(item, text, url):
     val,proof=nums[0]
     if item.get('td')==val and item.get('tdYear')==2025:
         return []
+    record_auto_change(item,'td',item.get('td'),val,'2025-12-31',url)
     item['td']=val
     item['tdYear']=2025
     item.setdefault('fieldSources',{})['td']={
@@ -398,6 +414,7 @@ def update_indicators(item,txt,period,url):
         if datefield and item.get(datefield) and dated < item[datefield]:continue
         if key=='tof' and item.get('tofDate') and dated < item['tofDate']:continue
         if item.get(key)!=got['value'] or (key=='tof' and item.get('tofDate')!=dated):
+            record_auto_change(item,key,item.get(key),got['value'],dated,url)
             item[key]=got['value']
             if datefield:item[datefield]=dated
             if key=='tof':item['tofDate']=dated
@@ -516,6 +533,7 @@ def update_manager_page_recon(item, html, url):
     if not (5 <= value <= 5000):return []
     if item.get('reconDate') and item['reconDate'] > date:return []
     if item.get('recon')==value and item.get('reconDate')==date:return []
+    record_auto_change(item,'recon',item.get('recon'),value,date,url)
     item['recon']=value;item['reconDate']=date
     item.setdefault('fieldSources',{})['recon']={'url':url,'date':date,'method':'Extraction prudente de la fiche officielle du gérant','proof':m.group(0)}
     history=[h for h in (item.get('history') or []) if h.get('date') != date]
@@ -650,6 +668,7 @@ def update_pdf_allocations(item, blob, period, url):
         if not 97 <= sum(v for _,v in values) <= 103:
             continue
         if item.get(field)!=values or dated != old_date:
+            record_auto_change(item,field,item.get(field),values,dated,url)
             item[field]=values
             item[field+'Date']=dated
             item.setdefault('fieldSources',{})[field]={
@@ -683,9 +702,18 @@ def refresh_one(s,item):
     changes=update_manager_page_recon(item,html,final_url)
     changes+=extract_clean_breakdowns(BeautifulSoup(html,'html.parser'),item)
     news=discover_acquisition_news(BeautifulSoup(html,'html.parser'),item,final_url,host)
-    if news and not item.get('acquisitions'):
-        item['acquisitions']=news
-        changes.append('acquisitions')
+    known_urls={a.get('url') for a in (item.get('acquisitions') or [])}
+    # Ne compléter que les annonces explicitement datées et identifiées à la SCPI.
+    # Une rubrique "actualités" d'un gérant peut concerner plusieurs fonds.
+    aliases=[fold(item['name'])]+[fold(x) for x in ALIASES.get(item['id'],[])]
+    new_acqs=[a for a in news if a.get('url') not in known_urls
+              and 'date non identifiée' not in a.get('when','')
+              and any(alias in fold(a.get('title','')+' '+a.get('url','')) for alias in aliases)]
+    if new_acqs:
+        item['acquisitions']=(item.get('acquisitions') or [])+new_acqs
+        record_auto_change(item,'acquisitions',None,
+                           [a.get('url') for a in new_acqs],TODAY,final_url)
+        changes.append('acquisitions ('+str(len(new_acqs))+' nouvelles)')
     # Iroko has predictable HTML release pages; validate candidate via actual content.
     if item['id']=='iroko-zen':
         q = dt.date.today().month
