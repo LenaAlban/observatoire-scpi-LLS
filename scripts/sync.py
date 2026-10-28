@@ -117,7 +117,9 @@ def period_from(text):
             if 2023<=year<=2035:
                 eligible.append((distance,year,quarter))
     if eligible:
-        _,year,quarter=min(eligible)
+        # Si plusieurs codes historiques figurent sur la couverture, garder
+        # le millésime le plus récent près du titre, pas le plus proche.
+        _,year,quarter=max(eligible,key=lambda row:(row[1]*4+row[2],-row[0]))
         return {'label':f'T{quarter} {year}',
                 'date':f'{year}-{quarter*3:02d}-{(31 if quarter in (1,4) else 30):02d}',
                 'rank':year*4+quarter,'periodType':'T'}
