@@ -88,6 +88,9 @@ const own={...iroko,indicatorHistory:{recon:[{date:'2025-12-31',value:201,source
 const other={...iroko,id:'other',name:'Autre',indicatorHistory:{recon:[{date:'2026-06-30',value:300,source:'https://example.org/2026.pdf'}]},history:[],recon:null,reconDate:null};
 const i1=h.historicalSeries(own,'recon'),i2=h.historicalSeries(other,'recon');
 assert.equal(i1.filter(p=>i2.some(x=>x.date===p.date)).length,0,'Ne pas simuler une date commune inexistante');
+const secondary={...iroko,priceType:'Marché secondaire',previousPrice:180,previousPriceDate:'2025-09-30',
+  previousPriceSource:'https://example.org/old-subscription.pdf'};
+assert.ok(!h.historicalSeries(secondary,'price').some(x=>x.date==='2025-09-30'),'Prix de souscription historique exclu du marché secondaire');
 const line=h.historicalPlot([{name:'SCPI A',points:i1.map(x=>({...x,value:100}))},{name:'SCPI B',points:i2.map(x=>({...x,value:100}))}],'recon',true);
 assert.ok(line.includes('base 100')||line.includes('indice 100'));
 for(const id of ['history-scpi','history-metric','history-compare-add','history-compare-metric','history-compare-chart'])assert.ok(html.includes('id="'+id+'"'),id);
