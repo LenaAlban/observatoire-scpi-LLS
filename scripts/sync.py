@@ -142,6 +142,80 @@ def discover(html, base_url, scpi, host):
     return sorted(candidates,key=lambda c:c['score'],reverse=True)
 
 
+
+def pdf_links_on_landing(html, base_url, scpi, host, period):
+    """Trouve des PDF sur une page de bulletin, même si le lien PDF n'est pas daté.
+
+    Les liens restent sur le domaine officiellement autorisé ; le contenu PDF,
+    son identité et sa période seront contrôlés avant toute publication.
+    """
+    soup = BeautifulSoup(html, 'html.parser')
+    aliases = [fold(scpi['name'])] + [fold(x) for x in ALIASES.get(scpi['id'], [])]
+    results = []
+    for a in soup.find_all('a', href=True):
+        href = urljoin(base_url, a['href'])
+        if not host_is(href, host):
+            continue
+        context = local_context(a)[:600]
+        note = fold(context)
+        p = period_from(context)
+        if p and p['rank'] != period['rank']:
+            continue
+        path = urlparse(href).path.lower()
+        document_hint = (
+            path.endswith('.pdf') or '.pdf' in path or
+            'pdf' in fold(a.get_text(' ',strip=True)) or
+            'telecharger' in fold(a.get_text(' ',strip=True)) or
+            'download' in path
+        )
+        if not document_hint:
+            continue
+        if any(x in note for x in ('rapport annuel', 'rapport de gestion', 'statuts', 'dic', 'dici', 'note d information')):
+            continue
+        identity = any(alias in note for alias in aliases)
+        score = (10 if '.pdf' in path else 0) + (6 if identity else 0) + (5 if p else 0) + (3 if 'bulletin' in note else 0)
+        results.append((score, href))
+    urls = []
+    for _, url in sorted(results, reverse=True):
+        if url not in urls and url != base_url:
+            urls.append(url)
+    return urls[:6]
+
+
+def verified_pdf_from_candidate(sess, candidate, item, host):
+    """Suivre au maximum une page intermédiaire et ne retourner qu'un PDF validé.
+
+    Les pages intermédiaires ne sont pas confondues avec un bulletin PDF lu.
+    La correspondance du nom de SCPI et du trimestre est obligatoire lorsque
+    la période est mentionnée dans le document.
+    """
+    wanted = candidate['period']
+    blob, ctype, url = fetch(sess, candidate['url'], host, limit=MAX_PDF)
+    if blob.startswith(b'%PDF'):
+        targets = [(blob, url)]
+    else:
+        html = blob.decode('utf-8', 'replace')
+        targets = []
+        for link in pdf_links_on_landing(html, url, item, host, wanted):
+            try:
+                pdf, _, resolved = fetch(sess, link, host, limit=MAX_PDF)
+                if pdf.startswith(b'%PDF'):
+                    targets.append((pdf, resolved))
+            except (requests.RequestException, ValueError, RuntimeError) as exc:
+                LOG.debug('Lien de PDF non exploitable (%s): %s', item['name'], exc)
+    for pdf, resolved in targets:
+        try:
+            text = pdf_text(pdf)
+            if not match_identity(text, item):
+                continue
+            actual = period_from(text[:6500])
+            if actual and actual['rank'] != wanted['rank']:
+                continue
+            return pdf, text, resolved
+        except (ValueError, RuntimeError) as exc:
+            LOG.debug('PDF rejeté (%s): %s', item['name'], exc)
+    return None
+
 def match_identity(doc_text, item):
     sample=fold(doc_text[:30_000])
     aliases=[item['name']]+ALIASES.get(item['id'],[])
@@ -626,51 +700,85 @@ def refresh_one(s,item):
                 if not re.search(rf'\b(?:{k}(?:er|e|eme)?\s*trimestre|t{k})\s*{y}\b',fold(content.decode('utf-8','replace'))):continue
                 candidates.append({'url':candidate_final,'period':period_from(f'T{k} {y}'),'score':y*40+k*10+7,'description':'Bulletin Iroko Zen - page officielle'})
             except Exception:pass
-    # Si le gérant ne publie pas de nouveau lien, relire le dernier PDF officiel
-    # déjà connu : les graphiques d'un bulletin existant peuvent être incomplets.
+    # Relire le dernier document connu : utile pour compléter les données d'un bulletin existant.
+    # Si le gérant publie un nouvel état, ne jamais écraser une valeur vérifiée par une valeur plus ancienne.
     known=item.get('bulletinUrl') or ''
     known_period=period_from(item.get('bulletin') or '')
     if known and known_period and host_is(known,host) and known not in [c['url'] for c in candidates]:
         candidates.append({'url':known,'period':known_period,
                            'score':known_period['rank']*10+5,
-                           'description':'Bulletin officiel déjà répertorié'})
-    if candidates:
-        best=max(candidates,key=lambda c:(c['period']['rank'],c['score']))
-        p=best['period']
-        if p['rank']>=existing_rank(item):
-            cand_url=best['url']
-            # Some pages offer a landing HTML rather than a PDF; both are valid sources.
-            if p['rank']>existing_rank(item) or not item.get('bulletinUrl'):
-                item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':cand_url})
-                changes.append('bulletin')
+                           'description':'Publication officielle déjà répertoriée'})
+    # Essayer plusieurs publications, plutôt que l'unique premier lien (qui peut être une
+    # page HTML, un ancien document ou un PDF sans correspondance SCPI).
+    candidates=sorted(candidates,key=lambda c:(c['period']['rank'],c['score']),reverse=True)
+    unique=[]
+    for candidate in candidates:
+        if candidate['url'] not in [c['url'] for c in unique] and candidate['period']['rank']>=existing_rank(item):
+            unique.append(candidate)
+    verified=False
+    document_errors=[]
+    for candidate in unique[:5]:
+        p=candidate['period']
+        try:
+            document=verified_pdf_from_candidate(s,candidate,item,host)
+        except (requests.RequestException, ValueError, RuntimeError) as exc:
+            document_errors.append(str(exc)[:130])
+            continue
+        if not document:
+            document_errors.append('Aucun PDF correspondant à la SCPI et à la période sur '+candidate['url'][:100])
+            continue
+        blob,txt,resolved=document
+        # Une publication n'est mise à jour qu'après vérification du document.
+        if p['rank'] > existing_rank(item) or not item.get('bulletinUrl') or item.get('bulletinUrl') != resolved:
+            item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':resolved})
+            changes.append('bulletin')
+        changes+=update_indicators(item,txt,p,resolved)
+        changes+=update_td_2025(item,txt,resolved)
+        changes+=update_liquidity(item,txt,p,resolved)
+        changes+=update_pdf_allocations(item,blob,p,resolved)
+        item['pdfVerifiedAt']=TODAY
+        item['pdfReadStatus']='PDF officiel lu (texte et positions)'
+        item['pdfSourceUrl']=resolved
+        item.pop('pdfWarning',None)
+        verified=True
+        break
+    if not verified:
+        # Pour un bulletin exclusivement en HTML, conserver une page identifiée
+        # mais ne jamais déclarer de PDF lu ni inventer de chiffres extraits.
+        for candidate in unique[:5]:
+            p=candidate['period']
+            if not host_is(candidate['url'],host):
+                continue
             try:
-                blob,ctype,resolved=fetch(s,cand_url,host,limit=MAX_PDF)
-                if blob[:4] != b'%PDF':
-                    item['pdfWarning']='Page HTML repérée ; lien PDF direct à identifier'
-                    item['pdfReadStatus']='non-lu : page HTML, pas un PDF'
-                else:
-                    txt=pdf_text(blob)
-                    if not match_identity(txt,item):
-                        raise ValueError('Identité SCPI absente dans le PDF : vérification requise')
-                    declared=period_from(txt[:4500])
-                    if declared and declared['rank']!=p['rank']:
-                        raise ValueError('Période annoncée différente de celle du PDF')
-                    changes+=update_indicators(item,txt,p,resolved)
-                    changes+=update_td_2025(item,txt,resolved)
-                    changes+=update_liquidity(item,txt,p,resolved)
-                    changes+=update_pdf_allocations(item,blob,p,resolved)
-                    item['pdfVerifiedAt']=TODAY
-                    item['pdfReadStatus']='PDF officiel lu (texte et positions)'
-                    item['pdfSourceUrl']=resolved
-                    item['bulletinUrl']=resolved
-                    item.pop('pdfWarning',None)
-            except Exception as exc:
-                item['pdfWarning']=str(exc)[:180]
-                item['pdfReadStatus']='échec lecture du PDF'
+                html_bytes,_,resolved=fetch(s,candidate['url'],host,limit=MAX_HTML)
+                if html_bytes.startswith(b'%PDF'):
+                    continue
+                bs=BeautifulSoup(html_bytes.decode('utf-8','replace'),'html.parser')
+                head=fold(' '.join(tag.get_text(' ',strip=True) for tag in bs.find_all(['h1','h2','title'])[:6]))
+                if 'bulletin' not in head and 'fil d actualites' not in head:
+                    continue
+                if not match_identity(head,item):
+                    continue
+                if not (period_from(head) and period_from(head)['rank']==p['rank']):
+                    continue
+                if p['rank'] > existing_rank(item):
+                    item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':resolved})
+                    changes.append('bulletin HTML')
+                item['pdfReadStatus']='Bulletin HTML identifié ; PDF non validé'
+                break
+            except (requests.RequestException, ValueError, RuntimeError):
+                continue
+        else:
+            item['pdfReadStatus']='Bulletin PDF non vérifié automatiquement'
+        item['pdfWarning']=' · '.join(document_errors[:2])[:220] if document_errors else 'Aucun bulletin exploitable détecté'
+    # Ne pas confondre découverte de lien et lecture d'un bulletin.
+    item['automatedCheck']=(
+        'PDF officiel vérifié et indicateurs contrôlés' if verified
+        else 'Source consultée ; PDF non confirmé (données précédentes conservées)'
+    )
     changes+=refresh_keys(s,item)
     item['lastChecked']=TODAY
-    item['automatedCheck']='Source officielle consultée' if candidates else 'Site accessible · bulletin non détecté automatiquement'
-    return changes, bool(candidates)
+    return changes, verified
 
 
 def main():
@@ -695,8 +803,8 @@ def main():
         try:
             updates,detected=refresh_one(ss,item)
             ok+=1;found+=int(detected);changed+=int(bool(updates))
-            statuses.append({'id':item['id'],'name':item['name'],'status':'ok' if item.get('pdfReadStatus','').startswith('PDF officiel lu') else 'partial','changes':updates,'message':item.get('automatedCheck',''),'source':item['officialSource'],'pdfRead':item.get('pdfReadStatus'),'pdfAllocation':item.get('pdfAllocationStatus'),'pdfWarning':item.get('pdfWarning')})
-            LOG.info('%s: %s',item['name'],', '.join(updates) or ('bulletin déjà à jour' if detected else 'source accessible, bulletin non détecté'))
+            statuses.append({'id':item['id'],'name':item['name'],'status':'ok' if detected else 'partial','changes':updates,'message':item.get('automatedCheck',''),'source':item['officialSource'],'pdfRead':item.get('pdfReadStatus'),'pdfAllocation':item.get('pdfAllocationStatus'),'pdfWarning':item.get('pdfWarning')})
+            LOG.info('%s: %s',item['name'],', '.join(updates) or ('bulletin PDF vérifié' if detected else 'source accessible, bulletin non validé'))
         except Exception as e:
             statuses.append({'id':item['id'],'name':item['name'],'status':'error','changes':[],'message':str(e)[:220],'source':item['officialSource']})
             item['automatedCheck']='Échec de récupération · données précédentes conservées'
