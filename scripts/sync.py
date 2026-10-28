@@ -425,6 +425,48 @@ def refresh_keys(s,item):
     if not url:
         return []
     hostname = (urlparse(url).hostname or '').lower().removeprefix('www.')
+    # La Française publie des offres de mandats (et non des clés permanentes).
+    if (
+        item['id'] in ('epargne-fonciere','lf-europimmo')
+        and url == 'https://www.lafrancaise-am-partenaires.com/produit/scpi/demembrement'
+    ):
+        try:
+            blob,_,_ = fetch(s,url,'lafrancaise-am-partenaires.com',limit=MAX_HTML)
+            soup=BeautifulSoup(blob.decode('utf-8','replace'),'html.parser')
+            headings=soup.find_all(['h2','h3','h4'])
+            offer=next((h for h in headings if 'offre disponible' in fold(h.get_text(' ',strip=True))),None)
+            if not offer:
+                return []
+            table=offer.find_next('table')
+            if not table:
+                return []
+            expected='epargne fonciere' if item['id']=='epargne-fonciere' else 'lf europimmo'
+            found={}
+            for tr in table.find_all('tr'):
+                cells=[c.get_text(' ',strip=True) for c in tr.find_all(['td','th'])]
+                if len(cells)<4 or fold(cells[0])!=expected:
+                    continue
+                yr=re.search(r'^\s*(\d{1,2})\s*$',cells[1])
+                np=re.search(r'(\d{1,2}(?:[.,]\d+)?)',cells[2])
+                us=re.search(r'(\d{1,2}(?:[.,]\d+)?)',cells[3])
+                if not yr or not np or not us:
+                    continue
+                year=int(yr.group(1)); n=float(np.group(1).replace(',','.')); u=float(us.group(1).replace(',','.'))
+                if 1<=year<=25 and 10<n<99 and abs(n+u-100)<0.15:
+                    found[str(year)]=n
+            if len(found)<2:
+                return []
+            if item.get('keys')==found:
+                item['keyVerifiedAt']=TODAY
+                return []
+            item['keys']=dict(sorted(found.items(),key=lambda pair:int(pair[0])))
+            item['keyVerifiedAt']=TODAY
+            item['keySourceType']='Société de gestion'
+            item['keyNote']='Offres sur mandats disponibles chez La Française : clés indicatives, disponibilité et contrepartie à revalider avant souscription.'
+            return ['clés de mandats La Française']
+        except Exception as exc:
+            LOG.debug('Offres La Française non actualisées (%s) : %s',item['name'],exc)
+            return []
     manager_entry = OFFICIAL.get(item['id'])
     is_manager = bool(manager_entry and host_is(url,manager_entry[1]))
     mtp_profile = item.get('mtxUrl') or ''
