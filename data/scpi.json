@@ -2008,9 +2008,35 @@
       }
     ],
     "notes": "Dernier prix acquéreur publié sur marché secondaire (frais inclus) : ne pas confondre avec un prix de souscription ou le produit net vendeur. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "allocationDate": "2025-12-31",
+    "geo": [
+      [
+        "Paris",
+        26.83
+      ],
+      [
+        "Île-de-France hors Paris",
+        67.29
+      ],
+      [
+        "Régions",
+        5.88
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        91.95
+      ],
+      [
+        "Commerces",
+        0.2
+      ],
+      [
+        "Santé et éducation",
+        7.85
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2058,6 +2084,18 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/rapport-annuel-lf-grand-paris-patrimoine-2025",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
+      },
+      "types": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/rapport-annuel-lf-grand-paris-patrimoine-2025",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
       }
     },
     "liquidity": {
@@ -2068,7 +2106,9 @@
     "sellerNetPrice": 80,
     "sellerNetPriceDate": "2026-07-31",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "patrimmo-commerce",
@@ -2085,7 +2125,7 @@
     "realisation": 126.9,
     "retreat": null,
     "td": 3.38,
-    "tof": 1.9,
+    "tof": 91.5,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -2099,9 +2139,51 @@
       }
     ],
     "notes": "Marché secondaire : dernier prix d’exécution indisponible dans les sources vérifiées. Ancien prix de souscription historique : 160 € au 2025-01-21 ; non utilisable comme prix de revente. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription. Le dernier bulletin officiel T4 2025 donne 151,36 € de reconstitution. Depuis la suspension du capital variable, ce montant ne constitue pas un prix de marché secondaire.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "allocationDate": "2025-12-31",
+    "geo": [
+      [
+        "Régions françaises",
+        45.3
+      ],
+      [
+        "Paris",
+        13.7
+      ],
+      [
+        "Belgique",
+        13.3
+      ],
+      [
+        "Île-de-France hors Paris",
+        12.6
+      ],
+      [
+        "Italie",
+        7.3
+      ],
+      [
+        "Pays-Bas",
+        5.3
+      ],
+      [
+        "Allemagne",
+        2.5
+      ]
+    ],
+    "types": [
+      [
+        "Commerces",
+        87.1
+      ],
+      [
+        "Bureaux",
+        11.2
+      ],
+      [
+        "Activité et logistique",
+        1.7
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2140,20 +2222,35 @@
         "proof": "Valeur de reconstitution 151,36 € au 31/12/2025 (p. 3)"
       },
       "tof": {
-        "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
-        "date": "2026-06-30",
-        "method": "extraction PDF stricte",
-        "proof": "                          locataire               2,87 ans            TOF*         1,9% Locaux vacants  de baux\n                                                                  "
+        "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF T4 2025, bulletin officiel"
       },
       "td": {
         "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce/",
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
+      },
+      "types": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
-    "tdYear": 2025
+    "tdYear": 2025,
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31",
+    "tofDate": "2025-12-31"
   },
   {
     "id": "patrimmo-croissance",
@@ -2494,7 +2591,7 @@
     "realisation": null,
     "retreat": null,
     "td": 4.04,
-    "tof": 0.2,
+    "tof": 94.7,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -2508,9 +2605,59 @@
       }
     ],
     "notes": "Marché secondaire : dernier prix d’exécution indisponible dans les sources vérifiées. Ancien prix de souscription historique : 164 € au 2025-01-21 ; non utilisable comme prix de revente. Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "allocationDate": "2026-03-31",
+    "geo": [
+      [
+        "France hors Île-de-France",
+        37.5
+      ],
+      [
+        "Île-de-France hors Paris",
+        23.7
+      ],
+      [
+        "Allemagne",
+        18.5
+      ],
+      [
+        "Italie",
+        12.8
+      ],
+      [
+        "Paris",
+        4.8
+      ],
+      [
+        "Espagne",
+        2
+      ],
+      [
+        "Belgique",
+        0.5
+      ],
+      [
+        "Pays-Bas",
+        0.3
+      ]
+    ],
+    "types": [
+      [
+        "Santé / seniors",
+        78.6
+      ],
+      [
+        "Bureaux",
+        16.3
+      ],
+      [
+        "Éducation",
+        3.9
+      ],
+      [
+        "Hôtellerie",
+        1.2
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2549,20 +2696,35 @@
         "proof": "Valeur de reconstitution par part publiée"
       },
       "tof": {
-        "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
-        "date": "2026-06-30",
-        "method": "extraction PDF stricte",
-        "proof": "    locataire                         des baux (WALB)*\n  Nombre       TOF*        0,2% Locaux vacants sous promesse\n  de baux     94,6 %              de vente                9,64"
+        "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "TOF T1 2026, bulletin officiel"
       },
       "td": {
         "url": "https://www.praemiareim.fr/fr/scpi-primovie",
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Donnée 2025 publiée par la société de gestion"
+      },
+      "geo": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
+      },
+      "types": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
-    "tdYear": 2025
+    "tdYear": 2025,
+    "geoDate": "2026-03-31",
+    "typesDate": "2026-03-31",
+    "tofDate": "2026-03-31"
   },
   {
     "id": "pfo2",
@@ -2731,9 +2893,71 @@
     "sourceUrl": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
     "history": [],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "allocationDate": "2025-09-30",
+    "geo": [
+      [
+        "Paris",
+        45.8
+      ],
+      [
+        "Île-de-France hors Paris",
+        23.3
+      ],
+      [
+        "Régions",
+        10.8
+      ],
+      [
+        "Allemagne",
+        10.6
+      ],
+      [
+        "Espagne",
+        3.6
+      ],
+      [
+        "Pays-Bas",
+        2.6
+      ],
+      [
+        "Belgique",
+        0.9
+      ],
+      [
+        "Autriche",
+        0.9
+      ],
+      [
+        "République tchèque",
+        0.9
+      ],
+      [
+        "Pologne",
+        0.6
+      ]
+    ],
+    "types": [
+      [
+        "Bureaux",
+        79.4
+      ],
+      [
+        "Commerces",
+        13.6
+      ],
+      [
+        "Logistique",
+        2.9
+      ],
+      [
+        "Hôtels",
+        3.3
+      ],
+      [
+        "Résidences services",
+        0.7
+      ]
+    ],
     "acquisitions": [],
     "keys": {},
     "keySource": null,
@@ -2781,10 +3005,24 @@
         "date": "2026-06-30",
         "verifiedAt": null,
         "method": "Indicateur recoupé via publication secondaire citant Amundi; contrôle du PDF d'origine nécessaire"
+      },
+      "geo": {
+        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_a93cfc80-5fa6-48ad-aff4-1c41e0e990b5",
+        "date": "2025-09-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
+      },
+      "types": {
+        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_a93cfc80-5fa6-48ad-aff4-1c41e0e990b5",
+        "date": "2025-09-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur vénale du patrimoine publiée dans le document officiel de la société de gestion"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2025-09-30",
+    "typesDate": "2025-09-30"
   },
   {
     "id": "selectinvest-1",
