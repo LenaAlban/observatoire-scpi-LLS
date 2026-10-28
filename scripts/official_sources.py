@@ -1,3 +1,25 @@
+
+# Pages et documents hébergés chez les gérants, vérifiés comme voies de
+# secours. Leur présence n'atteste jamais à elle seule qu'un bulletin est lu.
+SOFIDY_BULLETINS='https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/'
+SOFIDY_DOCUMENTATION='https://www.sofidy.com/documentation/'
+OFFICIAL_FALLBACKS = {
+    'altixia-cadence-xii': [
+        'https://www.altixia.fr/documentation.php?listeProduit=1',
+        'https://www.altixia.fr/medias/documentations/doc1-20260430-122013.pdf',
+    ],
+    'edissimmo': [
+        'https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/L-essentiel',
+    ],
+    'rivoli-avenir-patrimoine': [
+        'https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/L-essentiel',
+    ],
+    'efimmo-1': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'immorente': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'sofidynamic': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+}
+
 """Pages officielles vérifiées au 28 octobre 2026. Les liens sont des pages, non des PDF hypothétiques."""
 OFFICIAL = {
  'iroko-zen': ('https://www.iroko.eu/bulletins-trimestriels/t2-2026', 'iroko.eu'),
