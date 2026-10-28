@@ -784,13 +784,13 @@
     ],
     "price": 670,
     "priceDate": "2026-09-11",
-    "recon": 704.15,
-    "reconDate": "2026-03-31",
+    "recon": 637.91,
+    "reconDate": "2026-06-30",
     "realisation": null,
     "retreat": null,
     "td": 4.86,
     "tof": 88.3,
-    "waiting": null,
+    "waiting": 523947,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
@@ -800,6 +800,10 @@
       {
         "date": "2026-03-31",
         "value": 704.15
+      },
+      {
+        "date": "2026-06-30",
+        "value": 637.91
       }
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
@@ -819,15 +823,21 @@
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "waitingParts": 523947,
+      "withdrawalsExecuted": 67,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "periodEnd": "2026-06-30",
+      "periodLabel": "T2 2026",
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-06-30",
+          "parts": 67
+        }
+      ],
+      "sourceUrl": "https://www.lafrancaise-am-partenaires.com/Document/bulletin-trimestriel-epargne-fonciere-30062026",
+      "verifiedAt": "2026-10-28",
+      "method": "Stock et flux explicitement publiés dans le bulletin officiel T2 2026; retrait par compensation",
+      "stockProvenance": "Bulletin officiel société de gestion"
     },
     "priceSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE",
     "priceType": "Souscription",
@@ -840,10 +850,10 @@
         "proof": "Souscription"
       },
       "recon": {
-        "url": "https://doc.la-francaise.com/Documents/bt-complet-2026-trimestre-1",
-        "date": "2026-03-31",
-        "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
-        "proof": "Valeur de reconstitution par part publiée"
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/bulletin-trimestriel-epargne-fonciere-30062026",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel T2 2026, valeur de reconstitution 637,91 € (ancienne valeur 704,15 € devenue obsolète)"
       },
       "td": {
         "url": "https://www.lafrancaise-am-partenaires.com/Produit/SCPI/FicheProduit/epargne-fonciere",
@@ -856,13 +866,26 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "TOF publié par la société de gestion"
+      },
+      "waiting": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/bulletin-trimestriel-epargne-fonciere-30062026",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Stock et flux explicitement publiés dans le bulletin officiel T2 2026; retrait par compensation"
+      },
+      "withdrawalsExecuted": {
+        "url": "https://www.lafrancaise-am-partenaires.com/Document/bulletin-trimestriel-epargne-fonciere-30062026",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Stock et flux explicitement publiés dans le bulletin officiel T2 2026; retrait par compensation"
       }
     },
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
     "keyNote": "Clés indicatives correspondant aux mandats disponibles publiés par La Française lors du contrôle du 28/10/2026. Ce n'est pas un barème permanent ; disponibilités et prix soumis à validation d'une contrepartie.",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "reconNote": "Valeur de reconstitution au 30/06/2026 : 637,91 €. La baisse a transformé la décote précédente en surcote d'environ 5 %."
   },
   {
     "id": "ficommerce",
@@ -874,17 +897,17 @@
     ],
     "price": 70,
     "priceDate": "2026-01-01",
-    "recon": 69.29,
-    "reconDate": "2025-12-31",
+    "recon": 68.82,
+    "reconDate": "2026-06-30",
     "realisation": null,
     "retreat": 63,
     "td": 5.1,
     "tof": 95.35,
-    "waiting": null,
+    "waiting": 568209,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
+    "bulletinUrl": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
     "sourceUrl": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
     "history": [
       {
@@ -906,24 +929,32 @@
     "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "waitingParts": 568209,
+      "withdrawalsExecuted": 247,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "periodEnd": "2026-06-30",
+      "periodLabel": "T2 2026",
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-06-30",
+          "parts": 247
+        }
+      ],
+      "sourceUrl": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
+      "verifiedAt": "2026-10-28",
+      "method": "247 retraits compensés par souscriptions ; 10 503 autres retraits via fonds de remboursement à un prix distinct, exclus de l'estimation de file.",
+      "stockProvenance": "Bulletin officiel société de gestion",
+      "fundRedemptions": 10503,
+      "fundUnitPrice": 52
     },
     "priceType": "Souscription",
     "priceSource": "https://www.fiducial-gerance.fr/content/download/1335/file/BTI%20Ficommerce%20T1%202026.pdf?version=4",
     "fieldSources": {
       "recon": {
-        "url": "https://www.fiducial-gerance.fr/content/download/1335/file/BTI%20Ficommerce%20T1%202026.pdf?version=4",
-        "date": "2025-12-31",
-        "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
-        "proof": "207,88 € au 31/12/2025 ÷ 3 (division des parts le 01/01/2026) : 69,2933 € théoriques par nouvelle part"
+        "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Valeur publiée à titre indicatif sous réserve de validation comptable"
       },
       "td": {
         "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
@@ -932,16 +963,28 @@
         "method": "Donnée 2025 publiée par la société de gestion"
       },
       "tof": {
-        "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
-        "date": "2026-07-30",
+        "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
+        "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
-        "method": "TOF publié par la société de gestion"
+        "method": "Taux d'occupation financier publié"
+      },
+      "waiting": {
+        "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "247 retraits compensés par souscriptions ; 10 503 autres retraits via fonds de remboursement à un prix distinct, exclus de l'estimation de file."
+      },
+      "withdrawalsExecuted": {
+        "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "247 retraits compensés par souscriptions ; 10 503 autres retraits via fonds de remboursement à un prix distinct, exclus de l'estimation de file."
       }
     },
     "reconDerived": true,
     "reconNote": "Valeur ajustée : 207,88 € par ancienne part au 31/12/2025, ramenée à 69,29 € par nouvelle part (division par 3 le 01/01/2026). Il s’agit d’un calcul, pas d’un nouveau chiffre publié tel quel.",
     "tdYear": 2025,
-    "tofDate": "2026-07-30"
+    "tofDate": "2026-06-30"
   },
   {
     "id": "immorente",
@@ -959,11 +1002,11 @@
     "retreat": null,
     "td": 5,
     "tof": 91.17,
-    "waiting": null,
+    "waiting": 202747,
     "waitingPct": null,
     "bulletin": "T2 2026",
     "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.sofidy.com/solutions/immorente/",
+    "bulletinUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
     "sourceUrl": "https://www.sofidy.com/solutions/immorente/",
     "history": [
       {
@@ -992,15 +1035,21 @@
     "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "waitingParts": 202747,
+      "withdrawalsExecuted": 30006,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "periodEnd": "2026-06-30",
+      "periodLabel": "T2 2026",
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-06-30",
+          "parts": 30006
+        }
+      ],
+      "sourceUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
+      "verifiedAt": "2026-10-28",
+      "method": "Stock en attente et retraits T2 2026 publiés dans le bulletin officiel Sofidy",
+      "stockProvenance": "Bulletin officiel société de gestion"
     },
     "priceSource": "https://www.sofidy.com/solutions/immorente/",
     "priceType": "Souscription",
@@ -1019,16 +1068,28 @@
         "proof": "Valeur de reconstitution par part publiée"
       },
       "td": {
-        "url": "https://www.sofidy.com/solutions/immorente/",
+        "url": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
-        "method": "Donnée 2025 publiée par la société de gestion"
+        "method": "TD annuel 2025 bulletin T2 2026"
       },
       "tof": {
-        "url": "https://www.sofidy.com/scpi/taux-occupation-financier/",
+        "url": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
-        "method": "TOF publié par la société de gestion"
+        "method": "TOF bulletin T2 2026"
+      },
+      "waiting": {
+        "url": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Stock en attente et retraits T2 2026 publiés dans le bulletin officiel Sofidy"
+      },
+      "withdrawalsExecuted": {
+        "url": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Stock en attente et retraits T2 2026 publiés dans le bulletin officiel Sofidy"
       }
     },
     "keySourceType": "Société de gestion",
