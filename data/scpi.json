@@ -37,6 +37,12 @@
     "types": [],
     "acquisitions": [
       {
+        "when": "Publication T2 2026",
+        "title": "Six acquisitions dans quatre pays européens",
+        "details": "Volume global annoncé de 149,8 M€ hors droits ; consulter la page du bulletin pour les actifs individuels.",
+        "url": "https://www.iroko.eu/bulletins-trimestriels/t2-2026"
+      },
+      {
         "when": "T2 2026",
         "title": "6 acquisitions dans 4 pays européens",
         "details": "Volume global de 149,8 M€ hors droits annoncé au 2e trimestre 2026. Vérifier le détail des actifs dans le bulletin.",
@@ -87,7 +93,10 @@
     "keySourceType": "Société de gestion",
     "keyVerifiedAt": "2026-10-28",
     "keyNote": "Barème officiel Iroko en vigueur depuis le 01/07/2021, toujours référencé sur son site. Ancienneté importante : confirmation nécessaire avant toute souscription.",
-    "fieldSources": {}
+    "fieldSources": {},
+    "allocationNote": "La société de gestion annonce environ 70 % du parc hors de France au 30/06/2026. Ventilation précise par pays et secteur intégrée dans des graphiques non exploitables ici.",
+    "allocationNoteSource": "https://www.iroko.eu/scpi/zen",
+    "allocationNoteDate": "2026-06-30"
   },
   {
     "id": "pierval-sante",
@@ -127,9 +136,65 @@
       "Autre"
     ],
     "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "geo": [
+      [
+        "France",
+        32.6
+      ],
+      [
+        "Royaume-Uni",
+        19.9
+      ],
+      [
+        "Allemagne",
+        13.8
+      ],
+      [
+        "Pays-Bas",
+        13.4
+      ],
+      [
+        "Irlande",
+        8.5
+      ],
+      [
+        "Italie",
+        7.6
+      ],
+      [
+        "Portugal",
+        2.2
+      ],
+      [
+        "Espagne",
+        1.3
+      ],
+      [
+        "Canada",
+        0.7
+      ]
+    ],
+    "types": [
+      [
+        "Médico-social",
+        71.7
+      ],
+      [
+        "Sanitaire et soins de ville",
+        19.9
+      ],
+      [
+        "Autres secteurs de santé",
+        8.4
+      ]
+    ],
     "acquisitions": [
+      {
+        "when": "Janvier 2026",
+        "title": "Résidence seniors à Pitcrocknie (Écosse)",
+        "details": "Acquisition annoncée pour 15,5 M€ dans le bulletin du premier trimestre 2026.",
+        "url": "https://www.euryale-am.fr/wp-content/uploads/2026/05/BT_PIERVAL_SANTE_2026_T1.pdf"
+      },
       {
         "when": "Annonce de la société de gestion · date non identifiée",
         "title": "Nos acquisitions",
@@ -195,10 +260,24 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "Valeur de retrait publiée par Euryale"
+      },
+      "geo": {
+        "url": "https://www.euryale-am.fr/wp-content/uploads/2026/05/BT_PIERVAL_SANTE_2026_T1.pdf",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel, ventilation en % de la valeur vénale hors droits"
+      },
+      "types": {
+        "url": "https://www.euryale-am.fr/wp-content/uploads/2026/05/BT_PIERVAL_SANTE_2026_T1.pdf",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel, ventilation en % de la valeur vénale hors droits"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "geoDate": "2026-03-31",
+    "typesDate": "2026-03-31"
   },
   {
     "id": "corum-origin",
@@ -265,7 +344,20 @@
         1
       ]
     ],
-    "acquisitions": [],
+    "acquisitions": [
+      {
+        "when": "2026",
+        "title": "Bureaux à La Haye (Pays-Bas)",
+        "details": "Immeuble de bureaux identifié dans les acquisitions 2026 du portefeuille. Montant non publié sur cette fiche.",
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine"
+      },
+      {
+        "when": "2026",
+        "title": "Bureaux à Ratingen (Allemagne)",
+        "details": "Acquisition de bureaux mentionnée sur la page patrimoine de CORUM Origin.",
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine"
+      }
+    ],
     "keys": {
       "3": 85,
       "5": 78,
@@ -565,7 +657,10 @@
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "allocationNote": "Les ventilations géographique et typologique sont publiées par AEW au 30/06/2026, mais les pourcentages ne sont pas lisibles dans la version textuelle consultée.",
+    "allocationNoteSource": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
+    "allocationNoteDate": "2026-06-30"
   },
   {
     "id": "altixia-cadence-xii",
@@ -637,7 +732,14 @@
         4
       ]
     ],
-    "acquisitions": [],
+    "acquisitions": [
+      {
+        "when": "1 juillet 2025",
+        "title": "Immeuble de bureaux à Madrid",
+        "details": "4 568 m², acquisition à 7 150 670 € selon la fiche officielle.",
+        "url": "https://www.altixia.fr/scpi-cadence.php"
+      }
+    ],
     "keys": {},
     "keySource": null,
     "keyDate": null,
@@ -733,7 +835,14 @@
     "allocationDate": null,
     "geo": [],
     "types": [],
-    "acquisitions": [],
+    "acquisitions": [
+      {
+        "when": "2026",
+        "title": "Hôtel 4 étoiles à L'Albir, Espagne",
+        "details": "Établissement de 216 chambres exploité par Pierre & Vacances, signalé par Atream parmi les nouveaux actifs.",
+        "url": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/"
+      }
+    ],
     "keys": {},
     "keySource": null,
     "keyDate": null,
@@ -790,7 +899,10 @@
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2026-06-30"
+    "tofDate": "2026-06-30",
+    "allocationNote": "Patrimoine présent dans six pays (France, Allemagne, Belgique, Pays-Bas, Italie, Espagne). Les pourcentages actuels par pays ne sont pas donnés en texte sur la fiche.",
+    "allocationNoteSource": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
+    "allocationNoteDate": "2026-06-30"
   },
   {
     "id": "edissimmo",
@@ -2842,7 +2954,14 @@
     "allocationDate": null,
     "geo": [],
     "types": [],
-    "acquisitions": [],
+    "acquisitions": [
+      {
+        "when": "2026",
+        "title": "Retail park à Cormontreuil (51)",
+        "details": "1 247 m², avec Action comme locataire. Montant communiqué dans une fourchette de 1 à 5 M€.",
+        "url": "https://atland-voisin.com/scpi/epargne-pierre/"
+      }
+    ],
     "keys": {},
     "keySource": "https://atland-voisin.com/scpi/epargne-pierre/",
     "keyDate": null,
@@ -2886,7 +3005,10 @@
     },
     "pdfVerifiedAt": "2026-10-28",
     "tdYear": 2025,
-    "tofDate": "2025-12-31"
+    "tofDate": "2025-12-31",
+    "allocationNote": "Le gérant présente des répartitions au 30/06/2026 sous forme de graphiques et des acquisitions 2026. Pondérations détaillées non encore vérifiées.",
+    "allocationNoteSource": "https://atland-voisin.com/scpi/epargne-pierre/",
+    "allocationNoteDate": "2026-06-30"
   },
   {
     "id": "sofidynamic",
@@ -3283,7 +3405,10 @@
     },
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "allocationNote": "Le gérant publie les répartitions géographiques et sectorielles au 30/06/2026 sous forme de graphiques. Pourcentages non vérifiés dans le référentiel.",
+    "allocationNoteSource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
+    "allocationNoteDate": "2026-06-30"
   },
   {
     "id": "epargne-pierre-sophia",
@@ -3315,9 +3440,38 @@
     ],
     "notes": "Prix et TD issus de la fiche produit Meilleurtaux Placement consultée en octobre 2026. Vérifier les conditions effectives avant souscription.",
     "allocationDate": null,
-    "geo": [],
-    "types": [],
-    "acquisitions": [],
+    "geo": [
+      [
+        "France",
+        84.05
+      ],
+      [
+        "Espagne",
+        15.95
+      ]
+    ],
+    "types": [
+      [
+        "Soins de longue durée",
+        53.22
+      ],
+      [
+        "Soins de moyenne durée",
+        41.46
+      ],
+      [
+        "Soins ambulatoires et autres",
+        5.32
+      ]
+    ],
+    "acquisitions": [
+      {
+        "when": "T4 2025",
+        "title": "Quatre résidences de soins de longue durée",
+        "details": "Acquisition d'un portefeuille pour 8,08 M€ avec exploitants dont Clariane et Colisée.",
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/02/BPI4T2025-EPS-vdef-web-compresse.pdf"
+      }
+    ],
     "keys": {
       "3": 88.5,
       "5": 81.5,
@@ -3374,6 +3528,18 @@
         "date": "2026-07-01",
         "verifiedAt": "2026-10-28",
         "method": "Fiche officielle ATLAND, valeur de reconstitution à l'unité après division de parts"
+      },
+      "geo": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/02/BPI4T2025-EPS-vdef-web-compresse.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel, ventilation en % de la valeur vénale hors droits"
+      },
+      "types": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/02/BPI4T2025-EPS-vdef-web-compresse.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel, ventilation en % de la valeur vénale hors droits"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
@@ -3385,7 +3551,9 @@
     "previousPriceDate": "2025-12-31",
     "previousPriceSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
     "reconNote": "Division par 10 du prix de part en 2026. Prix 22 € et valeur de reconstitution 22,68 € publiés sur la fiche officielle ATLAND.",
-    "reconDerived": false
+    "reconDerived": false,
+    "geoDate": "2025-12-31",
+    "typesDate": "2025-12-31"
   },
   {
     "id": "sofidy-europe-invest",
@@ -3469,7 +3637,20 @@
         1
       ]
     ],
-    "acquisitions": [],
+    "acquisitions": [
+      {
+        "when": "2025",
+        "title": "Hôtel à Torremolinos (Espagne)",
+        "details": "Acquisition d'un hôtel pour 25 M€ présentée dans le rapport annuel 2025.",
+        "url": "https://www.sofidy.com/app/uploads/2026/04/sei-rapport-annuel-2025.pdf"
+      },
+      {
+        "when": "2025",
+        "title": "Centre commercial à Zoetermeer (Pays-Bas)",
+        "details": "Acquisition pour 28 M€ mentionnée au rapport annuel 2025.",
+        "url": "https://www.sofidy.com/app/uploads/2026/04/sei-rapport-annuel-2025.pdf"
+      }
+    ],
     "keys": {
       "5": 81,
       "6": 78,
@@ -3603,7 +3784,10 @@
     "priceSource": "https://fr.principalam.com/notre-scpi",
     "keySourceType": "Meilleurtaux Placement",
     "keyVerifiedAt": "2026-10-28",
-    "fieldSources": {}
+    "fieldSources": {},
+    "allocationNote": "La cible 50 % Europe / 50 % États-Unis est stratégique, non une répartition effective ; aucun pourcentage patrimonial n'est affiché sans bulletin vérifié.",
+    "allocationNoteSource": "https://fr.principalam.com/notre-scpi",
+    "allocationNoteDate": null
   },
   {
     "id": "corum-usa",
@@ -3680,6 +3864,9 @@
     },
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-10-28"
+    "keyVerifiedAt": "2026-10-28",
+    "allocationNote": "Patrimoine américain localisé au Texas, en Californie, dans l'Illinois et l'État de New York au 30/06/2026. Répartition chiffrée par État non confirmée.",
+    "allocationNoteSource": "https://www.corum.fr/nos-scpi/corum-usa",
+    "allocationNoteDate": "2026-06-30"
   }
 ]
