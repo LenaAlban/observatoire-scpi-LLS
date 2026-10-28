@@ -753,6 +753,38 @@ def official_entry_points(item, url, host):
     return urls[:14]
 
 
+def opaque_pdf_links_on_page(html, base_url, scpi, host):
+    """Lire les URL PDF dans les ancres, attributs data-* et scripts HTML.
+
+    Chaque document est ensuite validé par son identité et sa période PDF.
+    """
+    from html import unescape
+    soup=BeautifulSoup(html,'html.parser')
+    possible=[]
+    for tag in soup.find_all(True):
+        for attr in ('href','data-url','data-href','data-file','data-pdf','src'):
+            raw=tag.get(attr)
+            if isinstance(raw,str) and '.pdf' in raw.lower():
+                possible.append((raw,fold(local_context(tag)) if tag.name=='a' else ''))
+    # La page d'Altixia peut contenir du JSON / des scripts plutôt que des <a>.
+    for match in re.finditer(r'/medias/(?:documentations|actualites)/[^"\'<>\s]+?\.pdf',html,re.I):
+        possible.append((match.group(0),''))
+    seen=set()
+    urls=[]
+    for raw,context in possible:
+        target=urljoin(base_url,unescape(raw.replace('\\/','/').strip()))
+        if not host_is(target,host) or '.pdf' not in urlparse(target).path.lower() or target in seen:
+            continue
+        if any(word in context for word in ('rapport annuel','statuts','dic','note d information')):
+            continue
+        if period_from(context):continue
+        seen.add(target)
+        urls.append(target)
+    if scpi.get('id')=='altixia-cadence-xii':
+        urls.sort(reverse=True)
+    return urls[:12]
+
+
 def collect_official_candidates(sess,item,url,host):
     """Repli sur les chemins officiels, PDF datés vérifiés et URLs connues."""
     candidates=[]
@@ -787,19 +819,11 @@ def collect_official_candidates(sess,item,url,host):
                 primary_url=resolved
             candidates.extend(discovered)
             if not any(c['period']['rank']>existing_rank(item) for c in candidates):
-                soup=BeautifulSoup(html,'html.parser')
-                opaque=[]
-                for link in soup.find_all('a',href=True):
-                    target=urljoin(resolved,link['href'])
-                    path=urlparse(target).path.lower()
-                    if not host_is(target,host) or '.pdf' not in path or target in checked_opaque:continue
-                    context=fold(local_context(link))
-                    if any(bad in context for bad in ('rapport annuel','statuts','dic')):continue
-                    if not ('bulletin' in context or 'documentation' in context or item['id']=='altixia-cadence-xii'):continue
-                    if period_from(context):continue
+                opaque=opaque_pdf_links_on_page(html,resolved,item,host)
+                max_candidates=8 if item['id']=='altixia-cadence-xii' else 3
+                for target in opaque[:max_candidates]:
+                    if target in checked_opaque:continue
                     checked_opaque.add(target)
-                    opaque.append(target)
-                for target in opaque[:3]:
                     try:
                         pdf,_,pdf_url=fetch(sess,target,host,limit=MAX_PDF)
                         candidate=pdf_candidate_from_bytes(pdf,pdf_url,item)
