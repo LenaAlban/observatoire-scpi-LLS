@@ -780,6 +780,112 @@ function allocationEqualWeights(ids){
  return out;
 }
 
+
+function allocationAdd(id){
+ if(!id||!items.some(s=>s.id===id)||Object.hasOwn(allocationState.weights,id))return;
+ if(Object.keys(allocationState.weights).length>=10){toast('Maximum 10 SCPI dans une simulation.');return;}
+ const first=Object.keys(allocationState.weights).length===0;
+ allocationState.weights[id]=first?100:0;
+ renderAllocation();
+}
+function allocationMoney(n){
+ return Number.isFinite(n)?fr(n,2)+' €':'—';
+}
+function allocationMixHtml(title,mix,label){
+ return `<section class="panel allocation-panel"><h3>${esc(title)}</h3>
+ <p class="compare-note">Pondérations consolidées du montant investi. Données exploitables : <strong>${fr(mix.covered,2)} %</strong> de l'allocation. Les parts non documentées ne sont pas redistribuées entre les SCPI connues. ${label}</p>
+ ${mix.rows.map(row=>`<div class="allocation-mixline"><span>${esc(row.name)}</span><div class="allocation-bar" aria-hidden="true"><i style="width:${Math.max(0,Math.min(100,row.percentage))}%"></i></div><b>${fr(row.percentage,2)} %</b></div>`).join('')}
+ <p class="compare-note">Les répartitions publiées sont normalisées au total de chaque bulletin pour neutraliser les arrondis. Les regroupements concernent seulement des libellés suffisamment comparables ; les secteurs mixtes restent distincts.</p></section>`;
+}
+function allocationSourcesHtml(a){
+ const rows=a.positions.map(p=>{
+  const s=p.s;
+  const parts=[
+   ['TD 2025',s.fieldSources?.td?.url||s.bulletinUrl],
+   ['Géographie',s.fieldSources?.geo?.url],
+   ['Secteurs',s.fieldSources?.types?.url],
+   ['Liquidité',s.liquidityData?.sourceUrl||s.liquidity?.source]
+  ].filter(([,url])=>/^https:\/\//.test(url||''));
+  return `<div class="allocation-source-list"><p><strong>${esc(s.name)}</strong> · ${fr(p.weight,2)} % · Bulletin ${esc(s.bulletin||'non identifié')} (${date(s.bulletinDate)})</p><p>${parts.length?parts.map(([label,url])=>link(url,label,'compare-source')).join(' · '):'Aucun lien documentaire confirmé pour les champs agrégés.'}</p></div>`;
+ }).join('');
+ return `<section class="panel allocation-panel"><h3>Sources et périodes par SCPI</h3><p class="compare-note">Chaque chiffre est issu du référentiel automatiquement publié. Un lien permet de vérifier les documents d’origine ; il ne garantit pas qu’ils soient encore accessibles.</p>${rows}</section>`;
+}
+function renderAllocationResults(){
+ const a=allocationCompute(allocationState.amount,allocationState.weights);
+ const validation=$('allocation-validation'),result=$('allocation-results'),print=$('allocation-print');
+ for(const p of a.positions){
+  const target=$('allocation-euro-'+p.id);
+  if(target)target.textContent=Number.isFinite(a.amount)&&a.amount>0&&Number.isFinite(p.weight)&&p.weight>=0?allocationMoney(a.amount*p.weight/100):'—';
+ }
+ print.disabled=!a.valid;
+ if(!a.valid){
+  validation.className='allocation-validation invalid';
+  validation.textContent=a.reason+' Total actuel : '+fr(a.weightSum,2)+' % · 100 % requis.';
+  result.innerHTML='<div class="panel allocation-panel"><p class="smalltxt">Les indicateurs consolidés apparaîtront lorsque le montant et les pondérations seront valides. Aucune donnée de l’observatoire n’est modifiée par cette simulation.</p></div>';
+  return;
+ }
+ validation.className='allocation-validation valid';
+ validation.textContent='Allocation complète : '+fr(a.weightSum,2)+' % · '+allocationMoney(a.amount)+' répartis entre '+a.positions.length+' SCPI. Montants cibles hors frais et arrondis de parts.';
+ const cards=[
+  ['Montant cible',allocationMoney(a.amount),a.positions.length+' SCPI sélectionnées'],
+  ['TD historique 2025',a.td===null?'Non calculable':pct(a.td),'Couverture TD : '+fr(a.tdCoverage,2)+' % · indicateur historique, non prévisionnel'],
+  ['Géographie documentée',fr(a.geo.covered,2)+' %','Part de l’allocation dont la ventilation est documentée'],
+  ['Secteurs documentés',fr(a.types.covered,2)+' %','Part de l’allocation dont la ventilation est documentée']
+ ];
+ const chips=cards.map(([label,value,description])=>`<div class="allocation-summary"><span>${esc(label)}</span><strong>${esc(value)}</strong><small>${esc(description)}</small></div>`).join('');
+ const weights=`<section class="panel allocation-panel"><h3>Montants et pondérations</h3><div class="allocation-weights-graph">${a.positions.map(p=>`<div class="allocation-mixline"><span>${esc(p.s.name)}<small class="compare-meta">${allocationMoney(p.amount)}</small></span><div class="allocation-bar" aria-hidden="true"><i style="width:${p.weight}%"></i></div><b>${fr(p.weight,2)} %</b></div>`).join('')}</div><p class="compare-note">Montants exprimés en euros cibles : aucune conversion en parts, ni calcul de droits, frais, fiscalité ou exécution.</p></section>`;
+ const labels={clear:'Aucune part en attente publiée',regular:'File extrapolée (courte, non garantie)',elevated:'File > 2 ans (théorique)',high:'File > 5 ans (très fragile)',severe:'Liquidité très dégradée (> 10 ans théoriques)',blocked:'Retraits nuls / délai indéterminable',market:'Marché secondaire / confrontation',unknown:'Informations insuffisantes'};
+ const riskRows=a.liquidity.sort((x,y)=>y.weight-x.weight).map(x=>`<div class="allocation-mixline"><span>${esc(labels[x.code]||x.code)}</span><div class="allocation-bar"><i style="width:${x.weight}%"></i></div><b>${fr(x.weight,2)} %</b></div>`).join('');
+ const liquid=`<section class="panel allocation-panel"><h3>Exposition aux situations de liquidité</h3><p class="compare-note">Pondération par modalité ou indicateur de retrait des SCPI, pas un délai ni un score de liquidité consolidé. Pour des parts en assurance-vie, vérifier le contrat assureur.</p>${riskRows}<h4 style="margin:17px 0 10px;font-size:12px">Détail des situations</h4>${a.liquidItems.map(x=>`<p class="smalltxt" style="line-height:1.55;margin:5px 0"><strong>${esc(x.name)} (${fr(x.weight,2)} %)</strong> · ${esc(x.label)} · ${date(x.period)} ${link(x.source,'Publication','compare-source')}</p>`).join('')}</section>`;
+ const alerts=a.warnings.length?`<section class="panel allocation-panel"><h3>Vigilances et données manquantes (${a.warnings.length})</h3><ul class="allocation-warning-list">${a.warnings.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></section>`:'<section class="panel allocation-panel"><h3>Vigilances</h3><p class="smalltxt">Aucune alerte supplémentaire créée par les règles du simulateur. Ce constat ne constitue pas une analyse complète des risques.</p></section>';
+ result.innerHTML=`<div class="allocation-summary-grid">${chips}</div>${weights}<div class="allocation-breakdowns">${allocationMixHtml('Répartition géographique consolidée',a.geo,'Zones françaises regroupées à l’échelle France ; zones européennes non détaillées conservées distinctes.')}${allocationMixHtml('Répartition sectorielle consolidée',a.types,'Catégories mixtes non ventilées artificiellement.')}</div>${liquid}${alerts}${allocationSourcesHtml(a)}`;
+}
+function renderAllocation(){
+ const keys=Object.keys(allocationState.weights),n=keys.length;
+ const options=compareSortedItems().filter(s=>!Object.hasOwn(allocationState.weights,s.id));
+ const select=$('allocation-add');
+ select.innerHTML='<option value="">Choisir une SCPI…</option>'+options.map(s=>`<option value="${esc(s.id)}">${esc(s.name)} — ${esc(s.manager)}${(s.tags||[]).includes('Meilleurtaux Placement')?' (Meilleurtaux)':''}</option>`).join('');
+ select.disabled=n>=10;
+ $('allocation-total').value=allocationState.amount;
+ $('allocation-count').textContent=n+' / 10 SCPI sélectionnées';
+ $('allocation-equal').disabled=n===0;
+ $('allocation-clear').disabled=n===0&&allocationState.amount==='100000';
+ $('allocation-rows').innerHTML=n?keys.map(id=>{
+  const scpi=items.find(s=>s.id===id),w=allocationState.weights[id];if(!scpi)return '';
+  return `<div class="allocation-row"><div class="allocation-row-name">${esc(scpi.name)}<small>${esc(scpi.manager)}</small></div>
+   <label class="allocation-weight-field" aria-label="Pondération de ${esc(scpi.name)}"><input class="allocation-weight" type="number" min="0" max="100" step="0.01" inputmode="decimal" data-alloc-weight="${esc(id)}" value="${esc(w)}"> %</label>
+   <div class="allocation-euro" id="allocation-euro-${esc(id)}">—</div>
+   <button type="button" class="allocation-remove" data-alloc-remove="${esc(id)}" aria-label="Retirer ${esc(scpi.name)}">×</button></div>`;
+ }).join(''):'<p class="smalltxt">Ajoute une SCPI pour commencer. Tu peux ensuite saisir les pondérations ou utiliser la répartition à parts égales.</p>';
+ renderAllocationResults();
+}
+function allocationPrintTable(headers,rows){
+ return `<table class="print-table"><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(value=>`<td>${esc(value)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+function printAllocationReport(){
+ const a=allocationCompute(allocationState.amount,allocationState.weights);
+ if(!a.valid){toast('Complète le montant et les pondérations à 100 % avant l’impression.');return;}
+ const today=new Date().toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+ const positions=a.positions.map(p=>[p.s.name,fr(p.weight,2)+' %',allocationMoney(p.amount),'TD 2025 : '+pct(p.s.td)]);
+ const mixRows=(mix)=>mix.rows.map(row=>[row.name,fr(row.percentage,2)+' %']);
+ const liquidRows=a.liquidItems.map(x=>[x.name,fr(x.weight,2)+' %',x.label,x.period||'Non daté']);
+ const sources=a.positions.map(p=>{
+  const s=p.s,fields=[['TD 2025',s.fieldSources?.td?.url||s.bulletinUrl],['Géographie',s.fieldSources?.geo?.url],['Secteurs',s.fieldSources?.types?.url],['Liquidité',s.liquidityData?.sourceUrl||s.liquidity?.source]];
+  return `<section class="print-scpi"><h2>${esc(s.name)} <small>${fr(p.weight,2)} % · ${allocationMoney(p.amount)}</small></h2><div class="print-sources"><strong>Bulletin : </strong>${esc(s.bulletin||'Non renseigné')} · ${date(s.bulletinDate)}</div>${fields.map(([field,url])=>`<div class="print-sources">${esc(field)} : ${esc(url||'Source détaillée non disponible')}</div>`).join('')}</section>`;
+ }).join('');
+ const notes=a.warnings.map(x=>`<p class="print-allocation-warning">• ${esc(x)}</p>`).join('');
+ $('print-report').innerHTML=`<div class="print-allocation-page"><header class="print-header"><div><span>OBSERVATOIRE SCPI</span><h1>Simulation d'allocation</h1></div><div>Édité le ${esc(today)}<br>Analyse indicative, usage conseiller</div></header>
+ <p class="print-allocation-note"><strong>Montant indicatif :</strong> ${allocationMoney(a.amount)} · <strong>Pondérations :</strong> 100 % · <strong>TD historique 2025 :</strong> ${a.td===null?'Non calculable (couverture '+fr(a.tdCoverage,2)+' %)':pct(a.td)}.</p>
+ ${allocationPrintTable(['SCPI','Poids','Montant cible','Indicateur historique'],positions)}
+ <h2 class="print-allocation-heading">Répartition géographique</h2><p class="print-allocation-note">Couverture documentaire : ${fr(a.geo.covered,2)} %. Expositions non documentées isolées. Certaines zones sont agrégées au niveau France.</p>${allocationPrintTable(['Zone','Poids du portefeuille'],mixRows(a.geo))}
+ <h2 class="print-allocation-heading">Répartition sectorielle</h2><p class="print-allocation-note">Couverture documentaire : ${fr(a.types.covered,2)} %. Les secteurs mixtes ne sont pas répartis arbitrairement.</p>${allocationPrintTable(['Secteur','Poids du portefeuille'],mixRows(a.types))}
+ <h2 class="print-allocation-heading">Situations de liquidité</h2>${allocationPrintTable(['SCPI','Poids','Indicateur','Date de référence'],liquidRows)}
+ <h2 class="print-allocation-heading">Vigilances</h2>${notes||'<p class="print-allocation-note">Aucune alerte créée par les règles de simulation, sans présumer de tous les risques.</p>'}
+ <h2 class="print-allocation-heading">Publications et justificatifs</h2>${sources}
+ <footer class="print-footer">Simulation sans données nominatives ni recommandation personnalisée. Montants cibles hors frais, fiscalité et arrondi de parts. TD historique non garanti et non projeté. Les classifications, l'actualité et la liquidité doivent être revérifiées auprès des sociétés de gestion. Ce document ne constitue pas un ordre.</footer></div>`;
+ window.print();
+}
+
 function renderSources(){$('sources-list').innerHTML=[...items].sort((a,b)=>Number((b.tags||[]).includes('Meilleurtaux Placement'))-Number((a.tags||[]).includes('Meilleurtaux Placement'))||a.name.localeCompare(b.name,'fr')).map(s=>`<div class="compare-card"><div class="eyebrow">${esc(s.manager)}</div><h3>${esc(s.name)}</h3><div class="collection">${tags(s)}</div><div class="c-line"><span>Bulletin repéré</span><b>${esc(s.bulletin||'Non renseigné')}</b></div><div class="c-line"><span>Date</span><b>${date(s.bulletinDate)}</b></div><div class="c-line"><span>Reconstitution</span><b>${date(s.reconDate)}</b></div><div class="c-line"><span>Lecture automatique du PDF</span><b>${esc(s.pdfReadStatus||'En attente de contrôle')}</b></div><div class="c-line"><span>Répartition géographique</span><b>${s.geo?.length?'Documentée au '+date(s.geoDate||s.allocationDate):'Non vérifiée'}</b></div><div class="c-line"><span>Répartition sectorielle</span><b>${s.types?.length?'Documentée au '+date(s.typesDate||s.allocationDate):'Non vérifiée'}</b></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:16px">${link(s.bulletinUrl,'Publication')}${link(s.officialSource||s.sourceUrl,'Société de gestion')}${link(s.mtxUrl,'MTX')}</div><button class="btn small" style="margin-top:9px" data-open="${esc(s.id)}" data-tab="documents">Voir fiche</button></div>`).join('');}
 function bars(data,indigo=false){return (data&&data.length)?`<div class="breakdown">${data.map(([label,val])=>`<div class="mixrow"><span>${esc(label)}</span><div class="mixbar ${indigo?'indigo':''}"><i style="width:${Math.max(0,Math.min(100,Number(val)||0))}%"></i></div><b>${pct(val)}</b></div>`).join('')}</div>`:empty('Répartition non vérifiée : à compléter à partir du dernier bulletin ou du site officiel.');}
 function datesNote(s){return s.allocationDate?`Répartition publiée au ${date(s.allocationDate)} · À contrôler lors de la prochaine publication.`:'Répartition non disponible ou non datée. Aucune pondération reconstituée par estimation.';}
