@@ -62,6 +62,9 @@ def field_source(item, key):
 
 
 def has_value(item, key):
+    if key == 'liquidityData':
+        value = item.get(key) or {}
+        return any(value.get(field) is not None for field in ('waitingParts','withdrawalsExecuted','withdrawalRequests'))
     value = item.get(key)
     if value is None:
         return False
