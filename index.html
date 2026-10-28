@@ -330,7 +330,76 @@ function render(){let title={watch:'Veille SCPI',dashboard:'Observatoire SCPI',c
 function renderDashboard(){let data=list();$('count').textContent=data.length+' / '+items.length+' SCPI';let ok=items.filter(s=>gap(s)!=null);let keys=items.filter(s=>Object.keys(s.keys||{}).length);let mt=items.filter(s=>(s.tags||[]).includes('Meilleurtaux Placement'));$('metrics').innerHTML=`<div class="metric"><div class="name">SCPI suivies</div><div class="big">${items.length}</div><div class="foot">Référentiel automatiquement actualisé</div></div><div class="metric"><div class="name">Sélection Meilleurtaux</div><div class="big">${mt.length}</div><div class="foot">Liste officielle publiée en 2026</div></div><div class="metric"><div class="name">Décotes / surcotes calculables</div><div class="big">${ok.length}</div><div class="foot">Prix + reconstitution datée</div></div><div class="metric"><div class="name">Grilles NP renseignées</div><div class="big">${keys.length}</div><div class="foot">Barèmes indicatifs</div></div>`;
 $('table-body').innerHTML=data.map(s=>{let g=gap(s);return `<tr><td><div class="name-cell"><div class="monogram">${esc(s.name.slice(0,2).toUpperCase())}</div><div><button class="linklike" data-open="${esc(s.id)}">${esc(s.name)}</button><small>${esc(s.manager)}</small><div class="collection">${tags(s)}</div></div></div></td><td><b class="mainnum">${priceMissing(s)}</b><div class="cellsub">${esc(priceLabel(s))} · ${date(s.priceDate)}</div></td><td><b class="mainnum">${euro(s.recon)}</b><div class="cellsub">${date(s.reconDate)}</div></td><td>${g==null?'<span class="pill neutral">N/D</span>':`<span class="pill ${g>0?'positive':'negative'}">${g>0?'+':''}${pct(g)}</span>`}</td><td><b>${pct(s.td)}</b></td><td><b>${pct(s.tof)}</b><div class="cellsub">${date(s.tofDate)}${s.fieldSources?.tof?.method?.includes('secondaire')?' · À confirmer':''}</div></td><td><button class="linklike" data-open="${esc(s.id)}" data-tab="liquidity">${s.liquidityData?.waitingParts==null?'<span class="cellsub">Stock non vérifié</span>':`<b>${fr(s.liquidityData.waitingParts,0)}</b> parts`}</button><div class="cellsub">${date(s.liquidityData?.periodEnd)}</div><div class="liq-cell-status">${liquidityBadge(s)}</div></td><td>${Object.keys(s.keys||{}).length?`<button class="linklike" data-open="${esc(s.id)}" data-tab="keys">${Object.keys(s.keys).length} durées ↗</button>`:'<span style="color:#8697a1">À compléter</span>'}</td><td><button class="linklike" data-open="${esc(s.id)}" data-tab="documents">${esc(s.bulletin||'Documents')} ↗</button></td></tr>`;}).join('')||'<tr><td colspan="9" class="empty">Aucun résultat.</td></tr>';
 let sorted=ok.sort((a,b)=>gap(a)-gap(b));let max=Math.max(8,...sorted.map(s=>Math.abs(gap(s))));$('chart').innerHTML=sorted.length?sorted.map(s=>`<div class="bar-row"><span>${esc(s.name)}</span><div class="bar-track"><div class="bar-fill ${gap(s)>0?'risk':''}" style="width:${Math.max(3,Math.abs(gap(s))/max*100)}%"></div></div><b>${fr(gap(s),1)} %</b></div>`).join(''):empty('Aucune reconstitution datée disponible.');let flags=items.flatMap(s=>alerts(s).map(x=>({name:s.name,id:s.id,w:x})));$('risks').innerHTML=flags.length?flags.slice(0,6).map(x=>`<div class="risk-item"><span class="risk-dot"></span><div><button class="linklike" data-open="${esc(x.id)}">${esc(x.name)}</button><small style="display:block;margin-top:4px">${esc(x.w)}</small></div></div>`).join(''):empty('Aucune alerte signalée ; données manquantes ≠ absence de risque.');}
-function renderCompare(){selected=selected.filter(id=>items.some(s=>s.id===id)).slice(0,4);$('compare-choices').innerHTML=[...items].sort((a,b)=>Number((b.tags||[]).includes('Meilleurtaux Placement'))-Number((a.tags||[]).includes('Meilleurtaux Placement'))||a.name.localeCompare(b.name,'fr')).map(s=>`<label class="checkrow"><input type="checkbox" data-compare="${esc(s.id)}" ${selected.includes(s.id)?'checked':''}>${esc(s.name)}</label>`).join('');$('compare-cards').innerHTML=selected.map(id=>items.find(s=>s.id===id)).filter(Boolean).map(s=>`<div class="compare-card"><h3>${esc(s.name)}</h3><p>${esc(s.manager)}</p>${[[priceLabel(s),priceMissing(s)],['Reconstitution',euro(s.recon)],['Décote / surcote',pct(gap(s))],['TD 2025',pct(s.td)],['TOF ('+date(s.tofDate)+')',pct(s.tof)],['Nue-propriété à 10 ans',pct((s.keys||{})['10'])],['Situation de liquidité ('+date(s.liquidityData?.periodEnd)+')',liquidityMonthsSummary(s)]].map(([a,b])=>`<div class="c-line"><span>${a}</span><strong>${b}</strong></div>`).join('')}<button class="btn small" data-open="${esc(s.id)}">Fiche détaillée ↗</button></div>`).join('')||empty('Sélectionne une SCPI.');}
+
+function compareSortedItems(){
+ return [...items].sort((a,b)=>
+  Number((b.tags||[]).includes('Meilleurtaux Placement'))-Number((a.tags||[]).includes('Meilleurtaux Placement'))||
+  a.name.localeCompare(b.name,'fr'));
+}
+let compareQuery='';
+function compareSelectedItems(){
+ selected=selected.filter((id,i)=>items.some(s=>s.id===id)&&selected.indexOf(id)===i).slice(0,4);
+ return selected.map(id=>items.find(s=>s.id===id)).filter(Boolean);
+}
+function renderCompare(){
+ const chosen=compareSelectedItems();
+ $('compare-counter').textContent=chosen.length+' / 4 sélectionnées';
+ $('compare-clear').disabled=chosen.length===0;
+ $('compare-selected').innerHTML=chosen.length?chosen.map(s=>
+  `<button type="button" data-compare-remove="${esc(s.id)}" title="Retirer ${esc(s.name)}" aria-label="Retirer ${esc(s.name)}">${esc(s.name)} ×</button>`
+ ).join(''):'<span class="compare-chip-empty">Sélectionne une SCPI ci-dessous pour commencer.</span>';
+ const q=compareQuery.trim().toLocaleLowerCase('fr');
+ const visible=compareSortedItems().filter(s=>!selected.includes(s.id)&&
+  (s.name+' '+s.manager).toLocaleLowerCase('fr').includes(q));
+ $('compare-choice-count').textContent=visible.length+' SCPI disponible'+(visible.length>1?'s':'')+
+  (chosen.length>=4?' · Retire une SCPI pour en ajouter une autre.':' · Meilleurtaux Placement en premier.');
+ $('compare-choices').innerHTML=visible.map(s=>
+  `<button type="button" class="compare-option" data-compare-add="${esc(s.id)}" ${chosen.length>=4?'disabled':''} aria-label="Ajouter ${esc(s.name)}">
+    <span>${esc(s.name)}<small>${esc(s.manager)}${(s.tags||[]).includes('Meilleurtaux Placement')?' · Meilleurtaux Placement':''}</small></span><b aria-hidden="true">+</b>
+   </button>`).join('')||'<p class="smalltxt">Aucune SCPI ne correspond à la recherche, ou toutes sont sélectionnées.</p>';
+}
+function compareDatum(value,meta='',source='',note='',source2=''){
+ return {value:String(value??'Non renseigné'),meta,source,note,source2};
+}
+function compareFieldUrl(s,key,backup=null){return s.fieldSources?.[key]?.url||backup||null;}
+function compareGapLabel(s){const g=gap(s);return g==null?'Non comparable':Math.abs(g)<0.005?'Prix proche de la reconstitution':g<0?'Décote de '+pct(-g):'Surcote de '+pct(g);}
+function compareAllocationTop(s,field,count=3){
+ const list=(s[field]||[]).filter(a=>Array.isArray(a)&&a.length===2&&Number.isFinite(Number(a[1])))
+ .sort((a,b)=>Number(b[1])-Number(a[1]));
+ return list.length?list.slice(0,count).map(([name,value])=>name+' : '+fr(value,1)+' %').join(' · '):'Non renseignée';
+}
+function compareKeyYears(scpis){
+ return [...new Set(scpis.flatMap(s=>Object.keys(s.keys||{}).filter(y=>/^\d{1,2}$/.test(y)&&+y>=1&&+y<=30).map(Number)))].sort((a,b)=>a-b);
+}
+function compareGroups(){
+ return [
+  {title:'Marché, valorisation et distribution',rows:[
+   {label:'Nature du prix',data:s=>compareDatum(priceLabel(s),s.priceDate?'Au '+date(s.priceDate):'Date non vérifiée',compareFieldUrl(s,'price',s.priceSource),'Le prix de marché secondaire ne doit pas être confondu avec une souscription.')},
+   {label:'Prix de référence',data:s=>compareDatum(priceMissing(s),s.priceDate?'Au '+date(s.priceDate):'Prix actuel non daté',compareFieldUrl(s,'price',s.priceSource),s.priceType?.includes('Marché secondaire')?'Prix acquéreur / exécution selon le type indiqué ; frais et net vendeur à distinguer.':'')},
+   {label:'Valeur de reconstitution',data:s=>compareDatum(euro(s.recon),'Au '+date(s.reconDate),compareFieldUrl(s,'recon'))},
+   {label:'Décote / surcote',data:s=>compareDatum(compareGapLabel(s),'Prix : '+date(s.priceDate)+' · Reconstitution : '+date(s.reconDate),compareFieldUrl(s,'price',s.priceSource),'Calcul limité au prix de souscription des SCPI à capital variable.',compareFieldUrl(s,'recon'))},
+   {label:'Valeur de retrait (capital variable)',data:s=>compareDatum(s.priceType==='Souscription'?euro(s.retreat):'Non applicable au marché secondaire','Date de référence non confirmée',s.priceType==='Souscription'?compareFieldUrl(s,'retreat'):null,'Une valeur de retrait n’est pas le prix net vendeur du marché secondaire.')},
+   {label:'Prix net vendeur (marché secondaire)',data:s=>compareDatum(s.priceType?.includes('Marché secondaire')?(s.sellerNetPrice!=null?euro(s.sellerNetPrice):'Non renseigné'):'Non applicable',s.sellerNetPriceDate?'Au '+date(s.sellerNetPriceDate):'Non daté',s.priceType?.includes('Marché secondaire')?compareFieldUrl(s,'sellerNetPrice',s.priceSource):null,'Ne pas confondre avec le prix acquéreur frais inclus.')},
+   {label:'Taux de distribution 2025',data:s=>compareDatum(pct(s.td),'Année 2025',compareFieldUrl(s,'td'),'Historique, pas une projection de rendement en 2026.')},
+   {label:'TOF',data:s=>compareDatum(pct(s.tof),'Au '+date(s.tofDate),compareFieldUrl(s,'tof'))},
+  ]},
+  {title:'Liquidité : parts détenues en direct',rows:[
+   {label:'Modalité de sortie',data:s=>{const l=liqNumbers(s);return compareDatum(l.secondary?'Marché secondaire / confrontation':'Retrait de parts',s.liquidity?.effective?'Depuis le '+date(s.liquidity.effective):'Selon le statut publié',s.liquidity?.source||s.liquidityData?.sourceUrl,'Le cadre applicable aux contrats d’assurance-vie dépend de l’assureur.');}},
+   {label:'Parts en attente',data:s=>{const l=liqNumbers(s);return compareDatum(l.secondary?'Non comparable à une file classique':l.w==null?'Non renseigné':fr(l.w,0)+' parts',l.d.periodEnd?'Au '+date(l.d.periodEnd):'Période non identifiée',l.d.sourceUrl);}},
+   {label:'Retraits exécutés / trimestre',data:s=>{const l=liqNumbers(s);return compareDatum(l.secondary?'Non applicable':l.v==null?'Non renseigné':fr(l.v,0)+' parts',l.d.periodEnd?'T clos le '+date(l.d.periodEnd):'Période non identifiée',l.d.sourceUrl,'Certains remboursements peuvent emprunter un autre mécanisme.');}},
+   {label:'Lecture de la liquidité',data:s=>{const l=liquidityAssessment(s);return compareDatum(l.label,'Référence : '+l.period,l.d?.sourceUrl||s.liquidityData?.sourceUrl||s.liquidity?.source,l.detail);}}
+  ]},
+  {title:'Composition du patrimoine',rows:[
+   {label:'Principales zones géographiques',data:s=>compareDatum(compareAllocationTop(s,'geo'),'Au '+date(s.geoDate||s.allocationDate),compareFieldUrl(s,'geo'),'Regroupements géographiques définis par le gérant ; détails sous le tableau.')},
+   {label:'Principaux secteurs',data:s=>compareDatum(compareAllocationTop(s,'types'),'Au '+date(s.typesDate||s.allocationDate),compareFieldUrl(s,'types'),'Catégories sectorielles propres à chaque gérant ; détails sous le tableau.')},
+   {label:'Acquisitions documentées',data:s=>{const arr=s.acquisitions||[];return compareDatum(arr.length+' annonce'+(arr.length>1?'s':''),'Inventaire disponible, non nécessairement exhaustif',arr.find(x=>/^https:\/\//.test(x.url||''))?.url||null,'Les sociétés de gestion peuvent présenter différemment les transactions.');}}
+  ]},
+  {title:'Démembrement de propriété',rows:[
+   {label:'Nue-propriété à 10 ans',data:s=>compareDatum(s.keys?.['10']!=null?pct(s.keys['10']):'Clé non disponible',s.keyDate?'Barème au '+date(s.keyDate):'Date d’effet non confirmée',s.keySource,'Barèmes indicatifs : disponibilité et conditions à confirmer avant opération.')},
+   {label:'Durées NP renseignées',data:s=>compareDatum(Object.keys(s.keys||{}).length+' durée'+(Object.keys(s.keys||{}).length>1?'s':''),s.keyVerifiedAt?'Consulté le '+date(s.keyVerifiedAt):'Date de contrôle non renseignée',s.keySource,'La date de contrôle ne prouve pas la validité commerciale du barème.')}
+  ]}
+ ];
+}
 function auditChecks(scpi){
  const liq=liqNumbers(scpi);
  return [
