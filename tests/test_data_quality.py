@@ -136,7 +136,8 @@ class QualityTests(unittest.TestCase):
         self.assertEqual(url,row['sourceUrl'])
         self.assertEqual(candidates[0]['period']['label'],'T3 2026')
         self.assertEqual(attempts[0]['status'],'error')
-        self.assertEqual(attempts[1]['status'],'accessible')
+        self.assertTrue(any(a['status']=='accessible' for a in attempts[1:]))
+        self.assertEqual(sync.official_entry_points(row,BASE,'corum.fr')[1], 'https://corum.fr/nos-scpi/corum-origin/documents')
 
     def test_old_landing_cannot_be_used_as_verified_pdf(self):
         row=specimen()
