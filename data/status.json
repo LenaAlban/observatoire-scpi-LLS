@@ -1,8 +1,281 @@
 {
-  "lastRun": null,
-  "initialized": "2026-10-28",
-  "mode": "initial",
-  "updated": 0,
-  "errors": [],
-  "sourcePolicy": "official managers only"
+  "checkedAt": "2026-10-28T21:10:00+00:00",
+  "total": 31,
+  "sourceAccessible": 25,
+  "bulletinFound": 21,
+  "updated": 11,
+  "results": [
+    {
+      "id": "iroko-zen",
+      "name": "Iroko Zen",
+      "status": "ok",
+      "changes": [
+        "bulletin"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.iroko.eu/bulletins-trimestriels/t2-2026"
+    },
+    {
+      "id": "pierval-sante",
+      "name": "Pierval Santé",
+      "status": "ok",
+      "changes": [
+        "acquisitions"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.euryale-am.fr/nos-solutions/pierval/"
+    },
+    {
+      "id": "corum-origin",
+      "name": "CORUM Origin",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.corum.fr/nos-scpi/corum-origin/documents"
+    },
+    {
+      "id": "remake-live",
+      "name": "Remake Live",
+      "status": "ok",
+      "changes": [
+        "bulletin",
+        "tof",
+        "liquidité / retraits"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.remake.fr/remake-live/"
+    },
+    {
+      "id": "actipierre-europe",
+      "name": "AEW Commerces Europe (ex-Actipierre Europe)",
+      "status": "ok",
+      "changes": [
+        "bulletin"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe"
+    },
+    {
+      "id": "altixia-cadence-xii",
+      "name": "Altixia Cadence XII",
+      "status": "partial",
+      "changes": [],
+      "message": "Site accessible · bulletin non détecté automatiquement",
+      "source": "https://www.altixia.fr/scpi-cadence.php"
+    },
+    {
+      "id": "atream-hotels",
+      "name": "Atream Hôtels",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/"
+    },
+    {
+      "id": "edissimmo",
+      "name": "Edissimmo",
+      "status": "error",
+      "changes": [],
+      "message": "503 Server Error: Service Temporarily Unavailable for url: https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
+      "source": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents"
+    },
+    {
+      "id": "efimmo-1",
+      "name": "Efimmo 1",
+      "status": "error",
+      "changes": [],
+      "message": "HTTPSConnectionPool(host='www.sofidy.com', port=443): Max retries exceeded with url: /solutions/efimmo1/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable",
+      "source": "https://www.sofidy.com/solutions/efimmo1/"
+    },
+    {
+      "id": "epargne-fonciere",
+      "name": "Épargne Foncière",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE"
+    },
+    {
+      "id": "ficommerce",
+      "name": "Ficommerce",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite"
+    },
+    {
+      "id": "immorente",
+      "name": "Immorente",
+      "status": "error",
+      "changes": [],
+      "message": "HTTPSConnectionPool(host='www.sofidy.com', port=443): Max retries exceeded with url: /solutions/immorente/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unab",
+      "source": "https://www.sofidy.com/solutions/immorente/"
+    },
+    {
+      "id": "laffitte-pierre",
+      "name": "Laffitte Pierre",
+      "status": "ok",
+      "changes": [
+        "tof"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre"
+    },
+    {
+      "id": "lf-europimmo",
+      "name": "LF Europimmo",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Europimmo&amcScpi=16849&code=D1"
+    },
+    {
+      "id": "lf-grand-paris-patrimoine",
+      "name": "LF Grand Paris Patrimoine",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2"
+    },
+    {
+      "id": "patrimmo-commerce",
+      "name": "Patrimmo Commerce",
+      "status": "ok",
+      "changes": [
+        "tof"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce"
+    },
+    {
+      "id": "patrimmo-croissance",
+      "name": "Patrimmo Croissance",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance"
+    },
+    {
+      "id": "pf-grand-paris",
+      "name": "PF Grand Paris",
+      "status": "partial",
+      "changes": [],
+      "message": "Site accessible · bulletin non détecté automatiquement",
+      "source": "https://www.perial.com/scpi/perial-grand-paris"
+    },
+    {
+      "id": "primopierre",
+      "name": "Primopierre",
+      "status": "ok",
+      "changes": [
+        "tof"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.praemiareim.fr/fr/scpi-primopierre"
+    },
+    {
+      "id": "primovie",
+      "name": "Primovie",
+      "status": "ok",
+      "changes": [
+        "tof"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.praemiareim.fr/fr/scpi-primovie"
+    },
+    {
+      "id": "pfo2",
+      "name": "PFO2",
+      "status": "partial",
+      "changes": [],
+      "message": "Site accessible · bulletin non détecté automatiquement",
+      "source": "https://www.perial.com/scpi/perial-o2"
+    },
+    {
+      "id": "rivoli-avenir-patrimoine",
+      "name": "Rivoli Avenir Patrimoine",
+      "status": "error",
+      "changes": [],
+      "message": "503 Server Error: Service Temporarily Unavailable for url: https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
+      "source": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents"
+    },
+    {
+      "id": "selectinvest-1",
+      "name": "Sélectinvest 1",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?code=I9&amcScpi=17357&Scpi=Selectinvest-1"
+    },
+    {
+      "id": "epargne-pierre",
+      "name": "Épargne Pierre",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://atland-voisin.com/scpi/epargne-pierre/"
+    },
+    {
+      "id": "sofidynamic",
+      "name": "Sofidynamic",
+      "status": "error",
+      "changes": [],
+      "message": "HTTPSConnectionPool(host='www.sofidy.com', port=443): Max retries exceeded with url: /solutions/sofidynamic/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: un",
+      "source": "https://www.sofidy.com/solutions/sofidynamic/"
+    },
+    {
+      "id": "transitions-europe",
+      "name": "Transitions Europe",
+      "status": "ok",
+      "changes": [
+        "types"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe"
+    },
+    {
+      "id": "epargne-pierre-europe",
+      "name": "Épargne Pierre Europe",
+      "status": "ok",
+      "changes": [
+        "tof"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://atland-voisin.com/scpi/epargne-pierre-europe/"
+    },
+    {
+      "id": "epargne-pierre-sophia",
+      "name": "Épargne Pierre Sophia",
+      "status": "ok",
+      "changes": [
+        "price"
+      ],
+      "message": "Source officielle consultée",
+      "source": "https://atland-voisin.com/scpi/epargne-pierre-sophia/"
+    },
+    {
+      "id": "sofidy-europe-invest",
+      "name": "Sofidy Europe Invest",
+      "status": "error",
+      "changes": [],
+      "message": "HTTPSConnectionPool(host='www.sofidy.com', port=443): Max retries exceeded with url: /solutions/sofidy-europe-invest/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify f",
+      "source": "https://www.sofidy.com/solutions/sofidy-europe-invest/"
+    },
+    {
+      "id": "principal-inside",
+      "name": "Principal Inside",
+      "status": "partial",
+      "changes": [],
+      "message": "Site accessible · bulletin non détecté automatiquement",
+      "source": "https://fr.principalam.com/notre-scpi"
+    },
+    {
+      "id": "corum-usa",
+      "name": "CORUM USA",
+      "status": "ok",
+      "changes": [],
+      "message": "Source officielle consultée",
+      "source": "https://www.corum.fr/nos-scpi/corum-usa/documents"
+    }
+  ]
 }

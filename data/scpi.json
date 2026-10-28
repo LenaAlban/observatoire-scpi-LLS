@@ -14,9 +14,9 @@
     "tof": 96.88,
     "waiting": null,
     "waitingPct": null,
-    "bulletin": "T2 2026",
-    "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://www.iroko.eu/bulletins-trimestriels/t3-2026",
     "sourceUrl": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
     "notes": "Prix de souscription 205 € daté du 01/10/2026 ; bulletin T2 établi avec un prix antérieur.",
     "history": [
@@ -50,7 +50,7 @@
     "verification": "Publication identifiée",
     "lastChecked": "2026-10-28",
     "officialSource": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -106,7 +106,14 @@
     "allocationDate": null,
     "geo": [],
     "types": [],
-    "acquisitions": [],
+    "acquisitions": [
+      {
+        "when": "Annonce de la société de gestion · date non identifiée",
+        "title": "Nos acquisitions",
+        "details": "Annonce publiée par la société de gestion ; consulter la source pour les chiffres et la date.",
+        "url": "https://www.euryale-am.fr/nous-decouvrir/nos-acquisitions/"
+      }
+    ],
     "keys": {},
     "keySource": null,
     "keyDate": null,
@@ -114,7 +121,7 @@
     "verification": "Publication identifiée",
     "lastChecked": "2026-10-28",
     "officialSource": "https://www.euryale-am.fr/nos-solutions/pierval/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": 550067,
@@ -176,7 +183,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-origin.html",
     "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
     "officialSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -190,7 +197,8 @@
       "method": null
     },
     "priceType": "Souscription",
-    "priceSource": "https://www.corum.fr/nos-scpi/corum-origin/documents"
+    "priceSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "remake-live",
@@ -204,12 +212,12 @@
     "realisation": 175.64,
     "retreat": 204,
     "td": 7.05,
-    "tof": 98.93,
-    "waiting": null,
+    "tof": 100.0,
+    "waiting": 0,
     "waitingPct": null,
-    "bulletin": "T2 2026",
-    "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.remake.fr/remake-live/",
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
     "sourceUrl": "https://www.remake.fr/remake-live",
     "notes": "Reconstitution tirée du rapport 2025 ; consulter la documentation actualisée.",
     "history": [
@@ -231,22 +239,42 @@
     "dataSource": "https://www.remake.fr/remake-live/",
     "verification": "Publication identifiée",
     "lastChecked": "2026-10-28",
-    "officialSource": "https://www.remake.fr/remake-live",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "officialSource": "https://www.remake.fr/remake-live/",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
-      "waitingParts": null,
-      "withdrawalsExecuted": null,
+      "withdrawals4Q": [
+        {
+          "periodEnd": "2026-09-30",
+          "parts": 11664
+        }
+      ],
+      "periodEnd": "2026-09-30",
+      "periodLabel": "T3 2026",
+      "waitingParts": 0,
+      "withdrawalsExecuted": 11664,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
-      "withdrawals4Q": [],
-      "sourceUrl": null,
-      "verifiedAt": null,
-      "method": null
+      "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
+      "verifiedAt": "2026-10-28",
+      "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement"
     },
     "priceType": "Souscription",
-    "priceSource": "https://www.remake.fr/remake-live/"
+    "priceSource": "https://www.remake.fr/remake-live/",
+    "fieldSources": {
+      "tof": {
+        "url": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
+        "date": "2026-09-30",
+        "method": "extraction PDF stricte",
+        "proof": "le\n    parc de la SCPI était entièrement loué. La différence entre le TOF mesuré et 100 %\n     traduit donc la vacance que subit la SCPI et la perte de loyers correspondante.\n   "
+      },
+      "liquidityData": {
+        "url": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
+        "date": "2026-09-30",
+        "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement",
+        "proof": "libellés + valeurs univoques"
+      }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "actipierre-europe",
@@ -266,9 +294,9 @@
     "tof": null,
     "waiting": null,
     "waitingPct": null,
-    "bulletin": null,
-    "bulletinDate": null,
-    "bulletinUrl": "",
+    "bulletin": "S1 2026",
+    "bulletinDate": "2026-06-30",
+    "bulletinUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-08/AEW%20COMMERCES%20EUROPE%20Bulletin%201er%20semestre%202026.pdf",
     "sourceUrl": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
     "history": [
       {
@@ -287,7 +315,7 @@
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
     "officialSource": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "liquidityData": {
       "waitingParts": null,
       "withdrawalsExecuted": null,
@@ -315,7 +343,8 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "altixia-cadence-xii",
@@ -354,9 +383,9 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.altixia.fr/scpi-cadence.php",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Site accessible · bulletin non détecté automatiquement",
     "liquidityData": {
       "waitingParts": null,
       "withdrawalsExecuted": null,
@@ -418,7 +447,7 @@
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
     "officialSource": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -447,7 +476,8 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "edissimmo",
@@ -483,7 +513,7 @@
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
     "officialSource": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Échec de récupération · données précédentes conservées",
     "liquidityData": {
       "waitingParts": null,
       "withdrawalsExecuted": null,
@@ -553,7 +583,7 @@
     "lastChecked": null,
     "keyNote": "Barème indicatif Sofidy de février 2026. Les clés peuvent varier ; confirmation requise avant une souscription.",
     "officialSource": "https://www.sofidy.com/solutions/efimmo1/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -615,8 +645,8 @@
     "keyDate": null,
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
-    "officialSource": "https://client.la-francaise.com/bt",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -684,9 +714,9 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -758,7 +788,7 @@
     "lastChecked": "2026-10-28",
     "keyNote": "Barème indicatif Sofidy de février 2026. Les clés peuvent varier ; confirmation requise avant une souscription.",
     "officialSource": "https://www.sofidy.com/solutions/immorente/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -804,7 +834,7 @@
     "realisation": null,
     "retreat": null,
     "td": null,
-    "tof": null,
+    "tof": 67.0,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "S1 2026",
@@ -828,7 +858,7 @@
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
     "officialSource": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -856,8 +886,15 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "tof": {
+        "url": "https://www.aewpatrimoine.com/sites/default/files/2026-08/LAFFITTE%20PIERRE%20Bulletin%201er%20semestre%202026.pdf",
+        "date": "2026-06-30",
+        "method": "extraction PDF stricte",
+        "proof": "            5,30%*\n      VALEUR DE RECONSTITUTION au 30/06/2026       TAUX D’OCCUPATION FINANCIER                   Bureaux 67%                Paris 11%\n      834 966 656 € (297,46"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "lf-europimmo",
@@ -896,9 +933,9 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Europimmo&amcScpi=16849&code=D1",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -960,8 +997,8 @@
     "keyDate": null,
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
-    "officialSource": "https://client.la-francaise.com/bt",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1014,7 +1051,7 @@
     "realisation": 126.9,
     "retreat": null,
     "td": null,
-    "tof": null,
+    "tof": 1.9,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1036,14 +1073,14 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
       "effective": "2026-06-25",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce"
     },
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1067,8 +1104,15 @@
         "date": "2025-12-31",
         "method": "Lecture bulletin trimestriel officiel Patrimmo Commerce T4 2025",
         "proof": "Valeur de reconstitution 151,36 € au 31/12/2025 (p. 3)"
+      },
+      "tof": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
+        "date": "2026-06-30",
+        "method": "extraction PDF stricte",
+        "proof": "                          locataire               2,87 ans            TOF*         1,9% Locaux vacants  de baux\n                                                                  "
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "patrimmo-croissance",
@@ -1107,14 +1151,14 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
       "effective": "2026-06-24",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance"
     },
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1139,7 +1183,8 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "pf-grand-paris",
@@ -1173,9 +1218,9 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.perial.com/scpi/perial-grand-paris",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Site accessible · bulletin non détecté automatiquement",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1223,7 +1268,7 @@
     "realisation": null,
     "retreat": null,
     "td": null,
-    "tof": null,
+    "tof": 1.7,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1252,7 +1297,7 @@
       "effective": "2026-01-07",
       "source": "https://www.praemiareim.fr/fr/scpi-primopierre"
     },
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1280,10 +1325,17 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "tof": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
+        "date": "2026-06-30",
+        "method": "extraction PDF stricte",
+        "proof": "aire                         des baux (WALB)*  Nombre\n  de baux       TOF*                            1,7% Locaux vacants           3,38 ans\n           81,7 %               sous "
       }
     },
     "sellerNetPrice": 31.88,
-    "sellerNetPriceDate": "2026-09-24"
+    "sellerNetPriceDate": "2026-09-24",
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "primovie",
@@ -1300,7 +1352,7 @@
     "realisation": null,
     "retreat": null,
     "td": null,
-    "tof": null,
+    "tof": 0.2,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1322,14 +1374,14 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-primovie",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
       "effective": "2026-06-23",
       "source": "https://www.praemiareim.fr/fr/scpi-primovie"
     },
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1353,8 +1405,15 @@
         "date": "2025-06-30",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "tof": {
+        "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
+        "date": "2026-06-30",
+        "method": "extraction PDF stricte",
+        "proof": "    locataire                         des baux (WALB)*\n  Nombre       TOF*        0,2% Locaux vacants sous promesse\n  de baux     94,6 %              de vente                9,64"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "pfo2",
@@ -1393,14 +1452,14 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://www.perial.com/scpi/perial-o2",
     "liquidity": {
       "label": "Marché secondaire (PERIAL)",
       "effective": "2026-10-28",
       "source": "https://www.perial.com/scpi/perial-o2"
     },
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Site accessible · bulletin non détecté automatiquement",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1453,7 +1512,7 @@
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
     "officialSource": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Échec de récupération · données précédentes conservées",
     "liquidityData": {
       "waitingParts": null,
       "withdrawalsExecuted": null,
@@ -1515,8 +1574,8 @@
     "keyDate": null,
     "verification": "À documenter",
     "lastChecked": "2026-10-28",
-    "officialSource": "https://www.la-francaise.com/fr-fr/nos-solutions-pour-vous/nos-produits/product/Scpi/i9-selectinvest-1/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?code=I9&amcScpi=17357&Scpi=Selectinvest-1",
+    "automatedCheck": "Source officielle consultée",
     "liquidity": {
       "label": "Capital variable suspendu · marché par confrontation",
       "effective": "2026-06-01",
@@ -1591,9 +1650,9 @@
     "keySource": "https://atland-voisin.com/scpi/epargne-pierre/",
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": null,
+    "lastChecked": "2026-10-28",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1615,7 +1674,8 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "sofidynamic",
@@ -1667,7 +1727,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/sofidynamic.html",
     "keyNote": "La société de gestion mentionne une décote de 50 % en nue-propriété à 15 ans (clé indicative et non contractuelle). Les autres durées ne sont pas confirmées ici.",
     "officialSource": "https://www.sofidy.com/solutions/sofidynamic/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": 0,
@@ -1746,31 +1806,31 @@
     "types": [
       [
         "Bureaux",
-        38
+        38.0
       ],
       [
-        "Commerces",
-        25
+        "Commerce",
+        25.0
       ],
       [
         "Logistique",
-        14
+        14.0
       ],
       [
-        "Life sciences",
-        10
+        "Life Science",
+        10.0
       ],
       [
         "Hospitalité",
-        5
+        5.0
       ],
       [
-        "Activités",
-        5
+        "Activité",
+        5.0
       ],
       [
-        "Éducation",
-        3
+        "Education",
+        3.0
       ]
     ],
     "acquisitions": [
@@ -1801,7 +1861,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/transitions-europe.html",
     "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
     "officialSource": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1822,8 +1882,14 @@
         "date": "2025-12-31",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "allocation": {
+        "url": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+        "date": "2026-06-30",
+        "method": "répartition textuelle contrôlée, somme ~100 %"
       }
-    }
+    },
+    "pdfWarning": "Ce lien ne fournit pas un PDF"
   },
   {
     "id": "epargne-pierre-europe",
@@ -1840,7 +1906,7 @@
     "realisation": null,
     "retreat": null,
     "td": 6.75,
-    "tof": null,
+    "tof": 99.79,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T2 2026",
@@ -1866,7 +1932,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-europe.html",
     "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1887,8 +1953,15 @@
         "date": "2026-07-01",
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
+      },
+      "tof": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-2.pdf",
+        "date": "2026-06-30",
+        "method": "extraction PDF stricte",
+        "proof": "                                                              T2•  Un taux d’occupation financier de 99,79 % et un                                                                  "
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "epargne-pierre-sophia",
@@ -1898,8 +1971,8 @@
     "tags": [
       "Meilleurtaux Placement"
     ],
-    "price": 22,
-    "priceDate": null,
+    "price": 220.0,
+    "priceDate": "2025-01-01",
     "recon": 22.68,
     "reconDate": "2026-07-01",
     "realisation": null,
@@ -1931,7 +2004,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-sophia.html",
     "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -1945,7 +2018,16 @@
       "method": null
     },
     "priceType": "Souscription",
-    "priceSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/"
+    "priceSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
+    "fieldSources": {
+      "price": {
+        "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPS-VDEF-web-2.pdf",
+        "date": "2025-01-01",
+        "method": "extraction PDF stricte",
+        "proof": "                                            Objectifs de gestion      Prix de souscription par part à partir                                          220,00€       220,00 €\n    du "
+      }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   },
   {
     "id": "sofidy-europe-invest",
@@ -1990,7 +2072,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/sofidy-europe-invest.html",
     "keyNote": "Exemple indicatif de clé à 20 ans issu de la page Sofidy ; barème en vigueur à revalider auprès de la société de gestion.",
     "officialSource": "https://www.sofidy.com/solutions/sofidy-europe-invest/",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Échec de récupération · données précédentes conservées",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -2050,7 +2132,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/principal-inside.html",
     "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
     "officialSource": "https://fr.principalam.com/notre-scpi",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Site accessible · bulletin non détecté automatiquement",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -2107,7 +2189,7 @@
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-usa.html",
     "keyNote": "Ancien barème non conservé : il provenait d’un distributeur et non de la société de gestion. Clés à confirmer sur une publication officielle.",
     "officialSource": "https://www.corum.fr/nos-scpi/corum-usa/documents",
-    "automatedCheck": "Synchronisation non encore lancée",
+    "automatedCheck": "Source officielle consultée",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
     "liquidityData": {
       "waitingParts": null,
@@ -2129,6 +2211,7 @@
         "method": "Lecture de publication de la société de gestion (recoupement manuel au 28/10/2026)",
         "proof": "Valeur de reconstitution par part publiée"
       }
-    }
+    },
+    "pdfVerifiedAt": "2026-10-28"
   }
 ]
