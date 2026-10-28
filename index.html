@@ -300,6 +300,19 @@ h1{font-weight:810;letter-spacing:-1.1px;color:#231d1b}
 .allocation-weights-graph{padding:11px 0 5px}
 @media(max-width:720px){.allocation-builder{padding:14px}.allocation-row{grid-template-columns:minmax(0,1fr) 96px auto;gap:8px}.allocation-euro{grid-column:1/3;grid-row:2}.allocation-weight{padding:9px 6px}.allocation-remove{grid-column:3;grid-row:1}.allocation-mixline{grid-template-columns:minmax(105px,1fr) 1fr 62px}}
 @media print{.print-allocation-page .print-table th,.print-allocation-page .print-table td{font-size:8pt}.print-allocation-note{margin:6px 0 11px;font-size:8.5pt;line-height:1.55}.print-allocation-warning{font-size:8pt;margin:4px 0}.print-allocation-heading{font-size:12pt;margin:15px 0 8px}}
+
+.quality-auto-audit{padding:17px 19px;margin:17px 0}
+.quality-auto-audit h3{font-size:15px;margin:0 0 14px}
+.quality-audit-figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
+.quality-audit-stat{border:1px solid var(--line);border-radius:9px;padding:11px;background:#faf8f6}
+.quality-audit-stat strong{display:block;font-size:22px;margin-bottom:4px;font-variant-numeric:tabular-nums}
+.quality-audit-stat span{font-size:10px;color:var(--muted)}
+.quality-record-audit{border-left:3px solid #c39a65;background:#fffaf2;padding:10px 13px;margin:10px 0;border-radius:6px;font-size:11px;line-height:1.6}
+.quality-record-audit.invalid{border-color:#af5647;background:#fff1ef}
+.quality-record-audit p{margin:5px 0;overflow-wrap:anywhere}
+.quality-source-attempts{font-size:11px;color:var(--muted);line-height:1.5;padding:5px 0}
+.quality-source-attempts summary{cursor:pointer}
+.quality-source-attempts p{margin:4px 0 4px 10px;overflow-wrap:anywhere}
 </style></head><body>
 <div class="app"><aside class="sidebar"><div class="brand"><div class="brand-mark" aria-hidden="true">SC</div><div><small>OBSERVATOIRE</small><strong>Observatoire SCPI</strong></div></div><nav class="nav"><button data-view="dashboard" title="Observatoire"><span>◫</span><span class="label">Observatoire</span></button><button data-view="watch" class="active" title="Veille automatique"><span>◉</span><span class="label">Veille</span></button><button data-view="compare" title="Comparer"><span>▥</span><span class="label">Comparer</span></button><button data-view="allocation" title="Simuler une allocation"><span>◴</span><span class="label">Allocation</span></button><button data-view="sources" title="Documentation"><span>▤</span><span class="label">Publications</span></button><button data-view="quality" title="Fiabilité et contrôles"><span>✓</span><span class="label">Fiabilité</span></button></nav><div class="side-bottom"><strong>Veille SCPI</strong><br>31 fonds initialisés<br>Source et date pour chaque indicateur<br>Mise à jour automatique quotidienne</div></aside>
 <main class="main"><div class="topbar"><div><div class="eyebrow">Analyse · Patrimoine immobilier</div><h1 id="page-title">Observatoire SCPI</h1><p class="subtitle" id="page-desc">Référentiel Meilleurtaux Placement · Spirica · autres sociétés de gestion</p></div><div class="top-actions"><button class="btn primary" id="refresh-btn" title="Relit le dernier référentiel généré par le traitement automatique">↻ Vérifier les données publiées</button><button class="btn" id="export-csv">↓ Export CSV</button></div></div>
@@ -334,7 +347,7 @@ h1{font-weight:810;letter-spacing:-1.1px;color:#231d1b}
  <div id="allocation-results"></div>
  <div class="compare-controls report-controls allocation-print-tools"><div><strong>Synthèse d'allocation</strong><p class="smalltxt">Montants cibles, indicateurs historiques et exposition consolidée</p></div><button class="btn primary" id="allocation-print" type="button" disabled>Imprimer / enregistrer en PDF</button></div>
 </section>
-<section id="sources-view" class="hidden"><div class="section-head"><h2>Publications & transparence</h2></div><div id="sources-list" class="comparison"></div></section><section id="quality-view" class="hidden"><div class="section-head"><h2>Fiabilité des données</h2><span class="hint">Contrôle de publication</span></div><p class="subtitle" style="margin-bottom:18px">Une source accessible ne signifie pas qu’un bulletin a été entièrement lu. Les indicateurs manquants ne sont pas des zéros.</p><div class="metrics" id="quality-metrics"></div><div class="bottom-grid quality-grid"><div class="mini-card"><h3>Couverture des informations</h3><p class="note">Présence documentée, sans notation de risque.</p><div class="coverage-list" id="quality-coverage"></div></div><div class="mini-card"><h3>Interprétation</h3><p class="note" style="margin-top:14px;line-height:1.8"><strong>Accessible :</strong> site joignable, mais PDF possiblement non lu.<br><strong>Partiel :</strong> bulletin non détecté ou données incomplètes.<br><strong>Erreur :</strong> échec d’accès au site, les données précédentes restent conservées.<br><br>La couverture du référentiel ne préjuge ni de l’éligibilité de la SCPI ni de son risque.</p></div></div><div class="section-head"><h2>Contrôle par SCPI</h2><span class="hint" id="quality-count"></span></div><div class="toolbar"><label class="search"><input id="quality-search" placeholder="Rechercher SCPI..." aria-label="Rechercher dans la fiabilité"></label><select class="select" id="quality-filter" aria-label="Statut de contrôle"><option value="all">Toutes les fiches</option><option value="error">Erreurs de collecte</option><option value="partial">Collectes partielles</option><option value="missing">À compléter</option></select></div><div id="quality-list" class="quality-list"></div></section></main></div>
+<section id="sources-view" class="hidden"><div class="section-head"><h2>Publications & transparence</h2></div><div id="sources-list" class="comparison"></div></section><section id="quality-view" class="hidden"><div class="section-head"><h2>Fiabilité des données</h2><span class="hint">Contrôle de publication</span></div><p class="subtitle" style="margin-bottom:18px">Une source accessible ne signifie pas qu’un bulletin a été entièrement lu. Les indicateurs manquants ne sont pas des zéros.</p><div class="metrics" id="quality-metrics"></div><div class="bottom-grid quality-grid"><div class="mini-card"><h3>Couverture des informations</h3><p class="note">Présence documentée, sans notation de risque.</p><div class="coverage-list" id="quality-coverage"></div></div><div class="mini-card"><h3>Interprétation</h3><p class="note" style="margin-top:14px;line-height:1.8"><strong>Accessible :</strong> site joignable, mais PDF possiblement non lu.<br><strong>Partiel :</strong> bulletin non détecté ou données incomplètes.<br><strong>Erreur :</strong> échec d’accès au site, les données précédentes restent conservées.<br><br>La couverture du référentiel ne préjuge ni de l’éligibilité de la SCPI ni de son risque.</p></div></div><section class="panel quality-auto-audit"><h3>Audit automatique des dates, sources et incohérences</h3><div id="quality-audit-summary"></div><p class="compare-note">Les seuils de fraîcheur sont indicatifs : une ancienne donnée n'est pas nécessairement une erreur de publication du gérant. Une nouvelle valeur incohérente est rejetée avant publication.</p></section><div class="section-head"><h2>Contrôle par SCPI</h2><span class="hint" id="quality-count"></span></div><div class="toolbar"><label class="search"><input id="quality-search" placeholder="Rechercher SCPI..." aria-label="Rechercher dans la fiabilité"></label><select class="select" id="quality-filter" aria-label="Statut de contrôle"><option value="all">Toutes les fiches</option><option value="error">Erreurs de collecte</option><option value="partial">Collectes partielles</option><option value="missing">À compléter</option><option value="audit">Audit : anomalies signalées</option><option value="old">Audit : données anciennes</option><option value="rejected">Mises à jour rejetées</option></select></div><div id="quality-list" class="quality-list"></div></section></main></div>
 <div class="detail-backdrop" id="detail-backdrop"><div class="drawer" role="dialog" aria-modal="true" aria-label="Fiche SCPI"><div id="detail-content"></div></div></div>
 <div class="toast" id="toast" aria-live="polite"></div><div id="print-report" aria-label="Document à imprimer"></div>
 <script>(()=>{'use strict';
@@ -488,10 +501,26 @@ function renderQuality(){
   const count=complete.filter(x=>x.a.tests[i][1]).length;
   return `<div class="coverage-item"><div class="coverage-head"><span>${esc(label)}</span><strong>${count} / ${total}</strong></div><div class="coverage-track"><i style="width:${total?count/total*100:0}%"></i></div></div>`;
  }).join('');
+ const quality=syncStatus?.quality;
+ const summary=$('quality-audit-summary');
+ if(quality?.scpi){
+  const c=quality.issueCounts||{};
+  const metrics=[
+   ['SCPI avec signalements',quality.affectedScpi??0],
+   ['Valeurs anciennes',c.ancienne||0],
+   ['Sources sans justificatif',c.source_absente||0],
+   ['Dates absentes',c.date_absente||0],
+   ['Incohérences détectées',(c.incoherente||0)+(c.date_future||0)],
+   ['Nouvelles valeurs rejetées',syncStatus?.rejectedUpdates??0],
+   ['Sources de secours utilisées',syncStatus?.fallbackRecovered??0]
+  ];
+  summary.innerHTML='<div class="quality-audit-figures">'+metrics.map(([label,n])=>`<div class="quality-audit-stat"><strong>${esc(n)}</strong><span>${esc(label)}</span></div>`).join('')+'</div><p class="smalltxt">Audit calculé le '+date(quality.asOf)+' · historique du référentiel conservé pour les données non revalidées.</p>';
+ }else summary.innerHTML='<p class="smalltxt">Le bilan détaillé apparaîtra après la prochaine exécution de la collecte automatique. Les données actuellement visibles restent celles du dernier référentiel publié.</p>';
+ const auditById=new Map((quality?.scpi||[]).map(x=>[x.id,x.issues||[]]));
  const query=$('quality-search').value.toLocaleLowerCase('fr');
  const filter=$('quality-filter').value;
  const rows=complete.filter(({s,a})=>(s.name+' '+s.manager).toLocaleLowerCase('fr').includes(query)&&(
-  filter==='all'||filter==='error'&&a.source?.status==='error'||filter==='partial'&&a.source?.status==='partial'||filter==='missing'&&a.missing.length>0||false
+  filter==='all'||filter==='error'&&a.source?.status==='error'||filter==='partial'&&a.source?.status==='partial'||filter==='missing'&&a.missing.length>0||filter==='audit'&&(auditById.get(s.id)||[]).length>0||filter==='old'&&(auditById.get(s.id)||[]).some(x=>x.kind==='ancienne')||filter==='rejected'&&(a.source?.validationIssues||[]).length>0
  )).sort((x,y)=>{
   const rank=x=>x.a.source?.status==='error'?0:x.a.source?.status==='partial'?1:2;
   return rank(x)-rank(y)||x.a.count-y.a.count||x.s.name.localeCompare(y.s.name,'fr');
@@ -504,6 +533,9 @@ function renderQuality(){
   <p class="smalltxt">${a.count} / 8 catégories documentées</p>
   <div class="quality-checks">${a.tests.map(([label,yes])=>`<span class="quality-check ${yes?'yes':'no'}">${yes?'✓':'–'} ${esc(label)}</span>`).join('')}</div>
   <p class="source-note">Collecte : ${esc(a.source?.message||'Non contrôlée')}. ${s.pdfReadStatus?'Lecture PDF : '+esc(s.pdfReadStatus):''}</p>
+  ${(auditById.get(s.id)||[]).length?'<div class="quality-record-audit"><strong>Audit ('+(auditById.get(s.id)||[]).length+' signalements)</strong>'+ (auditById.get(s.id)||[]).slice(0,9).map(x=>`<p>• ${esc(x.field)} : ${esc(x.detail)} ${link(x.source,'Publication','compare-source')}</p>`).join('')+'</div>':''}
+  ${(a.source?.validationIssues||[]).length?'<div class="quality-record-audit invalid"><strong>Nouvelles données rejetées : anciennes valeurs conservées.</strong>'+a.source.validationIssues.map(x=>`<p>• ${esc(x)}</p>`).join('')+'</div>':''}
+  ${(a.source?.attempts||[]).length?'<details class="quality-source-attempts"><summary>Voir les voies de collecte testées ('+a.source.attempts.length+')</summary>'+a.source.attempts.map(x=>`<p>${esc(x.status==='accessible'?'Accessible':x.status==='error'?'Échec':'PDF non exploité comme page')} : ${link(x.url,'Source','compare-source')} ${x.detail?'· '+esc(x.detail):''}</p>`).join('')+'</details>':''}
   <div class="quality-actions">${link(a.source?.source||s.officialSource,'Source officielle')}<button class="btn small" data-open="${esc(s.id)}" data-tab="documents">Vérifier la fiche</button></div></article>`;
  }).join('')||empty('Aucun résultat pour ce filtre.');
 }
