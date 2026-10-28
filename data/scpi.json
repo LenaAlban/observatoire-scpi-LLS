@@ -832,10 +832,46 @@
       }
     ],
     "notes": "Référence visible sur la liste Spirica transmise. Référencement à confirmer pour chaque contrat, conditions et date de souscription.",
-    "allocationDate": null,
-    "geo": [],
-    "types": [],
+    "allocationDate": "2026-03-31",
+    "geo": [
+      [
+        "Allemagne",
+        29
+      ],
+      [
+        "France",
+        32
+      ],
+      [
+        "Belgique",
+        22
+      ],
+      [
+        "Pays-Bas",
+        14
+      ],
+      [
+        "Italie",
+        3
+      ]
+    ],
+    "types": [
+      [
+        "Hôtels",
+        71
+      ],
+      [
+        "Villages vacances et résidences de tourisme",
+        29
+      ]
+    ],
     "acquisitions": [
+      {
+        "when": "T1 2026",
+        "title": "Hôtel B&B à Villafranca di Verona (Italie)",
+        "details": "Hôtel 4 étoiles de 113 chambres acheté pour 8,5 M€, bail ferme de 20 ans.",
+        "url": "https://atream.com/wp-content/uploads/2026/05/Bulletin-N2026_1T-SCPI_Atream_Hotels_WEB_10-PAGES-1.pdf"
+      },
       {
         "when": "2026",
         "title": "Hôtel 4 étoiles à L'Albir, Espagne",
@@ -895,6 +931,18 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Nombre de parts en attente publié"
+      },
+      "geo": {
+        "url": "https://atream.com/wp-content/uploads/2026/05/Bulletin-N2026_1T-SCPI_Atream_Hotels_WEB_10-PAGES-1.pdf",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur d'acquisition acte en main (AEM) ; ne pas assimiler à la valeur vénale"
+      },
+      "types": {
+        "url": "https://atream.com/wp-content/uploads/2026/05/Bulletin-N2026_1T-SCPI_Atream_Hotels_WEB_10-PAGES-1.pdf",
+        "date": "2026-03-31",
+        "verifiedAt": "2026-10-28",
+        "method": "Répartition en % de la valeur d'acquisition acte en main (AEM) ; ne pas assimiler à la valeur vénale"
       }
     },
     "pdfVerifiedAt": "2026-10-28",
@@ -902,7 +950,9 @@
     "tofDate": "2026-06-30",
     "allocationNote": "Patrimoine présent dans six pays (France, Allemagne, Belgique, Pays-Bas, Italie, Espagne). Les pourcentages actuels par pays ne sont pas donnés en texte sur la fiche.",
     "allocationNoteSource": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
-    "allocationNoteDate": "2026-06-30"
+    "allocationNoteDate": "2026-06-30",
+    "typesDate": "2026-03-31",
+    "geoDate": "2026-03-31"
   },
   {
     "id": "edissimmo",
@@ -4103,8 +4153,8 @@
     "pdfVerifiedAt": "2026-10-28",
     "keySourceType": "Meilleurtaux Placement",
     "keyVerifiedAt": "2026-10-28",
-    "allocationNote": "Patrimoine américain localisé au Texas, en Californie, dans l'Illinois et l'État de New York au 30/06/2026. Répartition chiffrée par État non confirmée.",
-    "allocationNoteSource": "https://www.corum.fr/nos-scpi/corum-usa",
+    "allocationNote": "Patrimoine américain localisé au Texas, en Californie, dans l'Illinois et l'État de New York au 30/06/2026. Répartition chiffrée par État non confirmée. Le patrimoine de la SCPI est entièrement situé aux États-Unis ; les poids par État ne sont pas vérifiés.",
+    "allocationNoteSource": "https://www.corum.fr/nos-scpi/corum-usa/documents",
     "allocationNoteDate": "2026-06-30"
   }
 ]
