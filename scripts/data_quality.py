@@ -114,6 +114,22 @@ def valid_liquidity(value):
     return all(v is None or (type(v) is int and 0 <= v < 100_000_000) for v in counts)
 
 
+def approved_update_source(item, field, url):
+    """Une nouvelle valeur doit provenir du gérant identifié, ou d'un barème
+    de démembrement Meilleurtaux / La Française explicitement accepté.
+    Les références anciennes recoupées ailleurs ne sont pas déclassées.
+    """
+    if not official_url(url):
+        return False
+    doc=(urlparse(url).hostname or '').lower().removeprefix('www.')
+    manager=(urlparse(item.get('officialSource') or '').hostname or '').lower().removeprefix('www.')
+    if manager and (doc==manager or doc.endswith('.'+manager)):
+        return True
+    if field=='keys' and doc in ('placement.meilleurtaux.com','lafrancaise-am-partenaires.com'):
+        return True
+    return False
+
+
 def validate_updates(before, after, today):
     """Rejette seulement les nouvelles valeurs qui ne sont pas justifiées.
 
@@ -134,6 +150,8 @@ def validate_updates(before, after, today):
         source = field_source(after, key)
         if not official_url(source):
             issues.append(key + ' : URL justificative HTTPS manquante')
+        elif not approved_update_source(after,key,source):
+            issues.append(key + ' : justificatif hors domaine éditeur approuvé')
         current = parse_day(field_day(after, key))
         if key != 'keys' and current is None:
             issues.append(key + ' : date de référence absente ou incorrecte')
