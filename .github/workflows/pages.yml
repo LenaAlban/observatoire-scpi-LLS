@@ -1,34 +1,69 @@
-name: Publier l'observatoire SCPI
+name: Observatoire SCPI - actualisation et publication
+
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '17 6 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
   pages: write
   id-token: write
+
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: observatoire-scpi-pages
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  preparer:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+      - name: Récupérer les fichiers
+        uses: actions/checkout@v4
         with:
-          enablement: true
-      - name: Préparer les fichiers publics
+          persist-credentials: true
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Installer les bibliothèques
+        run: pip install -r requirements.txt
+      - name: Vérifier les données et les calculs
+        run: python -m unittest discover -s tests -v
+      - name: Collecter les derniers bulletins officiels
+        run: python scripts/sync.py
+      - name: Enregistrer les nouvelles données (si changement)
+        run: |
+          git config user.name 'SCPI Sync Bot'
+          git config user.email 'scpi-sync-bot@users.noreply.github.com'
+          git add data/scpi.json data/status.json
+          git diff --cached --quiet || (git commit -m 'Actualisation quotidienne SCPI' && git push)
+      - name: Préparer le site public (sans code de collecte)
         run: |
           mkdir -p public/data
           cp index.html public/index.html
           cp data/scpi.json data/status.json public/data/
           touch public/.nojekyll
-      - uses: actions/upload-pages-artifact@v3
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Envoyer le site à GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
           path: public
-      - id: deployment
+
+  publier:
+    runs-on: ubuntu-latest
+    needs: preparer
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Mettre l'observatoire en ligne
+        id: deployment
         uses: actions/deploy-pages@v4
