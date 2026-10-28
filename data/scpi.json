@@ -632,8 +632,8 @@
     "realisation": null,
     "retreat": null,
     "td": 3.63,
-    "tof": 86.47,
-    "waiting": null,
+    "tof": 83.84,
+    "waiting": 861584,
     "waitingPct": null,
     "bulletin": null,
     "bulletinDate": null,
@@ -653,15 +653,16 @@
     "officialSource": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
     "liquidityData": {
-      "waitingParts": null,
+      "waitingParts": 861584,
       "withdrawalsExecuted": null,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
+      "periodEnd": "2026-06-30",
+      "periodLabel": "S1 2026",
       "withdrawals4Q": [],
-      "sourceUrl": null,
+      "sourceUrl": "https://scpiselect.fr/scpi/edissimmo",
       "verifiedAt": null,
-      "method": null
+      "method": "Recoupement externe du bulletin Amundi S1 2026, original non vérifié directement",
+      "stockProvenance": "Source secondaire citant le bulletin du gérant"
     },
     "priceSource": "https://placement.meilleurtaux.com/scpi/actualites/2026-octobre/change-associe-passage-scpi-capital-fixe.html",
     "priceType": "Souscription",
@@ -680,14 +681,20 @@
         "method": "Rapport ou bulletin annuel de la société de gestion (pour Rivoli : copie du rapport Amundi hébergée chez un tiers)"
       },
       "tof": {
-        "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-        "date": "2025-12-31",
-        "verifiedAt": "2026-10-28",
-        "method": "Bulletin semestriel officiel"
+        "url": "https://scpiselect.fr/scpi/edissimmo",
+        "date": "2026-06-30",
+        "verifiedAt": null,
+        "method": "Indicateur recoupé via publication secondaire citant Amundi; contrôle du PDF d'origine nécessaire"
+      },
+      "waiting": {
+        "url": "https://scpiselect.fr/scpi/edissimmo",
+        "date": "2026-06-30",
+        "verifiedAt": null,
+        "method": "Recoupement externe à confirmer sur bulletin d'origine"
       }
     },
     "tdYear": 2025,
-    "tofDate": "2025-12-31"
+    "tofDate": "2026-06-30"
   },
   {
     "id": "efimmo-1",
@@ -1864,8 +1871,8 @@
     "realisation": null,
     "retreat": null,
     "td": 3.46,
-    "tof": null,
-    "waiting": null,
+    "tof": 85.01,
+    "waiting": 818629,
     "waitingPct": null,
     "bulletin": null,
     "bulletinDate": null,
@@ -1885,15 +1892,16 @@
     "officialSource": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
     "liquidityData": {
-      "waitingParts": null,
+      "waitingParts": 818629,
       "withdrawalsExecuted": null,
       "withdrawalRequests": null,
-      "periodEnd": null,
-      "periodLabel": null,
+      "periodEnd": "2026-06-30",
+      "periodLabel": "S1 2026",
       "withdrawals4Q": [],
-      "sourceUrl": null,
+      "sourceUrl": "https://scpiselect.fr/scpi/rivoli-avenir-patrimoine",
       "verifiedAt": null,
-      "method": null
+      "method": "Recoupement externe du bulletin Amundi S1 2026, original non vérifié directement",
+      "stockProvenance": "Source secondaire citant le bulletin du gérant"
     },
     "priceSource": "https://placement.meilleurtaux.com/scpi/actualites/2026-octobre/change-associe-passage-scpi-capital-fixe.html",
     "priceType": "Souscription",
@@ -1910,9 +1918,22 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Rapport ou bulletin annuel de la société de gestion (pour Rivoli : copie du rapport Amundi hébergée chez un tiers)"
+      },
+      "waiting": {
+        "url": "https://scpiselect.fr/scpi/rivoli-avenir-patrimoine",
+        "date": "2026-06-30",
+        "verifiedAt": null,
+        "method": "Recoupement externe à confirmer sur bulletin d'origine"
+      },
+      "tof": {
+        "url": "https://scpiselect.fr/scpi/rivoli-avenir-patrimoine",
+        "date": "2026-06-30",
+        "verifiedAt": null,
+        "method": "Indicateur recoupé via publication secondaire citant Amundi; contrôle du PDF d'origine nécessaire"
       }
     },
-    "tdYear": 2025
+    "tdYear": 2025,
+    "tofDate": "2026-06-30"
   },
   {
     "id": "selectinvest-1",
