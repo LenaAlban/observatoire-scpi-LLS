@@ -291,10 +291,10 @@
     "realisation": null,
     "retreat": null,
     "td": 6.5,
-    "tof": 95.77,
+    "tof": 95.48,
     "waiting": null,
     "waitingPct": null,
-    "bulletin": "T3 2026",
+    "bulletin": "T3 2026 (n° 58)",
     "bulletinDate": "2026-09-30",
     "bulletinUrl": "https://www.corum.fr/nos-scpi/corum-origin/documents",
     "sourceUrl": "https://www.corum.fr/nos-scpi/corum-origin/documents",
@@ -312,8 +312,61 @@
     "tags": [
       "Meilleurtaux Placement"
     ],
-    "allocationDate": null,
-    "geo": [],
+    "allocationDate": "2026-09-30",
+    "geo": [
+      [
+        "Pays-Bas",
+        28
+      ],
+      [
+        "Italie",
+        17
+      ],
+      [
+        "Irlande",
+        12
+      ],
+      [
+        "Espagne",
+        9
+      ],
+      [
+        "Finlande",
+        7
+      ],
+      [
+        "Belgique",
+        7
+      ],
+      [
+        "France",
+        7
+      ],
+      [
+        "Allemagne",
+        5
+      ],
+      [
+        "Lituanie",
+        2
+      ],
+      [
+        "Slovénie",
+        2
+      ],
+      [
+        "Portugal",
+        2
+      ],
+      [
+        "Estonie",
+        1
+      ],
+      [
+        "Lettonie",
+        1
+      ]
+    ],
     "types": [
       [
         "Bureaux",
@@ -328,7 +381,7 @@
         8
       ],
       [
-        "Industrie et logistique",
+        "Logistique",
         4
       ],
       [
@@ -396,20 +449,41 @@
     "keyVerifiedAt": "2026-10-28",
     "fieldSources": {
       "tof": {
-        "url": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine",
-        "date": "2026-06-30",
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/documents",
+        "date": "2026-09-30",
         "verifiedAt": "2026-10-28",
-        "method": "TOF publié par la société de gestion"
+        "method": "TOF 95,48 % publié page 4 du bulletin n° 58"
       },
       "types": {
-        "url": "https://www.corum.fr/nos-scpi/corum-origin/patrimoine",
-        "date": "2026-06-30",
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/documents",
+        "date": "2026-09-30",
         "verifiedAt": "2026-10-28",
-        "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+        "method": "Bulletin officiel CORUM Origin n° 58, T3 2026, page 4, chiffres relevés dans la répartition graphique"
+      },
+      "geo": {
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/documents",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-10-28",
+        "method": "Bulletin officiel CORUM Origin n° 58, T3 2026, page 4, chiffres relevés dans la répartition graphique"
+      },
+      "patrimony": {
+        "url": "https://www.corum.fr/nos-scpi/corum-origin/documents",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-10-28",
+        "method": "170 immeubles, 444 locataires, 1 765 641 m², engagement locatif moyen 5,80 ans, page 4"
       }
     },
-    "tofDate": "2026-06-30",
-    "typesDate": "2026-06-30"
+    "tofDate": "2026-09-30",
+    "typesDate": "2026-09-30",
+    "geoDate": "2026-09-30",
+    "allocationNote": "Répartitions géographique et typologique en % de la valeur du patrimoine, bulletin CORUM Origin T3 2026, page 4.",
+    "allocationNoteSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
+    "allocationNoteDate": "2026-09-30",
+    "assetCount": 170,
+    "tenantCount": 444,
+    "areaSqm": 1765641,
+    "averageLeaseCommitmentYears": 5.8,
+    "patrimonyStatsDate": "2026-09-30"
   },
   {
     "id": "remake-live",
