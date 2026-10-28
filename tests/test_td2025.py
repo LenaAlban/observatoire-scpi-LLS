@@ -3,31 +3,31 @@ import sys
 import unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1] / "scripts"))
-from sync import update_td_2025, update_indicators
+from sync import update_td, update_indicators
 
 
 class TestDistribution(unittest.TestCase):
     def test_explicit_rate(self):
         item={"td":None}
-        changes=update_td_2025(item,"Taux de distribution 2025 : 6,50 %", "https://www.example.com/source.pdf")
-        self.assertEqual(changes,["TD 2025"])
+        changes=update_td(item,"Taux de distribution 2025 : 6,50 %", "https://www.example.com/source.pdf")
+        self.assertIn("TD annuel 2025",changes)
         self.assertEqual(item["td"],6.5)
         self.assertEqual(item["tdYear"],2025)
 
     def test_gross_not_net(self):
         item={"td":None}
         sample="Votre SCPI a généré en 2025 un taux de distribution de 5,00 % brut de fiscalité et de 4,81 % net."
-        update_td_2025(item,sample,"https://www.example.com/source.pdf")
+        update_td(item,sample,"https://www.example.com/source.pdf")
         self.assertEqual(item["td"],5.0)
 
     def test_missing_year_not_assumed(self):
         item={"td":4.8,"tdYear":2025}
-        update_td_2025(item,"Taux de distribution : 7,8 %", "https://www.example.com/source.pdf")
+        update_td(item,"Taux de distribution : 7,8 %", "https://www.example.com/source.pdf")
         self.assertEqual(item["td"],4.8)
 
     def test_conflicting_rates_not_written(self):
         item={"td":4.8,"tdYear":2025}
-        update_td_2025(item,"Taux de distribution 2025 5,00 % / Taux de distribution 2025 5,90 %",
+        update_td(item,"Taux de distribution 2025 5,00 % / Taux de distribution 2025 5,90 %",
                        "https://www.example.com/source.pdf")
         self.assertEqual(item["td"],4.8)
 
