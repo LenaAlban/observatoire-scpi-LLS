@@ -32,6 +32,16 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 - **Interface Fiabilité** : filtres « anomalies », « données anciennes » et « modifications rejetées » ; détail des avertissements et des sources consultées. Le panneau d'audit apparaît **après l'exécution du nouveau robot** (il n'est pas rempli artificiellement à partir des anciennes données).
 - **Limites** : des sites peuvent continuer à refuser les robots, et des tableaux PDF fondés sur des images ne sont pas convertis par reconnaissance visuelle approximative. Aucun taux ni aucune clé de démembrement n'est extrapolé pour combler une lacune.
 
+## TD annuels : gestion automatique des millésimes (correctif n°7)
+
+- La collecte PDF n'est plus limitée au TD 2025. Elle recherche un **taux de distribution annuel**, explicitement associé à une année civile clôturée. Les taux provisoires, objectifs, estimations et annualisations trimestrielles sont exclus. La prochaine année (2026) peut être prise en compte à partir de 2027, si une publication officielle exploitable l'indique.
+- `tdHistory` contient les taux historiques par année avec **valeur, millésime, période, lien justificatif, méthode et extrait probant**. Les TD du référentiel existant sont automatiquement migrés à partir de leur millésime connu (2025 pour les anciens champs historiques qui n'avaient pas d'année explicite), sans inventer une nouvelle source.
+- Les valeurs nouvelles ne remplacent pas les années antérieures. **Deux TD contradictoires pour le même millésime** sont conservés comme conflit à vérifier (`tdConflicts`) et ne sont pas arbitrés automatiquement. La valeur affichée `td` et son millésime `tdYear` évoluent uniquement lorsqu'une année civile plus récente est confirmée.
+- Le validateur refuse une **année non terminée**, un changement de millésime incohérent, une nouvelle entrée sans source officielle autorisée ou l'effacement d'un millésime historique.
+- Tableaux, fiches individuelles et comparateur indiquent l'année du TD et proposent les archives disponibles. Le comparateur présente les années côte à côte et ne transforme pas des taux de millésimes différents en un seul indicateur.
+- Le **simulateur d'allocation** recherche d'abord le dernier millésime commun à toutes les SCPI sélectionnées. Si aucun millésime commun n'est disponible pour toute l'allocation, il affiche **TD global non calculable**, la couverture du millésime choisi et une alerte, plutôt que mélanger les années ou extrapoler des chiffres absents.
+- Les synthèses imprimées et le CSV indiquent désormais les millésimes. Le TD reste historique, sans garantie de rendement futur.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
