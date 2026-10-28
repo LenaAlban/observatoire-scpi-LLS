@@ -740,7 +740,13 @@ def collect_official_candidates(sess,item,url,host):
     primary_url=None
     loaded=False
     checked_opaque=set()
+    tls_failed_hosts=set()
     for landing in official_entry_points(item,url,host):
+        hostname=urlparse(landing).hostname
+        if hostname in tls_failed_hosts:
+            attempts.append({'url':landing,'status':'skipped_tls','kind':'tls',
+                             'detail':'Hôte HTTPS déjà rejeté : certificat non vérifiable.'})
+            continue
         try:
             blob,_,resolved=fetch(sess,landing,host,limit=MAX_PDF)
             if blob.startswith(b'%PDF'):
@@ -785,6 +791,7 @@ def collect_official_candidates(sess,item,url,host):
                 break
         except (requests.RequestException,ValueError,RuntimeError) as exc:
             message,kind=sanitized_collection_error(exc)
+            if kind=='tls':tls_failed_hosts.add(hostname)
             attempts.append({'url':landing,'status':'error','kind':kind,'detail':message})
     if not loaded:
         item['sourceAttempts']=attempts[-14:]
