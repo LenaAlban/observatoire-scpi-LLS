@@ -53,6 +53,16 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 - Sur une SCPI à marché secondaire, les **anciens prix de souscription** sont exclus de la série des prix de confrontation afin de ne pas afficher une évolution trompeuse.
 - Aucune correction manuelle des données officielles : les données sont mises à jour par la collecte quotidienne. Une source inaccessible ou un bulletin non interprétable ne crée pas de point historique.
 
+## Correctif de collecte suite au contrôle du 28 octobre 2026
+
+Les erreurs affichées sur **Edissimmo, Efimmo 1, Immorente, Sofidynamic, Sofidy Europe Invest et Altixia Cadence XII** étaient des résultats de la collecte du 28/10/2026, antérieurs aux ajustements de découverte documentaire. Les tests et le déploiement du site ne prouvent pas, à eux seuls, que les domaines des gérants sont de nouveau accessibles.
+
+- Les chemins de secours documentaires sont explicitement configurés pour **Amundi Immobilier, Sofidy et Altixia**, toujours sur leurs propres domaines HTTPS. Le robot peut désormais examiner certains documents PDF connus même si la page de catalogue n'est pas disponible, après vérification de la SCPI, de la nature « bulletin trimestriel » et de la période effectivement imprimée.
+- Le robot examine un nombre limité de liens PDF dont le nom ne contient pas de trimestre (notamment les URL « doc1 » d'Altixia), sans les présenter comme fiables avant lecture de leur contenu.
+- Les erreurs **503 / certificat TLS / délai de réponse / refus d'accès** sont classées et affichées de façon compréhensible. Une erreur de certificat n'est **jamais contournée** par la désactivation de la vérification SSL. Le même hôte dont le certificat a été rejeté n'est pas interrogé en boucle.
+- L'onglet **Veille** et l'onglet **Fiabilité** masquent également les anciennes traces brutes `HTTPSConnectionPool` déjà présentes dans `data/status.json`. Les fiches indiquent la dernière période documentée dans le référentiel, sans confondre celle-ci avec une nouvelle collecte réussie.
+- **Limite vérifiable** : la réussite des tests unitaires et de GitHub Pages ne signifie pas que l'éditeur a réparé son HTTP 503 ou sa chaîne de certificats. Le résultat réel des tentatives de secours est mesuré lors de la **prochaine exécution automatique** ; les dernières données fiables restent conservées jusque-là.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
