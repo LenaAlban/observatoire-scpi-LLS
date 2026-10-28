@@ -594,6 +594,7 @@ def refresh_keys(s,item):
             if item.get('keys')==found:
                 item['keyVerifiedAt']=TODAY
                 return []
+            record_auto_change(item,'keys',item.get('keys'),found,TODAY,url)
             item['keys']=dict(sorted(found.items(),key=lambda pair:int(pair[0])))
             item['keyVerifiedAt']=TODAY
             item['keySourceType']='Société de gestion'
@@ -641,6 +642,7 @@ def refresh_keys(s,item):
         if item.get('keys')==normalised:
             item['keyVerifiedAt']=TODAY
             return []
+        record_auto_change(item,'keys',item.get('keys'),normalised,TODAY,url)
         item['keys']=normalised
         item['keyVerifiedAt']=TODAY
         item['keySourceType']='Meilleurtaux Placement' if is_mtp else 'Société de gestion'
@@ -767,6 +769,9 @@ def refresh_one(s,item):
         blob,txt,resolved=document
         # Une publication n'est mise à jour qu'après vérification du document.
         if p['rank'] > existing_rank(item) or not item.get('bulletinUrl') or item.get('bulletinUrl') != resolved:
+            # Only validated documents can generate a bulletin publication event.
+            if p['rank'] > existing_rank(item) or not item.get('bulletin'):
+                record_auto_change(item,'bulletin',item.get('bulletin'),p['label'],p['date'],resolved)
             item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':resolved})
             changes.append('bulletin')
         changes+=update_indicators(item,txt,p,resolved)
@@ -799,6 +804,7 @@ def refresh_one(s,item):
                 if not (period_from(head) and period_from(head)['rank']==p['rank']):
                     continue
                 if p['rank'] > existing_rank(item):
+                    record_auto_change(item,'bulletin',item.get('bulletin'),p['label'],p['date'],resolved)
                     item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':resolved})
                     changes.append('bulletin HTML')
                 item['pdfReadStatus']='Bulletin HTML identifié ; PDF non validé'
@@ -846,7 +852,22 @@ def main():
             statuses.append({'id':item['id'],'name':item['name'],'status':'error','changes':[],'message':str(e)[:220],'source':item['officialSource']})
             item['automatedCheck']='Échec de récupération · données précédentes conservées'
             LOG.warning('%s: %s',item['name'],e)
-    report={'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),'total':len(statuses),'sourceAccessible':ok,'bulletinFound':found,'pdfRead':sum(s.get('pdfRead')=='PDF officiel lu (texte et positions)' for s in statuses),'updated':changed,'results':statuses}
+    recent_events=sorted(
+        (dict(ev,scpiId=item['id'],scpiName=item['name'])
+         for item in items
+         for ev in item.get('automatedHistory',[])
+         if ev.get('recordedAt') and ev.get('source')),
+        key=lambda x:x['recordedAt'],reverse=True
+    )[:200]
+    last_run_day=TODAY
+    todays_events=[ev for ev in recent_events if ev['recordedAt'][:10]==last_run_day]
+    report={'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
+            'total':len(statuses),'sourceAccessible':ok,'bulletinFound':found,
+            'pdfRead':sum(row.get('pdfRead')=='PDF officiel lu (texte et positions)' for row in statuses),
+            'updated':changed,'results':statuses,
+            'recentEvents':recent_events,
+            'eventsRecordedToday':len(todays_events),
+            'bulletinEventsRecordedToday':sum(ev.get('field')=='bulletin' for ev in todays_events)}
     print(json.dumps({'date':TODAY,'sources_accessibles':ok,'bulletins_detectes':found,'fiches_modifiees':changed,'erreurs':len(statuses)-ok},ensure_ascii=False))
     if not args.dry_run:
         DATA.write_text(json.dumps(items,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
