@@ -67,6 +67,15 @@ class LastBulletinTests(unittest.TestCase):
             points=sync.official_entry_points(item,*OFFICIAL[identifier])
             self.assertEqual(points[:len(refs)*2:2],refs,id)
 
+    def test_cached_official_bulletin_pdf_is_used_before_failing_pages(self):
+        item={'id':'immorente','name':'Immorente',
+              'sourceUrl':OFFICIAL['immorente'][0],
+              'bulletinUrl':'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf',
+              'fieldSources':{}}
+        entry_points=sync.official_entry_points(item,*OFFICIAL['immorente'])
+        self.assertEqual(entry_points[0],item['bulletinUrl'])
+        self.assertIn(item['bulletinUrl'],OFFICIAL_FALLBACKS['immorente'])
+
     def test_perial_cdn_is_allowed_only_for_own_documents(self):
         for id,url in [('pf-grand-paris',PERIAL_PDF),('pfo2',PERIAL_O2)]:
             self.assertIn(url,OFFICIAL_FALLBACKS[id])
