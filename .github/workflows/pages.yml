@@ -33,17 +33,23 @@ jobs:
           ref: main
           persist-credentials: true
       - name: Installer Python
+        if: github.event_name != 'push'
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: pip
       - name: Installer les bibliothèques
+        if: github.event_name != 'push'
         run: pip install -r requirements.txt
       - name: Vérifier les données et les calculs
+        if: github.event_name != 'push'
         run: python -m unittest discover -s tests -v
-      - name: Vérifier le JavaScript avant publication
+      # Les publications d'interface doivent être rapides et indépendantes
+      # des dependances/collectes PDF : aucun téléchargement sur push.
+      - name: Vérifier le JavaScript et la page d'accueil avant chaque publication
         run: python scripts/check_frontend.py
       - name: Tester la sécurité du déclencheur à la demande
+        if: github.event_name != 'push'
         run: node --test worker/test.mjs
       - name: Collecter tous les bulletins officiels (veille quotidienne ou demande)
         if: github.event_name != 'push'
