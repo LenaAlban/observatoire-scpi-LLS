@@ -35,7 +35,7 @@ class AutomaticPipelineTests(unittest.TestCase):
         candidate={'url':landing,'period':P}
         with patch.object(sync,'fetch',side_effect=[
             (html,'text/html',landing),(b'%PDF-1.7 fake','application/pdf',doc)
-        ]) as fetch_mock, patch.object(sync,'pdf_text',return_value='CORUM Origin - Bulletin T3 2026 - taux occupation financier'):
+        ]) as fetch_mock, patch.object(sync,'pdf_text',return_value='CORUM Origin - Bulletin trimestriel T3 2026 - taux occupation financier'):
             result=sync.verified_pdf_from_candidate(None,candidate,ITEM,'corum.fr')
         self.assertEqual(result[2],doc)
         self.assertEqual(fetch_mock.call_count,2)
