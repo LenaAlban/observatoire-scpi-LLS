@@ -24,7 +24,11 @@ class OfficialRecoveryTests(unittest.TestCase):
     def test_sofidy_alternates_and_apex_domain(self):
         item={'id':'immorente','name':'Immorente','sourceUrl':'https://www.sofidy.com/solutions/immorente/'}
         paths=sync.official_entry_points(item,item['sourceUrl'],'sofidy.com')
-        self.assertEqual(paths[1],'https://sofidy.com/solutions/immorente/')
+        # Le PDF officiel doit être tenté en priorité, avant le catalogue HTML.
+        pdf='https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf'
+        self.assertEqual(paths[0],pdf)
+        self.assertEqual(paths[1],pdf.replace('www.sofidy.com','sofidy.com'))
+        self.assertIn('https://sofidy.com/solutions/immorente/',paths)
         self.assertIn('https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/',paths)
         self.assertIn('https://www.sofidy.com/documentation/',paths)
 
