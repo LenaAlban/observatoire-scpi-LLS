@@ -221,6 +221,23 @@ def pdf_links_on_landing(html, base_url, scpi, host, period):
     return urls[:6]
 
 
+def fetch_official_with_apex(sess,url,host,limit=MAX_PDF):
+    """Repli sur l'autre hôte *officiel* lors d'un défaut TLS du www.
+
+    Les deux requêtes conservent la validation des certificats. Un certificat
+    non fiable sur les deux hôtes reste une erreur, jamais un succès factice.
+    """
+    try:
+        return fetch(sess,url,host,limit=limit)
+    except requests.exceptions.SSLError:
+        parsed=urlparse(url)
+        if parsed.hostname!='www.'+host:
+            raise
+        from urllib.parse import urlunparse
+        apex=urlunparse(parsed._replace(netloc=host))
+        return fetch(sess,apex,host,limit=limit)
+
+
 def verified_pdf_from_candidate(sess, candidate, item, host):
     """Suivre au maximum une page intermédiaire et ne retourner qu'un PDF validé.
 
@@ -229,7 +246,7 @@ def verified_pdf_from_candidate(sess, candidate, item, host):
     la période est mentionnée dans le document.
     """
     wanted = candidate['period']
-    blob, ctype, url = fetch(sess, candidate['url'], host, limit=MAX_PDF)
+    blob, ctype, url = fetch_official_with_apex(sess, candidate['url'], host, limit=MAX_PDF)
     if blob.startswith(b'%PDF'):
         targets = [(blob, url)]
     else:
@@ -237,7 +254,7 @@ def verified_pdf_from_candidate(sess, candidate, item, host):
         targets = []
         for link in pdf_links_on_landing(html, url, item, host, wanted):
             try:
-                pdf, _, resolved = fetch(sess, link, host, limit=MAX_PDF)
+                pdf, _, resolved = fetch_official_with_apex(sess, link, host, limit=MAX_PDF)
                 if pdf.startswith(b'%PDF'):
                     targets.append((pdf, resolved))
             except (requests.RequestException, ValueError, RuntimeError) as exc:
@@ -247,8 +264,10 @@ def verified_pdf_from_candidate(sess, candidate, item, host):
             text = pdf_text(pdf)
             if not match_identity(text, item):
                 continue
-            actual = period_from(text[:6500])
-            if actual and actual['rank'] != wanted['rank']:
+            actual = period_from(text[:11000])
+            # Ne pas accepter une période uniquement déduite du lien HTML,
+            # comme c'était le cas pour certaines fiches Sofidy.
+            if not actual or actual['rank'] != wanted['rank']:
                 continue
             return pdf, text, resolved
         except (ValueError, RuntimeError) as exc:
