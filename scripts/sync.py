@@ -811,6 +811,11 @@ def official_entry_points(item, url, host):
     for direct in OFFICIAL_FALLBACKS.get(item['id'],[]):
         if urlparse(direct).path.lower().endswith('.pdf'):
             add_official(direct)
+    # Réutiliser également un lien PDF officiellement enregistré dans la
+    # fiche : il peut rester lisible alors que le catalogue HTML échoue.
+    known_bulletin=item.get('bulletinUrl') or ''
+    if urlparse(known_bulletin).path.lower().endswith('.pdf'):
+        add_official(known_bulletin)
     add_official(url)
     known=[item.get('sourceUrl')]+OFFICIAL_FALLBACKS.get(item['id'],[])+[
         (item.get('fieldSources') or {}).get(key,{}).get('url')
