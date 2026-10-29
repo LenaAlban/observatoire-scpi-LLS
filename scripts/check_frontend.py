@@ -35,6 +35,18 @@ scripts = re.findall(r"<script(?:\s[^>]*)?>(.*?)</script>", html, flags=re.S | r
 assert len(scripts) == 1, f"Scripts intégrés inattendus : {len(scripts)}"
 assert "const SEED=" in scripts[0], "Référentiel initial manquant dans le script"
 assert "render();" in scripts[0], "Appel du rendu initial manquant"
+# L'observatoire doit être la première page et Veille la dernière rubrique.
+nav = re.search(r'<nav class="nav">(.*?)</nav>', html, flags=re.S)
+assert nav, "Menu de navigation introuvable"
+menu_order = re.findall(r'data-view="([a-z]+)"', nav.group(1))
+assert menu_order == ['dashboard','compare','evolution','allocation','sources','quality','watch'], (
+    f"Navigation inattendue : {menu_order}"
+)
+assert 'data-view="dashboard" class="active"' in nav.group(1), "Accueil Observatoire non sélectionné"
+assert re.search(r"<section id=\"dashboard-view\">", html), "Observatoire masqué au chargement"
+assert re.search(r'<section id="watch-view" class="hidden">', html), "Veille visible au chargement"
+assert "view='dashboard'" in scripts[0], "La page affichée initialement doit être Observatoire"
+
 with tempfile.TemporaryDirectory() as tmp:
     js = Path(tmp) / "observatoire.js"
     js.write_text(scripts[0], encoding="utf-8")
