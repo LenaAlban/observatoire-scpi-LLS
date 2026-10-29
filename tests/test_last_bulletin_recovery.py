@@ -87,11 +87,12 @@ class LastBulletinTests(unittest.TestCase):
             _,_,candidates,attempts=sync.collect_official_candidates(None,item,page,'perial.com')
         self.assertTrue(any(c['url']==PERIAL_PDF for c in candidates))
 
-    def test_legacy_status_lists_all_ten_problem_funds(self):
+    def test_all_ten_funds_stay_in_status_even_after_recovery(self):
         import json
         statuses=json.loads((ROOT/'data/status.json').read_text())['results']
-        problems={r['id'] for r in statuses if r['status'] in ('error','partial')}
-        self.assertTrue(set(FAILING).issubset(problems))
+        ids={row['id'] for row in statuses}
+        self.assertTrue(set(FAILING).issubset(ids))
+        self.assertEqual(len(ids),len(statuses))
 
 if __name__=='__main__':
     unittest.main()
