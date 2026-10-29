@@ -1067,8 +1067,7 @@ def main():
         print(json.dumps({'scpi':len(items),'source_configs':len(OFFICIAL),'keys':sum(bool(i.get('keys')) for i in items)},ensure_ascii=False));return
     previous_status=json.loads(STATUS.read_text(encoding='utf-8')) if STATUS.exists() else {}
     past_results={row['id']:row for row in previous_status.get('results',[]) if row.get('id')}
-    failing={id for id,row in past_results.items() if row.get('status') in ('error','partial')
-             or row.get('pdfRead')!='PDF officiel lu (texte et positions)'}
+    failing={id for id,row in past_results.items() if row.get('status') in ('error','partial')}
     statuses=[];changed=0;ok=0;found=0;rejected=0
     ss=session()
     for item in items:
