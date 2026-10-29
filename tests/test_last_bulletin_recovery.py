@@ -34,6 +34,39 @@ class LastBulletinTests(unittest.TestCase):
             self.assertTrue(all(sync.host_is(link,host) for link in points),id)
             self.assertGreaterEqual(len(points),2,id)
 
+    def test_efimmo_direct_t2_pdf_is_first_and_really_read(self):
+        # Le lien transmis pour Efimmo doit être lu même si le catalogue
+        # Sofidy ne répond pas (TLS/503). Son nom seul ne suffit pas.
+        direct='https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Efimmo_OPTI.pdf'
+        item={'id':'efimmo-1','name':'Efimmo 1','sourceUrl':OFFICIAL['efimmo-1'][0],
+              'fieldSources':{}}
+        self.assertIn(direct,OFFICIAL_FALLBACKS['efimmo-1'])
+        self.assertEqual(sync.official_entry_points(item,*OFFICIAL['efimmo-1'])[0],direct)
+        content="EFIMMO 1 - Bulletin trimestriel d'information - 2e trimestre 2026"
+        with patch.object(sync,'pdf_text',return_value=content) as pdf_reader:
+            found=sync.pdf_candidate_from_bytes(b'%PDF-1.7 synthetic',direct,item)
+        pdf_reader.assert_called_once()
+        self.assertEqual(found['period']['label'],'T2 2026')
+        self.assertEqual(found['url'],direct)
+
+    def test_pdf_rejected_if_wrong_fund_or_not_a_bulletin(self):
+        direct=OFFICIAL_FALLBACKS['efimmo-1'][0]
+        item={'id':'efimmo-1','name':'Efimmo 1'}
+        with patch.object(sync,'pdf_text',return_value="SOFIDYNAMIC - Bulletin trimestriel - T2 2026"):
+            self.assertIsNone(sync.pdf_candidate_from_bytes(b'%PDF-mock',direct,item))
+        with patch.object(sync,'pdf_text',return_value="EFIMMO 1 - Rapport annuel - T2 2026"):
+            self.assertIsNone(sync.pdf_candidate_from_bytes(b'%PDF-mock',direct,item))
+
+    def test_all_configured_direct_pdfs_are_prioritized_without_html(self):
+        for identifier in FAILING:
+            refs=[x for x in OFFICIAL_FALLBACKS[identifier]
+                  if x.lower().split('?')[0].endswith('.pdf')]
+            if not refs: continue
+            item={'id':identifier,'name':identifier,
+                  'sourceUrl':OFFICIAL[identifier][0],'fieldSources':{}}
+            points=sync.official_entry_points(item,*OFFICIAL[identifier])
+            self.assertEqual(points[:len(refs)*2:2],refs,id)
+
     def test_perial_cdn_is_allowed_only_for_own_documents(self):
         for id,url in [('pf-grand-paris',PERIAL_PDF),('pfo2',PERIAL_O2)]:
             self.assertIn(url,OFFICIAL_FALLBACKS[id])
