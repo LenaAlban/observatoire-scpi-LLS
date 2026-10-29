@@ -19,7 +19,12 @@ OFFICIAL_FALLBACKS = {
     'rivoli-avenir-patrimoine': [
         'https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/L-essentiel',
     ],
-    'efimmo-1': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'efimmo-1': [
+        # Bulletin T2 2026 communiqué par l'utilisateur ; vérifier dans le
+        # PDF la SCPI et le trimestre avant toute actualisation de chiffres.
+        'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Efimmo_OPTI.pdf',
+        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
+    ],
     'immorente': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
     'sofidynamic': [
         # Bulletin T2 2026 officiel fourni par un conseiller ; toujours
