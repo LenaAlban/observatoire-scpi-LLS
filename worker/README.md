@@ -19,6 +19,8 @@ Noter l'URL de base affichée par Cloudflare, du type `https://observatoire-scpi
 
 Dans Cloudflare : **Workers & Pages > observatoire-scpi-refresh > Access > Protect this Worker behind Access**. Choisir **All traffic / production et previews** et une politique Allow contenant **uniquement ton adresse email vérifiée**. Ne pas sélectionner un domaine email entier, « everyone » ou une règle bypass.
 
+Pour que le formulaire POST venant de GitHub Pages fonctionne depuis un domaine différent, conserver **SameSite: None** pour le cookie d'application `CF_Authorization` dans les paramètres avancés de Cloudflare Access (valeur par défaut documentée). Avec `Lax` ou `Strict`, le cookie peut être omis sur un POST intersite et provoquer un nouvel écran de connexion. Le Worker contrôle toujours strictement l'origine et l'identité.
+
 Le code refuse par défaut les appels sans `ctx.access`. Il vérifie aussi l'adresse du compte Access et le domaine d'origine du formulaire avant d'appeler GitHub. Cloudflare demande normalement une connexion au premier passage (ou lorsque la session Access expire) : si cette connexion interrompt l'envoi du formulaire, il suffit de cliquer de nouveau sur « Actualiser » après authentification.
 
 ## 3. Configurer les secrets du Worker
