@@ -1051,6 +1051,7 @@ def main():
     ap=argparse.ArgumentParser(description='Synchronise les informations officielles publiques des SCPI')
     ap.add_argument('--dry-run',action='store_true',help='Ne pas sauvegarder')
     ap.add_argument('--only',default='',help='Identifiant SCPI, pour diagnostic')
+    ap.add_argument('--retry-failed',action='store_true',help='Relancer automatiquement les collectes en erreur et partielles précédemment identifiées')
     ap.add_argument('--offline-test',action='store_true',help='Tester les règles sans connexion réseau')
     args=ap.parse_args()
     logging.basicConfig(level=logging.INFO,format='%(levelname)s %(message)s')
@@ -1064,10 +1065,15 @@ def main():
             item['liquidity']={'label':label,'effective':effective,'source':src}
     if args.offline_test:
         print(json.dumps({'scpi':len(items),'source_configs':len(OFFICIAL),'keys':sum(bool(i.get('keys')) for i in items)},ensure_ascii=False));return
+    previous_status=json.loads(STATUS.read_text(encoding='utf-8')) if STATUS.exists() else {}
+    past_results={row['id']:row for row in previous_status.get('results',[]) if row.get('id')}
+    failing={id for id,row in past_results.items() if row.get('status') in ('error','partial')
+             or row.get('pdfRead')!='PDF officiel lu (texte et positions)'}
     statuses=[];changed=0;ok=0;found=0;rejected=0
     ss=session()
     for item in items:
         if args.only and item['id']!=args.only:continue
+        if args.retry_failed and item['id'] not in failing:continue
         # Traiter dans une copie : aucun chiffre n'est publié si la collecte
         # échoue à mi-parcours ou si les nouveaux indicateurs sont incohérents.
         draft=json.loads(json.dumps(item,ensure_ascii=False))
@@ -1117,6 +1123,14 @@ def main():
                 'source':item['officialSource'],'attempts':draft.get('sourceAttempts',[])
             })
             LOG.warning('%s: données précédentes conservées (%s)',item['name'],exc)
+    # Un rattrapage ciblé ne doit pas effacer le journal des 31 SCPI.
+    # Les statuts non revus gardent leur date et leur provenance antérieures.
+    processed_ids={row['id'] for row in statuses}
+    if args.retry_failed or args.only:
+        statuses.extend({**row,'notRechecked':True} for id,row in past_results.items()
+                        if id not in processed_ids)
+        order={item['id']:i for i,item in enumerate(items)}
+        statuses.sort(key=lambda row:order.get(row['id'],999))
     # Les alertes historiques signalent les limites sans supprimer les valeurs
     # publiées avant l'activation du système de validation.
     quality=quality_report(items,TODAY)
@@ -1130,7 +1144,10 @@ def main():
     last_run_day=TODAY
     todays_events=[ev for ev in recent_events if ev['recordedAt'][:10]==last_run_day]
     report={'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
-            'total':len(statuses),'sourceAccessible':ok,'bulletinFound':found,
+            'total':len(statuses),'sourceAccessible':sum(row.get('status')=='ok' for row in statuses),
+            'bulletinFound':sum(row.get('status')=='ok' for row in statuses),
+            'retried':len(processed_ids),'remainingErrors':sum(row.get('status')=='error' for row in statuses),
+            'remainingPartial':sum(row.get('status')=='partial' for row in statuses),
             'pdfRead':sum(row.get('pdfRead')=='PDF officiel lu (texte et positions)' for row in statuses),
             'updated':changed,'results':statuses,
             'recentEvents':recent_events,
