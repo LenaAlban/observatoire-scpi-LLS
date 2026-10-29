@@ -14,7 +14,7 @@ permissions:
 
 concurrency:
   group: observatoire-scpi-pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   preparer:
@@ -37,11 +37,14 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Vérifier le JavaScript avant publication
         run: python scripts/check_frontend.py
-      - name: Collecter les bulletins officiels et les clés de démembrement
+      - name: Collecter tous les bulletins officiels (veille quotidienne)
         if: github.event_name != 'push'
         run: python scripts/sync.py
+      - name: Rattraper immédiatement les PDF des collectes en erreur ou partielles
+        if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
+        run: python scripts/sync.py --retry-failed
       - name: Enregistrer les nouvelles données (si changement)
-        if: github.event_name != 'push'
+        if: github.actor != 'github-actions[bot]'
         run: |
           git config user.name 'SCPI Sync Bot'
           git config user.email 'scpi-sync-bot@users.noreply.github.com'
