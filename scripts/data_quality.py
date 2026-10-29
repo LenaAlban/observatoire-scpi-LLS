@@ -128,6 +128,8 @@ def approved_update_source(item, field, url):
     if manager == 'perial.com' and doc == 'cdn.prod.website-files.com' and urlparse(url).path.startswith('/68d505281630e4a2223e1bee/') and urlparse(url).path.lower().endswith('.pdf'):
         # Hébergement de fichiers de la page officielle PERIAL Asset Management.
         return True
+    if manager == 'principalam.com' and doc == 'brandassets.principal.com' and urlparse(url).path.startswith('/asset/') and urlparse(url).path.lower().endswith('.pdf'):
+        return True
     if field=='keys' and doc in ('placement.meilleurtaux.com','lafrancaise-am-partenaires.com'):
         return True
     return False
