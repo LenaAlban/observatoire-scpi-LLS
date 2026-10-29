@@ -125,6 +125,9 @@ def approved_update_source(item, field, url):
     manager=(urlparse(item.get('officialSource') or '').hostname or '').lower().removeprefix('www.')
     if manager and (doc==manager or doc.endswith('.'+manager)):
         return True
+    if manager == 'perial.com' and doc == 'cdn.prod.website-files.com' and urlparse(url).path.startswith('/68d505281630e4a2223e1bee/') and urlparse(url).path.lower().endswith('.pdf'):
+        # Hébergement de fichiers de la page officielle PERIAL Asset Management.
+        return True
     if field=='keys' and doc in ('placement.meilleurtaux.com','lafrancaise-am-partenaires.com'):
         return True
     return False
