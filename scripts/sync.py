@@ -1110,13 +1110,28 @@ def main():
             ok+=1
             found+=int(detected)
             changed+=int(bool(updates))
+            # Vérifier aussi la fraîcheur du dernier document réellement lu :
+            # un S2 2025 archivé ne remplace pas le bulletin S1 2026.
+            last_period=item.get('bulletinDate') if detected else None
+            try:
+                age=(dt.date.fromisoformat(TODAY)-dt.date.fromisoformat(last_period)).days if last_period else None
+            except (TypeError,ValueError):
+                age=None
+            stale_pdf=bool(detected and (age is None or age>(230 if str(item.get('bulletin','')).startswith('S') else 150)))
+            message=item.get('automatedCheck','')
+            if stale_pdf:
+                message='PDF ancien effectivement lu ('+str(item.get('bulletin','période inconnue'))+                    ') : rechercher le dernier bulletin publié ; valeur précédente conservée si besoin.'
             statuses.append({
                 'id':item['id'],'name':item['name'],
-                'status':'ok' if detected else 'partial',
+                'status':'ok' if detected and not stale_pdf else 'partial',
                 'changes':updates,
-                'message':item.get('automatedCheck',''),
+                'message':message,
                 'source':item['officialSource'],
                 'pdfRead':item.get('pdfReadStatus'),
+                'pdfPeriod':item.get('bulletin'),
+                'pdfSourceUrl':item.get('pdfSourceUrl'),
+                'pdfVerifiedAt':item.get('pdfVerifiedAt'),
+                'pdfStale':stale_pdf,
                 'pdfAllocation':item.get('pdfAllocationStatus'),
                 'pdfWarning':item.get('pdfWarning'),
                 'attempts':item.get('sourceAttempts',[]),
