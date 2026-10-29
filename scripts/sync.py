@@ -283,6 +283,11 @@ def verified_pdf_from_candidate(sess, candidate, item, host):
             text = pdf_text(pdf)
             if not match_identity(text, item):
                 continue
+            # Un document technique n'est pas un bulletin trimestriel :
+            # même sur une page de documentation, sa nature est obligatoire.
+            head=fold(text[:11000])
+            if not re.search(r'\bbulletin\b.{0,65}\b(?:trimestriel|information|semestriel|semestre|1er trimestre|2e trimestre|3e trimestre|4e trimestre)\b',head):
+                continue
             actual = period_from(text[:11000])
             # Ne pas accepter une période uniquement déduite du lien HTML,
             # comme c'était le cas pour certaines fiches Sofidy.
@@ -800,12 +805,12 @@ def official_entry_points(item, url, host):
             apex=urlunparse(parsed._replace(netloc=host))
             if apex not in urls:urls.append(apex)
 
-    # Priorité au PDF authentifié du fonds Sofidynamic : ne pas laisser
-    # un échec SSL préalable sur la page d'accueil masquer ce document.
-    if item['id']=='sofidynamic':
-        for direct in OFFICIAL_FALLBACKS.get(item['id'],[]):
-            if urlparse(direct).path.lower().endswith('.pdf'):
-                add_official(direct)
+    # Pour TOUTES les SCPI en panne, essayer en premier les PDF officiels
+    # connus, sans dépendre de la disponibilité de la page d'accueil.
+    # La lecture PDF vérifie ensuite identité, nature et période du bulletin.
+    for direct in OFFICIAL_FALLBACKS.get(item['id'],[]):
+        if urlparse(direct).path.lower().endswith('.pdf'):
+            add_official(direct)
     add_official(url)
     known=[item.get('sourceUrl')]+OFFICIAL_FALLBACKS.get(item['id'],[])+[
         (item.get('fieldSources') or {}).get(key,{}).get('url')
@@ -983,7 +988,10 @@ def refresh_one(s,item):
             unique.append(candidate)
     verified=False
     document_errors=[]
-    for candidate in unique[:5]:
+    # Plusieurs pages peuvent annoncer le même trimestre et masquer un vrai
+    # PDF dans les cinq premières positions : garder les secours disponibles.
+    max_read=12 if item['id'] in OFFICIAL_FALLBACKS else 5
+    for candidate in unique[:max_read]:
         p=candidate['period']
         try:
             document=verified_pdf_from_candidate(s,candidate,item,host)
@@ -1017,7 +1025,7 @@ def refresh_one(s,item):
     if not verified:
         # Pour un bulletin exclusivement en HTML, conserver une page identifiée
         # mais ne jamais déclarer de PDF lu ni inventer de chiffres extraits.
-        for candidate in unique[:5]:
+        for candidate in unique[:max_read]:
             p=candidate['period']
             if not host_is(candidate['url'],host):
                 continue
