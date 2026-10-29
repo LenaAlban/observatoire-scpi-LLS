@@ -1,0 +1,9 @@
+name = "observatoire-scpi-refresh"
+main = "src/index.mjs"
+compatibility_date = "2026-10-01"
+
+# Déploiement manuel depuis ce dossier : npx wrangler deploy
+# IMPORTANT : protéger ce Worker avec Cloudflare Access (production + previews).
+# Secrets définis dans Cloudflare, jamais dans ce fichier :
+#   npx wrangler secret put OWNER_EMAIL
+#   npx wrangler secret put GH_DISPATCH_TOKEN
