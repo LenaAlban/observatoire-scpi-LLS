@@ -1252,7 +1252,7 @@ function exportCSV(){let cols=['name','manager','tags','price','priceDate','reco
 // directement par un navigateur sans divulguer un jeton GitHub. Le bouton ouvre
 // donc le lancement Actions authentifié et surveille la publication qui suit.
 let collectionMonitor=null,collectionDeadline=null,collectionStart=0,collectionPrevious=0;
-let refreshEndpoint='',requestedRefreshId=';
+let refreshEndpoint='',requestedRefreshId='';
 const GH_ACTION_URL='https://github.com/LenaAlban/observatoire-scpi-LLS/actions/workflows/pages.yml';
 function collectionNotice(html){
   const el=$('collection-info');el.style.display='block';el.innerHTML=html;
