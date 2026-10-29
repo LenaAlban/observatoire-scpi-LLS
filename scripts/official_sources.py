@@ -25,7 +25,11 @@ OFFICIAL_FALLBACKS = {
         'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Efimmo_OPTI.pdf',
         SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
     ],
-    'immorente': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'immorente': [
+        # URL PDF T2 2026 déjà enregistrée dans la fiche SCPI.
+        'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf',
+        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
+    ],
     'sofidynamic': [
         # Bulletin T2 2026 officiel fourni par un conseiller ; toujours
         # confirmer dans le texte PDF le fonds et le trimestre avant usage.
