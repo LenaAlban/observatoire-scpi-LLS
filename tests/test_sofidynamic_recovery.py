@@ -96,6 +96,17 @@ class SofidynamicTests(unittest.TestCase):
                 sync,'pdf_text',return_value='SOFIDYNAMIC Bulletin trimestriel, sans indication du trimestre'):
             self.assertIsNone(sync.verified_pdf_from_candidate(None,candidate,item,'sofidy.com'))
 
+    def test_verified_pdf_is_reused_without_second_tls_connection(self):
+        item=scpi()
+        with patch.object(sync,'pdf_text',return_value=TEXT):
+            candidate=sync.pdf_candidate_from_bytes(b'%PDF-synthetic',DOC,item)
+        self.assertIsNotNone(candidate)
+        with patch.object(sync,'fetch_official_with_apex',side_effect=AssertionError('PDF téléchargé deux fois')):
+            data=sync.verified_pdf_from_candidate(None,candidate,item,'sofidy.com')
+        self.assertEqual(data[0],b'%PDF-synthetic')
+        self.assertEqual(data[1],TEXT)
+        self.assertEqual(data[2],DOC)
+
     def test_source_not_declared_validated_from_index_alone(self):
         item=scpi()
         with patch.object(sync,'pdf_text',return_value='SOFIDYNAMIC - Rapport annuel 2025'):
