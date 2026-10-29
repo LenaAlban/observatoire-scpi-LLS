@@ -5,7 +5,7 @@ Dépendances installées dans GitHub Actions. L'exécution réseau n'est pas eff
 lors de la construction initiale de l'archive.
 """
 from __future__ import annotations
-import argparse, datetime as dt, io, json, logging, re, sys, unicodedata
+import argparse, datetime as dt, io, json, logging, re, sys, unicodedata, uuid
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
 
@@ -1074,8 +1074,13 @@ def main():
     ap.add_argument('--dry-run',action='store_true',help='Ne pas sauvegarder')
     ap.add_argument('--only',default='',help='Identifiant SCPI, pour diagnostic')
     ap.add_argument('--retry-failed',action='store_true',help='Relancer automatiquement les collectes en erreur et partielles précédemment identifiées')
+    ap.add_argument('--request-id',default='',help='Identifiant de la collecte manuelle pour le suivi navigateur')
     ap.add_argument('--offline-test',action='store_true',help='Tester les règles sans connexion réseau')
     args=ap.parse_args()
+    try:
+        request_id=str(uuid.UUID(args.request_id)) if args.request_id else ''
+    except (ValueError,AttributeError):
+        ap.error('Identifiant de collecte manuelle invalide')
     logging.basicConfig(level=logging.INFO,format='%(levelname)s %(message)s')
     items=json.loads(DATA.read_text(encoding='utf-8'))
     for item in items:
@@ -1180,6 +1185,7 @@ def main():
     last_run_day=TODAY
     todays_events=[ev for ev in recent_events if ev['recordedAt'][:10]==last_run_day]
     report={'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
+             'refreshRequestId':request_id,
             'total':len(statuses),'sourceAccessible':sum(row.get('status')=='ok' for row in statuses),
             'bulletinFound':sum(row.get('status')=='ok' for row in statuses),
             'retried':len(processed_ids),'remainingErrors':sum(row.get('status')=='error' for row in statuses),
