@@ -20,7 +20,7 @@ permissions:
 
 concurrency:
   group: observatoire-scpi-pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   preparer:
@@ -50,11 +50,10 @@ jobs:
         env:
           SCPI_REFRESH_REQUEST: ${{ github.event.inputs.request_id }}
         run: python scripts/sync.py --request-id "$SCPI_REFRESH_REQUEST"
-      - name: Rattraper immédiatement les PDF des collectes en erreur ou partielles
-        if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
-        run: python scripts/sync.py --retry-failed
+      # Sur push : publier rapidement le site sans attendre les téléchargements PDF.
+      # Les collectes complètes sont exécutées sur planning et workflow_dispatch.
       - name: Enregistrer les nouvelles données (si changement)
-        if: github.actor != 'github-actions[bot]'
+        if: github.event_name != 'push' && github.actor != 'github-actions[bot]'
         run: |
           git config user.name 'SCPI Sync Bot'
           git config user.email 'scpi-sync-bot@users.noreply.github.com'
