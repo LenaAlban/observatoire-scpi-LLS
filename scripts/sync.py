@@ -883,12 +883,19 @@ def collect_official_candidates(sess,item,url,host):
             candidates.extend(discovered)
             if not any(c['period']['rank']>existing_rank(item) for c in candidates):
                 opaque=opaque_pdf_links_on_page(html,resolved,item,host)
-                max_candidates=8 if item['id']=='altixia-cadence-xii' else 3
+                # Fonds dont les PDF ne sont pas nommés ou reliés de façon
+                # classique : vérifier davantage de documents du gérant.
+                recover=item['id'] in (
+                    'altixia-cadence-xii','efimmo-1','immorente','sofidynamic',
+                    'sofidy-europe-invest','pf-grand-paris','pfo2','principal-inside',
+                    'edissimmo','rivoli-avenir-patrimoine'
+                )
+                max_candidates=7 if recover else 3
                 for target in opaque[:max_candidates]:
                     if target in checked_opaque:continue
                     checked_opaque.add(target)
                     try:
-                        pdf,_,pdf_url=fetch(sess,target,host,limit=MAX_PDF)
+                        pdf,_,pdf_url=fetch_official_with_apex(sess,target,host,limit=MAX_PDF)
                         candidate=pdf_candidate_from_bytes(pdf,pdf_url,item)
                         if candidate:candidates.append(candidate)
                     except (requests.RequestException,ValueError,RuntimeError):
@@ -897,7 +904,9 @@ def collect_official_candidates(sess,item,url,host):
             # ne pas arrêter la collecte dès qu'un ancien PDF est trouvé.
             # Le T2 historique de Sofidy ne doit pas masquer un nouveau T3.
             multi_publication=item['id'] in (
-                'altixia-cadence-xii','sofidynamic','immorente','efimmo-1','sofidy-europe-invest')
+                'altixia-cadence-xii','sofidynamic','immorente','efimmo-1',
+                'sofidy-europe-invest','pf-grand-paris','pfo2','principal-inside',
+                'edissimmo','rivoli-avenir-patrimoine')
             if not multi_publication and any(c['period']['rank']>existing_rank(item) for c in candidates):
                 break
             if not multi_publication and sum(a['status']=='accessible' for a in attempts)>=3:
