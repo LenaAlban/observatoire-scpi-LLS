@@ -1,0 +1,4 @@
+Rattrapage exceptionnel demandé le 29 octobre 2026.
+Cause : horodatage du référentiel inchangé depuis le 28 octobre 2026 à 21:10 UTC.
+Tests de collecte réparés et contrôles GitHub CI validés.
+Ce fichier est un marqueur de déclenchement uniquement : il ne contient aucune donnée ni jeton privé.
