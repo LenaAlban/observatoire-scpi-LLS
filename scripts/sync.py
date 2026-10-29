@@ -246,6 +246,15 @@ def verified_pdf_from_candidate(sess, candidate, item, host):
     la période est mentionnée dans le document.
     """
     wanted = candidate['period']
+    saved_pdf=candidate.get('_verified_pdf')
+    saved_text=candidate.get('_verified_text')
+    if (isinstance(saved_pdf,bytes) and saved_pdf.startswith(b'%PDF')
+            and isinstance(saved_text,str)
+            and host_is(candidate.get('url',''),host)
+            and match_identity(saved_text,item)):
+        actual=period_from(saved_text[:11000])
+        if actual and actual['rank']==wanted['rank']:
+            return saved_pdf,saved_text,candidate['url']
     blob, ctype, url = fetch_official_with_apex(sess, candidate['url'], host, limit=MAX_PDF)
     if blob.startswith(b'%PDF'):
         targets = [(blob, url)]
@@ -753,8 +762,11 @@ def pdf_candidate_from_bytes(blob, resolved, item):
         return None
     period=period_from(text[:11000])
     if not period:return None
+    # Le document déjà vérifié reste en mémoire pendant la collecte,
+    # sans téléchargement répété sur un réseau TLS instable.
     return {'url':resolved,'period':period,'score':period['rank']*10+9,
-            'description':'PDF gérant vérifié par identité et trimestre'}
+            'description':'PDF gérant vérifié par identité et trimestre',
+            '_verified_pdf':blob,'_verified_text':text}
 
 
 def source_for(item):
