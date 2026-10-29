@@ -116,7 +116,9 @@ class QualityTests(unittest.TestCase):
         row['sourceUrl']='https://www.corum.fr/notre-scpi/corum-origin'
         row['fieldSources']['tof']['url']='https://thirdparty.example/bulletin.pdf'
         urls=sync.official_entry_points(row,BASE,'corum.fr')
-        self.assertEqual(urls[0],BASE)
+        # Les documents officiels existants sont prioritaires sur les pages HTML.
+        self.assertTrue(urls[0].endswith('.pdf'))
+        self.assertIn(BASE,urls)
         self.assertIn(row['sourceUrl'],urls)
         self.assertTrue(all(sync.host_is(u,'corum.fr') for u in urls))
         self.assertNotIn('https://thirdparty.example/bulletin.pdf',urls)
@@ -135,9 +137,12 @@ class QualityTests(unittest.TestCase):
             text,url,candidates,attempts=sync.collect_official_candidates(None,row,BASE,'corum.fr')
         self.assertEqual(url,row['sourceUrl'])
         self.assertEqual(candidates[0]['period']['label'],'T3 2026')
-        self.assertEqual(attempts[0]['status'],'error')
+        self.assertEqual(attempts[0]['status'],'error')  # PDF prioritaire indisponible
         self.assertTrue(any(a['status']=='accessible' for a in attempts[1:]))
-        self.assertEqual(sync.official_entry_points(row,BASE,'corum.fr')[1], 'https://corum.fr/nos-scpi/corum-origin/documents')
+        paths=sync.official_entry_points(row,BASE,'corum.fr')
+        self.assertIn(BASE,paths)
+        self.assertIn('https://corum.fr/nos-scpi/corum-origin/documents',paths)
+        self.assertLess(paths.index(BASE),paths.index('https://corum.fr/nos-scpi/corum-origin/documents'))
 
     def test_old_landing_cannot_be_used_as_verified_pdf(self):
         row=specimen()
