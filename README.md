@@ -4,7 +4,7 @@ Tableau de bord pour **31 SCPI** (liste Spirica transmise, sélection Meilleurta
 
 ## Veille automatique et alertes de fraîcheur
 
-- La rubrique **Veille**, ouverte par défaut, affiche les nouveautés sourcées de `automatedHistory` et de `data/status.json`, les échecs de récupération et les publications à recontrôler.
+- La rubrique **Veille**, placée en dernier dans le menu (l'**Observatoire** est la page d'accueil), affiche les nouveautés sourcées de `automatedHistory` et de `data/status.json`, les échecs de récupération et les publications à recontrôler.
 - **Aucune fausse nouveauté** : le journal des changements ne remonte pas artificiellement les anciennes données préexistantes. Il commence lorsqu'une valeur ou un bulletin est effectivement changé et validé par le robot, puis conserve l'ancienne valeur, la nouvelle, la période, l'heure de contrôle et l'URL justificative.
 - `data/status.json` publie les **200 événements récents** (lors de chaque exécution automatique, et non lors d'une simple visite). Les événements sont également conservés, de manière limitée, dans chaque fiche SCPI.
 - **Seuils indicatifs de recontrôle**, sans valeur réglementaire : bulletin trimestriel >150 jours, semestriel >250 jours, TOF >210 jours, répartitions >420 jours, reconstitution >540 jours, données de retrait >180 jours ; clé de démembrement sans date signalée. Les dates correspondent à la période publiée et non à la date à laquelle le robot a consulté le site.
