@@ -1252,6 +1252,8 @@ function exportCSV(){let cols=['name','manager','tags','price','priceDate','reco
 // directement par un navigateur sans divulguer un jeton GitHub. Le bouton ouvre
 // donc le lancement Actions authentifié et surveille la publication qui suit.
 let collectionMonitor=null,collectionDeadline=null,collectionStart=0,collectionPrevious=0;
+let refreshEndpoint='',requestedRefreshId=';
+const GH_ACTION_URL='https://github.com/LenaAlban/observatoire-scpi-LLS/actions/workflows/pages.yml';
 function collectionNotice(html){
   const el=$('collection-info');el.style.display='block';el.innerHTML=html;
 }
@@ -1264,6 +1266,7 @@ async function checkCollectionPublication(){
   await syncLive(false);
   const now=Date.parse(syncStatus?.checkedAt||'');
   if(!Number.isFinite(now)||now<=Math.max(collectionPrevious,collectionStart-30000))return;
+  if(requestedRefreshId && syncStatus?.refreshRequestId!==requestedRefreshId)return;
   stopCollectionMonitor();
   const rows=syncStatus?.results||[];
   const errors=rows.filter(x=>x.status==='error').length;
@@ -1284,10 +1287,41 @@ function requestFreshCollection(){
     collectionNotice('<div><strong>Pas de nouvelle publication détectée.</strong> Vérifiez que le traitement a été lancé et terminé dans <a href="https://github.com/LenaAlban/observatoire-scpi-LLS/actions/workflows/pages.yml" target="_blank" rel="noopener noreferrer">GitHub Actions ↗</a>, puis cliquez sur « Vérifier les résultats ». Une collecte peut échouer si un éditeur bloque son PDF.</div>');
   },46*60*1000);
 }
+async function configureRefreshTrigger(){
+  try{
+    const res=await fetch('./refresh-config.json?c='+Date.now(),{cache:'no-store'});
+    if(!res.ok)return;
+    const config=await res.json();
+    if(typeof config.endpoint!=='string'||!config.endpoint)return;
+    const u=new URL(config.endpoint);
+    if(u.protocol!=='https:'||u.pathname!=='/run'||u.username||u.password||u.search||u.hash)return;
+    refreshEndpoint=u.href;
+    $('run-collection-btn').textContent='↻ Actualiser les SCPI';
+    $('run-collection-btn').title='Lancer la collecte sécurisée en un clic';
+  }catch{/* GitHub reste disponible si le service est absent. */}
+}
+function launchWorker(e){
+  e.preventDefault();
+  requestedRefreshId=crypto.randomUUID();
+  const form=document.createElement('form');
+  form.method='POST';
+  form.action=refreshEndpoint;
+  form.target='_blank';
+  const field=document.createElement('input');
+  field.type='hidden';
+  field.name='request_id';
+  field.value=requestedRefreshId;
+  form.appendChild(field);
+  document.body.appendChild(form);
+  form.submit();
+  form.remove();
+  requestFreshCollection();
+  collectionNotice('<div><strong>Demande envoyée au service sécurisé.</strong> Vérifiez le résultat dans le nouvel onglet. Si Cloudflare demande une première connexion, authentifiez-vous puis relancez le bouton. Le site surveille uniquement la publication de cette demande. <a href="'+GH_ACTION_URL+'" target="_blank" rel="noopener noreferrer">Suivi GitHub Actions ↗</a>.</div>');
+}
 // DOM bindings
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{view=b.dataset.view;render()});$('watch-search').oninput=renderWatch;$('watch-filter').onchange=renderWatch;$('compare-report').onclick=()=>printReport(selected);$('quality-search').oninput=renderQuality;$('quality-filter').onchange=renderQuality;$('search').oninput=e=>{search=e.target.value;renderDashboard()};$('sort').onchange=e=>{sort=e.target.value;renderDashboard()};$('origin-filter').onchange=e=>{origin=e.target.value;renderDashboard()};document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));renderDashboard()});
 document.addEventListener('click',e=>{let button=e.target.closest('[data-open]');if(button){detail(button.dataset.open,button.dataset.tab||'overview');return;}let print=e.target.closest('[data-print-scpi]');if(print){printReport([print.dataset.printScpi]);return;}let y=e.target.closest('[data-choose-key]');if(y&&$('key-duration')){$('key-duration').value=y.dataset.chooseKey;calculateKeys();}});document.addEventListener('input',e=>{if(e.target?.id==='key-parts')calculateKeys();if(e.target?.id==='liq-qty')calculateLiquidity();});document.addEventListener('change',e=>{if(e.target?.id==='key-duration')calculateKeys();if(e.target?.id==='liq-rate')calculateLiquidity();});
-$('detail-backdrop').onclick=e=>{if(e.target===$('detail-backdrop'))closeDetail()};$('run-collection-btn').onclick=requestFreshCollection;$('refresh-btn').onclick=()=>syncLive(true);$('export-csv').onclick=exportCSV;
+$('detail-backdrop').onclick=e=>{if(e.target===$('detail-backdrop'))closeDetail()};$('run-collection-btn').onclick=e=>{if(refreshEndpoint&&globalThis.crypto?.randomUUID)launchWorker(e);else{requestedRefreshId='';requestFreshCollection();}};$('refresh-btn').onclick=()=>syncLive(true);$('export-csv').onclick=exportCSV;
 $('allocation-add').onchange=e=>{const id=e.target.value;if(id)allocationAdd(id);e.target.value='';};
 $('allocation-total').oninput=e=>{allocationState.amount=e.target.value;renderAllocationResults();};
 $('allocation-equal').onclick=()=>{allocationState.weights=allocationEqualWeights(Object.keys(allocationState.weights));renderAllocation();};
@@ -1308,5 +1342,5 @@ document.addEventListener('click',e=>{
  const add=e.target.closest('[data-compare-add]'),remove=e.target.closest('[data-compare-remove]');
  if(add){const id=add.dataset.compareAdd;if(!items.some(s=>s.id===id)||selected.includes(id))return;if(selected.length>=4){toast('Maximum 4 SCPI. Retire une SCPI avant de continuer.');return;}selected.push(id);renderCompare();renderCompareExtras();return;}
  if(remove){selected=selected.filter(id=>id!==remove.dataset.compareRemove);renderCompare();renderCompareExtras();}
-});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDetail()}});render();syncLive(false);setInterval(()=>syncLive(false),4*60*60*1000);
+});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDetail()}});render();syncLive(false);configureRefreshTrigger();setInterval(()=>syncLive(false),4*60*60*1000);
 })();</script></body></html>
