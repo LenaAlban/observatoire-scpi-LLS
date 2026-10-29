@@ -42,7 +42,11 @@ def host_is(url, expected):
     try:
         u = urlparse(url)
         hostname = (u.hostname or '').lower()
-        return u.scheme == 'https' and (hostname == expected or hostname.endswith('.'+expected))
+        if u.scheme != 'https' or u.username or u.password:return False
+        if expected == 'perial.com' and hostname == 'cdn.prod.website-files.com':
+            # Site Webflow officiel PERIAL : CDN de ses documents publiés.
+            return u.path.startswith('/68d505281630e4a2223e1bee/') and u.path.lower().endswith('.pdf')
+        return hostname == expected or hostname.endswith('.'+expected)
     except ValueError:
         return False
 
@@ -86,6 +90,7 @@ def period_from(text):
         r'\b([1-4])\s*(?:er|e|eme|ieme)?\s*trimestre\s*(20\d\d)\b',
         r'\b([1-4])(?:er|e|eme|ieme)?\s*trim\.?\s*(20\d\d)\b',
         r'\b([1-4])\s*t\s*(20\d\d)\b',
+        r'\b([1-4])\s*[tq]\s*(20\d\d)\b',
     ]
     for idx, pattern in enumerate(patterns):
         m = re.search(pattern, txt, re.I)
@@ -95,7 +100,9 @@ def period_from(text):
                 return {'label':f'T{q} {y}', 'date':f'{y}-{q*3:02d}-{(31 if q in [1,4] else 30):02d}', 'rank':y*4+q, 'periodType':'T'}
     sm = re.search(r'\b(?:s|semestre\s*)([12])\s*[- /]*\s*(20\d\d)\b', txt)
     if not sm:
-        sm = re.search(r'\b([12])\s*(?:er|e|eme|ieme)?\s*semestre\s*(20\d\d)\b', txt)
+        sm = re.search(r'\b([12])\s*(?:er|e|eme|ieme|nd|eme)?\s*semestre\s*(20\d\d)\b', txt)
+    if not sm:
+        sm = re.search(r'\b([12])\s*s\s*(20\d\d)\b', txt)
     if sm:
         half,y = int(sm.group(1)),int(sm.group(2))
         if 2023 <= y <= 2035:
