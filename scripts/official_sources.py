@@ -13,6 +13,8 @@ OFFICIAL_FALLBACKS = {
     ],
     'edissimmo': [
         'https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/L-essentiel',
+        # Bulletin officiel 2nd semestre 2025 : recours si les pages sont en 503.
+        'https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1',
     ],
     'rivoli-avenir-patrimoine': [
         'https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/L-essentiel',
@@ -26,6 +28,19 @@ OFFICIAL_FALLBACKS = {
         SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
     ],
     'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'pf-grand-paris': [
+        'https://www.perial.com/documentation',
+        # PDF publié sur le CDN explicitement lié par la page PERIAL.
+        'https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda7ae845ffc70aa1350e_PERIAL%20Grand%20Paris%20-%20Bulletin%20trimestriel%20d%27information%20%28T2%202026%29.pdf',
+    ],
+    'pfo2': [
+        'https://www.perial.com/documentation',
+        'https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda5d0727e6de700af0b9_PERIAL%20O%E2%82%82%20-%20Bulletin%20trimestriel%20d%27information%20%28T2%202026%29.pdf',
+    ],
+    'principal-inside': [
+        'https://fr.principalam.com/notre-scpi',
+        'https://fr.principalam.com/nos-publications',
+    ],
 }
 
 """Pages officielles vérifiées au 28 octobre 2026. Les liens sont des pages, non des PDF hypothétiques."""
