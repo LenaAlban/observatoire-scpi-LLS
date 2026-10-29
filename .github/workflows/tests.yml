@@ -1,0 +1,42 @@
+name: Contrôles SCPI - tests indépendants
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'worker/**'
+      - 'index.html'
+      - 'data/**'
+      - '.github/workflows/**'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: observatoire-scpi-tests
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Installer les bibliothèques
+        run: pip install -r requirements.txt
+      - name: Vérifier toutes les règles d'extraction et de qualité
+        run: python -m unittest discover -s tests -v
+      - name: Vérifier la page d'accueil et la syntaxe JavaScript
+        run: python scripts/check_frontend.py
+      - name: Vérifier le service de déclenchement sécurisé
+        run: node --test worker/test.mjs
