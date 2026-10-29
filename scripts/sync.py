@@ -46,6 +46,9 @@ def host_is(url, expected):
         if expected == 'perial.com' and hostname == 'cdn.prod.website-files.com':
             # Site Webflow officiel PERIAL : CDN de ses documents publiés.
             return u.path.startswith('/68d505281630e4a2223e1bee/') and u.path.lower().endswith('.pdf')
+        if expected == 'principalam.com' and hostname == 'brandassets.principal.com':
+            # CDN documentaire de Principal Asset Management.
+            return u.path.startswith('/asset/') and u.path.lower().endswith('.pdf')
         return hostname == expected or hostname.endswith('.'+expected)
     except ValueError:
         return False
