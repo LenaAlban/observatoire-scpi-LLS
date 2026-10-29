@@ -71,6 +71,31 @@ class SofidynamicTests(unittest.TestCase):
         self.assertTrue(any(x.get('kind')=='tls' for x in attempts))
         self.assertFalse(any('certificate verify failed' in str(x) for x in attempts))
 
+    def test_ssl_verified_apex_retry_on_real_pdf_candidate(self):
+        item=scpi()
+        apex=DOC.replace('www.sofidy.com','sofidy.com')
+        requests_made=[]
+        def getter(sess,url,host,limit=sync.MAX_HTML):
+            requests_made.append(url)
+            if url==DOC:
+                raise requests.exceptions.SSLError('certificate verify failed')
+            if url==apex:
+                return (b'%PDF-synthetic','application/pdf',apex)
+            raise ValueError('Unexpected request: '+url)
+        candidate={'url':DOC,'period':sync.period_from('T2 2026')}
+        with patch.object(sync,'fetch',side_effect=getter),patch.object(sync,'pdf_text',return_value=TEXT):
+            pdf=sync.verified_pdf_from_candidate(None,candidate,item,'sofidy.com')
+        self.assertEqual(requests_made,[DOC,apex])
+        self.assertEqual(pdf[2],apex)
+        self.assertEqual(pdf[1],TEXT)
+
+    def test_pdf_with_no_period_is_not_reported_verified(self):
+        item=scpi()
+        candidate={'url':DOC,'period':sync.period_from('T2 2026')}
+        with patch.object(sync,'fetch',return_value=(b'%PDF-synthetic','application/pdf',DOC)),patch.object(
+                sync,'pdf_text',return_value='SOFIDYNAMIC Bulletin trimestriel, sans indication du trimestre'):
+            self.assertIsNone(sync.verified_pdf_from_candidate(None,candidate,item,'sofidy.com'))
+
     def test_source_not_declared_validated_from_index_alone(self):
         item=scpi()
         with patch.object(sync,'pdf_text',return_value='SOFIDYNAMIC - Rapport annuel 2025'):
