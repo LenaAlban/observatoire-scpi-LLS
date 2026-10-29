@@ -6,6 +6,12 @@ on:
   schedule:
     - cron: '17 6 * * *'
   workflow_dispatch:
+    inputs:
+      request_id:
+        description: Identifiant de suivi d'une actualisation à la demande
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: write
@@ -37,9 +43,13 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Vérifier le JavaScript avant publication
         run: python scripts/check_frontend.py
-      - name: Collecter tous les bulletins officiels (veille quotidienne)
+      - name: Tester la sécurité du déclencheur à la demande
+        run: node --test worker/test.mjs
+      - name: Collecter tous les bulletins officiels (veille quotidienne ou demande)
         if: github.event_name != 'push'
-        run: python scripts/sync.py
+        env:
+          SCPI_REFRESH_REQUEST: ${{ github.event.inputs.request_id }}
+        run: python scripts/sync.py --request-id "$SCPI_REFRESH_REQUEST"
       - name: Rattraper immédiatement les PDF des collectes en erreur ou partielles
         if: github.event_name == 'push' && github.actor != 'github-actions[bot]'
         run: python scripts/sync.py --retry-failed
@@ -56,6 +66,23 @@ jobs:
           cp index.html public/index.html
           cp data/scpi.json data/status.json public/data/
           touch public/.nojekyll
+      - name: Publier uniquement l'URL du service sécurisé (jamais ses secrets)
+        env:
+          REFRESH_WORKER_URL: ${{ vars.SCPI_REFRESH_WORKER_URL }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from urllib.parse import urlparse
+          raw=os.environ.get('REFRESH_WORKER_URL','').strip()
+          endpoint=''
+          if raw:
+              u=urlparse(raw)
+              if u.scheme!='https' or not u.hostname or u.username or u.password or u.query or u.fragment or u.path not in ('','/'):
+                  raise SystemExit('SCPI_REFRESH_WORKER_URL doit être une URL de base HTTPS sans chemin ni paramètres')
+              endpoint=raw.rstrip('/')+'/run'
+          Path('public/refresh-config.json').write_text(json.dumps({'endpoint':endpoint})+'\n',encoding='utf-8')
+          PY
       - name: Configurer GitHub Pages
         uses: actions/configure-pages@v5
         with:
