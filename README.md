@@ -63,6 +63,14 @@ Les erreurs affichées sur **Edissimmo, Efimmo 1, Immorente, Sofidynamic, Sofidy
 - L'onglet **Veille** et l'onglet **Fiabilité** masquent également les anciennes traces brutes `HTTPSConnectionPool` déjà présentes dans `data/status.json`. Les fiches indiquent la dernière période documentée dans le référentiel, sans confondre celle-ci avec une nouvelle collecte réussie.
 - **Limite vérifiable** : la réussite des tests unitaires et de GitHub Pages ne signifie pas que l'éditeur a réparé son HTTP 503 ou sa chaîne de certificats. Le résultat réel des tentatives de secours est mesuré lors de la **prochaine exécution automatique** ; les dernières données fiables restent conservées jusque-là.
 
+## Actualisation à la demande depuis le site
+
+- Le bouton **Actualiser maintenant** ouvre le workflow [GitHub Actions](https://github.com/LenaAlban/observatoire-scpi-LLS/actions/workflows/pages.yml) dans un nouvel onglet. Seule une personne connectée à GitHub et disposant des droits du dépôt peut confirmer **Run workflow → Run workflow**. Le clic sur le site ne déclenche pas, à lui seul, le travail serveur : GitHub Pages est statique et aucun jeton administrateur ne doit être livré au navigateur.
+- Une fois la page GitHub ouverte, le site surveille toutes les **20 secondes** l'horodatage de `data/status.json` pour détecter une nouvelle publication, jusqu'à **46 minutes** tant que l'onglet reste ouvert. Une publication peut signaler des collectes encore en erreur : leurs statuts sont présentés sans les masquer.
+- Le bouton **Vérifier les résultats** recharge immédiatement le dernier référentiel publié, sans lancer de collecte. Il peut être utilisé après un retour sur le site, même si l'onglet a été fermé pendant l'exécution.
+- Le déclencheur `workflow_dispatch` du workflow existant lance une collecte de l'ensemble des SCPI, puis valide, sauvegarde et republie les données sur GitHub Pages. La collecte planifiée quotidienne reste active.
+- Pour obtenir un véritable démarrage *en un seul clic* sans passer par GitHub, il faudrait ajouter un **backend authentifié** conservant les identifiants côté serveur. Ne pas ajouter de token GitHub à `index.html`, à une URL ou à un stockage de navigateur.
+
 ## Fonctionnement
 
 - Le site affiche les données de `data/scpi.json`. Les premières données constituent un **instantané du 28 octobre 2026** et ne doivent pas être confondues avec des données récupérées en temps réel.
@@ -70,7 +78,7 @@ Les erreurs affichées sur **Edissimmo, Efimmo 1, Immorente, Sofidynamic, Sofidy
 - Le programme reconnaît les **nouveaux bulletins** dans les pages publiques. Lorsqu'un lien PDF est clairement identifié, il essaie d'en extraire des indicateurs avec des contrôles stricts. Un prix / une valeur de reconstitution n'est modifié que si la valeur est non ambiguë et sa **date est explicitement retrouvée**. En cas de doute, l'ancienne valeur est conservée, avec une alerte dans `data/status.json`.
 - Pour le volet **Liquidité & revente**, le robot recherche dans les PDF officiels le nombre de **parts en attente de retrait**, de **parts effectivement retirées pendant le trimestre** et de **demandes enregistrées**. Il refuse les tableaux multi-périodes ambigus et conserve les chiffres avec leur date et leur source. Aucune estimation n’apparaît si le stock et le flux ne sont pas vérifiables sur la même période. La moyenne sur quatre trimestres n’est accessible que si quatre trimestres consécutifs sont présents.
 - **Toutes les données ne sont pas automatiquement interprétables**, notamment les graphiques de répartition, les acquisitions sans texte exploitable, certaines clés de démembrement et les documents protégés contre l'accès automatisé. Le système affiche alors la source et le statut, sans inventer de valeur. Les valeurs initiales peuvent rester anciennes.
-- L'interface se recharge à l'ouverture et au clic sur « Actualiser ». Ce clic **recharge le dernier jeu de données produit automatiquement**, il ne télécharge pas directement un bulletin en temps réel. Le site vérifie aussi les données toutes les quatre heures tant qu'il reste ouvert.
+- L'interface charge les données à l'ouverture. « Vérifier les résultats » recharge le dernier jeu de données publié ; « Actualiser maintenant » permet de lancer le traitement complet depuis GitHub avec authentification et confirmation. Le site vérifie aussi les données toutes les quatre heures tant qu'il reste ouvert.
 
 ## Liquidité & revente : méthodologie prudente
 
