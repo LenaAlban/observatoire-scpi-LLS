@@ -765,7 +765,7 @@ def pdf_candidate_from_bytes(blob, resolved, item):
     except (ValueError,RuntimeError):return None
     head=fold(text[:11000])
     if not match_identity(text,item):return None
-    if not re.search(r'\bbulletin\b.{0,45}\b(?:trimestriel|information|1er trimestre|2e trimestre|3e trimestre|4e trimestre)\b',head):
+    if not re.search(r'\bbulletin\b.{0,65}\b(?:trimestriel|information|semestriel|semestre|1er trimestre|2e trimestre|3e trimestre|4e trimestre)\b',head):
         return None
     period=period_from(text[:11000])
     if not period:return None
