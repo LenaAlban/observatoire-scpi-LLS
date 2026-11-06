@@ -52,12 +52,17 @@ const event={
   recordedAt:new Date().toISOString(),source:'https://www.corum.fr/docs/2026.pdf',
   scpiId:'corum-origin',scpiName:'CORUM Origin'
 };
+// The real catalogue already includes historical changes; adding one event
+// must increase the count by exactly one, not reset all historical bulletins.
+const existingBulletins=watchData().changes.filter(x=>x.field==='bulletin').length;
 const withEvent=fn(catalogue,{...status,recentEvents:[event]},fr).watchData();
-assert.equal(withEvent.changes.filter(x=>x.field==='bulletin').length,1);
-assert.equal(withEvent.changes[0].previous,'T2 2026');
-assert.equal(withEvent.changes[0].source,event.source);
+assert.equal(withEvent.changes.filter(x=>x.field==='bulletin').length,existingBulletins+1);
+const inserted=withEvent.changes.find(x=>x.field===event.field&&x.scpiId===event.scpiId&&x.recordedAt===event.recordedAt&&x.source===event.source);
+assert.ok(inserted,'nouvel événement sourcé retrouvé dans le journal');
+assert.equal(inserted.previous,'T2 2026');
+assert.equal(inserted.source,event.source);
 const duplicate=fn(catalogue,{...status,recentEvents:[event,event]},fr).watchData();
-assert.equal(duplicate.changes.filter(x=>x.field==='bulletin').length,1);
+assert.equal(duplicate.changes.filter(x=>x.field==='bulletin').length,existingBulletins+1);
 console.log('Veille : dates, erreurs, événements, dédoublonnage et détails vérifiés.');
 """
         proc=subprocess.run(['node','-e',script],cwd=ROOT,capture_output=True,text=True)
