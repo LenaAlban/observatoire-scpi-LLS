@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-29T10:21:21+00:00",
+  "checkedAt": "2026-11-06T14:42:07+00:00",
   "refreshRequestId": "",
   "total": 31,
   "sourceAccessible": 21,
   "bulletinFound": 21,
   "retried": 31,
-  "remainingErrors": 5,
-  "remainingPartial": 5,
+  "remainingErrors": 4,
+  "remainingPartial": 6,
   "pdfRead": 22,
-  "updated": 22,
+  "updated": 11,
   "results": [
     {
       "id": "iroko-zen",
@@ -46,17 +46,21 @@
     {
       "id": "pierval-sante",
       "name": "Pierval Santé",
-      "status": "partial",
-      "changes": [],
-      "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
+      "status": "ok",
+      "changes": [
+        "bulletin",
+        "tof",
+        "liquidité / retraits"
+      ],
+      "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.euryale-am.fr/nos-solutions/pierval/",
-      "pdfRead": "Bulletin PDF non vérifié automatiquement",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": null,
-      "pdfVerifiedAt": null,
+      "pdfRead": "PDF officiel lu (texte et positions)",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
-      "pdfAllocation": null,
-      "pdfWarning": "Aucun PDF correspondant à la SCPI et à la période sur https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf · Aucun PDF correspondant à la SCPI et à la période sur https://www.euryale-am.fr/wp-content",
+      "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
+      "pdfWarning": null,
       "attempts": [
         {
           "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
@@ -91,7 +95,7 @@
         {
           "url": "https://www.euryale-am.fr/nos-solutions/pierval-sante/",
           "status": "accessible",
-          "candidateCount": 14
+          "candidateCount": 15
         }
       ],
       "fallbackUsed": true
@@ -100,59 +104,66 @@
       "id": "corum-origin",
       "name": "CORUM Origin",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.corum.fr/nos-scpi/corum-origin/documents",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo, types",
       "pdfWarning": null,
       "attempts": [
         {
+          "url": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://www.corum.fr/nos-scpi/corum-origin/documents",
           "status": "accessible",
-          "candidateCount": 19
+          "candidateCount": 20
         },
         {
           "url": "https://corum.fr/nos-scpi/corum-origin/documents",
           "status": "accessible",
-          "candidateCount": 19
+          "candidateCount": 20
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "remake-live",
       "name": "Remake Live",
-      "status": "ok",
-      "changes": [
-        "tof",
-        "liquidité / retraits"
-      ],
-      "message": "PDF officiel vérifié et indicateurs contrôlés",
+      "status": "partial",
+      "changes": [],
+      "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
       "source": "https://www.remake.fr/remake-live",
-      "pdfRead": "PDF officiel lu (texte et positions)",
+      "pdfRead": "Bulletin PDF non vérifié automatiquement",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
       "pdfVerifiedAt": "2026-10-29",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
-      "pdfWarning": null,
+      "pdfWarning": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
       "attempts": [
         {
           "url": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://www.remake.fr/remake-live",
@@ -173,6 +184,7 @@
       "status": "partial",
       "changes": [],
       "rejectedUpdates": [
+        "acquisitions (1 nouvelles)",
         "bulletin"
       ],
       "message": "Actualisation rejetée avant publication : bulletin : date de référence future",
@@ -195,7 +207,7 @@
         {
           "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/aew-commerces-europe",
           "status": "accessible",
-          "candidateCount": 35
+          "candidateCount": 36
         }
       ],
       "fallbackUsed": true,
@@ -207,7 +219,6 @@
       "name": "Altixia Cadence XII",
       "status": "ok",
       "changes": [
-        "bulletin",
         "liquidité / retraits"
       ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
@@ -215,7 +226,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -283,70 +294,60 @@
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://atream.com/wp-content/uploads/2026/07/Bulletin-N2026_2T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
-          "status": "accessible",
-          "candidateCount": 14
-        },
-        {
-          "url": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://atream.com/wp-content/uploads/2026/05/Bulletin-N2026_1T-SCPI_Atream_Hotels_WEB_10-PAGES-1.pdf",
+          "url": "https://atream.com/wp-content/uploads/2026/07/Bulletin-N2026_2T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
+        },
+        {
+          "url": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
+          "status": "accessible",
+          "candidateCount": 15
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "edissimmo",
       "name": "Edissimmo",
       "status": "partial",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF ancien effectivement lu (T1 2026) : rechercher le dernier bulletin publié ; valeur précédente conservée si besoin.",
       "source": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T1 2026",
       "pdfSourceUrl": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": true,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
           "url": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
-          "status": "error",
-          "kind": "http_503",
-          "detail": "Site de la société de gestion temporairement indisponible (503). Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/L-essentiel",
-          "status": "error",
-          "kind": "http_503",
-          "detail": "Site de la société de gestion temporairement indisponible (503). Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/L-essentiel",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
@@ -355,9 +356,8 @@
         },
         {
           "url": "https://amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "pdf_verifie",
+          "candidateCount": 1
         },
         {
           "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa",
@@ -365,16 +365,10 @@
         },
         {
           "url": "https://amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
-        },
-        {
-          "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-          "status": "pdf_verifie"
+          "status": "pdf_non_confirme"
         }
       ],
-      "fallbackUsed": true
+      "fallbackUsed": false
     },
     {
       "id": "efimmo-1",
@@ -475,16 +469,13 @@
       "id": "epargne-fonciere",
       "name": "Épargne Foncière",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-epargne-fonciere-30092026",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -493,6 +484,16 @@
           "url": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE",
           "status": "accessible",
           "candidateCount": 5
+        },
+        {
+          "url": "https://la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE",
+          "status": "accessible",
+          "candidateCount": 5
+        },
+        {
+          "url": "https://client.la-francaise.com/bt",
+          "status": "accessible",
+          "candidateCount": 2
         }
       ],
       "fallbackUsed": false
@@ -508,43 +509,30 @@
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://www.fiducial-gerance.fr/content/download/1413/file/BTI%20Ficommerce%20T2%202026%20WEB.pdf?version=3",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo",
       "pdfWarning": null,
       "attempts": [
         {
+          "url": "https://www.fiducial-gerance.fr/content/download/1413/file/BTI%20Ficommerce%20T2%202026%20WEB.pdf?version=3",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://fiducial-gerance.fr/content/download/1413/file/BTI%20Ficommerce%20T2%202026%20WEB.pdf?version=3",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
           "status": "accessible",
           "candidateCount": 6
-        },
-        {
-          "url": "https://fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
-          "status": "accessible",
-          "candidateCount": 6
-        },
-        {
-          "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://fiducial-gerance.fr/content/download/1413/40299?version=3",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
-          "status": "pdf_non_confirme"
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "immorente",
@@ -622,30 +610,18 @@
       "name": "Laffitte Pierre",
       "status": "ok",
       "changes": [
-        "bulletin",
-        "tof"
+        "bulletin"
       ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "S1 2026",
-      "pdfSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-03/LAFFITTE%20PIERRE%202%C3%A8me%20semestre%202025.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
-        {
-          "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
-          "status": "accessible",
-          "candidateCount": 35
-        },
-        {
-          "url": "https://aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
-        },
         {
           "url": "https://www.aewpatrimoine.com/sites/default/files/2026-03/LAFFITTE%20PIERRE%202%C3%A8me%20semestre%202025.pdf",
           "status": "pdf_verifie",
@@ -658,32 +634,24 @@
           "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
-          "url": "https://www.aewpatrimoine.com/sites/default/files/2026-06/LAFFITTE_PIERRE_Rapport%20annuel%202025.pdf",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://aewpatrimoine.com/sites/default/files/2026-06/LAFFITTE_PIERRE_Rapport%20annuel%202025.pdf",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
+          "status": "accessible",
+          "candidateCount": 36
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "lf-europimmo",
       "name": "LF Europimmo",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Europimmo&amcScpi=16849&code=D1",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -692,6 +660,21 @@
           "url": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Europimmo&amcScpi=16849&code=D1",
           "status": "accessible",
           "candidateCount": 5
+        },
+        {
+          "url": "https://la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Europimmo&amcScpi=16849&code=D1",
+          "status": "accessible",
+          "candidateCount": 5
+        },
+        {
+          "url": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://doc.la-francaise.com/Documents/bt-complet-2026-trimestre-1",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -700,15 +683,13 @@
       "id": "lf-grand-paris-patrimoine",
       "name": "LF Grand Paris Patrimoine",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-grand-paris-patrimoine-30092026",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -717,6 +698,16 @@
           "url": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2",
           "status": "accessible",
           "candidateCount": 6
+        },
+        {
+          "url": "https://la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2",
+          "status": "accessible",
+          "candidateCount": 6
+        },
+        {
+          "url": "https://client.la-francaise.com/bt",
+          "status": "accessible",
+          "candidateCount": 2
         }
       ],
       "fallbackUsed": false
@@ -725,16 +716,13 @@
       "id": "patrimmo-commerce",
       "name": "Patrimmo Commerce",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -748,6 +736,16 @@
           "url": "https://praemiareim.fr/fr/scpi-patrimmo-commerce",
           "status": "accessible",
           "candidateCount": 8
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         },
         {
           "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
@@ -771,15 +769,13 @@
       "id": "patrimmo-croissance",
       "name": "Patrimmo Croissance",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T2_2026_VDEF.pdf/246c9091-ec34-d4b6-e358-5554542e52d9?t=1786020043083",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -811,6 +807,16 @@
           "url": "https://praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
           "status": "pdf_verifie",
           "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T2_2026_VDEF.pdf/246c9091-ec34-d4b6-e358-5554542e52d9?t=1786020043083",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T2_2026_VDEF.pdf/246c9091-ec34-d4b6-e358-5554542e52d9?t=1786020043083",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -825,9 +831,9 @@
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.perial.com/scpi/perial-grand-paris",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda7ae845ffc70aa1350e_PERIAL%20Grand%20Paris%20-%20Bulletin%20trimestriel%20d%27information%20(T2%202026).pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -838,24 +844,29 @@
           "candidateCount": 1
         },
         {
+          "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda7ae845ffc70aa1350e_PERIAL%20Grand%20Paris%20-%20Bulletin%20trimestriel%20d%27information%20(T2%202026).pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://www.perial.com/scpi/perial-grand-paris",
           "status": "accessible",
-          "candidateCount": 11
+          "candidateCount": 12
         },
         {
           "url": "https://perial.com/scpi/perial-grand-paris",
           "status": "accessible",
-          "candidateCount": 11
+          "candidateCount": 12
         },
         {
           "url": "https://www.perial.com/documentation",
           "status": "accessible",
-          "candidateCount": 31
+          "candidateCount": 23
         },
         {
           "url": "https://perial.com/documentation",
           "status": "accessible",
-          "candidateCount": 31
+          "candidateCount": 23
         }
       ],
       "fallbackUsed": true
@@ -864,16 +875,13 @@
       "id": "primopierre",
       "name": "Primopierre",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-primopierre",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -931,16 +939,13 @@
       "id": "primovie",
       "name": "Primovie",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-primovie",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -956,12 +961,12 @@
           "candidateCount": 10
         },
         {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
         {
-          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -972,6 +977,16 @@
         },
         {
           "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2025_VDEF.pdf/c261a2e9-05e0-4e41-5849-5bc59f5ca952?t=1762445988370",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
           "status": "pdf_verifie",
           "candidateCount": 1
         }
@@ -988,9 +1003,9 @@
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.perial.com/scpi/perial-o2",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda5d0727e6de700af0b9_PERIAL%20O%E2%82%82%20-%20Bulletin%20trimestriel%20d%27information%20(T2%202026).pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1001,34 +1016,39 @@
           "candidateCount": 1
         },
         {
+          "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda5d0727e6de700af0b9_PERIAL%20O%E2%82%82%20-%20Bulletin%20trimestriel%20d%27information%20(T2%202026).pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://www.perial.com/scpi/perial-o2",
           "status": "accessible",
-          "candidateCount": 11
+          "candidateCount": 12
         },
         {
           "url": "https://perial.com/scpi/perial-o2",
           "status": "accessible",
-          "candidateCount": 11
+          "candidateCount": 12
         },
         {
           "url": "https://www.perial.com/documentation",
           "status": "accessible",
-          "candidateCount": 31
+          "candidateCount": 23
         },
         {
           "url": "https://perial.com/documentation",
           "status": "accessible",
-          "candidateCount": 31
+          "candidateCount": 23
         },
         {
           "url": "https://www.perial.com/scpi/perial-o2?scpi=1201",
           "status": "accessible",
-          "candidateCount": 11
+          "candidateCount": 12
         },
         {
           "url": "https://perial.com/scpi/perial-o2?scpi=1201",
           "status": "accessible",
-          "candidateCount": 11
+          "candidateCount": 12
         }
       ],
       "fallbackUsed": true
@@ -1036,35 +1056,37 @@
     {
       "id": "rivoli-avenir-patrimoine",
       "name": "Rivoli Avenir Patrimoine",
-      "status": "error",
+      "status": "partial",
       "changes": [],
-      "message": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
-      "errorType": "unavailable",
+      "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
       "source": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
+      "pdfRead": "Bulletin PDF non vérifié automatiquement",
+      "pdfPeriod": null,
+      "pdfSourceUrl": null,
+      "pdfVerifiedAt": null,
+      "pdfStale": false,
+      "pdfAllocation": null,
+      "pdfWarning": "Aucun bulletin exploitable détecté",
       "attempts": [
         {
           "url": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
-          "status": "error",
-          "kind": "http_503",
-          "detail": "Site de la société de gestion temporairement indisponible (503). Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/L-essentiel",
-          "status": "error",
-          "kind": "http_503",
-          "detail": "Site de la société de gestion temporairement indisponible (503). Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/L-essentiel",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_a93cfc80-5fa6-48ad-aff4-1c41e0e990b5",
@@ -1072,26 +1094,22 @@
         },
         {
           "url": "https://amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_a93cfc80-5fa6-48ad-aff4-1c41e0e990b5",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "pdf_non_confirme"
         }
-      ]
+      ],
+      "fallbackUsed": false
     },
     {
       "id": "selectinvest-1",
       "name": "Sélectinvest 1",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.la-francaise.com/fr-fr/nos-solutions-pour-vous/nos-produits/product/Scpi/i9-selectinvest-1/",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1100,6 +1118,21 @@
           "url": "https://www.la-francaise.com/fr-fr/nos-solutions-pour-vous/nos-produits/product/Scpi/i9-selectinvest-1/",
           "status": "accessible",
           "candidateCount": 5
+        },
+        {
+          "url": "https://la-francaise.com/fr-fr/nos-solutions-pour-vous/nos-produits/product/Scpi/i9-selectinvest-1/",
+          "status": "accessible",
+          "candidateCount": 5
+        },
+        {
+          "url": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://doc.la-francaise.com/Documents/bt-complet-2026-trimestre-1",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -1109,30 +1142,31 @@
       "name": "Épargne Pierre",
       "status": "ok",
       "changes": [
-        "bulletin"
+        "bulletin",
+        "tof"
       ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atland-voisin.com/scpi/epargne-pierre/",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://atland-voisin.com/scpi/epargne-pierre/",
           "status": "accessible",
           "candidateCount": 6
-        },
-        {
-          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
-          "status": "pdf_verifie",
-          "candidateCount": 1
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "sofidynamic",
@@ -1233,7 +1267,10 @@
       "id": "transitions-europe",
       "name": "Transitions Europe",
       "status": "partial",
-      "changes": [],
+      "changes": [
+        "geo",
+        "types"
+      ],
       "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
       "source": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
       "pdfRead": "Bulletin PDF non vérifié automatiquement",
@@ -1242,28 +1279,12 @@
       "pdfVerifiedAt": null,
       "pdfStale": false,
       "pdfAllocation": null,
-      "pdfWarning": "Aucun PDF correspondant à la SCPI et à la période sur https://www.arkea-reim.com/immobilier/pa_89367/upload/docs/application/pdf/2026-07/te_s1-2026.pdf · Aucun PDF correspondant à la SCPI et à la période sur https://www.",
+      "pdfWarning": "Aucun PDF correspondant à la SCPI et à la période sur https://www.arkea-reim.com/immobilier/pa_89367/upload/docs/application/pdf/2026-10/te_t3-2026.pdf · Aucun PDF correspondant à la SCPI et à la période sur https://www.",
       "attempts": [
         {
           "url": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
           "status": "accessible",
-          "candidateCount": 12
-        },
-        {
-          "url": "https://arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
-          "status": "accessible",
-          "candidateCount": 0
-        },
-        {
-          "url": "https://www.arkea-reim.com/upload/docs/application/pdf/2026-05/arkea-reim-transition-europe-ra-2025_2026-05-18_18-57-3_193.pdf",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
-        },
-        {
-          "url": "https://arkea-reim.com/upload/docs/application/pdf/2026-05/arkea-reim-transition-europe-ra-2025_2026-05-18_18-57-3_193.pdf",
-          "status": "accessible",
-          "candidateCount": 0
+          "candidateCount": 13
         }
       ],
       "fallbackUsed": false
@@ -1280,24 +1301,24 @@
       "source": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
-      "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
-          "status": "accessible",
-          "candidateCount": 6
-        },
-        {
           "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
+        },
+        {
+          "url": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
+          "status": "accessible",
+          "candidateCount": 6
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "epargne-pierre-sophia",
@@ -1310,25 +1331,25 @@
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPS-VDEF-web-2.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPS-VDEF-web-2.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
           "status": "accessible",
           "candidateCount": 6
-        },
-        {
-          "url": "https://atland-voisin.com/wp-content/uploads/2026/02/BPI4T2025-EPS-vdef-web-compresse.pdf",
-          "status": "pdf_verifie",
-          "candidateCount": 1
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "sofidy-europe-invest",
@@ -1417,19 +1438,22 @@
       "id": "principal-inside",
       "name": "Principal Inside",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://fr.principalam.com/notre-scpi",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://brandassets.principal.com/asset/2ab85039-0f3a-4ed6-9719-94aaa410a2fc/Bulletin-d-information.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
+        {
+          "url": "https://brandassets.principal.com/asset/2ab85039-0f3a-4ed6-9719-94aaa410a2fc/Bulletin-d-information.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
         {
           "url": "https://fr.principalam.com/notre-scpi",
           "status": "accessible",
@@ -1442,34 +1466,42 @@
           "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     },
     {
       "id": "corum-usa",
       "name": "CORUM USA",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.corum.fr/nos-scpi/corum-usa/documents",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
-      "pdfVerifiedAt": "2026-10-29",
+      "pdfVerifiedAt": "2026-11-06",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
+          "url": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
           "url": "https://www.corum.fr/nos-scpi/corum-usa/documents",
           "status": "accessible",
-          "candidateCount": 10
+          "candidateCount": 11
         },
         {
           "url": "https://corum.fr/nos-scpi/corum-usa/documents",
           "status": "accessible",
-          "candidateCount": 10
+          "candidateCount": 11
         },
         {
           "url": "https://www.corum.fr/actus/premier-semestre-2026-pour-les-scpi-de-corum-tous-les-indicateurs-sont-en-hausse",
@@ -1477,10 +1509,322 @@
           "candidateCount": 0
         }
       ],
-      "fallbackUsed": false
+      "fallbackUsed": true
     }
   ],
   "recentEvents": [
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
+      "recordedAt": "2026-11-06T14:41:53+00:00",
+      "scpiId": "epargne-pierre-sophia",
+      "scpiName": "Épargne Pierre Sophia"
+    },
+    {
+      "field": "tof",
+      "previous": 99.79,
+      "value": 99.77,
+      "period": "2026-09-30",
+      "source": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
+      "recordedAt": "2026-11-06T14:41:49+00:00",
+      "scpiId": "epargne-pierre-europe",
+      "scpiName": "Épargne Pierre Europe"
+    },
+    {
+      "field": "geo",
+      "previous": [
+        [
+          "Espagne",
+          31
+        ],
+        [
+          "Allemagne",
+          24
+        ],
+        [
+          "Pays-Bas",
+          13
+        ],
+        [
+          "Irlande",
+          12
+        ],
+        [
+          "Italie",
+          11
+        ],
+        [
+          "Pologne",
+          6
+        ],
+        [
+          "Belgique",
+          3
+        ]
+      ],
+      "value": [
+        [
+          "Espagne",
+          29.0
+        ],
+        [
+          "Allemagne",
+          22.0
+        ],
+        [
+          "Italie",
+          14.0
+        ],
+        [
+          "Pays-Bas",
+          11.0
+        ],
+        [
+          "Irlande",
+          10.0
+        ],
+        [
+          "Pologne",
+          6.0
+        ],
+        [
+          "Suisse",
+          5.0
+        ],
+        [
+          "Belgique",
+          3.0
+        ]
+      ],
+      "period": "2026-09-30",
+      "source": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+      "recordedAt": "2026-11-06T14:41:41+00:00",
+      "scpiId": "transitions-europe",
+      "scpiName": "Transitions Europe"
+    },
+    {
+      "field": "types",
+      "previous": [
+        [
+          "Bureaux",
+          38
+        ],
+        [
+          "Commerce",
+          25
+        ],
+        [
+          "Logistique",
+          14
+        ],
+        [
+          "Sciences de la vie",
+          10
+        ],
+        [
+          "Hospitalité",
+          5
+        ],
+        [
+          "Activités",
+          5
+        ],
+        [
+          "Éducation",
+          3
+        ]
+      ],
+      "value": [
+        [
+          "Bureaux",
+          39.0
+        ],
+        [
+          "Commerce",
+          26.0
+        ],
+        [
+          "Logistique",
+          15.0
+        ],
+        [
+          "Life Science",
+          9.0
+        ],
+        [
+          "Hospitalité",
+          5.0
+        ],
+        [
+          "Activité",
+          4.0
+        ],
+        [
+          "Education",
+          2.0
+        ]
+      ],
+      "period": "2026-09-30",
+      "source": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
+      "recordedAt": "2026-11-06T14:41:41+00:00",
+      "scpiId": "transitions-europe",
+      "scpiName": "Transitions Europe"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
+      "recordedAt": "2026-11-06T14:41:38+00:00",
+      "scpiId": "epargne-pierre",
+      "scpiName": "Épargne Pierre"
+    },
+    {
+      "field": "tof",
+      "previous": 94.14,
+      "value": 5.95,
+      "period": "2026-09-30",
+      "source": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
+      "recordedAt": "2026-11-06T14:41:38+00:00",
+      "scpiId": "epargne-pierre",
+      "scpiName": "Épargne Pierre"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
+      "recordedAt": "2026-11-06T14:41:23+00:00",
+      "scpiId": "pfo2",
+      "scpiName": "PFO2"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
+      "recordedAt": "2026-11-06T14:41:03+00:00",
+      "scpiId": "pf-grand-paris",
+      "scpiName": "PF Grand Paris"
+    },
+    {
+      "field": "bulletin",
+      "previous": "S1 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
+      "recordedAt": "2026-11-06T14:40:28+00:00",
+      "scpiId": "laffitte-pierre",
+      "scpiName": "Laffitte Pierre"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
+      "recordedAt": "2026-11-06T14:40:23+00:00",
+      "scpiId": "ficommerce",
+      "scpiName": "Ficommerce"
+    },
+    {
+      "field": "geo",
+      "previous": [
+        [
+          "Régions",
+          52.4
+        ],
+        [
+          "Île-de-France",
+          20.4
+        ],
+        [
+          "Paris",
+          25.4
+        ],
+        [
+          "Europe",
+          1.9
+        ]
+      ],
+      "value": [
+        [
+          "Régions",
+          52.5
+        ],
+        [
+          "Île-de-France",
+          20.6
+        ],
+        [
+          "Paris",
+          25.0
+        ],
+        [
+          "Europe",
+          1.9
+        ]
+      ],
+      "period": "2026-09-30",
+      "source": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
+      "recordedAt": "2026-11-06T14:40:23+00:00",
+      "scpiId": "ficommerce",
+      "scpiName": "Ficommerce"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
+      "recordedAt": "2026-11-06T14:40:01+00:00",
+      "scpiId": "atream-hotels",
+      "scpiName": "Atream Hôtels"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
+      "recordedAt": "2026-11-06T14:39:35+00:00",
+      "scpiId": "pierval-sante",
+      "scpiName": "Pierval Santé"
+    },
+    {
+      "field": "tof",
+      "previous": 93.22,
+      "value": 8.96,
+      "period": "2026-09-30",
+      "source": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
+      "recordedAt": "2026-11-06T14:39:35+00:00",
+      "scpiId": "pierval-sante",
+      "scpiName": "Pierval Santé"
+    },
+    {
+      "field": "liquidityData",
+      "previous": {
+        "waitingParts": 550067,
+        "withdrawalsExecuted": 16217,
+        "withdrawalRequests": null
+      },
+      "value": {
+        "waitingParts": null,
+        "withdrawalsExecuted": 12959,
+        "withdrawalRequests": null
+      },
+      "period": "2026-09-30",
+      "source": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
+      "recordedAt": "2026-11-06T14:39:35+00:00",
+      "scpiId": "pierval-sante",
+      "scpiName": "Pierval Santé"
+    },
     {
       "field": "bulletin",
       "previous": "T2 2026",
@@ -1684,11 +2028,11 @@
       "scpiName": "Remake Live"
     }
   ],
-  "eventsRecordedToday": 16,
-  "bulletinEventsRecordedToday": 7,
+  "eventsRecordedToday": 15,
+  "bulletinEventsRecordedToday": 8,
   "rejectedUpdates": 1,
   "quality": {
-    "asOf": "2026-10-29",
+    "asOf": "2026-11-06",
     "affectedScpi": 21,
     "issueCounts": {
       "ancienne": 6,
@@ -1726,7 +2070,7 @@
           {
             "field": "keys",
             "kind": "ancienne",
-            "detail": "Donnée du 2021-07-01 : 1946 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2021-07-01 : 1954 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://iroko-documentation.s3.eu-west-3.amazonaws.com/Legal/Cles_repartititon_iroko_zen.pdf"
           },
@@ -1811,7 +2155,7 @@
           {
             "field": "tof",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 302 jours (seuil indicatif 210 jours)",
+            "detail": "Donnée du 2025-12-31 : 310 jours (seuil indicatif 210 jours)",
             "level": "warning",
             "source": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf"
           }
@@ -1824,7 +2168,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 302 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2025-12-31 : 310 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf"
           }
@@ -1906,7 +2250,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2026-03-31 : 212 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2026-03-31 : 220 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764"
           }
@@ -1932,14 +2276,14 @@
           {
             "field": "geo",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 577 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 585 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           },
           {
             "field": "types",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 577 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 585 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           }
@@ -2156,5 +2500,5 @@
       }
     ]
   },
-  "fallbackRecovered": 7
+  "fallbackRecovered": 15
 }
