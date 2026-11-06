@@ -1,0 +1,2 @@
+Actualisation manuelle demandée le 2026-11-06.
+Le commit [scpi-collect] déclenche la collecte complète via pages.yml.
