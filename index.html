@@ -850,7 +850,10 @@ function allocationBuildBreakdown(positions,field){
   dates.push({name:s.name,period:d.period});
   sources.push({name:s.name,url:d.source,date:d.period});
   for(const [label,val] of d.rows){
-   const name=field==='geo'?allocationCanonicalGeo(label):allocationCanonicalSector(label);
+   // PAREF Prima detaille l'Allemagne par regions : consolider au niveau pays
+   // uniquement dans le simulateur, sans modifier la ventilation source du fonds.
+   const name=field==='geo'&&s.id==='paref-prima'&&label!=='Pays-Bas'
+    ?'Allemagne':field==='geo'?allocationCanonicalGeo(label):allocationCanonicalSector(label);
    byLabel.set(name,(byLabel.get(name)||0)+weight*Number(val)/d.sum);
   }
  }
