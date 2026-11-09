@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-11-09T10:07:14+00:00",
+  "checkedAt": "2026-11-09T10:40:17+00:00",
   "refreshRequestId": "",
-  "total": 31,
+  "total": 32,
   "sourceAccessible": 21,
   "bulletinFound": 21,
-  "retried": 31,
-  "remainingErrors": 4,
+  "retried": 32,
+  "remainingErrors": 5,
   "remainingPartial": 6,
   "pdfRead": 22,
-  "updated": 6,
+  "updated": 0,
   "results": [
     {
       "id": "iroko-zen",
@@ -47,9 +47,7 @@
       "id": "pierval-sante",
       "name": "Pierval Santé",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.euryale-am.fr/nos-solutions/pierval/",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -216,9 +214,7 @@
       "id": "altixia-cadence-xii",
       "name": "Altixia Cadence XII",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.altixia.fr/scpi-cadence.php",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -385,25 +381,13 @@
       "source": "https://www.sofidy.com/solutions/efimmo1/",
       "attempts": [
         {
-          "url": "https://www.sofidy.com/solutions/efimmo1/",
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
         },
         {
-          "url": "https://sofidy.com/solutions/efimmo1/",
-          "status": "skipped_tls",
-          "kind": "tls",
-          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
-        },
-        {
-          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
-          "status": "skipped_tls",
-          "kind": "tls",
-          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
-        },
-        {
-          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -416,6 +400,18 @@
         },
         {
           "url": "https://sofidy.com/documentation/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -593,13 +589,13 @@
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
         },
         {
-          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
         },
         {
-          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -612,6 +608,18 @@
         },
         {
           "url": "https://sofidy.com/documentation/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -766,10 +774,7 @@
       "id": "patrimmo-commerce",
       "name": "Patrimmo Commerce",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -784,6 +789,36 @@
           "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
           "status": "accessible",
           "candidateCount": 8
+        },
+        {
+          "url": "https://praemiareim.fr/fr/scpi-patrimmo-commerce",
+          "status": "accessible",
+          "candidateCount": 8
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce/",
+          "status": "accessible",
+          "candidateCount": 8
         }
       ],
       "fallbackUsed": false
@@ -792,9 +827,7 @@
       "id": "patrimmo-croissance",
       "name": "Patrimmo Croissance",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -809,6 +842,39 @@
           "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
           "status": "accessible",
           "candidateCount": 8
+        },
+        {
+          "url": "https://praemiareim.fr/fr/scpi-patrimmo-croissance",
+          "status": "accessible",
+          "candidateCount": 8
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836308/Patrimmo%2BCroissance%2BImpact%2BRapport%2BAnnuel%2B2025.pdf/2c299015-36ea-5440-4ee3-f69d98560711?t=1780652583193",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836308/Patrimmo%2BCroissance%2BImpact%2BRapport%2BAnnuel%2B2025.pdf/2c299015-36ea-5440-4ee3-f69d98560711?t=1780652583193",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -865,9 +931,7 @@
       "id": "primopierre",
       "name": "Primopierre",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-primopierre",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -882,6 +946,57 @@
           "url": "https://www.praemiareim.fr/fr/scpi-primopierre",
           "status": "accessible",
           "candidateCount": 11
+        },
+        {
+          "url": "https://praemiareim.fr/fr/scpi-primopierre",
+          "status": "accessible",
+          "candidateCount": 11
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836296/SCPI%2BPrimopierre%2B-%2BL%27Essentiel.pdf/ed3ef9a9-939e-6ec4-e93c-6135250db8cf?t=1635519529651",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836296/SCPI%2BPrimopierre%2B-%2BL%27Essentiel.pdf/ed3ef9a9-939e-6ec4-e93c-6135250db8cf?t=1635519529651",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836290/Primopierre%2BRapport%2BAnnuel%2B2025.pdf/32234cef-d9b6-60b3-9ad5-08bfa8420b37?t=1780564491137",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836290/Primopierre%2BRapport%2BAnnuel%2B2025.pdf/32234cef-d9b6-60b3-9ad5-08bfa8420b37?t=1780564491137",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -890,10 +1005,7 @@
       "id": "primovie",
       "name": "Primovie",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-primovie",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -908,6 +1020,41 @@
           "url": "https://www.praemiareim.fr/fr/scpi-primovie",
           "status": "accessible",
           "candidateCount": 10
+        },
+        {
+          "url": "https://praemiareim.fr/fr/scpi-primovie",
+          "status": "accessible",
+          "candidateCount": 10
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2025_VDEF.pdf/c261a2e9-05e0-4e41-5849-5bc59f5ca952?t=1762445988370",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2025_VDEF.pdf/c261a2e9-05e0-4e41-5849-5bc59f5ca952?t=1762445988370",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -1097,18 +1244,6 @@
       "source": "https://www.sofidy.com/solutions/sofidynamic/",
       "attempts": [
         {
-          "url": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofidynamic_OPTI.pdf",
-          "status": "error",
-          "kind": "tls",
-          "detail": "Connexion sécurisée au site de gestion non vérifiable. Données précédentes conservées."
-        },
-        {
-          "url": "https://sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofidynamic_OPTI.pdf",
-          "status": "error",
-          "kind": "tls",
-          "detail": "Connexion sécurisée au site de gestion non vérifiable. Données précédentes conservées."
-        },
-        {
           "url": "https://www.sofidy.com/solutions/sofidynamic/",
           "status": "skipped_tls",
           "kind": "tls",
@@ -1121,13 +1256,13 @@
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
         },
         {
-          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
         },
         {
-          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -1140,6 +1275,18 @@
         },
         {
           "url": "https://sofidy.com/documentation/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -1293,13 +1440,13 @@
           "detail": "Connexion sécurisée au site de gestion non vérifiable. Données précédentes conservées."
         },
         {
-          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
         },
         {
-          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -1312,6 +1459,18 @@
         },
         {
           "url": "https://sofidy.com/documentation/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+          "status": "skipped_tls",
+          "kind": "tls",
+          "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
+        },
+        {
+          "url": "https://sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
           "status": "skipped_tls",
           "kind": "tls",
           "detail": "Hôte HTTPS déjà rejeté : certificat non vérifiable."
@@ -1430,6 +1589,35 @@
         }
       ],
       "fallbackUsed": true
+    },
+    {
+      "id": "paref-prima",
+      "name": "PAREF Prima",
+      "status": "error",
+      "changes": [],
+      "message": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
+      "errorType": "unavailable",
+      "source": "https://paref-gestion.com/nos-scpi/paref-prima/",
+      "attempts": [
+        {
+          "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        },
+        {
+          "url": "https://paref-gestion.com/nos-scpi/paref-prima/",
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        },
+        {
+          "url": "https://paref-gestion.com/documentation/",
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        }
+      ]
     }
   ],
   "recentEvents": [
@@ -1538,35 +1726,35 @@
       "value": [
         [
           "Espagne",
-          29.0
+          29
         ],
         [
           "Allemagne",
-          22.0
+          22
         ],
         [
           "Italie",
-          14.0
+          14
         ],
         [
           "Pays-Bas",
-          11.0
+          11
         ],
         [
           "Irlande",
-          10.0
+          10
         ],
         [
           "Pologne",
-          6.0
+          6
         ],
         [
           "Suisse",
-          5.0
+          5
         ],
         [
           "Belgique",
-          3.0
+          3
         ]
       ],
       "period": "2026-09-30",
@@ -1610,31 +1798,31 @@
       "value": [
         [
           "Bureaux",
-          39.0
+          39
         ],
         [
           "Commerce",
-          26.0
+          26
         ],
         [
           "Logistique",
-          15.0
+          15
         ],
         [
           "Life Science",
-          9.0
+          9
         ],
         [
           "Hospitalité",
-          5.0
+          5
         ],
         [
           "Activité",
-          4.0
+          4
         ],
         [
           "Education",
-          2.0
+          2
         ]
       ],
       "period": "2026-09-30",
@@ -1734,7 +1922,7 @@
         ],
         [
           "Paris",
-          25.0
+          25
         ],
         [
           "Europe",
@@ -1878,7 +2066,7 @@
     {
       "field": "tof",
       "previous": 85.27,
-      "value": 2.0,
+      "value": 2,
       "period": "2026-06-30",
       "source": "https://www.aewpatrimoine.com/sites/default/files/2026-03/LAFFITTE%20PIERRE%202%C3%A8me%20semestre%202025.pdf",
       "recordedAt": "2026-10-29T10:09:52+00:00",
@@ -1990,7 +2178,7 @@
     {
       "field": "tof",
       "previous": 98.93,
-      "value": 100.0,
+      "value": 100,
       "period": "2026-09-30",
       "source": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
       "recordedAt": "2026-10-29T09:58:34+00:00",
@@ -2467,6 +2655,11 @@
             "source": "https://www.corum.fr/nos-scpi/corum-usa/documents"
           }
         ]
+      },
+      {
+        "id": "paref-prima",
+        "name": "PAREF Prima",
+        "issues": []
       }
     ]
   },
