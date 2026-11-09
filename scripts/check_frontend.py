@@ -9,7 +9,7 @@ import tempfile
 root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 records = json.loads((root / "data/scpi.json").read_text(encoding="utf-8"))
-assert len(records) >= 31, f"Nombre de SCPI inattendu : {len(records)}"
+assert len(records) >= 32, f"Nombre de SCPI inattendu : {len(records)}"
 assert len({r["id"] for r in records}) == len(records), "Identifiants SCPI dupliqués"
 assert all(r.get("name") for r in records), "Nom SCPI manquant"
 # Validate all published allocations and their documented provenance.
