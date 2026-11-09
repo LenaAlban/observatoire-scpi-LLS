@@ -1,7 +1,8 @@
 
 # Pages et documents hébergés chez les gérants, vérifiés comme voies de
 # secours. Leur présence n'atteste jamais à elle seule qu'un bulletin est lu.
-SOFIDY_BULLETINS='https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/'
+SOFIDY_BULLETINS='https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/'
+SOFIDY_BULLETINS_T2='https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/'
 SOFIDY_DOCUMENTATION='https://www.sofidy.com/documentation/'
 OFFICIAL_FALLBACKS = {
     'altixia-cadence-xii': [
@@ -23,20 +24,24 @@ OFFICIAL_FALLBACKS = {
         # Bulletin T2 2026 communiqué par l'utilisateur ; vérifier dans le
         # PDF la SCPI et le trimestre avant toute actualisation de chiffres.
         'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Efimmo_OPTI.pdf',
-        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
+        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2,
     ],
     'immorente': [
         # URL PDF T2 2026 déjà enregistrée dans la fiche SCPI.
         'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf',
-        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
+        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2,
     ],
     'sofidynamic': [
         # Bulletin T2 2026 officiel fourni par un conseiller ; toujours
         # confirmer dans le texte PDF le fonds et le trimestre avant usage.
         'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofidynamic_OPTI.pdf',
-        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION,
+        SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2,
     ],
-    'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION],
+    'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2, SOFIDY_BULLETINS_T2],
+    'paref-prima': [
+        'https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf',
+        'https://paref-gestion.com/documentation/',
+    ],
     'pf-grand-paris': [
         'https://www.perial.com/documentation',
         # PDF publié sur le CDN explicitement lié par la page PERIAL.
@@ -84,6 +89,7 @@ OFFICIAL = {
  'epargne-pierre-sophia': ('https://atland-voisin.com/scpi/epargne-pierre-sophia/', 'atland-voisin.com'),
  'sofidy-europe-invest': ('https://www.sofidy.com/solutions/sofidy-europe-invest/', 'sofidy.com'),
  'principal-inside': ('https://fr.principalam.com/notre-scpi', 'principalam.com'),
+ 'paref-prima': ('https://paref-gestion.com/nos-scpi/paref-prima/', 'paref-gestion.com'),
  'corum-usa': ('https://www.corum.fr/nos-scpi/corum-usa/documents', 'corum.fr'),
 }
 # Aliases for name validation inside PDFs (OCR and publisher variations).
@@ -95,6 +101,7 @@ ALIASES={
  'patrimmo-croissance':['PATRIMMO CROISSANCE IMPACT','PATRIMMO CROISSANCE'],
  'sofidynamic':['SOFIDYNAMIC'],
  'actipierre-europe':['ACTIPIERRE EUROPE','AEW COMMERCES EUROPE'],
+ 'paref-prima':['PAREF PRIMA','NOVAPIERRE ALLEMAGNE'],
 }
 # Statuses based on explicit published suspension announcements; do not conflate with the trading price.
 LIQUIDITY={
