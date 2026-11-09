@@ -31,6 +31,8 @@ class TestCollection(unittest.TestCase):
     import json
     src=Path(__file__).resolve().parents[1]/'data'/'scpi.json'
     entries=json.loads(src.read_text())
-    self.assertEqual(len(entries),31)
+    self.assertGreaterEqual(len(entries),32)
+    self.assertIn('paref-prima',{s['id'] for s in entries})
+    self.assertEqual(next(s for s in entries if s['id']=='paref-prima')['bulletin'],'T3 2026')
     self.assertEqual(set(OFFICIAL),{s['id'] for s in entries})
 if __name__=='__main__':unittest.main()
