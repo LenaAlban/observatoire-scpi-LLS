@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: '17 6,15 * * *'
+    # Créneaux UTC décalés pour réduire les retards de planification GitHub.
+    - cron: '23 6,15 * * *'
   workflow_dispatch:
     inputs:
       request_id:
@@ -41,21 +42,26 @@ jobs:
       - name: Installer les bibliothèques
         if: github.event_name != 'push' || contains(github.event.head_commit.message, '[scpi-collect]')
         run: pip install -r requirements.txt
-      - name: Vérifier les données et les calculs
-        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[scpi-collect]')
+      # La batterie de tests est exécutée par tests.yml sur chaque changement de code/données.
+      # Une régression isolée ne bloque plus les collectes planifiées.
+      - name: Vérifier les données et les calculs (déclenchement manuel)
+        if: github.event_name == 'workflow_dispatch'
         run: python -m unittest discover -s tests -v
       # Les publications d'interface doivent être rapides et indépendantes
       # des dependances/collectes PDF : aucun téléchargement sur push.
       - name: Vérifier le JavaScript et la page d'accueil avant chaque publication
         run: python scripts/check_frontend.py
-      - name: Tester la sécurité du déclencheur à la demande
-        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[scpi-collect]')
+      - name: Tester la sécurité du déclencheur à la demande (déclenchement manuel)
+        if: github.event_name == 'workflow_dispatch'
         run: node --test worker/test.mjs
       - name: Collecter tous les bulletins officiels (veille quotidienne ou demande)
         if: github.event_name != 'push' || contains(github.event.head_commit.message, '[scpi-collect]')
         env:
           SCPI_REFRESH_REQUEST: ${{ github.event.inputs.request_id }}
         run: python scripts/sync.py --request-id "$SCPI_REFRESH_REQUEST"
+      - name: Vérifier les données mises à jour avant publication
+        if: github.event_name != 'push' || contains(github.event.head_commit.message, '[scpi-collect]')
+        run: python scripts/check_frontend.py
       # Un push ordinaire publie immédiatement sans téléchargement.
       # Un push marqué [scpi-collect] lance exceptionnellement la collecte complète.
       - name: Enregistrer les nouvelles données (si changement)
