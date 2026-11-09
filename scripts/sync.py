@@ -1007,9 +1007,13 @@ def refresh_one(s,item):
             document_errors.append('Aucun PDF correspondant à la SCPI et à la période sur '+candidate['url'][:100])
             continue
         blob,txt,resolved=document
-        # Une publication n'est mise à jour qu'après vérification du document.
-        if p['rank'] > existing_rank(item) or not item.get('bulletinUrl') or item.get('bulletinUrl') != resolved:
-            # Only validated documents can generate a bulletin publication event.
+        # Jamais de régression vers un ancien bulletin simplement parce que son
+        # PDF est encore accessible. L'annonce officielle d'un T3 prime un T2.
+        if p['rank'] < existing_rank(item):
+            document_errors.append('PDF ancien '+p['label']+' : bulletin plus récent '+str(item.get('bulletin'))+' conservé')
+            continue
+        # Les chiffres ne sont actualisés qu'après validation du PDF officiel.
+        if p['rank'] > existing_rank(item) or not item.get('bulletin') or item.get('bulletinUrl') != resolved:
             if p['rank'] > existing_rank(item) or not item.get('bulletin'):
                 record_auto_change(item,'bulletin',item.get('bulletin'),p['label'],p['date'],resolved)
             item.update({'bulletin':p['label'],'bulletinDate':p['date'],'bulletinUrl':resolved})
@@ -1021,6 +1025,14 @@ def refresh_one(s,item):
         item['pdfVerifiedAt']=TODAY
         item['pdfReadStatus']='PDF officiel lu (texte et positions)'
         item['pdfSourceUrl']=resolved
+        item['bulletinSourceType']='pdf_verified'
+        item['bulletinVerifiedAt']=TODAY
+        item.pop('bulletinNote',None)
+        item['publicationVerified']='Bulletin PDF officiel vérifié automatiquement ('+p['label']+').'
+        item.setdefault('fieldSources',{})['bulletin']={
+            'url':resolved,'date':p['date'],'verifiedAt':TODAY,
+            'method':'Lecture automatique du PDF officiel après contrôle du fonds et de la période.'
+        }
         item.pop('pdfWarning',None)
         if html is None:
             item['sourceFallbackUsed']=True
