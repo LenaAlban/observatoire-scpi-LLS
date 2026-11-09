@@ -878,7 +878,7 @@
     "realisation": 175.64,
     "retreat": 204,
     "td": 7.05,
-    "tof": 100.0,
+    "tof": 100,
     "waiting": 0,
     "waitingPct": null,
     "bulletin": "T3 2026",
@@ -1064,7 +1064,7 @@
         },
         {
           "date": "2026-09-30",
-          "value": 100.0,
+          "value": 100,
           "source": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
           "kind": "current"
         }
@@ -1123,7 +1123,7 @@
       {
         "field": "tof",
         "previous": 98.93,
-        "value": 100.0,
+        "value": 100,
         "period": "2026-09-30",
         "source": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
         "recordedAt": "2026-10-29T09:58:34+00:00"
@@ -2601,7 +2601,7 @@
       ],
       [
         "Paris",
-        25.0
+        25
       ],
       [
         "Europe",
@@ -2892,7 +2892,7 @@
           ],
           [
             "Paris",
-            25.0
+            25
           ],
           [
             "Europe",
@@ -3096,7 +3096,7 @@
     "typesDate": "2025-12-31",
     "tdHistory": {
       "2025": {
-        "value": 5.0,
+        "value": 5,
         "date": "2025-12-31",
         "source": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
         "proof": null,
@@ -3131,7 +3131,7 @@
       "td": [
         {
           "date": "2025-12-31",
-          "value": 5.0,
+          "value": 5,
           "source": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
           "kind": "annual"
         }
@@ -3169,7 +3169,7 @@
     "realisation": null,
     "retreat": null,
     "td": 5.3,
-    "tof": 2.0,
+    "tof": 2,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T3 2026",
@@ -3391,7 +3391,7 @@
       {
         "field": "tof",
         "previous": 85.27,
-        "value": 2.0,
+        "value": 2,
         "period": "2026-06-30",
         "source": "https://www.aewpatrimoine.com/sites/default/files/2026-03/LAFFITTE%20PIERRE%202%C3%A8me%20semestre%202025.pdf",
         "recordedAt": "2026-10-29T10:09:52+00:00"
@@ -3413,7 +3413,7 @@
         "metric": "tof",
         "date": "2026-06-30",
         "recorded": 85.27,
-        "observed": 2.0
+        "observed": 2
       }
     ]
   },
@@ -6142,65 +6142,65 @@
     "geo": [
       [
         "Espagne",
-        29.0
+        29
       ],
       [
         "Allemagne",
-        22.0
+        22
       ],
       [
         "Italie",
-        14.0
+        14
       ],
       [
         "Pays-Bas",
-        11.0
+        11
       ],
       [
         "Irlande",
-        10.0
+        10
       ],
       [
         "Pologne",
-        6.0
+        6
       ],
       [
         "Suisse",
-        5.0
+        5
       ],
       [
         "Belgique",
-        3.0
+        3
       ]
     ],
     "types": [
       [
         "Bureaux",
-        39.0
+        39
       ],
       [
         "Commerce",
-        26.0
+        26
       ],
       [
         "Logistique",
-        15.0
+        15
       ],
       [
         "Life Science",
-        9.0
+        9
       ],
       [
         "Hospitalité",
-        5.0
+        5
       ],
       [
         "Activité",
-        4.0
+        4
       ],
       [
         "Education",
-        2.0
+        2
       ]
     ],
     "acquisitions": [
@@ -6357,35 +6357,35 @@
         "value": [
           [
             "Espagne",
-            29.0
+            29
           ],
           [
             "Allemagne",
-            22.0
+            22
           ],
           [
             "Italie",
-            14.0
+            14
           ],
           [
             "Pays-Bas",
-            11.0
+            11
           ],
           [
             "Irlande",
-            10.0
+            10
           ],
           [
             "Pologne",
-            6.0
+            6
           ],
           [
             "Suisse",
-            5.0
+            5
           ],
           [
             "Belgique",
-            3.0
+            3
           ]
         ],
         "period": "2026-09-30",
@@ -6427,31 +6427,31 @@
         "value": [
           [
             "Bureaux",
-            39.0
+            39
           ],
           [
             "Commerce",
-            26.0
+            26
           ],
           [
             "Logistique",
-            15.0
+            15
           ],
           [
             "Life Science",
-            9.0
+            9
           ],
           [
             "Hospitalité",
-            5.0
+            5
           ],
           [
             "Activité",
-            4.0
+            4
           ],
           [
             "Education",
-            2.0
+            2
           ]
         ],
         "period": "2026-09-30",
@@ -6759,7 +6759,7 @@
     "realisation": null,
     "retreat": null,
     "td": 6,
-    "tof": 100.0,
+    "tof": 100,
     "waiting": null,
     "waitingPct": null,
     "bulletin": "T3 2026",
@@ -6890,7 +6890,7 @@
     "typesDate": "2025-12-31",
     "tdHistory": {
       "2025": {
-        "value": 6.0,
+        "value": 6,
         "date": "2025-12-31",
         "source": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
         "proof": null,
@@ -6929,13 +6929,13 @@
         },
         {
           "date": "2026-06-30",
-          "value": 100.0,
+          "value": 100,
           "source": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPS-VDEF-web-2.pdf",
           "kind": "current"
         },
         {
           "date": "2026-09-30",
-          "value": 100.0,
+          "value": 100,
           "source": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
           "kind": "current"
         }
@@ -6943,7 +6943,7 @@
       "td": [
         {
           "date": "2025-12-31",
-          "value": 6.0,
+          "value": 6,
           "source": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
           "kind": "annual"
         }
@@ -7564,5 +7564,224 @@
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf"
+  },
+  {
+    "id": "paref-prima",
+    "name": "PAREF Prima",
+    "manager": "PAREF Gestion",
+    "sector": "Commerces essentiels / Allemagne et Europe",
+    "tags": [
+      "Autre"
+    ],
+    "price": 272,
+    "priceDate": "2026-09-30",
+    "recon": 264.93,
+    "reconDate": "2026-06-30",
+    "realisation": 212.34,
+    "retreat": 244.8,
+    "td": 5,
+    "tof": 94,
+    "tofDate": "2026-09-30",
+    "waiting": 151028,
+    "waitingPct": 4.4,
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+    "sourceUrl": "https://paref-gestion.com/nos-scpi/paref-prima/",
+    "history": [
+      {
+        "date": "2026-06-30",
+        "value": 264.93
+      }
+    ],
+    "notes": "SCPI PAREF Prima (anciennement Novapierre Allemagne). Au 30/09/2026, 151 028 parts en attente de retrait (~4,40 % des parts) : risque de liquidité à surveiller. Valeurs de réalisation et reconstitution datées du 30/06/2026.",
+    "allocationDate": null,
+    "geo": [
+      [
+        "Rhénanie du Nord-Westphalie",
+        28.6
+      ],
+      [
+        "Bavière",
+        14.4
+      ],
+      [
+        "Bade-Wurtemberg",
+        11
+      ],
+      [
+        "Saxe",
+        11.3
+      ],
+      [
+        "Pays-Bas",
+        7.4
+      ],
+      [
+        "Basse-Saxe",
+        6.4
+      ],
+      [
+        "Hesse",
+        5
+      ],
+      [
+        "Berlin",
+        4.1
+      ],
+      [
+        "Schleswig-Holstein",
+        3.8
+      ],
+      [
+        "Autres régions",
+        8
+      ]
+    ],
+    "types": [
+      [
+        "Alimentaire",
+        41.2
+      ],
+      [
+        "Bricolage",
+        22.1
+      ],
+      [
+        "Drugstore",
+        6.7
+      ],
+      [
+        "Habillement",
+        11.2
+      ],
+      [
+        "Restauration",
+        1.5
+      ],
+      [
+        "Autres commerces",
+        17.3
+      ]
+    ],
+    "acquisitions": [
+      {
+        "when": "T3 2026",
+        "title": "Deux commerces en Allemagne, à Hamm et Bielefeld",
+        "details": "Environ 22 000 m², loués à Handelshof (groupe EDEKA), pour environ 15 M€ selon le bulletin T3 2026.",
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf"
+      }
+    ],
+    "keys": {},
+    "keySource": null,
+    "keyDate": null,
+    "verification": "Bulletin officiel T3 2026 consulté",
+    "lastChecked": "2026-11-09",
+    "officialSource": "https://paref-gestion.com/nos-scpi/paref-prima/",
+    "automatedCheck": "Intégration initiale à partir du bulletin officiel T3 2026 ; prochaine collecte automatique à vérifier.",
+    "publicationVerified": "PDF officiel T3 2026 vérifié lors de l'intégration initiale ; contrôle automatique futur en attente.",
+    "priceType": "Souscription",
+    "priceSource": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+    "liquidityData": {
+      "waitingParts": 151028,
+      "withdrawalsExecuted": 6272,
+      "withdrawalRequests": null,
+      "periodEnd": "2026-09-30",
+      "periodLabel": "T3 2026",
+      "withdrawals4Q": [],
+      "sourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+      "verifiedAt": "2026-11-09",
+      "method": "Bulletin T3 2026 p.3 : 151 028 parts en attente et 6 272 retraits exécutés au trimestre."
+    },
+    "fieldSources": {
+      "price": {
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Prix de souscription, bulletin T3 2026 p.3."
+      },
+      "recon": {
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Valeur de reconstitution p.3 du bulletin T3 2026, référence au 30/06/2026."
+      },
+      "tof": {
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "TOF officiel T3 2026 p.5."
+      },
+      "geo": {
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "date": "2026-06-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Répartition géographique p.4 du bulletin T3, explicitement basée sur les expertises au 30/06/2026."
+      },
+      "types": {
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Répartition sectorielle en loyers faciaux, bulletin T3 2026 p.4."
+      },
+      "td": {
+        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "date": "2025-12-31",
+        "verifiedAt": "2026-11-09",
+        "method": "Taux de distribution annuel 2025, bulletin T3 2026 p.3."
+      }
+    },
+    "geoDate": "2026-06-30",
+    "typesDate": "2026-09-30",
+    "allocationNote": "Répartition géographique basée sur les expertises au 30/06/2026, tandis que la répartition sectorielle figure dans le bulletin T3 2026.",
+    "allocationNoteSource": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+    "allocationNoteDate": "2026-06-30",
+    "assetCount": 79,
+    "areaSqm": 646874,
+    "patrimonyStatsDate": "2026-09-30",
+    "tdYear": 2025,
+    "tdHistory": {
+      "2025": {
+        "value": 5,
+        "date": "2025-12-31",
+        "source": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+        "proof": "Taux de distribution 2025 : 5,00 % (bulletin T3 2026 p.3)",
+        "method": "Valeur annuelle officielle vérifiée."
+      }
+    },
+    "indicatorHistory": {
+      "price": [
+        {
+          "date": "2026-09-30",
+          "value": 272,
+          "source": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+          "kind": "current"
+        }
+      ],
+      "recon": [
+        {
+          "date": "2026-06-30",
+          "value": 264.93,
+          "source": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+          "kind": "current"
+        }
+      ],
+      "tof": [
+        {
+          "date": "2026-09-30",
+          "value": 94,
+          "source": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+          "kind": "current"
+        }
+      ],
+      "td": [
+        {
+          "date": "2025-12-31",
+          "value": 5,
+          "source": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+          "kind": "annual"
+        }
+      ]
+    }
   }
 ]
