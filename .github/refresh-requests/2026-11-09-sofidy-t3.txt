@@ -1,0 +1,3 @@
+Recontrôle complet des 32 SCPI après identification de la publication Sofidy du 5 novembre 2026.
+Bulletins T3 2026 annoncés officiellement pour Immorente, Efimmo 1, Sofidynamic, Sofidy Europe Invest.
+Ne jamais considérer la publication HTML comme une lecture de PDF ni mettre à jour des indicateurs T3 sans document validé.
