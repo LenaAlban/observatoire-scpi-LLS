@@ -2130,9 +2130,9 @@
     "tof": 86.88,
     "waiting": null,
     "waitingPct": null,
-    "bulletin": "T2 2026",
-    "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.sofidy.com/solutions/efimmo1/",
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
     "sourceUrl": "https://www.sofidy.com/solutions/efimmo1/",
     "history": [
       {
@@ -2185,7 +2185,7 @@
     "keyNote": "Barème indicatif Sofidy de février 2026. Les clés peuvent varier ; confirmation requise avant une souscription.",
     "officialSource": "https://www.sofidy.com/solutions/efimmo1/",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
-    "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
+    "publicationVerified": "Publication officielle T3 2026 confirmée ; PDF individuel non vérifié automatiquement. Ne pas confondre le trimestre du bulletin avec celui des indicateurs.",
     "liquidityData": {
       "waitingParts": null,
       "withdrawalsExecuted": null,
@@ -2229,6 +2229,12 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "bulletin": {
+        "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Annonce officielle Sofidy du 5 novembre 2026, citant nommément la SCPI. Ne constitue pas la lecture du PDF."
       }
     },
     "keySourceType": "Société de gestion",
@@ -2270,7 +2276,10 @@
           "kind": "annual"
         }
       ]
-    }
+    },
+    "bulletinSourceType": "publication_html",
+    "bulletinVerifiedAt": "2026-11-09",
+    "bulletinNote": "Bulletin T3 2026 officiellement annoncé le 05/11/2026. Document PDF individuel non lu automatiquement : les indicateurs chiffrés conservent leurs dates de référence antérieures."
   },
   {
     "id": "epargne-fonciere",
@@ -2927,9 +2936,9 @@
     "tof": 91.17,
     "waiting": 202747,
     "waitingPct": null,
-    "bulletin": "T2 2026",
-    "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Immorente_2026_2T_OPTI.pdf",
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
     "sourceUrl": "https://www.sofidy.com/solutions/immorente/",
     "history": [
       {
@@ -3018,7 +3027,7 @@
     "keyNote": "Barème indicatif Sofidy de février 2026. Les clés peuvent varier ; confirmation requise avant une souscription.",
     "officialSource": "https://www.sofidy.com/solutions/immorente/",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
-    "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
+    "publicationVerified": "Publication officielle T3 2026 confirmée ; PDF individuel non vérifié automatiquement. Ne pas confondre le trimestre du bulletin avec celui des indicateurs.",
     "liquidityData": {
       "waitingParts": 202747,
       "withdrawalsExecuted": 30006,
@@ -3087,6 +3096,12 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "bulletin": {
+        "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Annonce officielle Sofidy du 5 novembre 2026, citant nommément la SCPI. Ne constitue pas la lecture du PDF."
       }
     },
     "keySourceType": "Société de gestion",
@@ -3152,7 +3167,10 @@
           "kind": "quarter"
         }
       ]
-    }
+    },
+    "bulletinSourceType": "publication_html",
+    "bulletinVerifiedAt": "2026-11-09",
+    "bulletinNote": "Bulletin T3 2026 officiellement annoncé le 05/11/2026. Document PDF individuel non lu automatiquement : les indicateurs chiffrés conservent leurs dates de référence antérieures."
   },
   {
     "id": "laffitte-pierre",
@@ -5934,9 +5952,9 @@
     "tof": 97.7,
     "waiting": 0,
     "waitingPct": null,
-    "bulletin": "T2 2026",
-    "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-2eme-trimestre-2026/",
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
     "sourceUrl": "https://www.sofidy.com/solutions/sofidynamic/",
     "history": [
       {
@@ -6011,7 +6029,7 @@
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.sofidy.com/solutions/sofidynamic/",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
-    "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
+    "publicationVerified": "Publication officielle T3 2026 confirmée ; PDF individuel non vérifié automatiquement. Ne pas confondre le trimestre du bulletin avec celui des indicateurs.",
     "liquidityData": {
       "waitingParts": 0,
       "withdrawalsExecuted": null,
@@ -6051,6 +6069,12 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Répartition en % de la valeur vénale du patrimoine, source gérant"
+      },
+      "bulletin": {
+        "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Annonce officielle Sofidy du 5 novembre 2026, citant nommément la SCPI. Ne constitue pas la lecture du PDF."
       }
     },
     "tdYear": 2025,
@@ -6107,7 +6131,10 @@
           "kind": "stock"
         }
       ]
-    }
+    },
+    "bulletinSourceType": "publication_html",
+    "bulletinVerifiedAt": "2026-11-09",
+    "bulletinNote": "Bulletin T3 2026 officiellement annoncé le 05/11/2026. Document PDF individuel non lu automatiquement : les indicateurs chiffrés conservent leurs dates de référence antérieures."
   },
   {
     "id": "transitions-europe",
@@ -6999,9 +7026,9 @@
     "tof": 96,
     "waiting": null,
     "waitingPct": null,
-    "bulletin": "T2 2026",
-    "bulletinDate": "2026-06-30",
-    "bulletinUrl": "https://www.sofidy.com/solutions/sofidy-europe-invest/",
+    "bulletin": "T3 2026",
+    "bulletinDate": "2026-09-30",
+    "bulletinUrl": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
     "sourceUrl": "https://www.sofidy.com/solutions/sofidy-europe-invest/",
     "history": [
       {
@@ -7094,7 +7121,7 @@
     "keyNote": "Barème de la fiche Meilleurtaux Placement consultée le 28/10/2026. L'ancienne clé isolée à 20 ans a été écartée : sa cohérence avec la grille récente ne pouvait pas être confirmée. À reconfirmer avant souscription.",
     "officialSource": "https://www.sofidy.com/solutions/sofidy-europe-invest/",
     "automatedCheck": "Échec de récupération · données précédentes conservées",
-    "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
+    "publicationVerified": "Publication officielle T3 2026 confirmée ; PDF individuel non vérifié automatiquement. Ne pas confondre le trimestre du bulletin avec celui des indicateurs.",
     "liquidityData": {
       "waitingParts": null,
       "withdrawalsExecuted": null,
@@ -7138,6 +7165,12 @@
         "date": "2025-12-31",
         "verifiedAt": "2026-10-28",
         "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "bulletin": {
+        "url": "https://www.sofidy.com/actualites/scpi-sofidy-les-bulletins-trimestriels-du-3eme-trimestre-2026/",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-09",
+        "method": "Annonce officielle Sofidy du 5 novembre 2026, citant nommément la SCPI. Ne constitue pas la lecture du PDF."
       }
     },
     "keySourceType": "Meilleurtaux Placement",
@@ -7180,7 +7213,10 @@
           "kind": "annual"
         }
       ]
-    }
+    },
+    "bulletinSourceType": "publication_html",
+    "bulletinVerifiedAt": "2026-11-09",
+    "bulletinNote": "Bulletin T3 2026 officiellement annoncé le 05/11/2026. Document PDF individuel non lu automatiquement : les indicateurs chiffrés conservent leurs dates de référence antérieures."
   },
   {
     "id": "principal-inside",
