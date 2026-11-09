@@ -3,6 +3,7 @@ import copy
 import json
 import sys
 import unittest
+import requests
 from pathlib import Path
 from unittest.mock import patch
 
@@ -35,7 +36,8 @@ class SofidyT3PublicationTests(unittest.TestCase):
         p=sync.period_from("T2 2026")
         candidate={"url":"https://www.sofidy.com/t2-2026.pdf","period":p,"score":1}
         with patch.object(sync,"collect_official_candidates",return_value=(None,None,[candidate],[])), \
-             patch.object(sync,"verified_pdf_from_candidate",return_value=None):
+             patch.object(sync,"verified_pdf_from_candidate",return_value=None), \
+             patch.object(sync,"fetch",side_effect=requests.RequestException("offline")):
             with self.assertRaises(RuntimeError):
                 sync.refresh_one(None,item)
         self.assertEqual(item["bulletin"],"T3 2026")
