@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-06T14:42:07+00:00",
+  "checkedAt": "2026-11-09T10:07:14+00:00",
   "refreshRequestId": "",
   "total": 31,
   "sourceAccessible": 21,
@@ -8,7 +8,7 @@
   "remainingErrors": 4,
   "remainingPartial": 6,
   "pdfRead": 22,
-  "updated": 11,
+  "updated": 6,
   "results": [
     {
       "id": "iroko-zen",
@@ -48,8 +48,6 @@
       "name": "Pierval Santé",
       "status": "ok",
       "changes": [
-        "bulletin",
-        "tof",
         "liquidité / retraits"
       ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
@@ -57,18 +55,18 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
+          "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
         {
-          "url": "https://euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T2.pdf",
+          "url": "https://euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -110,7 +108,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo, types",
       "pdfWarning": null,
@@ -226,7 +224,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -288,21 +286,19 @@
       "id": "atream-hotels",
       "name": "Atream Hôtels",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://atream.com/wp-content/uploads/2026/07/Bulletin-N2026_2T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
+          "url": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -310,6 +306,15 @@
           "url": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
           "status": "accessible",
           "candidateCount": 15
+        },
+        {
+          "url": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://atream.com/wp-content/uploads/2026/05/Bulletin-N2026_1T-SCPI_Atream_Hotels_WEB_10-PAGES-1.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": true
@@ -324,7 +329,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T1 2026",
       "pdfSourceUrl": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": true,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -475,7 +480,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-epargne-fonciere-30092026",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -502,27 +507,24 @@
       "id": "ficommerce",
       "name": "Ficommerce",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "geo"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://www.fiducial-gerance.fr/content/download/1413/file/BTI%20Ficommerce%20T2%202026%20WEB.pdf?version=3",
+          "url": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
         {
-          "url": "https://fiducial-gerance.fr/content/download/1413/file/BTI%20Ficommerce%20T2%202026%20WEB.pdf?version=3",
+          "url": "https://fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -530,6 +532,29 @@
           "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
           "status": "accessible",
           "candidateCount": 6
+        },
+        {
+          "url": "https://fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
+          "status": "accessible",
+          "candidateCount": 6
+        },
+        {
+          "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://fiducial-gerance.fr/content/download/1413/40299?version=3",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://www.fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
+          "status": "pdf_non_confirme"
         }
       ],
       "fallbackUsed": true
@@ -609,19 +634,39 @@
       "id": "laffitte-pierre",
       "name": "Laffitte Pierre",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
+        {
+          "url": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
+        },
+        {
+          "url": "https://aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        },
+        {
+          "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
+          "status": "accessible",
+          "candidateCount": 36
+        },
+        {
+          "url": "https://aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        },
         {
           "url": "https://www.aewpatrimoine.com/sites/default/files/2026-03/LAFFITTE%20PIERRE%202%C3%A8me%20semestre%202025.pdf",
           "status": "pdf_verifie",
@@ -634,9 +679,14 @@
           "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
-          "url": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
-          "status": "accessible",
-          "candidateCount": 36
+          "url": "https://www.aewpatrimoine.com/sites/default/files/2026-06/LAFFITTE_PIERRE_Rapport%20annuel%202025.pdf",
+          "status": "pdf_non_confirme"
+        },
+        {
+          "url": "https://aewpatrimoine.com/sites/default/files/2026-06/LAFFITTE_PIERRE_Rapport%20annuel%202025.pdf",
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         }
       ],
       "fallbackUsed": true
@@ -651,7 +701,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -689,7 +739,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-grand-paris-patrimoine-30092026",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -716,49 +766,22 @@
       "id": "patrimmo-commerce",
       "name": "Patrimmo Commerce",
       "status": "ok",
-      "changes": [],
+      "changes": [
+        "bulletin",
+        "tof"
+      ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
           "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
-          "status": "accessible",
-          "candidateCount": 8
-        },
-        {
-          "url": "https://praemiareim.fr/fr/scpi-patrimmo-commerce",
-          "status": "accessible",
-          "candidateCount": 8
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T2_2026_VDEF+%281%29.pdf/99ff97ba-a933-030e-da41-1ab9f47c97cb?t=1786019920553",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo%2BCommerce_T4_2025_VDEF.pdf/48cdd3ce-f504-f76d-e870-60036975e1d0?t=1770712823223",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce/",
           "status": "accessible",
           "candidateCount": 8
         }
@@ -769,13 +792,15 @@
       "id": "patrimmo-croissance",
       "name": "Patrimmo Croissance",
       "status": "ok",
-      "changes": [],
+      "changes": [
+        "bulletin"
+      ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T2_2026_VDEF.pdf/246c9091-ec34-d4b6-e358-5554542e52d9?t=1786020043083",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -784,39 +809,6 @@
           "url": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
           "status": "accessible",
           "candidateCount": 8
-        },
-        {
-          "url": "https://praemiareim.fr/fr/scpi-patrimmo-croissance",
-          "status": "accessible",
-          "candidateCount": 8
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836308/Patrimmo%2BCroissance%2BImpact%2BRapport%2BAnnuel%2B2025.pdf/2c299015-36ea-5440-4ee3-f69d98560711?t=1780652583193",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836308/Patrimmo%2BCroissance%2BImpact%2BRapport%2BAnnuel%2B2025.pdf/2c299015-36ea-5440-4ee3-f69d98560711?t=1780652583193",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T2_2026_VDEF.pdf/246c9091-ec34-d4b6-e358-5554542e52d9?t=1786020043083",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T2_2026_VDEF.pdf/246c9091-ec34-d4b6-e358-5554542e52d9?t=1786020043083",
-          "status": "pdf_verifie",
-          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -825,15 +817,13 @@
       "id": "pf-grand-paris",
       "name": "PF Grand Paris",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.perial.com/scpi/perial-grand-paris",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -844,7 +834,7 @@
           "candidateCount": 1
         },
         {
-          "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda7ae845ffc70aa1350e_PERIAL%20Grand%20Paris%20-%20Bulletin%20trimestriel%20d%27information%20(T2%202026).pdf",
+          "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -875,13 +865,15 @@
       "id": "primopierre",
       "name": "Primopierre",
       "status": "ok",
-      "changes": [],
+      "changes": [
+        "bulletin"
+      ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-primopierre",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -890,47 +882,6 @@
           "url": "https://www.praemiareim.fr/fr/scpi-primopierre",
           "status": "accessible",
           "candidateCount": 11
-        },
-        {
-          "url": "https://praemiareim.fr/fr/scpi-primopierre",
-          "status": "accessible",
-          "candidateCount": 11
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T2_2026_VDEF.pdf/97936dbf-e24c-ed99-8b83-a62abece978d?t=1786020225776",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836296/SCPI%2BPrimopierre%2B-%2BL%27Essentiel.pdf/ed3ef9a9-939e-6ec4-e93c-6135250db8cf?t=1635519529651",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836296/SCPI%2BPrimopierre%2B-%2BL%27Essentiel.pdf/ed3ef9a9-939e-6ec4-e93c-6135250db8cf?t=1635519529651",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836290/Primopierre%2BRapport%2BAnnuel%2B2025.pdf/32234cef-d9b6-60b3-9ad5-08bfa8420b37?t=1780564491137",
-          "status": "pdf_non_confirme"
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836290/Primopierre%2BRapport%2BAnnuel%2B2025.pdf/32234cef-d9b6-60b3-9ad5-08bfa8420b37?t=1780564491137",
-          "status": "pdf_non_confirme"
         }
       ],
       "fallbackUsed": false
@@ -939,13 +890,16 @@
       "id": "primovie",
       "name": "Primovie",
       "status": "ok",
-      "changes": [],
+      "changes": [
+        "bulletin",
+        "tof"
+      ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.praemiareim.fr/fr/scpi-primovie",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -954,41 +908,6 @@
           "url": "https://www.praemiareim.fr/fr/scpi-primovie",
           "status": "accessible",
           "candidateCount": 10
-        },
-        {
-          "url": "https://praemiareim.fr/fr/scpi-primovie",
-          "status": "accessible",
-          "candidateCount": 10
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T2_2026_VDEF.pdf/75be2008-57b4-4dff-3a1a-e04b2918c386?t=1786020291862",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2025_VDEF.pdf/c261a2e9-05e0-4e41-5849-5bc59f5ca952?t=1762445988370",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2025_VDEF.pdf/c261a2e9-05e0-4e41-5849-5bc59f5ca952?t=1762445988370",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
-          "status": "pdf_verifie",
-          "candidateCount": 1
-        },
-        {
-          "url": "https://praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T1_2026.pdf/c4d3ea08-bbcb-d26b-c6b8-f4e5b5bc08de?t=1778168475855",
-          "status": "pdf_verifie",
-          "candidateCount": 1
         }
       ],
       "fallbackUsed": false
@@ -997,15 +916,13 @@
       "id": "pfo2",
       "name": "PFO2",
       "status": "ok",
-      "changes": [
-        "bulletin"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.perial.com/scpi/perial-o2",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1016,7 +933,7 @@
           "candidateCount": 1
         },
         {
-          "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6a7cda5d0727e6de700af0b9_PERIAL%20O%E2%82%82%20-%20Bulletin%20trimestriel%20d%27information%20(T2%202026).pdf",
+          "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -1109,7 +1026,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1141,22 +1058,19 @@
       "id": "epargne-pierre",
       "name": "Épargne Pierre",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atland-voisin.com/scpi/epargne-pierre/",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-5.pdf",
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -1164,6 +1078,11 @@
           "url": "https://atland-voisin.com/scpi/epargne-pierre/",
           "status": "accessible",
           "candidateCount": 6
+        },
+        {
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EP-VDEF-web-4.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": true
@@ -1267,10 +1186,7 @@
       "id": "transitions-europe",
       "name": "Transitions Europe",
       "status": "partial",
-      "changes": [
-        "geo",
-        "types"
-      ],
+      "changes": [],
       "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
       "source": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
       "pdfRead": "Bulletin PDF non vérifié automatiquement",
@@ -1293,22 +1209,19 @@
       "id": "epargne-pierre-europe",
       "name": "Épargne Pierre Europe",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -1316,6 +1229,11 @@
           "url": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
           "status": "accessible",
           "candidateCount": 6
+        },
+        {
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": true
@@ -1324,22 +1242,19 @@
       "id": "epargne-pierre-sophia",
       "name": "Épargne Pierre Sophia",
       "status": "ok",
-      "changes": [
-        "bulletin",
-        "tof"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
-          "url": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPS-VDEF-web-2.pdf",
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
           "status": "pdf_verifie",
           "candidateCount": 1
         },
@@ -1347,6 +1262,11 @@
           "url": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
           "status": "accessible",
           "candidateCount": 6
+        },
+        {
+          "url": "https://atland-voisin.com/wp-content/uploads/2026/02/BPI4T2025-EPS-vdef-web-compresse.pdf",
+          "status": "pdf_verifie",
+          "candidateCount": 1
         }
       ],
       "fallbackUsed": true
@@ -1444,7 +1364,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://brandassets.principal.com/asset/2ab85039-0f3a-4ed6-9719-94aaa410a2fc/Bulletin-d-information.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1478,7 +1398,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
-      "pdfVerifiedAt": "2026-11-06",
+      "pdfVerifiedAt": "2026-11-09",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1513,6 +1433,56 @@
     }
   ],
   "recentEvents": [
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
+      "recordedAt": "2026-11-09T10:06:05+00:00",
+      "scpiId": "primovie",
+      "scpiName": "Primovie"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
+      "recordedAt": "2026-11-09T10:06:03+00:00",
+      "scpiId": "primopierre",
+      "scpiName": "Primopierre"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
+      "recordedAt": "2026-11-09T10:05:55+00:00",
+      "scpiId": "patrimmo-croissance",
+      "scpiName": "Patrimmo Croissance"
+    },
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
+      "recordedAt": "2026-11-09T10:05:52+00:00",
+      "scpiId": "patrimmo-commerce",
+      "scpiName": "Patrimmo Commerce"
+    },
+    {
+      "field": "tof",
+      "previous": 1.9,
+      "value": 2.2,
+      "period": "2026-09-30",
+      "source": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
+      "recordedAt": "2026-11-09T10:05:52+00:00",
+      "scpiId": "patrimmo-commerce",
+      "scpiName": "Patrimmo Commerce"
+    },
     {
       "field": "bulletin",
       "previous": "T2 2026",
@@ -2028,11 +1998,11 @@
       "scpiName": "Remake Live"
     }
   ],
-  "eventsRecordedToday": 15,
-  "bulletinEventsRecordedToday": 8,
+  "eventsRecordedToday": 5,
+  "bulletinEventsRecordedToday": 4,
   "rejectedUpdates": 1,
   "quality": {
-    "asOf": "2026-11-06",
+    "asOf": "2026-11-09",
     "affectedScpi": 21,
     "issueCounts": {
       "ancienne": 6,
@@ -2070,7 +2040,7 @@
           {
             "field": "keys",
             "kind": "ancienne",
-            "detail": "Donnée du 2021-07-01 : 1954 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2021-07-01 : 1957 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://iroko-documentation.s3.eu-west-3.amazonaws.com/Legal/Cles_repartititon_iroko_zen.pdf"
           },
@@ -2155,7 +2125,7 @@
           {
             "field": "tof",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 310 jours (seuil indicatif 210 jours)",
+            "detail": "Donnée du 2025-12-31 : 313 jours (seuil indicatif 210 jours)",
             "level": "warning",
             "source": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf"
           }
@@ -2168,7 +2138,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 310 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2025-12-31 : 313 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf"
           }
@@ -2250,7 +2220,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2026-03-31 : 220 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2026-03-31 : 223 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764"
           }
@@ -2276,14 +2246,14 @@
           {
             "field": "geo",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 585 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 588 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           },
           {
             "field": "types",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 585 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 588 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           }
