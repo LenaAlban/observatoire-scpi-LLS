@@ -37,7 +37,7 @@ OFFICIAL_FALLBACKS = {
         'https://www.sofidy.com/app/uploads/2026/07/Bulletin_Trimestriel_-_Sofidynamic_OPTI.pdf',
         SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2,
     ],
-    'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2, SOFIDY_BULLETINS_T2],
+    'sofidy-europe-invest': [SOFIDY_BULLETINS, SOFIDY_DOCUMENTATION, SOFIDY_BULLETINS_T2],
     'paref-prima': [
         'https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf',
         'https://paref-gestion.com/documentation/',
