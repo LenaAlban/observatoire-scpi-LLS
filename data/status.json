@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-11T14:40:50+00:00",
+  "checkedAt": "2026-11-11T22:09:28+00:00",
   "refreshRequestId": "",
   "total": 32,
   "sourceAccessible": 21,
@@ -8,7 +8,7 @@
   "remainingErrors": 5,
   "remainingPartial": 6,
   "pdfRead": 22,
-  "updated": 2,
+  "updated": 0,
   "results": [
     {
       "id": "iroko-zen",
@@ -47,9 +47,7 @@
       "id": "pierval-sante",
       "name": "Pierval Santé",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.euryale-am.fr/nos-solutions/pierval/",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -216,9 +214,7 @@
       "id": "altixia-cadence-xii",
       "name": "Altixia Cadence XII",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.altixia.fr/scpi-cadence.php",
       "pdfRead": "PDF officiel lu (texte et positions)",
