@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-11-13T14:49:45+00:00",
+  "checkedAt": "2026-11-13T21:31:56+00:00",
   "refreshRequestId": "",
   "total": 32,
-  "sourceAccessible": 22,
-  "bulletinFound": 22,
+  "sourceAccessible": 21,
+  "bulletinFound": 21,
   "retried": 32,
   "remainingErrors": 4,
-  "remainingPartial": 6,
-  "pdfRead": 23,
-  "updated": 2,
+  "remainingPartial": 7,
+  "pdfRead": 22,
+  "updated": 0,
   "results": [
     {
       "id": "iroko-zen",
@@ -47,9 +47,7 @@
       "id": "pierval-sante",
       "name": "Pierval Santé",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.euryale-am.fr/nos-solutions/pierval/",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -216,9 +214,7 @@
       "id": "altixia-cadence-xii",
       "name": "Altixia Cadence XII",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.altixia.fr/scpi-cadence.php",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -1597,41 +1593,35 @@
     {
       "id": "paref-prima",
       "name": "PAREF Prima",
-      "status": "ok",
+      "status": "partial",
       "changes": [],
-      "message": "PDF officiel vérifié et indicateurs contrôlés",
+      "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
       "source": "https://paref-gestion.com/nos-scpi/paref-prima/",
-      "pdfRead": "PDF officiel lu (texte et positions)",
+      "pdfRead": "Bulletin PDF non vérifié automatiquement",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
       "pdfVerifiedAt": "2026-11-13",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
-      "pdfWarning": null,
+      "pdfWarning": "Aucun PDF correspondant à la SCPI et à la période sur https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-202",
       "attempts": [
         {
           "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://paref-gestion.com/nos-scpi/paref-prima/",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://paref-gestion.com/documentation/",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
-        },
-        {
-          "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-          "status": "pdf_verifie"
+          "status": "accessible",
+          "candidateCount": 0
         }
       ],
-      "fallbackUsed": true
+      "fallbackUsed": false
     }
   ],
   "recentEvents": [
@@ -2677,5 +2667,5 @@
       }
     ]
   },
-  "fallbackRecovered": 16
+  "fallbackRecovered": 15
 }

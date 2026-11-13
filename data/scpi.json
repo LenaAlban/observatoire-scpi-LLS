@@ -8041,7 +8041,7 @@
     "verification": "Bulletin officiel T3 2026 consulté",
     "lastChecked": "2026-11-13",
     "officialSource": "https://paref-gestion.com/nos-scpi/paref-prima/",
-    "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
+    "automatedCheck": "Source consultée ; PDF non confirmé (données précédentes conservées)",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
     "priceType": "Souscription",
     "priceSource": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
@@ -8171,32 +8171,27 @@
     "sourceAttempts": [
       {
         "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-        "status": "pdf_verifie",
-        "candidateCount": 1
+        "status": "accessible",
+        "candidateCount": 0
       },
       {
         "url": "https://paref-gestion.com/nos-scpi/paref-prima/",
-        "status": "error",
-        "kind": "unavailable",
-        "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        "status": "accessible",
+        "candidateCount": 0
       },
       {
         "url": "https://paref-gestion.com/documentation/",
-        "status": "error",
-        "kind": "unavailable",
-        "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
-      },
-      {
-        "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-        "status": "pdf_verifie"
+        "status": "accessible",
+        "candidateCount": 0
       }
     ],
-    "sourceFallbackUsed": true,
+    "sourceFallbackUsed": false,
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
     "pdfVerifiedAt": "2026-11-13",
-    "pdfReadStatus": "PDF officiel lu (texte et positions)",
+    "pdfReadStatus": "Bulletin PDF non vérifié automatiquement",
     "pdfSourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-13"
+    "bulletinVerifiedAt": "2026-11-13",
+    "pdfWarning": "Aucun PDF correspondant à la SCPI et à la période sur https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-202"
   }
 ]
