@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-11-15T14:12:59+00:00",
+  "checkedAt": "2026-11-15T20:31:01+00:00",
   "refreshRequestId": "",
   "total": 32,
-  "sourceAccessible": 22,
-  "bulletinFound": 22,
+  "sourceAccessible": 21,
+  "bulletinFound": 21,
   "retried": 32,
-  "remainingErrors": 4,
+  "remainingErrors": 5,
   "remainingPartial": 6,
-  "pdfRead": 23,
-  "updated": 2,
+  "pdfRead": 22,
+  "updated": 0,
   "results": [
     {
       "id": "iroko-zen",
@@ -47,9 +47,7 @@
       "id": "pierval-sante",
       "name": "Pierval Santé",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.euryale-am.fr/nos-solutions/pierval/",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -216,9 +214,7 @@
       "id": "altixia-cadence-xii",
       "name": "Altixia Cadence XII",
       "status": "ok",
-      "changes": [
-        "liquidité / retraits"
-      ],
+      "changes": [],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://www.altixia.fr/scpi-cadence.php",
       "pdfRead": "PDF officiel lu (texte et positions)",
@@ -1597,22 +1593,17 @@
     {
       "id": "paref-prima",
       "name": "PAREF Prima",
-      "status": "ok",
+      "status": "error",
       "changes": [],
-      "message": "PDF officiel vérifié et indicateurs contrôlés",
+      "message": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
+      "errorType": "unavailable",
       "source": "https://paref-gestion.com/nos-scpi/paref-prima/",
-      "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T3 2026",
-      "pdfSourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-      "pdfVerifiedAt": "2026-11-15",
-      "pdfStale": false,
-      "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
-      "pdfWarning": null,
       "attempts": [
         {
           "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://paref-gestion.com/nos-scpi/paref-prima/",
@@ -1625,13 +1616,8 @@
           "status": "error",
           "kind": "unavailable",
           "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
-        },
-        {
-          "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-          "status": "pdf_verifie"
         }
-      ],
-      "fallbackUsed": true
+      ]
     }
   ],
   "recentEvents": [
@@ -2677,5 +2663,5 @@
       }
     ]
   },
-  "fallbackRecovered": 16
+  "fallbackRecovered": 15
 }
