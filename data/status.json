@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-19T15:59:48+00:00",
+  "checkedAt": "2026-11-20T15:42:17+00:00",
   "refreshRequestId": "",
   "total": 32,
   "sourceAccessible": 21,
@@ -7,8 +7,8 @@
   "retried": 32,
   "remainingErrors": 5,
   "remainingPartial": 6,
-  "pdfRead": 22,
-  "updated": 2,
+  "pdfRead": 21,
+  "updated": 3,
   "results": [
     {
       "id": "iroko-zen",
@@ -55,7 +55,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -108,7 +108,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo, types",
       "pdfWarning": null,
@@ -224,7 +224,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -292,7 +292,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -324,15 +324,15 @@
       "name": "Edissimmo",
       "status": "partial",
       "changes": [],
-      "message": "PDF ancien effectivement lu (T1 2026) : rechercher le dernier bulletin publié ; valeur précédente conservée si besoin.",
+      "message": "Source consultée ; PDF non confirmé (données précédentes conservées)",
       "source": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
-      "pdfRead": "PDF officiel lu (texte et positions)",
+      "pdfRead": "Bulletin PDF non vérifié automatiquement",
       "pdfPeriod": "T1 2026",
       "pdfSourceUrl": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
       "pdfVerifiedAt": "2026-11-19",
-      "pdfStale": true,
+      "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
-      "pdfWarning": null,
+      "pdfWarning": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
       "attempts": [
         {
           "url": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
@@ -356,21 +356,27 @@
         },
         {
           "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa",
-          "status": "pdf_non_confirme"
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa",
-          "status": "pdf_non_confirme"
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         }
       ],
       "fallbackUsed": false
@@ -480,7 +486,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-epargne-fonciere-30092026",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -506,58 +512,61 @@
     {
       "id": "ficommerce",
       "name": "Ficommerce",
-      "status": "ok",
+      "status": "error",
       "changes": [],
-      "message": "PDF officiel vérifié et indicateurs contrôlés",
+      "message": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
+      "errorType": "unavailable",
       "source": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
-      "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T3 2026",
-      "pdfSourceUrl": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
-      "pdfVerifiedAt": "2026-11-19",
-      "pdfStale": false,
-      "pdfAllocation": "Répartitions extraites : geo",
-      "pdfWarning": null,
       "attempts": [
         {
           "url": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
-          "status": "accessible",
-          "candidateCount": 6
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
-          "status": "accessible",
-          "candidateCount": 6
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://www.fiducial-gerance.fr/content/download/1413/40299?version=3",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://fiducial-gerance.fr/content/download/1413/40299?version=3",
-          "status": "pdf_verifie",
-          "candidateCount": 1
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://www.fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
-          "status": "pdf_non_confirme"
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         },
         {
           "url": "https://fiducial-gerance.fr/content/download/578/file/Ficommerce%20Proximit%C3%A9%20-%20Rapport%20Annuel%202025.pdf?version=7",
-          "status": "pdf_non_confirme"
+          "status": "error",
+          "kind": "unavailable",
+          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
         }
-      ],
-      "fallbackUsed": true
+      ]
     },
     {
       "id": "immorente",
@@ -652,7 +661,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -713,7 +722,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -751,7 +760,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-grand-paris-patrimoine-30092026",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -784,7 +793,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -837,7 +846,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -893,7 +902,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -941,7 +950,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1015,7 +1024,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1073,7 +1082,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1177,7 +1186,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1215,7 +1224,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1366,7 +1375,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1399,7 +1408,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1521,13 +1530,15 @@
       "id": "principal-inside",
       "name": "Principal Inside",
       "status": "ok",
-      "changes": [],
+      "changes": [
+        "bulletin"
+      ],
       "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://fr.principalam.com/notre-scpi",
       "pdfRead": "PDF officiel lu (texte et positions)",
-      "pdfPeriod": "T2 2026",
-      "pdfSourceUrl": "https://brandassets.principal.com/asset/2ab85039-0f3a-4ed6-9719-94aaa410a2fc/Bulletin-d-information.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://brandassets.principal.com/asset/700d2a36-58bf-43ac-9711-03889a76fa09/Bulletin-Trimestriel-T3-2026.pdf",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1561,7 +1572,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
-      "pdfVerifiedAt": "2026-11-19",
+      "pdfVerifiedAt": "2026-11-20",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1597,17 +1608,22 @@
     {
       "id": "paref-prima",
       "name": "PAREF Prima",
-      "status": "error",
+      "status": "ok",
       "changes": [],
-      "message": "Vérification automatique du site officiel impossible. Données précédentes conservées.",
-      "errorType": "unavailable",
+      "message": "PDF officiel vérifié et indicateurs contrôlés",
       "source": "https://paref-gestion.com/nos-scpi/paref-prima/",
+      "pdfRead": "PDF officiel lu (texte et positions)",
+      "pdfPeriod": "T3 2026",
+      "pdfSourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+      "pdfVerifiedAt": "2026-11-20",
+      "pdfStale": false,
+      "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
+      "pdfWarning": null,
       "attempts": [
         {
           "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "pdf_verifie",
+          "candidateCount": 1
         },
         {
           "url": "https://paref-gestion.com/nos-scpi/paref-prima/",
@@ -1620,11 +1636,26 @@
           "status": "error",
           "kind": "unavailable",
           "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+        },
+        {
+          "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
+          "status": "pdf_verifie"
         }
-      ]
+      ],
+      "fallbackUsed": true
     }
   ],
   "recentEvents": [
+    {
+      "field": "bulletin",
+      "previous": "T2 2026",
+      "value": "T3 2026",
+      "period": "2026-09-30",
+      "source": "https://brandassets.principal.com/asset/700d2a36-58bf-43ac-9711-03889a76fa09/Bulletin-Trimestriel-T3-2026.pdf",
+      "recordedAt": "2026-11-20T15:42:04+00:00",
+      "scpiId": "principal-inside",
+      "scpiName": "Principal Inside"
+    },
     {
       "field": "bulletin",
       "previous": "T2 2026",
@@ -2190,11 +2221,11 @@
       "scpiName": "Remake Live"
     }
   ],
-  "eventsRecordedToday": 0,
-  "bulletinEventsRecordedToday": 0,
+  "eventsRecordedToday": 1,
+  "bulletinEventsRecordedToday": 1,
   "rejectedUpdates": 1,
   "quality": {
-    "asOf": "2026-11-19",
+    "asOf": "2026-11-20",
     "affectedScpi": 21,
     "issueCounts": {
       "ancienne": 6,
@@ -2232,7 +2263,7 @@
           {
             "field": "keys",
             "kind": "ancienne",
-            "detail": "Donnée du 2021-07-01 : 1967 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2021-07-01 : 1968 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://iroko-documentation.s3.eu-west-3.amazonaws.com/Legal/Cles_repartititon_iroko_zen.pdf"
           },
@@ -2317,7 +2348,7 @@
           {
             "field": "tof",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 323 jours (seuil indicatif 210 jours)",
+            "detail": "Donnée du 2025-12-31 : 324 jours (seuil indicatif 210 jours)",
             "level": "warning",
             "source": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf"
           }
@@ -2330,7 +2361,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 323 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2025-12-31 : 324 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf"
           }
@@ -2412,7 +2443,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2026-03-31 : 233 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2026-03-31 : 234 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764"
           }
@@ -2438,14 +2469,14 @@
           {
             "field": "geo",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 598 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 599 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           },
           {
             "field": "types",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 598 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 599 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           }
