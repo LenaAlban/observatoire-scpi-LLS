@@ -131,7 +131,7 @@
     "keyDate": "2021-07-01",
     "dataSource": "https://www.iroko.eu/performance",
     "verification": "Publication identifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.iroko.eu/bulletins-trimestriels/t2-2026",
     "automatedCheck": "Source consultée ; PDF non confirmé (données précédentes conservées)",
     "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
@@ -344,7 +344,7 @@
     "keyDate": null,
     "dataSource": "https://www.euryale-am.fr/nos-solutions/pierval-sante/",
     "verification": "Publication identifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.euryale-am.fr/nos-solutions/pierval/",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -365,7 +365,7 @@
       "withdrawalsExecuted": 12959,
       "withdrawalRequests": null,
       "sourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
-      "verifiedAt": "2026-11-22",
+      "verifiedAt": "2026-11-23",
       "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement"
     },
     "priceType": "Souscription",
@@ -422,7 +422,7 @@
       "bulletin": {
         "url": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -587,10 +587,10 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfSourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "corum-origin",
@@ -738,7 +738,7 @@
     "keyDate": null,
     "dataSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
     "verification": "Fiche MTX + publication",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-origin.html",
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
@@ -757,9 +757,9 @@
     },
     "priceType": "Souscription",
     "priceSource": "https://www.corum.fr/nos-scpi/corum-origin/documents",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-11-22",
+    "keyVerifiedAt": "2026-11-23",
     "fieldSources": {
       "tof": {
         "url": "https://www.corum.fr/nos-scpi/corum-origin/documents",
@@ -788,7 +788,7 @@
       "bulletin": {
         "url": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -880,7 +880,7 @@
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "remake-live",
@@ -899,7 +899,7 @@
     "waitingPct": null,
     "bulletin": "T3 2026",
     "bulletinDate": "2026-09-30",
-    "bulletinUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
+    "bulletinUrl": "https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf",
     "sourceUrl": "https://www.remake.fr/remake-live",
     "notes": "Reconstitution tirée du rapport 2025 ; consulter la documentation actualisée.",
     "history": [
@@ -986,10 +986,10 @@
     "keyDate": null,
     "dataSource": "https://www.remake.fr/remake-live/",
     "verification": "Publication identifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.remake.fr/remake-live",
-    "automatedCheck": "Source consultée ; PDF non confirmé (données précédentes conservées)",
-    "publicationVerified": "Page officielle identifiée (document PDF non vérifié par le robot)",
+    "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
+    "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
     "liquidityData": {
       "withdrawals4Q": [
         {
@@ -1002,8 +1002,8 @@
       "waitingParts": 0,
       "withdrawalsExecuted": 11664,
       "withdrawalRequests": null,
-      "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
-      "verifiedAt": "2026-10-29",
+      "sourceUrl": "https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf",
+      "verifiedAt": "2026-11-23",
       "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement"
     },
     "priceType": "Souscription",
@@ -1016,7 +1016,7 @@
         "proof": "le\n    parc de la SCPI était entièrement loué. La différence entre le TOF mesuré et 100 %\n     traduit donc la vacance que subit la SCPI et la perte de loyers correspondante.\n   "
       },
       "liquidityData": {
-        "url": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
+        "url": "https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf",
         "date": "2026-09-30",
         "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement",
         "proof": "libellés + valeurs univoques"
@@ -1038,9 +1038,15 @@
         "date": "2026-06-30",
         "verifiedAt": "2026-10-28",
         "method": "Composition du patrimoine publiée par la société de gestion, exprimée en % de valeur vénale (sauf mention différente du gérant)"
+      },
+      "bulletin": {
+        "url": "https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf",
+        "date": "2026-09-30",
+        "verifiedAt": "2026-11-23",
+        "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-10-29",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "tofDate": "2026-09-30",
     "geoDate": "2026-06-30",
@@ -1146,9 +1152,10 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfReadStatus": "Bulletin PDF non vérifié automatiquement",
-    "pdfSourceUrl": "https://www.remake.fr/wp-content/uploads/2026/10/REMAKE_LIVE_BT_T3-2026.pdf",
-    "pdfWarning": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+    "pdfReadStatus": "PDF officiel lu (texte et positions)",
+    "pdfSourceUrl": "https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf",
+    "bulletinSourceType": "pdf_verified",
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "actipierre-europe",
@@ -1441,7 +1448,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.altixia.fr/scpi-cadence.php",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "liquidityData": {
@@ -1457,7 +1464,7 @@
       "withdrawalsExecuted": 2533,
       "withdrawalRequests": null,
       "sourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
-      "verifiedAt": "2026-11-22",
+      "verifiedAt": "2026-11-23",
       "method": "Lecture univoque du bulletin PDF ; flux de parts uniquement"
     },
     "priceType": "Souscription",
@@ -1508,7 +1515,7 @@
       "bulletin": {
         "url": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
         "date": "2026-06-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -1647,11 +1654,11 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22",
+    "bulletinVerifiedAt": "2026-11-23",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T2 2026)."
   },
   {
@@ -1734,7 +1741,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://atream.com/solutions/fonds-ouverts/scpi-atream-hotels/",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -1798,11 +1805,11 @@
       "bulletin": {
         "url": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "tofDate": "2026-06-30",
     "allocationNote": "Patrimoine présent dans six pays (France, Allemagne, Belgique, Pays-Bas, Italie, Espagne). Les pourcentages actuels par pays ne sont pas donnés en texte sur la fiche.",
@@ -1897,7 +1904,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "edissimmo",
@@ -1977,7 +1984,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "liquidityData": {
@@ -2035,7 +2042,7 @@
       "bulletin": {
         "url": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
         "date": "2026-03-31",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -2147,11 +2154,11 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22",
+    "bulletinVerifiedAt": "2026-11-23",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T1 2026)."
   },
   {
@@ -2417,7 +2424,7 @@
     "keySource": "https://www.lafrancaise-am-partenaires.com/produit/scpi/demembrement",
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=Epargne-Fonciere&amcScpi=16969&code=EE",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -2493,7 +2500,7 @@
       "bulletin": {
         "url": "https://doc.la-francaise.com/documents/bulletin-trimestriel-epargne-fonciere-30092026",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -2613,11 +2620,11 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-epargne-fonciere-30092026",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "ficommerce",
@@ -2686,7 +2693,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.fiducial-gerance.fr/investir-en-scpi/nos-scpi/ficommerce-proximite",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -2759,7 +2766,7 @@
       "bulletin": {
         "url": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -2970,11 +2977,11 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions extraites : geo",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "immorente",
@@ -3313,7 +3320,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.aewpatrimoine.com/nos-produits/scpi-dimmobilier-dentreprise/laffitte-pierre",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -3371,11 +3378,11 @@
       "bulletin": {
         "url": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "tofDate": "2026-06-30",
     "geoDate": "2025-12-31",
@@ -3499,7 +3506,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "lf-europimmo",
@@ -3604,7 +3611,7 @@
     "keySource": "https://www.lafrancaise-am-partenaires.com/produit/scpi/demembrement",
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Europimmo&amcScpi=16849&code=D1",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -3655,7 +3662,7 @@
       "bulletin": {
         "url": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -3757,11 +3764,11 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "lf-grand-paris-patrimoine",
@@ -3826,7 +3833,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.la-francaise.com/fr-fr/investisseur/nos-fonds/actifs-non-cotes/immobilier/scpi.aspx?Scpi=LF-Grand-Paris-Patrimoine&amcScpi=19050&code=Z2",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -3884,7 +3891,7 @@
       "bulletin": {
         "url": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-grand-paris-patrimoine-30092026",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -3971,11 +3978,11 @@
       }
     ],
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-grand-paris-patrimoine-30092026",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "patrimmo-commerce",
@@ -4056,7 +4063,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-patrimmo-commerce",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
@@ -4115,11 +4122,11 @@
       "bulletin": {
         "url": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "geoDate": "2025-12-31",
     "typesDate": "2025-12-31",
@@ -4247,7 +4254,7 @@
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "patrimmo-croissance",
@@ -4312,7 +4319,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-patrimmo-croissance",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
@@ -4369,11 +4376,11 @@
       "bulletin": {
         "url": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "geoDate": "2026-03-31",
     "typesDate": "2026-03-31",
     "allocationNote": "Répartitions chiffrées documentées au 2026-03-31 dans les publications du gérant.",
@@ -4481,7 +4488,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "pf-grand-paris",
@@ -4545,7 +4552,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.perial.com/scpi/perial-grand-paris",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -4604,7 +4611,7 @@
       "bulletin": {
         "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -4682,7 +4689,7 @@
     ],
     "sourceFallbackUsed": true,
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
     "automatedHistory": [
@@ -4696,7 +4703,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "primopierre",
@@ -4757,7 +4764,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-primopierre",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
@@ -4820,13 +4827,13 @@
       "bulletin": {
         "url": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
     "sellerNetPrice": 31.88,
     "sellerNetPriceDate": "2026-09-24",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "geoDate": "2025-03-31",
     "typesDate": "2025-03-31",
@@ -4947,7 +4954,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "primovie",
@@ -5036,7 +5043,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.praemiareim.fr/fr/scpi-primovie",
     "liquidity": {
       "label": "Capital variable suspendu · marché secondaire",
@@ -5095,11 +5102,11 @@
       "bulletin": {
         "url": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "geoDate": "2026-03-31",
     "typesDate": "2026-03-31",
@@ -5224,7 +5231,7 @@
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "pfo2",
@@ -5313,7 +5320,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.perial.com/scpi/perial-o2",
     "liquidity": {
       "label": "Marché secondaire (PERIAL)",
@@ -5366,7 +5373,7 @@
       "bulletin": {
         "url": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -5461,7 +5468,7 @@
     ],
     "sourceFallbackUsed": true,
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
     "automatedHistory": [
@@ -5475,7 +5482,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "rivoli-avenir-patrimoine",
@@ -5571,7 +5578,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/RIVOLI-AVENIR-PATRIMOINE/Documents",
     "automatedCheck": "Source consultée ; PDF non confirmé (données précédentes conservées)",
     "liquidityData": {
@@ -5783,7 +5790,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://www.la-francaise.com/fr-fr/nos-solutions-pour-vous/nos-produits/product/Scpi/i9-selectinvest-1/",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "liquidity": {
@@ -5846,7 +5853,7 @@
       "bulletin": {
         "url": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -5941,11 +5948,11 @@
     ],
     "tofDate": "2026-09-30",
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "epargne-pierre",
@@ -6047,7 +6054,7 @@
     "keySource": "https://atland-voisin.com/scpi/epargne-pierre/",
     "keyDate": null,
     "verification": "À documenter",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre/",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -6108,11 +6115,11 @@
       "bulletin": {
         "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "tofDate": "2026-09-30",
     "allocationNote": "Répartitions chiffrées documentées au 2026-06-30 dans les publications du gérant.",
@@ -6227,7 +6234,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "sofidynamic",
@@ -6557,7 +6564,7 @@
     "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/transitions-europe.html",
     "keyDate": null,
     "verification": "Allocations officielles ; expertise non datée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/transitions-europe.html",
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.arkea-reim.com/immobilier/pa_89367/scpi-transitions-europe",
@@ -6603,7 +6610,7 @@
     },
     "pdfWarning": "Aucun PDF correspondant à la SCPI et à la période sur https://www.arkea-reim.com/immobilier/pa_89367/upload/docs/application/pdf/2026-10/te_t3-2026.pdf · Aucun PDF correspondant à la SCPI et à la période sur https://www.",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-11-22",
+    "keyVerifiedAt": "2026-11-23",
     "geoDate": "2026-09-30",
     "typesDate": "2026-09-30",
     "tdYear": 2025,
@@ -6893,7 +6900,7 @@
     "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-europe.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-europe.html",
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre-europe/",
@@ -6950,13 +6957,13 @@
       "bulletin": {
         "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-11-22",
+    "keyVerifiedAt": "2026-11-23",
     "allocationNote": "Répartitions chiffrées documentées au 2026-06-30 dans les publications du gérant.",
     "allocationNoteSource": "https://atland-voisin.com/wp-content/uploads/2026/07/BPI2T2026-EPE-VDEF-web-1.pdf",
     "allocationNoteDate": "2026-06-30",
@@ -7072,7 +7079,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "epargne-pierre-sophia",
@@ -7149,7 +7156,7 @@
     "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-sophia.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/epargne-pierre-sophia.html",
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://atland-voisin.com/scpi/epargne-pierre-sophia/",
@@ -7208,13 +7215,13 @@
       "bulletin": {
         "url": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-11-22",
+    "keyVerifiedAt": "2026-11-23",
     "tdYear": 2025,
     "tofDate": "2026-09-30",
     "previousPrice": 220,
@@ -7317,7 +7324,7 @@
       }
     ],
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "sofidy-europe-invest",
@@ -7606,7 +7613,7 @@
     "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/principal-inside.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/principal-inside.html",
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://fr.principalam.com/notre-scpi",
@@ -7626,7 +7633,7 @@
     "priceType": "Souscription",
     "priceSource": "https://fr.principalam.com/notre-scpi",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-11-22",
+    "keyVerifiedAt": "2026-11-23",
     "fieldSources": {
       "geo": {
         "url": "https://fr.principalam.com/notre-scpi",
@@ -7655,7 +7662,7 @@
       "bulletin": {
         "url": "https://brandassets.principal.com/asset/700d2a36-58bf-43ac-9711-03889a76fa09/Bulletin-Trimestriel-T3-2026.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -7709,11 +7716,11 @@
     ],
     "sourceFallbackUsed": true,
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://brandassets.principal.com/asset/700d2a36-58bf-43ac-9711-03889a76fa09/Bulletin-Trimestriel-T3-2026.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22",
+    "bulletinVerifiedAt": "2026-11-23",
     "automatedHistory": [
       {
         "field": "bulletin",
@@ -7804,7 +7811,7 @@
     "keySource": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-usa.html",
     "keyDate": null,
     "verification": "Fiche MTX vérifiée",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "mtxUrl": "https://placement.meilleurtaux.com/scpi/meilleures-scpi/corum-usa.html",
     "keyNote": "Barème indicatif relevé sur Meilleurtaux Placement le 28/10/2026. Les durées non affichées ne sont pas extrapolées. À confirmer avant souscription.",
     "officialSource": "https://www.corum.fr/nos-scpi/corum-usa/documents",
@@ -7852,13 +7859,13 @@
       "bulletin": {
         "url": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "keySourceType": "Meilleurtaux Placement",
-    "keyVerifiedAt": "2026-11-22",
+    "keyVerifiedAt": "2026-11-23",
     "allocationNote": "Répartition au 30/06/2026, non assimilable à la répartition au 30/09/2026. Recoupée avec la synthèse du bulletin sur une source secondaire.",
     "allocationNoteSource": "https://www.morgen-capital.fr/produits/scpi/corum-usa",
     "allocationNoteDate": "2026-06-30",
@@ -7936,7 +7943,7 @@
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   },
   {
     "id": "paref-prima",
@@ -8049,7 +8056,7 @@
     "keySource": null,
     "keyDate": null,
     "verification": "Bulletin officiel T3 2026 consulté",
-    "lastChecked": "2026-11-22",
+    "lastChecked": "2026-11-23",
     "officialSource": "https://paref-gestion.com/nos-scpi/paref-prima/",
     "automatedCheck": "PDF officiel vérifié et indicateurs contrôlés",
     "publicationVerified": "Bulletin PDF officiel vérifié automatiquement (T3 2026).",
@@ -8106,7 +8113,7 @@
       "bulletin": {
         "url": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
         "date": "2026-09-30",
-        "verifiedAt": "2026-11-22",
+        "verifiedAt": "2026-11-23",
         "method": "Lecture automatique du PDF officiel après contrôle du fonds et de la période."
       }
     },
@@ -8203,10 +8210,10 @@
     ],
     "sourceFallbackUsed": true,
     "pdfAllocationStatus": "Répartitions non extraites : texte graphique absent ou ambigu",
-    "pdfVerifiedAt": "2026-11-22",
+    "pdfVerifiedAt": "2026-11-23",
     "pdfReadStatus": "PDF officiel lu (texte et positions)",
     "pdfSourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
     "bulletinSourceType": "pdf_verified",
-    "bulletinVerifiedAt": "2026-11-22"
+    "bulletinVerifiedAt": "2026-11-23"
   }
 ]
