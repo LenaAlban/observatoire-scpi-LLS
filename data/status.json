@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-26T17:13:11+00:00",
+  "checkedAt": "2026-11-27T16:55:37+00:00",
   "refreshRequestId": "",
   "total": 32,
   "sourceAccessible": 23,
@@ -55,7 +55,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.euryale-am.fr/wp-content/uploads/BT_PIERVAL_SANTE_2026_T3.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -108,7 +108,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo, types",
       "pdfWarning": null,
@@ -148,7 +148,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.remake.fr/wp-content/uploads/2026/11/REMAKE_LIVE_BT_T3-nov-2026.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -236,7 +236,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T2 2026",
       "pdfSourceUrl": "https://www.altixia.fr/medias/documentations/doc1-20260730-213536.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -304,7 +304,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atream.com/wp-content/uploads/2020/07/Bulletin-N2026_3T-SCPI_Atream_Hotels_WEB_10-PAGES.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -341,16 +341,15 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T1 2026",
       "pdfSourceUrl": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_05dd8d96-770e-40ad-b786-f1482ab0a0b1",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": true,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
       "attempts": [
         {
           "url": "https://www.amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
-          "status": "error",
-          "kind": "unavailable",
-          "detail": "Vérification automatique du site officiel impossible. Données précédentes conservées."
+          "status": "accessible",
+          "candidateCount": 0
         },
         {
           "url": "https://amundi-immobilier.com/Local-content/Producsheet/SCPI/EDISSIMMO/Documents",
@@ -386,7 +385,7 @@
           "status": "pdf_non_confirme"
         }
       ],
-      "fallbackUsed": true
+      "fallbackUsed": false
     },
     {
       "id": "efimmo-1",
@@ -493,7 +492,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-epargne-fonciere-30092026",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -526,7 +525,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.fiducial-gerance.fr/content/download/582/file/BTI%20Ficommerce%20T3%202026%20WEB.pdf?version=11",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions extraites : geo",
       "pdfWarning": null,
@@ -665,7 +664,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.aewpatrimoine.com/sites/default/files/2026-10/LAFFITTE%20PIERRE%20STI%203%C3%A8%20trimestre%202026.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -726,7 +725,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-europimmo-30092026",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -764,7 +763,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-lf-grand-paris-patrimoine-30092026",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -797,7 +796,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836275/PRAEMIA_BTI_Patrimmo+Commerce_T3_2026_VDEF.pdf/629ca819-38be-867c-8edc-181f9159bf3b?t=1793990422410",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -850,7 +849,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo+Croissance_T3_2026_VDEF.pdf/f5a5b6cd-2e94-1ac4-f0ac-ae559acb9efb?t=1793991303752",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -906,7 +905,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a6a1ef9bb94e709db22c_PGP%20BTI%203T%202026.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -954,7 +953,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836287/PRAEMIA_BTI_Primopierre_T3_2026_VDEF.pdf/0bb6f71c-7025-6b46-57a8-d731c41c2715?t=1793985969977",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1028,7 +1027,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.praemiareim.fr/documents/14836074/14836311/PRAEMIA_BTI_Primovie_T3_2026_VDEF.pdf/ff0cab84-798b-c7da-8f92-0977a9150f4f?t=1793988668797",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1086,7 +1085,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://cdn.prod.website-files.com/68d505281630e4a2223e1bee/6ae8a69663da12ce50f89ad0_PO2%20BTI%20T3%202026.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1190,7 +1189,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://doc.la-francaise.com/documents/bulletin-trimestriel-selectinvest-1-30092026",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1228,7 +1227,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EP-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1379,7 +1378,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPE-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1412,7 +1411,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://atland-voisin.com/wp-content/uploads/2026/10/BPI3T2026-EPS-vdef-web-1.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1540,7 +1539,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://brandassets.principal.com/asset/700d2a36-58bf-43ac-9711-03889a76fa09/Bulletin-Trimestriel-T3-2026.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1574,7 +1573,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20USA%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3%207.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -1617,7 +1616,7 @@
       "pdfRead": "PDF officiel lu (texte et positions)",
       "pdfPeriod": "T3 2026",
       "pdfSourceUrl": "https://paref-gestion.com/wp-content/uploads/2026/10/e6c74d0a-8f07-47d6-9472-2c1c076f174e-BTI-T3-2026-PAREF-Prima.pdf",
-      "pdfVerifiedAt": "2026-11-26",
+      "pdfVerifiedAt": "2026-11-27",
       "pdfStale": false,
       "pdfAllocation": "Répartitions non extraites : texte graphique absent ou ambigu",
       "pdfWarning": null,
@@ -2227,7 +2226,7 @@
   "bulletinEventsRecordedToday": 0,
   "rejectedUpdates": 1,
   "quality": {
-    "asOf": "2026-11-26",
+    "asOf": "2026-11-27",
     "affectedScpi": 23,
     "issueCounts": {
       "ancienne": 10,
@@ -2265,7 +2264,7 @@
           {
             "field": "keys",
             "kind": "ancienne",
-            "detail": "Donnée du 2021-07-01 : 1974 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2021-07-01 : 1975 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://iroko-documentation.s3.eu-west-3.amazonaws.com/Legal/Cles_repartititon_iroko_zen.pdf"
           },
@@ -2350,7 +2349,7 @@
           {
             "field": "tof",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 330 jours (seuil indicatif 210 jours)",
+            "detail": "Donnée du 2025-12-31 : 331 jours (seuil indicatif 210 jours)",
             "level": "warning",
             "source": "https://www.altixia.fr/medias/documentations/doc1-20260202-161339.pdf"
           }
@@ -2363,7 +2362,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-12-31 : 330 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2025-12-31 : 331 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://atream.com/wp-content/uploads/2026/05/Rapport-Annuel-SCPI-Atream-Hotels-2025-Web_114-pages_compressed.pdf"
           }
@@ -2376,14 +2375,14 @@
           {
             "field": "geo",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-09-30 : 422 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-09-30 : 423 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa"
           },
           {
             "field": "types",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-09-30 : 422 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-09-30 : 423 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_c7b920ce-035b-492d-8bee-927044633afa"
           }
@@ -2460,7 +2459,7 @@
           {
             "field": "liquidityData",
             "kind": "ancienne",
-            "detail": "Donnée du 2026-03-31 : 240 jours (seuil indicatif 180 jours)",
+            "detail": "Donnée du 2026-03-31 : 241 jours (seuil indicatif 180 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836299/PRAEMIA_BTI_Patrimmo%2BCroissance_T1_2026.pdf/291f4ab3-bcf4-f521-2531-e442787964f5?t=1778166497764"
           }
@@ -2486,14 +2485,14 @@
           {
             "field": "geo",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 605 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 606 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           },
           {
             "field": "types",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-03-31 : 605 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-03-31 : 606 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.praemiareim.fr/documents/14836074/14836287/BTI_Primopierre_T1_2025.pdf/2fe3178c-518c-6432-0564-079b0dd8b915?t=1746459136547"
           }
@@ -2524,14 +2523,14 @@
           {
             "field": "geo",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-09-30 : 422 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-09-30 : 423 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_a93cfc80-5fa6-48ad-aff4-1c41e0e990b5"
           },
           {
             "field": "types",
             "kind": "ancienne",
-            "detail": "Donnée du 2025-09-30 : 422 jours (seuil indicatif 420 jours)",
+            "detail": "Donnée du 2025-09-30 : 423 jours (seuil indicatif 420 jours)",
             "level": "warning",
             "source": "https://www.amundi-immobilier.com/ezjscore/call/ezjscamundibuzz%3A%3AsfForwardFront%3A%3AparamsList%3Dservice%3DProxyGedApi%26routeId%3D_dl_a93cfc80-5fa6-48ad-aff4-1c41e0e990b5"
           }
@@ -2730,5 +2729,5 @@
       }
     ]
   },
-  "fallbackRecovered": 17
+  "fallbackRecovered": 16
 }
